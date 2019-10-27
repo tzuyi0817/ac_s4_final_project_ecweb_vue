@@ -4,6 +4,7 @@
     <main role="main" class="main">
       <router-view />
     </main>
+    <Footer />
   </div>
 </template>
 
@@ -11,11 +12,13 @@
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export default {
   name: "App",
   components: {
-    Navbar
+    Navbar,
+    Footer
   }
 };
 </script>

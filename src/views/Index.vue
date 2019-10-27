@@ -37,7 +37,7 @@
           </p>
         </div>
         <!-- 商品類別 -->
-        <div class="row">
+        <div class="row mb-5">
           <IndexCategories
             v-for="category in categories"
             :key="category.id"

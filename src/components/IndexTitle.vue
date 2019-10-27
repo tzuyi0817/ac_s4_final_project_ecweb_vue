@@ -25,4 +25,8 @@
   font-family: "Pacifico", "Noto Sans TC", sans-serif;
   color: black;
 }
+
+.navbar-brand:hover {
+  color: #0085a5;
+}
 </style>
