@@ -29,6 +29,11 @@ export default new Router({
       component: () => import('./views/CategoryProducts')
     },
     {
+      path: '/product/:id',
+      name: 'product',
+      component: () => import('./views/Product')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound

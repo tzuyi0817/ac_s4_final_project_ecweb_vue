@@ -1,9 +1,18 @@
 <template>
   <div class="list-group">
-    <router-link
-      class="list-group-item list-group-item-action"
-      :to="{ name: 'category-products', params: { id: category.id }}"
-    >{{category.name}}</router-link>
+    <template v-if="category.id === categoryId">
+      <router-link
+        class="list-group-item list-group-item-action active"
+        style="background-color: #0085a5;"
+        :to="{ name: 'category-products', params: { id: category.id }}"
+      >{{category.name}}</router-link>
+    </template>
+    <template v-else>
+      <router-link
+        class="list-group-item list-group-item-action"
+        :to="{ name: 'category-products', params: { id: category.id }}"
+      >{{category.name}}</router-link>
+    </template>
   </div>
 </template>
 
@@ -13,6 +22,10 @@ export default {
     initialCategory: {
       type: Array,
       required: true
+    },
+    categoryId: {
+      type: Number,
+      default: -1
     }
   },
   data() {
