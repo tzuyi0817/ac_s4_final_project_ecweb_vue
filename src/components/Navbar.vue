@@ -3,8 +3,15 @@
     <router-link class="navbar-title mr-5" to="/">MuseClub</router-link>
 
     <!-- 搜尋  -->
-    <form action="/ESHOP/search">
-      <input class="searchKeyword mr-1" type="text" name="keyword" value placeholder="請輸入 商品 關鍵字" />
+    <form @submit.prevent="handleSearch(keyword)">
+      <input
+        class="searchKeyword mr-1"
+        type="text"
+        id="keyword"
+        v-model="keyword"
+        name="keyword"
+        placeholder="請輸入 商品 關鍵字"
+      />
       <button class="searchBtn mr-5" type="submit">
         <span class="fa fa-search ml-1">&nbsp;搜尋商品&nbsp;</span>
       </button>
@@ -35,25 +42,36 @@
     </div>
 
     <!-- admin -->
-    <div class="admin" v-if="isRole">
+    <!-- <div class="admin" v-if="isRole">
       <router-link href="/admin/index" class="nav-logo btn">
         <i class="fas fa-tasks"></i>
         後台管理
       </router-link>
-    </div>
+    </div>-->
 
     <!-- logout -->
-    <div class="logout" v-if="isAuthenticated">
+    <!-- <div class="logout" v-if="isAuthenticated">
       <router-link to="/users/logOut">
         <button class="btn btn-outline-success my-2 my-sm-0">登出</button>
       </router-link>
-    </div>
+    </div>-->
   </nav>
 </template>
 
 <script>
 export default {
-  name: "Navbar"
+  data() {
+    return {
+      keyword: ""
+    };
+  },
+  methods: {
+    handleSearch(keyword) {
+      this.$router.push({ path: "/ESHOP/search", query: { keyword } });
+      // 清空搜尋欄位
+      this.keyword = "";
+    }
+  }
 };
 </script>
 
