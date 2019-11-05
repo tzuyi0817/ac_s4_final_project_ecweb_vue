@@ -56,7 +56,7 @@
       :total-page="totalPage"
     />
 
-    <div class="mt-5" v-if="products.length < 1">此類別暫時無商品資料</div>
+    <div class="mt-5" style="text-align: center;" v-if="products.length < 1">此類別暫時無商品資料</div>
     <!-- 購物車通知 -->
     <CartNotice />
   </div>

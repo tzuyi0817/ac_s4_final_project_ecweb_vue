@@ -11,5 +11,9 @@ export default {
   getSearch({ keyword, key, value, page }) {
     const searchParams = new URLSearchParams({ keyword, key, value, page })
     return apiHelper.get(`/ESHOP/search?${searchParams.toString()}`)
+  },
+  getProduct({ productId, page }) {
+    const searchParams = new URLSearchParams({ page })
+    return apiHelper.get(`/product/${productId}?${searchParams.toString()}`)
   }
 }
