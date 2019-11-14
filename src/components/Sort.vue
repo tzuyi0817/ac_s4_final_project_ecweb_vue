@@ -6,13 +6,13 @@
       <template v-if="currentKey === createdAt && currentValue === desc">
         <router-link
           class="search-select btn ml-2"
-          :to="{name: 'category-products', query: { key: createdAt, value: desc }}"
+          :to="{name: 'category-products', query: { key: createdAt, value: desc }, hash: '#pagination'}"
         >由新到舊</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn ml-2"
-          :to="{name: 'category-products', query: { key: createdAt, value: desc }}"
+          :to="{name: 'category-products', query: { key: createdAt, value: desc }, hash: '#pagination'}"
         >由新到舊</router-link>
       </template>
 
@@ -20,13 +20,13 @@
       <template v-if="currentKey === createdAt && currentValue === asc">
         <router-link
           class="search-select btn ml-2"
-          :to="{name: 'category-products', query: { key: createdAt, value: asc }}"
+          :to="{name: 'category-products', query: { key: createdAt, value: asc }, hash: '#pagination'}"
         >由舊到新</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn ml-2"
-          :to="{name: 'category-products', query: { key: createdAt, value: asc }}"
+          :to="{name: 'category-products', query: { key: createdAt, value: asc }, hash: '#pagination'}"
         >由舊到新</router-link>
       </template>
 
@@ -34,13 +34,13 @@
       <template v-if="currentKey === price && currentValue === desc">
         <router-link
           class="search-select btn ml-2"
-          :to="{name: 'category-products', query: { key: price, value: desc }}"
+          :to="{name: 'category-products', query: { key: price, value: desc }, hash: '#pagination'}"
         >價格: 由高至低</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn ml-2"
-          :to="{name: 'category-products', query: { key: price, value: desc }}"
+          :to="{name: 'category-products', query: { key: price, value: desc }, hash: '#pagination'}"
         >價格: 由高至低</router-link>
       </template>
 
@@ -48,13 +48,13 @@
       <template v-if="currentKey === price && currentValue === asc">
         <router-link
           class="search-select btn ml-2"
-          :to="{name: 'category-products', query: { key: price, value: asc }}"
+          :to="{name: 'category-products', query: { key: price, value: asc }, hash: '#pagination'}"
         >價格: 由低至高</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn ml-2"
-          :to="{name: 'category-products', query: { key: price, value: asc }}"
+          :to="{name: 'category-products', query: { key: price, value: asc }, hash: '#pagination'}"
         >價格: 由低至高</router-link>
       </template>
     </div>

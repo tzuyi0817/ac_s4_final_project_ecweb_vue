@@ -1,64 +1,69 @@
 <template>
   <div class="mb-5">
-    <!-- NavTabs -->
-    <div class="row mt-5">
-      <div class="col-2">
-        <div class="nav flex-column">
-          <div class="list-group">
-            <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
+    <Spinner v-if="isLoading" />
+    <template v-else>
+      <!-- NavTabs -->
+      <div class="row mt-5">
+        <div class="col-2">
+          <div class="nav flex-column">
+            <div class="list-group">
+              <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
+            </div>
+            <NavTabs
+              v-for="category in categories"
+              :key="category.id"
+              :initial-category="category"
+              :category-id="categoryId"
+            />
           </div>
-          <NavTabs
-            v-for="category in categories"
-            :key="category.id"
-            :initial-category="category"
-            :category-id="categoryId"
-          />
+        </div>
+        <!-- 類別圖片 -->
+        <div class="col-1"></div>
+        <div class="index col-8">
+          <img :src="category.image" class="h-75 w-75" alt="image" />
         </div>
       </div>
-      <!-- 類別圖片 -->
-      <div class="col-1"></div>
-      <div class="index col-8">
-        <img :src="category.image" class="h-75 w-75" alt="image" />
-      </div>
-    </div>
 
-    <div class="row col-auto mt-3">
-      <!-- 類別名稱 -->
-      <div class="col-2 ml-5">
-        <h3 style="color:#0085a5">{{category.name}}</h3>
-      </div>
-      <!-- 排序 -->
-      <div class="col-7">
-        <Sort :current-key="currentKey" :current-value="currentValue" />
-      </div>
-    </div>
+      <section id="pagination"></section>
 
-    <div class="row mt-5 mb-5">
-      <!-- 商品 -->
-      <div class="col-2"></div>
-      <div class="ml-5 col-7">
-        <div class="row">
-          <Products
-            v-for="product in products"
-            :key="product.id"
-            :initial-product="product"
-            :category="category"
-          />
+      <div class="row col-auto">
+        <!-- 類別名稱 -->
+        <div class="col-2 ml-5">
+          <h3 style="color:#0085a5">{{category.name}}</h3>
+        </div>
+        <!-- 排序 -->
+        <div class="col-7">
+          <Sort :current-key="currentKey" :current-value="currentValue" />
         </div>
       </div>
-    </div>
-    <!-- 分頁標籤 RestaurantsPagination -->
-    <ProductsPagination
-      v-if="totalPage > 1"
-      :current-key="currentKey"
-      :current-value="currentValue"
-      :current-page="currentPage"
-      :total-page="totalPage"
-    />
 
-    <div class="mt-5" style="text-align: center;" v-if="products.length < 1">此類別暫時無商品資料</div>
-    <!-- 購物車通知 -->
-    <CartNotice />
+      <div class="row mt-5 mb-5">
+        <!-- 商品 -->
+        <div class="col-2"></div>
+        <div class="ml-5 col-7">
+          <div class="row">
+            <Products
+              v-for="product in products"
+              :key="product.id"
+              :initial-product="product"
+              :category="category"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- 分頁標籤 RestaurantsPagination -->
+      <ProductsPagination
+        v-if="totalPage > 1"
+        :current-key="currentKey"
+        :current-value="currentValue"
+        :current-page="currentPage"
+        :total-page="totalPage"
+      />
+
+      <div class="mt-5" style="text-align: center;" v-if="products.length < 1">此類別暫時無商品資料</div>
+      <!-- 購物車通知 -->
+      <CartNotice />
+    </template>
   </div>
 </template>
 
@@ -68,6 +73,7 @@ import Sort from "./../components/Sort";
 import Products from "./../components/Products";
 import ProductsPagination from "./../components/ProductsPagination";
 import CartNotice from "./../components/CartNotice";
+import Spinner from "./../components/Spinner";
 import categoriesAPI from "./../apis/categories";
 import { Toast } from "./../utils/helpers";
 
@@ -77,7 +83,8 @@ export default {
     Sort,
     Products,
     ProductsPagination,
-    CartNotice
+    CartNotice,
+    Spinner
   },
   data() {
     return {
@@ -92,7 +99,8 @@ export default {
       currentPage: 1,
       totalPage: -1,
       currentKey: "",
-      currentValue: ""
+      currentValue: "",
+      isLoading: true
     };
   },
   created() {
@@ -133,7 +141,9 @@ export default {
         this.currentValue = data.value;
         this.currentPage = data.page;
         this.totalPage = data.totalPage.length;
+        this.isLoading = false;
       } catch (error) {
+        this.isLoading = false;
         Toast.fire({
           type: "error",
           title: "無法取得類別商品資料，請稍後再試"

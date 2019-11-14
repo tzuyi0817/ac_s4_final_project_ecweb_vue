@@ -13,7 +13,7 @@
           height="180px"
         />
         <div class="card-header">
-          <p class="card-title" style="font-size: 18px;">
+          <p class="card-title" style="font-size: 17px;">
             【{{CategoryName}}】
             <br />
             {{product.name}}

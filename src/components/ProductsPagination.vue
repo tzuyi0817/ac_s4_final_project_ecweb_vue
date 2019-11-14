@@ -7,7 +7,7 @@
           class="page-link"
           aria-label="Previous"
           style="color: #0085a5;"
-          :to="{name: 'category-products', query: { key: currentKey, value: currentValue, page: previousPage }}"
+          :to="{name: 'category-products', query: { key: currentKey, value: currentValue, page: previousPage }, hash: '#pagination'}"
         >
           <span aria-hidden="true">&laquo;</span>
         </router-link>
@@ -21,7 +21,7 @@
       >
         <router-link
           class="page-link"
-          :to="{name: 'category-products', query: { key: currentKey, value: currentValue, page }}"
+          :to="{name: 'category-products', query: { key: currentKey, value: currentValue, page }, hash: '#pagination'}"
         >{{ page }}</router-link>
       </li>
 
@@ -30,7 +30,7 @@
         <router-link
           class="page-link"
           style="color: #0085a5;"
-          :to="{name: 'category-products', query: { key: currentKey, value: currentValue, page: nextPage }}"
+          :to="{name: 'category-products', query: { key: currentKey, value: currentValue, page: nextPage }, hash: '#pagination'}"
           aria-label="Next"
         >
           <span aria-hidden="true">&raquo;</span>
