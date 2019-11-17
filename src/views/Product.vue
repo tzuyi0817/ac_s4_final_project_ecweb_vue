@@ -67,9 +67,8 @@
         </div>
         <!-- 商品評論 -->
         <ProductReview
-          v-for="comment in commentsPagination"
-          :key="comment.id"
-          :initial-comment="comment"
+          :comments-pagination="commentsPagination"
+          @after-delete-comment="afterDeleteComment"
         />
       </div>
 
@@ -77,6 +76,9 @@
       <commentPagination v-if="totalPage > 1" :current-page="currentPage" :total-page="totalPage" />
 
       <div class="mt-5" style="text-align: center;" v-if="commentsPagination.length < 1">此商品暫時無評價</div>
+
+      <!-- 新增評論 CreateComment -->
+      <CreateComment :product-id="product.id" @after-create-comment="afterCreateComment" />
 
       <hr class="ml-4 mt-5 col-10" />
 
@@ -108,12 +110,14 @@ import ProductSpecifications from "./../components/ProductSpecifications";
 import ProductDetails from "./../components/ProductDetails";
 import ProductReview from "./../components/ProductReview";
 import CommentPagination from "./../components/CommentPagination";
+import CreateComment from "./../components/CreateComment";
 import SimilarProducts from "./../components/SimilarProducts";
 import CartNotice from "./../components/CartNotice";
 import Spinner from "./../components/Spinner";
 import categoriesAPI from "./../apis/categories";
 import { Toast } from "./../utils/helpers";
 import { starFilter } from "./../utils/mixins";
+import { mapState } from "vuex";
 
 export default {
   mixins: [starFilter],
@@ -124,6 +128,7 @@ export default {
     ProductDetails,
     ProductReview,
     CommentPagination,
+    CreateComment,
     SimilarProducts,
     CartNotice,
     Spinner
@@ -156,10 +161,8 @@ export default {
       isLoading: true
     };
   },
-  created() {
-    const { id: productId } = this.$route.params;
-    const { page } = this.$route.query;
-    this.fetchProduct({ productId, page });
+  computed: {
+    ...mapState(["currentUser"])
   },
   // 使用 beforeRouteUpdate 方法取得使用者路由變化
   beforeRouteUpdate(to, from, next) {
@@ -167,6 +170,11 @@ export default {
     const { page } = to.query;
     this.fetchProduct({ productId, page });
     next();
+  },
+  created() {
+    const { id: productId } = this.$route.params;
+    const { page } = this.$route.query;
+    this.fetchProduct({ productId, page });
   },
   methods: {
     async fetchProduct({ productId, page }) {
@@ -211,6 +219,16 @@ export default {
           title: "無法取得商品資料，請稍後再試"
         });
       }
+    },
+    afterDeleteComment(commentId) {
+      // 以 filter 保留未被選擇的 comment.id
+      this.commentsPagination = this.commentsPagination.filter(
+        comment => comment.id !== commentId
+      );
+    },
+    afterCreateComment(payload) {
+      const { ProductId } = payload;
+      this.$router.push(`/product/${ProductId}#evaluation`);
     }
   }
 };
