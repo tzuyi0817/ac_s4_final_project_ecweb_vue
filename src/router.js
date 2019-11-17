@@ -1,22 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NotFound from './views/NotFound.vue'
-import SignIn from './views/SignIn.vue'
+import LogIn from './views/LogIn.vue'
+import SignUp from './views/SignUp.vue'
 import Index from './views/Index.vue'
+import store from './store'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
+  linkExactActiveClass: 'active',
   routes: [
     {
       path: '/',
-      name: 'root',
+      name: 'index',
       redirect: '/index'
     },
     {
-      path: '/signin',
-      name: 'sign-in',
-      component: SignIn
+      path: '/users/logIn',
+      name: 'logIn',
+      component: LogIn
+    },
+    {
+      path: '/users/signUp',
+      name: 'signUp',
+      component: SignUp
     },
     {
       path: '/index',
@@ -56,3 +64,37 @@ export default new Router({
     }
   }
 })
+
+router.beforeEach(async (to, from, next) => {
+  const tokenInLocalStorage = localStorage.getItem('token')
+  const tokenInStore = store.state.token
+  let isAuthenticated = store.state.isAuthenticated
+
+  // 比較 localStorage 和 store 中的 token 是否一樣
+  if (tokenInLocalStorage && tokenInLocalStorage !== tokenInStore) {
+    isAuthenticated = await store.dispatch('fetchCurrentUser')
+  }
+
+  // 對於不需要驗證 token 的頁面
+  const pathsWithoutAuthentication = ['index', 'signUp', 'category-products', 'product', 'search']
+  if (pathsWithoutAuthentication.includes(to.name)) {
+    next()
+    return
+  }
+
+  // 如果 token 無效則轉址到登入頁
+  if (!isAuthenticated && to.name !== 'logIn') {
+    next('/users/logIn')
+    return
+  }
+
+  // 如果 token 有效則轉址到首頁
+  if (isAuthenticated && to.name === 'logIn') {
+    next('/index')
+    return
+  }
+
+  next()
+})
+
+export default router

@@ -42,34 +42,41 @@
     </div>
 
     <!-- admin -->
-    <!-- <div class="admin" v-if="isRole">
-      <router-link href="/admin/index" class="nav-logo btn">
+    <div class="admin" v-if="currentUser.role === 1">
+      <router-link to="/admin/index" class="nav-logo btn">
         <i class="fas fa-tasks"></i>
         後台管理
       </router-link>
-    </div>-->
+    </div>
 
     <!-- logout -->
-    <!-- <div class="logout" v-if="isAuthenticated">
-      <router-link to="/users/logOut">
-        <button class="btn btn-outline-success my-2 my-sm-0">登出</button>
-      </router-link>
-    </div>-->
+    <div class="logout" v-if="isAuthenticated">
+      <button class="btn btn-outline-success my-2 my-sm-0" @click="logout">登出</button>
+    </div>
   </nav>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
       keyword: ""
     };
   },
+  computed: {
+    ...mapState(["currentUser", "isAuthenticated"])
+  },
   methods: {
     handleSearch(keyword) {
       this.$router.push({ path: "/ESHOP/search", query: { keyword } });
       // 清空搜尋欄位
       this.keyword = "";
+    },
+    logout() {
+      this.$store.commit("revokeAuthentication");
+      this.$router.push("/users/logIn");
     }
   }
 };
