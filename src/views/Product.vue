@@ -78,7 +78,11 @@
       <div class="mt-5" style="text-align: center;" v-if="commentsPagination.length < 1">此商品暫時無評價</div>
 
       <!-- 新增評論 CreateComment -->
-      <CreateComment :product-id="product.id" @after-create-comment="afterCreateComment" />
+      <CreateComment
+        v-if="isAuthenticated"
+        :product-id="product.id"
+        @after-create-comment="afterCreateComment"
+      />
 
       <hr class="ml-4 mt-5 col-10" />
 
@@ -162,7 +166,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["currentUser"])
+    ...mapState(["currentUser", "isAuthenticated"])
   },
   // 使用 beforeRouteUpdate 方法取得使用者路由變化
   beforeRouteUpdate(to, from, next) {
@@ -220,15 +224,25 @@ export default {
         });
       }
     },
-    afterDeleteComment(commentId) {
-      // 以 filter 保留未被選擇的 comment.id
-      this.commentsPagination = this.commentsPagination.filter(
-        comment => comment.id !== commentId
-      );
+    afterDeleteComment() {
+      if (this.isLoading === false) {
+        setTimeout(() => {
+          window.scrollTo({
+            top: 2200,
+            behavior: "smooth"
+          });
+        }, 2000);
+      }
     },
-    afterCreateComment(payload) {
-      const { ProductId } = payload;
-      this.$router.push(`/product/${ProductId}#evaluation`);
+    afterCreateComment() {
+      if (this.isLoading === false) {
+        setTimeout(() => {
+          window.scrollTo({
+            top: 2200,
+            behavior: "smooth"
+          });
+        }, 2000);
+      }
     }
   }
 };

@@ -60,7 +60,11 @@
         :total-page="totalPage"
       />
 
-      <div class="mt-5" style="text-align: center;" v-if="products.length < 1">此類別暫時無商品資料</div>
+      <div
+        class="no-products mt-5"
+        style="text-align: center;"
+        v-if="products.length < 1"
+      >此類別暫時無商品資料</div>
       <!-- 購物車通知 -->
       <CartNotice />
     </template>
@@ -163,5 +167,10 @@ h3 {
 .list-group-item:hover {
   color: white;
   background-color: #0085a5;
+}
+
+.no-products {
+  font-family: "DFKai-sb";
+  padding: 75px;
 }
 </style>

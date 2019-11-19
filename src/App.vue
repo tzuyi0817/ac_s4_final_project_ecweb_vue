@@ -2,7 +2,7 @@
   <div id="ec-web">
     <Navbar />
     <main role="main" class="main">
-      <router-view />
+      <router-view v-if="isRouterAlive" />
     </main>
     <Footer />
   </div>
@@ -19,6 +19,24 @@ export default {
   components: {
     Navbar,
     Footer
+  },
+  provide() {
+    return {
+      reload: this.reload
+    };
+  },
+  data() {
+    return {
+      isRouterAlive: true
+    };
+  },
+  methods: {
+    reload() {
+      this.isRouterAlive = false;
+      this.$nextTick(() => {
+        this.isRouterAlive = true;
+      });
+    }
   }
 };
 </script>

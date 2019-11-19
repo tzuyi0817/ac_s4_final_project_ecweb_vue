@@ -64,6 +64,7 @@ import commentsAPI from "./../apis/comments";
 import { Toast } from "./../utils/helpers";
 
 export default {
+  inject: ["reload"],
   props: {
     productId: {
       type: Number,
@@ -99,6 +100,8 @@ export default {
         if (statusText !== "OK" || data.status !== "success") {
           throw new Error(statusText);
         }
+
+        this.reload();
 
         this.$emit("after-create-comment", {
           commentId: data.commentId,

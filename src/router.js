@@ -56,6 +56,8 @@ const router = new Router({
     if (savedPosition) {
       return savedPosition;
     } else if (to.hash) {
+      if (to.hash === '#evaluation') return { y: 2200 }
+      if (to.hash === '#pagination') return { y: 550 }
       return {
         selector: to.hash
       };

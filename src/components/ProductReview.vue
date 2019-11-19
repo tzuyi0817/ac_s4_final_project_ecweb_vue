@@ -41,6 +41,7 @@ import { Toast } from "./../utils/helpers";
 
 export default {
   mixins: [starFilter, fromNowFilter],
+  inject: ["reload"],
   props: {
     commentsPagination: {
       type: Array,
@@ -61,6 +62,8 @@ export default {
         if (statusText !== "OK" || data.status !== "success") {
           throw new Error(statusText);
         }
+
+        this.reload();
 
         this.$emit("after-delete-comment", commentId);
 
