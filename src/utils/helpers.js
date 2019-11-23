@@ -7,6 +7,8 @@ export const axiosInstance = axios.create({
   baseURL
 })
 
+axiosInstance.defaults.withCredentials = true
+
 axiosInstance.interceptors.request.use(
   config => {
     // 從 localStorage 將 token 取出

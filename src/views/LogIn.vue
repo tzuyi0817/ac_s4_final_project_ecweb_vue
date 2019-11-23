@@ -65,7 +65,7 @@ export default {
     };
   },
   methods: {
-    async handleSubmit(e) {
+    async handleSubmit() {
       try {
         // 如果 email 或 password 為空，則使用 Toast 提示
         // 然後 return 不繼續往後執行
@@ -95,6 +95,13 @@ export default {
         // 將資料傳到 Vuex 中
         this.$store.commit("setCurrentUser", data.user);
 
+        // 返回購物車
+        if (this.$route.query.redirect === "cart") {
+          this.$router.push("/cart");
+          return;
+        }
+
+        // 前往首頁
         this.$router.push("/index");
       } catch (error) {
         // 將密碼欄位清空

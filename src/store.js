@@ -20,9 +20,13 @@ export default new Vuex.Store({
       image: ''
     },
     isAuthenticated: false,
-    token: ''
+    token: '',
+    cartItemNumber: 0
   },
   mutations: {
+    setCartItemNumber(state, number) {
+      state.cartItemNumber += number
+    },
     setCurrentUser(state, currentUser) {
       state.currentUser = {
         ...state.currentUser,

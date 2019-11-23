@@ -7,16 +7,20 @@
             <td class="cartImage">
               <img src="https://trade.1111.com.tw/ProductImg/92/182392/182392_P_Pr9x5.jpg" />
               <br />
-              <template v-if="localcartItem">
-                <small style="color: red;">{{localcartItem}}</small>
-                <small>件商品</small>
+              <template v-if="cartItemNumber">
+                <div class="row">
+                  <p style="color: red;">&nbsp;&nbsp;&nbsp;{{cartItemNumber}}&nbsp;</p>
+                  <p style="color: #0085a5;">件商品</p>
+                </div>
               </template>
               <template v-else>
-                <small style="color: red;">0&nbsp;</small>
-                <small>件商品</small>
+                <div class="row">
+                  <p style="color: red;">&nbsp;&nbsp;&nbsp;0&nbsp;</p>
+                  <p style="color: #0085a5;">件商品</p>
+                </div>
               </template>
               <hr />
-              <small>結帳去</small>
+              <p>結帳去</p>
             </td>
           </tr>
         </tbody>
@@ -26,7 +30,12 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
+  computed: {
+    ...mapState(["cartItemNumber"])
+  },
   mounted() {
     const cartNotice = document.querySelector(".cartNotice");
 
@@ -80,9 +89,10 @@ hr {
   border-top: 1px solid gray;
 }
 
-small {
+p {
   font-family: "DFKai-sb";
   color: #0085a5;
+  font-size: 17px;
 }
 
 .cartNotice {
@@ -92,7 +102,7 @@ small {
 }
 
 .cartBG {
-  width: 80px;
+  width: 100px;
   border-spacing: 0px;
   text-align: center;
   height: 44px;
@@ -123,7 +133,7 @@ small {
 .cartImage img {
   position: absolute;
   width: 100%;
-  margin-top: -50px;
+  margin-top: -100px;
   background-color: transparent;
   -webkit-margin-start: 20px;
   left: -19px;

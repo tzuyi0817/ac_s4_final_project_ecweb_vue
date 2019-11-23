@@ -62,7 +62,7 @@
         <p class="ml-3">$ 60</p>
       </div>
       <!-- 加入購物車 -->
-      <form action="/cart" method="POST">
+      <form @submit.stop.prevent="handleCart">
         <div class="row" style="display:flex; justify-content: center;">
           <p class="mr-5 mt-2" style="color: gray;">數量</p>
 
@@ -99,7 +99,12 @@
           </span>
           <!-- 有庫存 -->
           <input v-if="product.count > 0" type="hidden" name="productId" :value="product.id" />
-          <button v-if="product.count > 0" type="submit" class="btn btn-success mt-4 mr-2">
+          <button
+            v-if="product.count > 0"
+            type="submit"
+            class="btn btn-success mt-4 mr-2"
+            :disabled="isProcessing"
+          >
             <i class="fas fa-shopping-cart"></i> 加入購物車
           </button>
           <router-link v-if="product.count > 0" to="/cart" class="btn btn-primary mt-4">前往購物車 ></router-link>
@@ -168,6 +173,7 @@
 <script>
 import { starFilter } from "./../utils/mixins";
 import deliveryNoticeAPI from "./../apis/deliveryNotice";
+import cartAPI from "./../apis/cart";
 import { Toast } from "./../utils/helpers";
 
 export default {
@@ -252,6 +258,38 @@ export default {
         Toast.fire({
           type: "error",
           title: "無法申請貨到通知，請稍後再試"
+        });
+      }
+    },
+    async handleCart() {
+      try {
+        this.isProcessing = true;
+
+        const { data, statusText } = await cartAPI.postCart({
+          productId: this.initialProduct.id,
+          quantity: this.qty
+        });
+
+        if (statusText !== "OK" || data.status !== "success") {
+          throw new Error(statusText);
+        }
+
+        this.$store.commit("setCartItemNumber", this.qty);
+
+        this.isProcessing = false;
+        // 加入購物車後
+        this.qty = 1;
+
+        Toast.fire({
+          type: "success",
+          title: "商品已加入購物車"
+        });
+      } catch (error) {
+        this.isProcessing = false;
+
+        Toast.fire({
+          type: "error",
+          title: "商品無法加入購物車，請稍後再試"
         });
       }
     }

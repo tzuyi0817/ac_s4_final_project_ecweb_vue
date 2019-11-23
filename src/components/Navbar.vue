@@ -22,10 +22,7 @@
       <router-link to="/cart" class="nav-logo btn">
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
         購物車
-        <span
-          v-if="localcartItem"
-          class="bg-danger text-white rounded-circle h-5 p-1"
-        >{{localcartItem}}</span>
+        <span v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</span>
       </router-link>
     </div>
 
@@ -66,7 +63,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["currentUser", "isAuthenticated"])
+    ...mapState(["currentUser", "isAuthenticated", "cartItemNumber"])
   },
   methods: {
     handleSearch(keyword) {
@@ -131,5 +128,12 @@ export default {
 .nav-logo:hover {
   background-color: #3ac4e2;
   color: white;
+}
+
+.badge {
+  font-size: 100%;
+  margin-right: 10px;
+  display: inline-block;
+  color: gray;
 }
 </style>

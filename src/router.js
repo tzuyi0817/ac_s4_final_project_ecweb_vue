@@ -47,6 +47,11 @@ const router = new Router({
       component: () => import('./views/Search')
     },
     {
+      path: '/cart',
+      name: 'cart',
+      component: () => import('./views/Cart')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound
@@ -78,7 +83,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   // 對於不需要驗證 token 的頁面
-  const pathsWithoutAuthentication = ['index', 'signUp', 'category-products', 'product', 'search']
+  const pathsWithoutAuthentication = ['index', 'signUp', 'category-products', 'product', 'search', 'cart']
   if (pathsWithoutAuthentication.includes(to.name)) {
     next()
     return
