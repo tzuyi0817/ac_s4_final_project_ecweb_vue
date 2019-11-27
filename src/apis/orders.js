@@ -28,5 +28,8 @@ export default {
       cartId,
       couponId
     })
+  },
+  getOrderSuccess({ orderId }) {
+    return apiHelper.get(`/order/${orderId}/success`, { orderId })
   }
 }

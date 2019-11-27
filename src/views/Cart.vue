@@ -47,7 +47,7 @@
         <div class="alert alert-secondary mt-3" role="alert">您的購物車是空的!!</div>
         <div class="row">
           <p class="col">&nbsp;</p>
-          <router-link to="/" class="btn btn-primary mt-5">返回首頁繼續購物</router-link>
+          <router-link to="/" class="btn btn-primary mt-5">繼續購物</router-link>
         </div>
       </template>
 

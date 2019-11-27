@@ -62,6 +62,11 @@ const router = new Router({
       component: () => import('./views/CouponOrder')
     },
     {
+      path: '/order/:id/success',
+      name: 'OrderSuccess',
+      component: () => import('./views/OrderSuccess')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound
