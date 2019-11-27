@@ -52,6 +52,16 @@ const router = new Router({
       component: () => import('./views/Cart')
     },
     {
+      path: '/orderEdit',
+      name: 'OrderEdit',
+      component: () => import('./views/OrderEdit')
+    },
+    {
+      path: '/couponOrder/:id',
+      name: 'CouponOrder',
+      component: () => import('./views/CouponOrder')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound

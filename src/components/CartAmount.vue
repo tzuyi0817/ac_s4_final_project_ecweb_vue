@@ -10,7 +10,7 @@
     </div>
     <div class="row col-8">
       <div class="col">折價券折抵:</div>
-      <div v-if="coupon" class="amount">{{coupon.discount}} 元</div>
+      <div v-if="coupon" class="amount">- {{coupon.discount}} 元</div>
       <div v-else class="amount" style="float: right;">0 元</div>
     </div>
     <div class="row col-8">

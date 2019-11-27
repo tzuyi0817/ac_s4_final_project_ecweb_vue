@@ -6,8 +6,8 @@
       <div class="row justify-content-center mt-3">
         <div class="col-12 col-md-8">
           <div class="row step">
-            <div class="col-3 text-center step-point-line step-point">
-              <span class="step-by-step bg-dark rounded-pill text-light d-inline-block">Step 1</span>
+            <div class="col-3 text-center">
+              <span class="step-by-step bg-secondary rounded-pill text-dark d-inline-block">Step 1</span>
               <p class="step-text text-dark">確認購物車</p>
             </div>
 
@@ -15,9 +15,9 @@
               <i class="fas fa-long-arrow-alt-right"></i>
             </div>
 
-            <div class="col-3 text-center">
+            <div class="col-3 text-center step-point-line step-point">
               <span
-                class="step-by-step border bg-secondary rounded-pill text-dark d-inline-block"
+                class="step-by-step border bg-dark rounded-pill text-light d-inline-block"
               >Step 2</span>
               <p class="step-text text-dark">付款與運送方式</p>
             </div>
@@ -36,75 +36,46 @@
         </div>
       </div>
 
-      <!-- 購物車明細 -->
-      <div class="cartNav row text-white mt-3" style="padding: 8px;">
-        <h1>&nbsp;購物車明細</h1>
+      <!-- 訂單明細 -->
+      <div class="orderNav row text-white mt-3" style="padding: 8px;">
+        <h1>&nbsp;訂單明細</h1>
       </div>
 
-      <CartItems v-if="this.items.length > 0" :items="items" />
+      <OrderItems v-if="this.items.length > 0" :items="items" />
 
-      <template v-else>
-        <div class="alert alert-secondary mt-3" role="alert">您的購物車是空的!!</div>
-        <div class="row">
-          <p class="col">&nbsp;</p>
-          <router-link to="/" class="btn btn-primary mt-5">返回首頁繼續購物</router-link>
-        </div>
-      </template>
-
-      <!-- 折價券使用 -->
-      <UseCoupon v-if="this.items.length > 0" :total-price="totalPrice" />
-
-      <hr v-if="this.items.length > 0" />
-
-      <!-- 購物車總金額 -->
+      <!-- 訂單總金額 -->
       <CartAmount
-        v-if="this.items.length > 0"
-        :coupon="coupon"
         :total-price="totalPrice"
         :shipping-fee="shippingFee"
         :subtotal="subtotal"
+        :coupon="coupon"
       />
 
-      <div class="row mb-5" v-if="this.items.length > 0">
-        <!-- 未登入 -->
-        <template v-if="!isAuthenticated">
-          <p class="col">&nbsp;</p>
-          <router-link to="/users/logIn?redirect=cart" class="btn btn-select mt-4">前往選擇付款及運送方式</router-link>
-        </template>
-
-        <!-- 已登入 -->
-        <template v-else>
-          <p class="col">&nbsp;</p>
-
-          <!-- 使用折價券 -->
-          <router-link
-            v-if="coupon"
-            class="btn btn-select mt-4"
-            :to="{name: 'CouponOrder', params: { id: coupon.id }}"
-          >前往選擇付款及運送方式</router-link>
-
-          <!-- 未使用折價券 -->
-          <router-link v-else to="/orderEdit" class="btn btn-select mt-4">前往選擇付款及運送方式</router-link>
-        </template>
-      </div>
+      <!-- 選擇付款與運送方式 -->
+      <SelectPaymentTransport
+        :user="user"
+        :cart="cart"
+        :total-price="totalPrice"
+        :couponId="coupon.id"
+      />
     </template>
   </div>
 </template>
 
 <script>
-import CartItems from "./../components/CartItems";
-import UseCoupon from "./../components/UseCoupon";
+import OrderItems from "./../components/OrderItems";
 import CartAmount from "./../components/CartAmount";
-import cartAPI from "./../apis/cart";
+import SelectPaymentTransport from "./../components/SelectPaymentTransport";
 import Spinner from "./../components/Spinner";
+import couponAPI from "./../apis/coupons";
 import { Toast } from "./../utils/helpers";
 import { mapState } from "vuex";
 
 export default {
   components: {
-    CartItems,
-    UseCoupon,
+    OrderItems,
     CartAmount,
+    SelectPaymentTransport,
     Spinner
   },
   data() {
@@ -116,6 +87,7 @@ export default {
       shippingFee: -1,
       subtotal: -1,
       items: [],
+      user: {},
       coupon: {},
       isLoading: true
     };
@@ -125,18 +97,20 @@ export default {
   },
   // 使用 beforeRouteUpdate 方法取得使用者路由變化
   beforeRouteUpdate(to, from, next) {
-    const { couponId } = to.query;
-    this.fetchCart({ couponId });
+    const { id: couponId } = to.params;
+    this.fetchOrder({ couponId });
     next();
   },
   created() {
-    const { couponId } = this.$route.query;
-    this.fetchCart({ couponId });
+    const { id: couponId } = this.$route.params;
+    this.fetchOrder({ couponId });
   },
   methods: {
-    async fetchCart({ couponId }) {
+    async fetchOrder({ couponId }) {
       try {
-        const { data, statusText } = await cartAPI.getCart({ couponId });
+        const { data, statusText } = await couponAPI.getCouponOrderEdit({
+          couponId
+        });
 
         if (statusText !== "OK") {
           throw new Error(statusText);
@@ -147,6 +121,7 @@ export default {
         this.totalPrice = data.totalPrice;
         this.shippingFee = data.shippingFee;
         this.subtotal = data.subtotal;
+        this.user = data.user;
         this.coupon = data.coupon;
 
         this.isLoading = false;
@@ -154,7 +129,7 @@ export default {
         this.isLoading = false;
         Toast.fire({
           type: "error",
-          title: "無法取得購物車資料，請稍後再試"
+          title: "無法取得訂單資料，請稍後再試"
         });
       }
     }
@@ -176,7 +151,7 @@ export default {
   font-size: 40px;
 }
 
-.cartNav {
+.orderNav {
   border-radius: 10px;
   background-color: #0085a5;
 }
@@ -184,20 +159,5 @@ export default {
 hr {
   border: 0;
   border-top: 2px solid rgb(212, 210, 210);
-}
-
-.btn-primary,
-.btn-select {
-  float: right;
-  background-color: #0085a5;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0c99bd;
-}
-
-.btn-select:hover {
-  background-color: #0c99bd;
 }
 </style>

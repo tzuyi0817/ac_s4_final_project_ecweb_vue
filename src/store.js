@@ -25,7 +25,9 @@ export default new Vuex.Store({
   },
   mutations: {
     setCartItemNumber(state, number) {
-      state.cartItemNumber += number
+      const cartItemNumber = state.cartItemNumber
+      if (cartItemNumber + number < 0) return state.cartItemNumber = 0
+      return state.cartItemNumber += number
     },
     setCurrentUser(state, currentUser) {
       state.currentUser = {

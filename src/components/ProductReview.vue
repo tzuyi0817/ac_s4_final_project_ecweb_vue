@@ -94,12 +94,6 @@ export default {
   border-radius: 50%;
 }
 
-.list-group-item:hover,
-.list-group-item:hover small {
-  color: #0085a5;
-  background-color: #d2f0f5;
-}
-
 small {
   color: gray;
 }
