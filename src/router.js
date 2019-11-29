@@ -72,6 +72,11 @@ const router = new Router({
       component: () => import('./views/Payment')
     },
     {
+      path: '/order/:id/branchselection',
+      name: 'BranchSelection',
+      component: () => import('./views/BranchSelection')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound
