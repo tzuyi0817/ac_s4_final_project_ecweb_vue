@@ -1,7 +1,7 @@
 <template>
   <div class="mt-5">
     <form @submit.stop.prevent="handleSubmit">
-      <h1 class="orderNav d-inline text-white p-3 mt-3 mb-3">&nbsp;選擇你的付款與運送方式&nbsp;</h1>
+      <h1 class="orderNav d-inline text-white p-3 mt-3 mb-3">&nbsp;選擇您的付款與運送方式&nbsp;</h1>
 
       <div class="row">
         <div class="col-7">
@@ -71,7 +71,22 @@
             <div class="form-group mt-5">
               <label class="col-4">付款方式:</label>
               <div class="col-10 mt-3">
-                <label id="payment" class="radio-inline">
+                <label
+                  v-if="this.shipmentType === this.creditCard"
+                  id="payment"
+                  class="radio-inline"
+                >
+                  <input
+                    v-model="paymentType"
+                    class="payment"
+                    type="radio"
+                    name="paymentType"
+                    value="1"
+                    disabled
+                  />&nbsp;線上支付
+                </label>
+
+                <label v-else id="payment" class="radio-inline">
                   <input
                     v-model="paymentType"
                     class="payment"
@@ -134,6 +149,9 @@ export default {
       name: "",
       phone: "",
       address: "",
+      shipmentType: -1,
+      paymentType: -1,
+      creditCard: "2",
       isProcessing: false
     };
   },
@@ -167,10 +185,10 @@ export default {
 
         this.$store.commit("setCartItemNumber", -1000);
 
-        if (data.PaymentTypeId === "1") {
-          this.$router.push(`order/${data.order.id}/payment`);
-        } else if (data.ShipmentTypeId === "2") {
-          this.$router.push(`order/${data.order.id}/branchselection`);
+        if (this.paymentType === "1") {
+          return this.$router.push(`order/${data.order.id}/payment`);
+        } else if (this.shipmentType === "2") {
+          return this.$router.push(`order/${data.order.id}/branchselection`);
         }
         return this.$router.push(`order/${data.order.id}/success`);
       } catch (error) {
@@ -182,21 +200,6 @@ export default {
         });
       }
     }
-  },
-  mounted() {
-    const pickUp = document.querySelector(".pick-up");
-    const home = document.querySelector(".home");
-    const payment = document.querySelector("#payment");
-
-    pickUp.addEventListener("change", () => {
-      payment.innerHTML = ` <label id="payment" class="radio-inline"><input class="payment" type="radio" 
-    name='paymentType' value="1" disabled />&nbsp;線上支付</label>`;
-    });
-
-    home.addEventListener("change", () => {
-      payment.innerHTML = ` <label id="payment" class="radio-inline"><input class="payment" type="radio" 
-    name='paymentType' value="1">&nbsp;線上支付</label>`;
-    });
   }
 };
 </script>

@@ -31,5 +31,11 @@ export default {
   },
   getOrderSuccess({ orderId }) {
     return apiHelper.get(`/order/${orderId}/success`, { orderId })
+  },
+  getPayment({ orderId }) {
+    return apiHelper.get(`/order/${orderId}/payment`, { orderId })
+  },
+  spgatewayCallback({ MerchantID, TradeInfo, TradeSha, Version }) {
+    return apiHelper.post(`/spgateway/callback`, { MerchantID, TradeInfo, TradeSha, Version })
   }
 }
