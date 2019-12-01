@@ -28,7 +28,7 @@
 
     <!-- profile -->
     <div class="user" v-if="isAuthenticated">
-      <router-link to class="nav-logo btn">
+      <router-link :to="{name: 'UserProfile', params: { id: currentUser.id }}" class="nav-logo btn">
         <img class="navAvatar" :src="currentUser.image" /> 我的帳號
       </router-link>
     </div>

@@ -77,6 +77,16 @@ const router = new Router({
       component: () => import('./views/BranchSelection')
     },
     {
+      path: '/user/:id/profile',
+      name: 'UserProfile',
+      component: () => import('./views/UserProfile')
+    },
+    {
+      path: '/user/:id/editProfile',
+      name: 'EditProfile',
+      component: () => import('./views/EditProfile')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound

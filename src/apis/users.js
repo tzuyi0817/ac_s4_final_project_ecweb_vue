@@ -4,4 +4,7 @@ export default {
   getCurrentUser() {
     return apiHelper.get(`/get_current_user`)
   },
+  getUserProfile({ userId }) {
+    return apiHelper.get(`/user/${userId}/profile`, { userId })
+  }
 }
