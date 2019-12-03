@@ -37,5 +37,8 @@ export default {
   },
   getBranchSelection({ orderId }) {
     return apiHelper.get(`/order/${orderId}/branchselection`, { orderId })
+  },
+  cancelOrder({ orderId }) {
+    return apiHelper.post(`/order/${orderId}`, { orderId })
   }
 }

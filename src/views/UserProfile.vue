@@ -25,7 +25,9 @@
         </div>
 
         <div class="col-8">
-          <h2 style="text-align:center">購物記錄</h2>
+          <div class="mb-4">
+            <h2 style="text-align:center">購物記錄</h2>
+          </div>
           <!-- 訂單詳情 -->
           <OrdersDetails v-for="order in orders" :key="order.id" :initial-order="order" />
         </div>
@@ -50,7 +52,7 @@ export default {
     return {
       profile: {},
       orders: [],
-      isLoading: true
+      isLoading: false
     };
   },
   computed: {

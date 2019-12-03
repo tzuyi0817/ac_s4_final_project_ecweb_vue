@@ -1,11 +1,18 @@
 <template>
   <div class="container">
-    <div class="card mt-4">
-      <div class="card-body">
-        <div style="text-align: center;">
-          <h4>訂單資訊 - 編號({{order.id}})</h4>
-        </div>
-        <hr />
+    <div class="card mb-4">
+      <div class="card-header" style="text-align: center; background-color: #0085a5; color: white;">
+        <form>
+          <button
+            v-if="order.Order_status.orderStatus !== this.cancel"
+            type="submit"
+            class="btn btn-danger float-right"
+            @click.stop.prevent="handleCancelButtonClick(order.id)"
+          >取消訂單</button>
+        </form>
+        <h4>訂單資訊 - 編號({{order.id}})</h4>
+      </div>
+      <div class="card-body" style="background-color: #d2f0f5;">
         <h6 class="ml-2">商品詳情：</h6>
         <li class="bg-light text-dark list-group-item ml-1 mt-3 col-12">
           <div class="row">
@@ -68,7 +75,11 @@
 </template>
 
 <script>
+import ordersAPI from "./../apis/orders";
+import { Toast } from "./../utils/helpers";
+
 export default {
+  inject: ["reload"],
   props: {
     initialOrder: {
       type: Array,
@@ -82,7 +93,8 @@ export default {
       paymentStatus: this.initialOrder.PaymentStatus,
       shipmentType: this.initialOrder.ShipmentType,
       shipmentConvenienceStore: this.initialOrder.ShipmentConvenienceStore,
-      shipmentStatus: this.initialOrder.ShipmentStatus
+      shipmentStatus: this.initialOrder.ShipmentStatus,
+      cancel: "已取消"
     };
   },
   computed: {
@@ -101,6 +113,31 @@ export default {
     lastShipmentStatus() {
       return this.shipmentStatus.slice(-1)[0];
     }
+  },
+  methods: {
+    async handleCancelButtonClick(orderId) {
+      try {
+        const { data, statusText } = await ordersAPI.cancelOrder({
+          orderId
+        });
+
+        if (statusText !== "OK" || data.status !== "success") {
+          throw new Error(statusText);
+        }
+
+        this.reload();
+
+        Toast.fire({
+          type: "success",
+          title: "成功取消訂單"
+        });
+      } catch (error) {
+        Toast.fire({
+          type: "error",
+          title: "無法取消訂單，請稍後再試"
+        });
+      }
+    }
   }
 };
 </script>
@@ -108,5 +145,9 @@ export default {
 <style scoped>
 span {
   font-size: 18px;
+}
+
+h6 {
+  color: #0085a5;
 }
 </style>
