@@ -87,6 +87,11 @@ const router = new Router({
       component: () => import('./views/EditProfile')
     },
     {
+      path: '/admin/index',
+      name: 'AdminIndex',
+      component: () => import('./views/AdminIndex')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound

@@ -117,7 +117,7 @@ export default {
       subtotal: -1,
       items: [],
       coupon: {},
-      isLoading: true
+      isLoading: false
     };
   },
   computed: {
@@ -136,6 +136,8 @@ export default {
   methods: {
     async fetchCart({ couponId }) {
       try {
+        this.isLoading = true;
+
         const { data, statusText } = await cartAPI.getCart({ couponId });
 
         if (statusText !== "OK") {
