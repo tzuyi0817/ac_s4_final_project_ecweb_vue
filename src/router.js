@@ -92,6 +92,21 @@ const router = new Router({
       component: () => import('./views/AdminIndex')
     },
     {
+      path: '/admin/productmodel/product_mange',
+      name: 'AdminProducts',
+      component: () => import('./views/AdminProducts')
+    },
+    {
+      path: '/admin/productmodel/create',
+      name: 'AdminProductCreate',
+      component: () => import('./views/AdminProductCreate')
+    },
+    {
+      path: '/admin/productmodel/update/:id',
+      name: 'AdminProductUpdate',
+      component: () => import('./views/AdminProductUpdate')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound

@@ -152,6 +152,11 @@ export default {
           params: { id: this.user.id }
         });
 
+        Toast.fire({
+          type: "success",
+          title: "資料修改成功"
+        });
+
         this.isProcessing = false;
       } catch (error) {
         this.isLoading = false;
