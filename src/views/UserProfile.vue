@@ -8,7 +8,7 @@
             <h2 style="text-align:center">個人資料</h2>
           </div>
 
-          <div class="card">
+          <div class="card mb-5">
             <img class="round" :src="profile.image" alt="img" />
             <h3 class="mt-4">{{profile.name}}</h3>
             <p class="email mt-2">{{profile.email}}</p>

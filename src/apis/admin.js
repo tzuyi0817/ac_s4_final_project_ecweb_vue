@@ -1,15 +1,15 @@
 import { apiHelper } from './../utils/helpers'
 
 export default {
-  // Index
+  // Index page
   getIndex() {
     return apiHelper.get(`/admin/index`)
   },
-
-  // product
   putStoreInfo({ name, description }) {
     return apiHelper.put(`/admin/index`, { name, description })
   },
+
+  // product page
   getProductManagePage({ page, launched }) {
     const searchParams = new URLSearchParams({ page, launched })
     return apiHelper.get(`/admin/productmodel/product_mange?${searchParams.toString()}`)
@@ -31,5 +31,11 @@ export default {
   },
   postProduct({ formData }) {
     return apiHelper.post(`/admin/productmodel/create`, formData)
+  },
+
+  // order page
+  getOrderManagePage({ page, orderstatusid, paymentstatusid, shipmentstatusid, orderer }) {
+    const searchParams = new URLSearchParams({ page, orderstatusid, paymentstatusid, shipmentstatusid, orderer })
+    return apiHelper.get(`/admin/productmodel/order_mange?${searchParams.toString()}`)
   }
 }

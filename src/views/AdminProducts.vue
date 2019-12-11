@@ -16,7 +16,7 @@
                     <!-- 顯示商品 -->
                     <div class="dropdown col-12">
                       <button
-                        class="btn-primary btn-sm dropdown-toggle"
+                        class="btn-select btn-sm dropdown-toggle"
                         id="dropdownMenuLink"
                         data-toggle="dropdown"
                       >顯示: 所有商品</button>
@@ -74,7 +74,7 @@
                 </div>
               </div>
 
-              <!-- 分頁標籤 RestaurantsPagination -->
+              <!-- 分頁標籤 -->
               <AdminProductsPagination
                 v-if="totalPage > 1"
                 :current-launched="currentLaunched"
@@ -167,7 +167,7 @@ export default {
   width: 115%;
 }
 
-.btn-primary {
+.btn-select {
   border: none;
   outline: 0;
   display: inline-block;
@@ -178,8 +178,13 @@ export default {
   width: 200px;
 }
 
-.btn-primary:hover {
+.btn-select:hover {
   background-color: #0c99bd;
+}
+
+.btn-select:focus {
+  background-color: #0085a5;
+  color: white;
 }
 
 .btn-create {

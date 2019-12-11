@@ -1,10 +1,10 @@
 <template>
   <div class="card mt-4">
-    <div class="card-body">
-      <div style="text-align: center;">
-        <h2>訂單資訊 - 編號({{order.id}})</h2>
-      </div>
-      <hr />
+    <div class="card-header" style="text-align: center; background-color: #0085a5; color: white;">
+      <h2>訂單資訊 - 編號({{order.id}})</h2>
+    </div>
+
+    <div class="card-body" style="background-color: #d2f0f5;">
       <h4 class="mt-5 ml-2">商品詳情：</h4>
       <li class="bg-light text-dark list-group-item ml-3 mt-3 col-11">
         <div class="row">
@@ -152,5 +152,9 @@ hr {
 
 .shipmentType {
   margin-left: 0px;
+}
+
+h4 {
+  color: #0085a5;
 }
 </style>
