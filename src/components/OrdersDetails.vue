@@ -58,16 +58,30 @@
         <div class="bg-light text-dark list-group-item ml-1 mt-3 col-12">
           <span>訂單狀態: &nbsp;{{order.Order_status.orderStatus}}</span>
           <br />
-          <span>付款方式: &nbsp;{{lastpaymentType.paymentType}}</span>
+          <span v-if="lastPayments.PaymentTypeId === 1">付款方式: &nbsp;信用卡</span>
+          <span v-if="lastPayments.PaymentTypeId === 2">付款方式: &nbsp;貨到付款</span>
+          <span v-if="lastPayments.PaymentTypeId === 3">付款方式: &nbsp;GOOGLEPAY</span>
+          <span v-if="lastPayments.PaymentTypeId === 4">付款方式: &nbsp;匯款</span>
           <br />
-          <span>付款狀況: &nbsp;{{lastPaymentStatus.paymentStatus}}</span>
+          <span v-if="lastPayments.PaymentStatusId === 1">付款狀況: &nbsp;未付款</span>
+          <span v-if="lastPayments.PaymentStatusId === 2">付款狀況: &nbsp;已付款</span>
+          <span v-if="lastPayments.PaymentStatusId === 3">付款狀況: &nbsp;退款中</span>
+          <span v-if="lastPayments.PaymentStatusId === 4">付款狀況: &nbsp;已退款</span>
           <br />
-          <span>出貨方式: &nbsp;{{lastShipmentType.shipmentType}}</span>
+          <span v-if="lastShipments.ShipmentTypeId === 1">出貨方式: &nbsp;宅配</span>
+          <span v-if="lastShipments.ShipmentTypeId === 2">出貨方式: &nbsp;超商取貨</span>
+          <span v-if="lastShipments.ShipmentTypeId === 3">出貨方式: &nbsp;面交</span>
           <span
             v-if="shipmentConvenienceStore.length > 0"
           >&nbsp;-『{{lastShipmentConvenienceStore.branch}} - {{lastShipmentConvenienceStore.address}}』</span>
           <br />
-          <span>出貨狀況: &nbsp;{{lastShipmentStatus.shipmentStatus}}</span>
+          <span v-if="lastShipments.ShipmentStatusId === 1">出貨狀況: &nbsp;備貨中</span>
+          <span v-if="lastShipments.ShipmentStatusId === 2">出貨狀況: &nbsp;發貨中</span>
+          <span v-if="lastShipments.ShipmentStatusId === 3">出貨狀況: &nbsp;已發貨</span>
+          <span v-if="lastShipments.ShipmentStatusId === 4">出貨狀況: &nbsp;已到達</span>
+          <span v-if="lastShipments.ShipmentStatusId === 5">出貨狀況: &nbsp;已取貨</span>
+          <span v-if="lastShipments.ShipmentStatusId === 6">出貨狀況: &nbsp;已退貨</span>
+          <span v-if="lastShipments.ShipmentStatusId === 7">出貨狀況: &nbsp;退貨中</span>
         </div>
       </div>
     </div>
@@ -89,29 +103,24 @@ export default {
   data() {
     return {
       order: this.initialOrder,
-      paymentType: this.initialOrder.PaymentType,
-      paymentStatus: this.initialOrder.PaymentStatus,
-      shipmentType: this.initialOrder.ShipmentType,
+      payments: this.initialOrder.Payments,
+      shipments: this.initialOrder.Shipments,
       shipmentConvenienceStore: this.initialOrder.ShipmentConvenienceStore,
-      shipmentStatus: this.initialOrder.ShipmentStatus,
       cancel: "已取消"
     };
   },
   computed: {
-    lastpaymentType() {
-      return this.paymentType.slice(-1)[0];
+    lastPayments() {
+      const payments = this.payments.sort((a, b) => a.id - b.id); // eslint-disable-line
+      return payments.slice(-1)[0];
     },
-    lastPaymentStatus() {
-      return this.paymentStatus.slice(-1)[0];
-    },
-    lastShipmentType() {
-      return this.shipmentType.slice(-1)[0];
+    lastShipments() {
+      const shipments = this.shipments.sort((a, b) => a.id - b.id); // eslint-disable-line
+      return shipments.slice(-1)[0];
     },
     lastShipmentConvenienceStore() {
-      return this.shipmentConvenienceStore.slice(-1)[0];
-    },
-    lastShipmentStatus() {
-      return this.shipmentStatus.slice(-1)[0];
+      const Store = this.shipmentConvenienceStore.sort((a, b) => a.id - b.id); // eslint-disable-line
+      return Store.slice(-1)[0];
     }
   },
   methods: {

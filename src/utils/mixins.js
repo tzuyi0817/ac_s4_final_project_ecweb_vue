@@ -39,7 +39,7 @@ export const starFilter = {
 export const fromNowFilter = {
   filters: {
     fromNow(datetime) {
-      return datetime ? moment(datetime).format("YYYY-MM-DD") : '-'
+      return datetime ? moment(datetime).format("YYYY-MM-DD HH:mm") : '-'
     }
   }
 }

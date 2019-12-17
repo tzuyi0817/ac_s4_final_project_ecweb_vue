@@ -37,5 +37,17 @@ export default {
   getOrderManagePage({ page, orderstatusid, paymentstatusid, shipmentstatusid, orderer }) {
     const searchParams = new URLSearchParams({ page, orderstatusid, paymentstatusid, shipmentstatusid, orderer })
     return apiHelper.get(`/admin/productmodel/order_mange?${searchParams.toString()}`)
-  }
+  },
+  getOrder({ orderId }) {
+    return apiHelper.get(`/admin/productmodel/order_mange/${orderId}`, { orderId })
+  },
+  putOrderStatus({ orderId, memo, OrderStatusId }) {
+    return apiHelper.put(`/admin/productmodel/order_mange/${orderId}/oderstatus`, { orderId, memo, OrderStatusId })
+  },
+  putPaymentStatus({ orderId, PaymentTypeId, PaymentStatusId }) {
+    return apiHelper.put(`/admin/productmodel/order_mange/${orderId}/payment_status`, { orderId, PaymentTypeId, PaymentStatusId })
+  },
+  putShipmentStatus({ orderId, ShipmentStatusId, ShipmentTypeId, name, phone, address }) {
+    return apiHelper.put(`/admin/productmodel/order_mange/${orderId}/shipment_status`, { orderId, ShipmentStatusId, ShipmentTypeId, name, phone, address })
+  },
 }

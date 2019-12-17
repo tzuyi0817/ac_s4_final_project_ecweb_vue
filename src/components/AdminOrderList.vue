@@ -4,7 +4,7 @@
       <input type="checkbox" />
     </th>
     <td>
-      <router-link to="/admin/productmodel/order_mange/" class="orderId">{{order.id}}</router-link>
+      <router-link :to="{name: 'AdminOrder', params: {id: order.id}}" class="orderId">{{order.id}}</router-link>
     </td>
     <td>{{order.orderDate}}</td>
 
@@ -29,20 +29,20 @@
 
     <td>
       <!-- 未付款 -->
-      <h5 v-if="order.paymentStatus === unpaid">
-        <span class="badge badge-secondary">{{order.paymentStatus}}</span>
+      <h5 v-if="order.paymentStatusId === 1">
+        <span class="badge badge-secondary">未付款</span>
       </h5>
       <!-- 已付款 -->
-      <h5 v-if="order.paymentStatus === alreadyPaid">
-        <span class="badge badge-success">{{order.paymentStatus}}</span>
+      <h5 v-if="order.paymentStatusId === 2">
+        <span class="badge badge-success">已付款</span>
       </h5>
       <!-- 退款中 -->
-      <h5 v-if="order.paymentStatus === refunding">
-        <span class="badge badge-warning">{{order.paymentStatus}}</span>
+      <h5 v-if="order.paymentStatusId === 3">
+        <span class="badge badge-warning">退款中</span>
       </h5>
       <!-- 已退款 -->
-      <h5 v-if="order.paymentStatus === refunded">
-        <span class="badge badge-secondary">{{order.paymentStatus}}</span>
+      <h5 v-if="order.paymentStatusId === 4">
+        <span class="badge badge-secondary">已退款</span>
       </h5>
     </td>
 
@@ -95,10 +95,6 @@ export default {
       onSchedule: "排程中",
       processing: "處理中",
       completed: "已完成",
-      unpaid: "未付款",
-      alreadyPaid: "已付款",
-      refunding: "退款中",
-      refunded: "已退款",
       InStock: "備貨中",
       shipping: "發貨中",
       shipped: "已發貨",
