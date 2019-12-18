@@ -117,6 +117,11 @@ const router = new Router({
       component: () => import('./views/AdminOrder')
     },
     {
+      path: '/admin/productmodel/deliveryNotice',
+      name: 'AdminDeliveryNotice',
+      component: () => import('./views/AdminDeliveryNotice')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound

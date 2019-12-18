@@ -5,7 +5,6 @@
       <div class="container-fluid admin_layout">
         <div class="row">
           <div class="col-2 d-flex flex-column">
-            <!-- 訂單資料 -->
             <AdminNavbar />
           </div>
 

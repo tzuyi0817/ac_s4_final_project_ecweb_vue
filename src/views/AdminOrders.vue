@@ -126,14 +126,26 @@
                       <li class="nav-item">
                         <router-link
                           class="nav-link"
+                          to="/admin/productmodel/order_mange?shipmentstatusid=4"
+                        >已到達</router-link>
+                      </li>
+                      <li class="nav-item">
+                        <router-link
+                          class="nav-link"
                           to="/admin/productmodel/order_mange?shipmentstatusid=5"
-                        >已到貨</router-link>
+                        >已取貨</router-link>
                       </li>
                       <li class="nav-item">
                         <router-link
                           class="nav-link"
                           to="/admin/productmodel/order_mange?shipmentstatusid=6"
                         >已退貨</router-link>
+                      </li>
+                      <li class="nav-item">
+                        <router-link
+                          class="nav-link"
+                          to="/admin/productmodel/order_mange?shipmentstatusid=7"
+                        >退貨中</router-link>
                       </li>
                     </ul>
                   </div>
@@ -147,11 +159,11 @@
                         <tr>
                           <th scope="col">#</th>
                           <th scope="col">訂單號碼</th>
-                          <th scope="col">訂單日期</th>
+                          <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;訂單日期</th>
                           <th scope="col">訂單狀態</th>
                           <th scope="col">付款狀態</th>
                           <th scope="col">送貨狀態</th>
-                          <th scope="col">訂購人</th>
+                          <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂購人</th>
                           <th scope="col">合計</th>
                         </tr>
                       </thead>
@@ -168,14 +180,14 @@
               </div>
 
               <!-- 分頁標籤 -->
-              <AdminOrdersPagination
+              <!-- <AdminOrdersPagination
                 v-if="totalPage > 1"
                 :current-page="currentPage"
                 :total-page="totalPage"
                 :current-order-status-id="currentOrderStatusId"
                 :current-payment-Status-id="currentPaymentStatusId"
                 :current-shipment-Status-id="currentShipmentStatusId"
-              />
+              />-->
             </div>
           </div>
         </div>
@@ -187,7 +199,7 @@
 <script>
 import AdminNavbar from "./../components/AdminNavbar";
 import AdminOrderList from "./../components/AdminOrderList";
-import AdminOrdersPagination from "./../components/AdminOrdersPagination";
+// import AdminOrdersPagination from "./../components/AdminOrdersPagination";
 import AdminAPI from "./../apis/admin";
 import Spinner from "./../components/Spinner";
 import { Toast } from "./../utils/helpers";
@@ -197,7 +209,7 @@ export default {
   components: {
     AdminNavbar,
     AdminOrderList,
-    AdminOrdersPagination,
+    // AdminOrdersPagination,
     Spinner
   },
   data() {

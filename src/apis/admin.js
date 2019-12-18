@@ -50,4 +50,12 @@ export default {
   putShipmentStatus({ orderId, ShipmentStatusId, ShipmentTypeId, name, phone, address }) {
     return apiHelper.put(`/admin/productmodel/order_mange/${orderId}/shipment_status`, { orderId, ShipmentStatusId, ShipmentTypeId, name, phone, address })
   },
+
+  // delivery notice
+  getDeliveryNotice() {
+    return apiHelper.get(`/admin/productmodel/deliveryNotice`)
+  },
+  deleteDeliveryNotice({ deliveryNoticeId }) {
+    return apiHelper.delete(`/admin/productmodel/deliveryNotice/${deliveryNoticeId}`, { deliveryNoticeId })
+  }
 }

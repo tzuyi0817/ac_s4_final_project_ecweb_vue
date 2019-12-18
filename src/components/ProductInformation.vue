@@ -178,6 +178,7 @@ import { Toast } from "./../utils/helpers";
 
 export default {
   mixins: [starFilter],
+  inject: ["reload"],
   props: {
     initialProduct: {
       type: Array,
@@ -247,6 +248,7 @@ export default {
         // 送出申請後,欄位清空
         this.email = "";
         this.email_confirm = "";
+        this.reload();
 
         Toast.fire({
           type: "success",
