@@ -52,7 +52,7 @@
                   <div class="products_table">
                     <table class="table">
                       <thead>
-                        <tr>
+                        <tr style="background-color: #0085a5; color: white;">
                           <th scope="col">#</th>
                           <th scope="col">圖片</th>
                           <th scope="col">商品名稱</th>

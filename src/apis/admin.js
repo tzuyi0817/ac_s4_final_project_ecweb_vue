@@ -57,5 +57,16 @@ export default {
   },
   deleteDeliveryNotice({ deliveryNoticeId }) {
     return apiHelper.delete(`/admin/productmodel/deliveryNotice/${deliveryNoticeId}`, { deliveryNoticeId })
+  },
+
+  // coupon
+  getCouponManagePage() {
+    return apiHelper.get(`/admin/coupon/managePage`)
+  },
+  getCouponEditPage({ couponId }) {
+    return apiHelper.get(`/admin/coupon/managePage/${couponId}/edit`, { couponId })
+  },
+  postCouponEdit({ couponId, StoreId, couponTypeId, CouponDiscount, CouponDescription, available, expiredDate }) {
+    return apiHelper.post(`/admin/coupon/edit`, { couponId, StoreId, couponTypeId, CouponDiscount, CouponDescription, available, expiredDate })
   }
 }

@@ -122,6 +122,16 @@ const router = new Router({
       component: () => import('./views/AdminDeliveryNotice')
     },
     {
+      path: '/admin/coupon/managePage',
+      name: 'AdminCoupon',
+      component: () => import('./views/AdminCoupon')
+    },
+    {
+      path: '/admin/coupon/managePage/:id/edit',
+      name: 'AdminCouponEdit',
+      component: () => import('./views/AdminCouponEdit')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound

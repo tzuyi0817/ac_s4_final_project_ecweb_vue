@@ -43,3 +43,11 @@ export const fromNowFilter = {
     }
   }
 }
+
+export const dateFilter = {
+  filters: {
+    date(datetime) {
+      return datetime ? moment(datetime).format("YYYY-MM-DD") : '-'
+    }
+  }
+}

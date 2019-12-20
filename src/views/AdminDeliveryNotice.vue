@@ -12,60 +12,58 @@
             <div class="col-12 productmodel_orders px-5">
               <!-- 貨到通知總覽 -->
               <div class="card my-3">
-                <div class="ordersTable my-3 card-body">
-                  <!-- 產品清單 -->
-                  <div class="orders_table">
-                    <table class="table">
-                      <!-- 無申請通知 -->
-                      <div
-                        v-if="deliveryNotices.length === 0"
-                        class="alert alert-dark"
-                        role="alert"
-                      >目前尚無客人申請</div>
+                <!-- 產品清單 -->
+                <div class="orders_table">
+                  <table class="table">
+                    <!-- 無申請通知 -->
+                    <div
+                      v-if="deliveryNotices.length === 0"
+                      class="alert alert-dark"
+                      role="alert"
+                    >目前尚無客人申請</div>
 
-                      <!-- 申請通知總覽 -->
-                      <template v-else>
-                        <thead>
-                          <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信箱</th>
-                            <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;產品名稱</th>
-                            <th scope="col">庫存數量</th>
-                            <th scope="col">刪除</th>
-                          </tr>
-                        </thead>
-                        <tbody v-for="deliveryNotice in deliveryNotices" :key="deliveryNotice.id">
-                          <tr>
-                            <th scope="row">
-                              <p class="mt-2">{{deliveryNotice.id}}</p>
-                            </th>
+                    <!-- 申請通知總覽 -->
+                    <template v-else>
+                      <thead>
+                        <tr style="background-color: #0085a5; color: white;">
+                          <th scope="col">#</th>
+                          <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信箱</th>
+                          <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;產品名稱</th>
+                          <th scope="col">庫存數量</th>
+                          <th scope="col">刪除</th>
+                        </tr>
+                      </thead>
+                      <tbody v-for="deliveryNotice in deliveryNotices" :key="deliveryNotice.id">
+                        <tr>
+                          <th scope="row">
+                            <p class="mt-2">{{deliveryNotice.id}}</p>
+                          </th>
 
-                            <td>
-                              <p class="mt-2">{{deliveryNotice.email}}</p>
-                            </td>
-                            <td>
-                              <p class="mt-2">{{deliveryNotice.Product.name}}</p>
-                            </td>
+                          <td>
+                            <p class="mt-2">{{deliveryNotice.email}}</p>
+                          </td>
+                          <td>
+                            <p class="mt-2">{{deliveryNotice.Product.name}}</p>
+                          </td>
 
-                            <td>
-                              <p class="ml-4 mt-2">{{deliveryNotice.Product.count}}</p>
-                            </td>
+                          <td>
+                            <p class="ml-4 mt-2">{{deliveryNotice.Product.count}}</p>
+                          </td>
 
-                            <td>
-                              <form
-                                @submit.stop.prevent="handleDelete(deliveryNotice.id)"
-                                style="display: inline;"
-                              >
-                                <button type="submit" class="btn btn-link" :disabled="isProcessing">
-                                  <i class="fas fa-trash" style="color: #0085a5;"></i>
-                                </button>
-                              </form>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </template>
-                    </table>
-                  </div>
+                          <td>
+                            <form
+                              @submit.stop.prevent="handleDelete(deliveryNotice.id)"
+                              style="display: inline;"
+                            >
+                              <button type="submit" class="btn btn-link" :disabled="isProcessing">
+                                <i class="fas fa-trash" style="color: #0085a5;"></i>
+                              </button>
+                            </form>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </template>
+                  </table>
                 </div>
               </div>
             </div>

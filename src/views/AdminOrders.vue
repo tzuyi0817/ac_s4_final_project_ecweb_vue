@@ -152,30 +152,28 @@
                 </div>
 
                 <!-- 訂單清單 -->
-                <div class="ordersTable card-body">
-                  <div class="orders_table">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">訂單號碼</th>
-                          <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;訂單日期</th>
-                          <th scope="col">訂單狀態</th>
-                          <th scope="col">付款狀態</th>
-                          <th scope="col">送貨狀態</th>
-                          <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂購人</th>
-                          <th scope="col">合計</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <AdminOrderList
-                          v-for="order in orders"
-                          :key="order.id"
-                          :initial-order="order"
-                        />
-                      </tbody>
-                    </table>
-                  </div>
+                <div class="orders_table">
+                  <table class="table">
+                    <thead>
+                      <tr style="background-color: #0085a5; color: white;">
+                        <th scope="col">#</th>
+                        <th scope="col">訂單號碼</th>
+                        <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;訂單日期</th>
+                        <th scope="col">訂單狀態</th>
+                        <th scope="col">付款狀態</th>
+                        <th scope="col">送貨狀態</th>
+                        <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂購人</th>
+                        <th scope="col">合計</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <AdminOrderList
+                        v-for="order in orders"
+                        :key="order.id"
+                        :initial-order="order"
+                      />
+                    </tbody>
+                  </table>
                 </div>
               </div>
 
