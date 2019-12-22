@@ -132,6 +132,16 @@ const router = new Router({
       component: () => import('./views/AdminCouponEdit')
     },
     {
+      path: '/admin/coupon/makingPage',
+      name: 'AdminCouponMake',
+      component: () => import('./views/AdminCouponMake')
+    },
+    {
+      path: '/admin/marketingmodel/track_code',
+      name: 'AdminTrackCode',
+      component: () => import('./views/AdminTrackCode')
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFound

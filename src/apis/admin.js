@@ -68,5 +68,16 @@ export default {
   },
   postCouponEdit({ couponId, StoreId, couponTypeId, CouponDiscount, CouponDescription, available, expiredDate }) {
     return apiHelper.post(`/admin/coupon/edit`, { couponId, StoreId, couponTypeId, CouponDiscount, CouponDescription, available, expiredDate })
+  },
+  postCouponMake({ storeId, couponTypeId, CouponDiscount, CouponDescription, expiredDate }) {
+    return apiHelper.post(`/admin/coupon/make`, { storeId, couponTypeId, CouponDiscount, CouponDescription, expiredDate })
+  },
+
+  // track code
+  getTrackCodePage() {
+    return apiHelper.get(`/admin/marketingmodel/track_code`)
+  },
+  putGaTrackCode({ storeId, trackGA }) {
+    return apiHelper.put(`/admin/marketingmodel/track_code/ga_trackcode`, { storeId, trackGA })
   }
 }

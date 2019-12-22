@@ -54,7 +54,7 @@
                       <p class="mt-2">{{coupon.expireDate | date}}</p>
                     </td>
 
-                    <td v-if="coupon.expireDate < new Date()">
+                    <td v-if="coupon.available === false">
                       <p class="mt-2 ml-2">已過期</p>
                     </td>
 
@@ -124,7 +124,7 @@ export default {
         this.isLoading = false;
         Toast.fire({
           type: "error",
-          title: "無法取得折價券資料資料，請稍後再試"
+          title: "無法取得折價券資料，請稍後再試"
         });
       }
     }
