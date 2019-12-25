@@ -16,7 +16,7 @@
         <td>
           <div style="display: flow-root;">
             <img :src="item.image" class="card-img" alt="..." style="height: 100px;width: auto;" />
-            <span>{{item.name}}</span>
+            <span class="ml-3">{{item.name}}</span>
           </div>
         </td>
         <!-- 價格 -->
