@@ -1,16 +1,19 @@
 <template>
-  <div class="productInformation col-5 ml-5">
+  <div class="productInformation col-5 ml-3">
     <div class="card-body">
-      <!-- 商品名稱 -->
-      <h5 class="card-title" style="text-align: center; color: #0085a5;">
-        【
-        <router-link
-          class="categoryName"
-          style="text-decoration: none; color: #0085a5;"
-          :to="{ name: 'category-products', params: { id: product.ProductCategoryId }}"
-        >{{product.Product_category.name}}</router-link>
-        】{{product.name}}
-      </h5>
+      <div class="row" style="display:flex; justify-content: center;">
+        <!-- 商品名稱 -->
+        <h5 class="card-title mb-4" style="text-align: center;">
+          【
+          <router-link
+            class="categoryName"
+            style="text-decoration: none; color: black;"
+            :to="{ name: 'category-products', params: { id: product.ProductCategoryId }}"
+          >{{product.Product_category.name}}</router-link>
+          】{{product.name}}
+        </h5>
+      </div>
+
       <!-- 商品評分 -->
       <div class="row" style="display:flex; justify-content: center;">
         <div v-if="Comments.length === 0" class="no-comment mb-2 mr-3" style="color: red;">此商品尚未有人評價</div>
@@ -29,7 +32,7 @@
         <!-- facebook分享 -->
         <iframe
           :src="facebook"
-          width="65"
+          width="69"
           height="28"
           style="border:none;overflow:hidden"
           scrolling="no"
@@ -39,7 +42,7 @@
         ></iframe>
       </div>
       <!-- 商品單價 -->
-      <h3 class="price mt-3 mb-5" style="text-align: center; color: #0085a5">$ {{product.price}}</h3>
+      <h3 class="price mt-4 mb-5" style="text-align: center; color: #0085a5">$ {{product.price}}</h3>
       <!-- 滿額免運費 -->
       <div class="row" style="display:flex; justify-content: center;">
         <p class="mr-5" style="color: gray;">運送</p>
@@ -196,7 +199,7 @@ export default {
     return {
       product: this.initialProduct,
       rating: this.ratingAve,
-      facebook: `https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fyoung-sands-92356.herokuapp.com%2Fproduct%2F${this.initialProduct.id}&layout=button&size=large&appId=437649723668901&width=65&height=28`,
+      facebook: `https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Ftzuyi0817.github.io%2Fac_s4_final_project_ecweb_vue%2F%23%2Fproduct%2F${this.initialProduct.id}&layout=button&size=large&width=69&height=28&appId`,
       isDisable: true,
       qty: 1,
       minus: false,

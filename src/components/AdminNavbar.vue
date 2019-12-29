@@ -8,7 +8,7 @@
       />
     </router-link>
 
-    <div class="col store_logo p-5">
+    <div class="col store_logo mt-5 mb-5" style="display:flex; justify-content: center;">
       <div class="logoName">
         <router-link class="text-center" to="/">
           <p>&nbsp;</p>

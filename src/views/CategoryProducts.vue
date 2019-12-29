@@ -29,7 +29,7 @@
       <div class="row col-auto">
         <!-- 類別名稱 -->
         <div class="col-2 ml-5">
-          <h3 style="color:#0085a5">{{category.name}}</h3>
+          <h4 style="color:#0085a5">{{category.name}}</h4>
         </div>
         <!-- 排序 -->
         <div class="col-7">
@@ -160,7 +160,7 @@ export default {
 
 <style scoped>
 .list-group-item,
-h3 {
+h4 {
   font-family: "DFKai-sb";
 }
 

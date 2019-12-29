@@ -1,5 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light">
+  <nav
+    class="navbar navbar-expand-lg fixed-top navbar-light"
+    style="display:flex; justify-content: center;"
+  >
     <router-link class="navbar-title mr-5" to="/">MuseClub</router-link>
 
     <!-- 搜尋  -->
@@ -20,16 +23,15 @@
     <!-- cart -->
     <div class="cartIcon ml-2">
       <router-link to="/cart" class="nav-logo btn">
-        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-        購物車
-        <span v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</span>
+        <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
+        <div v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</div>
       </router-link>
     </div>
 
     <!-- profile -->
     <div class="user" v-if="isAuthenticated">
       <router-link :to="{name: 'UserProfile', params: { id: currentUser.id }}" class="nav-logo btn">
-        <img class="navAvatar" :src="currentUser.image" /> 我的帳號
+        <img class="navAvatar" :src="currentUser.image" />
       </router-link>
     </div>
     <div class="login" v-else>
@@ -39,10 +41,9 @@
     </div>
 
     <!-- admin -->
-    <div class="admin" v-if="currentUser.role === 1">
+    <div class="admin mr-2" v-if="currentUser.role === 1">
       <router-link to="/admin/index" class="nav-logo btn">
         <i class="fas fa-tasks"></i>
-        後台管理
       </router-link>
     </div>
 
@@ -84,9 +85,6 @@ export default {
 
 .navbar {
   font-family: "DFKai-sb";
-}
-
-.navbar {
   background-color: #d2f0f5;
   padding: 20px;
 }
@@ -94,7 +92,6 @@ export default {
 .navbar-title {
   font-family: "Pacifico", cursive;
   color: #0085a5;
-  margin-left: 100px;
   font-size: 25px;
 }
 
@@ -131,8 +128,7 @@ export default {
 }
 
 .badge {
-  font-size: 100%;
-  margin-right: 10px;
+  font-size: 75%;
   display: inline-block;
   color: gray;
 }

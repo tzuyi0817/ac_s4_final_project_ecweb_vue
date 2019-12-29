@@ -1,7 +1,7 @@
 <template>
-  <div class="search-sort col-12 mt-2">
+  <div class="search-sort col-12 mt-2" style="display:flex; justify-content: center;">
     <div class="row">
-      <span class="mt-2 ml-2 mr-2">排序</span>
+      <span class="mt-2 ml-1 mr-2">排序</span>
       <!-- 由新到舊 -->
       <template v-if="currentKey === createdAt && currentValue === desc">
         <router-link
@@ -107,6 +107,7 @@ export default {
 .search {
   background-color: white;
   color: #0085a5;
+  font-size: 18px;
 }
 
 .search:hover {
@@ -118,5 +119,10 @@ export default {
 .search-select:hover {
   background-color: #0085a5;
   color: white;
+  font-size: 18px;
+}
+
+span {
+  font-size: 18px;
 }
 </style>

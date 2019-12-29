@@ -4,7 +4,7 @@
     <template v-else>
       <!-- NavTabs -->
       <div class="row col-auto mt-5">
-        <div class="col-2">
+        <!-- <div class="col-2">
           <div class="nav flex-column">
             <div class="list-group">
               <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
@@ -16,11 +16,11 @@
               :category-id="categoryId"
             />
           </div>
-        </div>
+        </div>-->
 
         <!-- 商品圖片 -->
-        <div class="index col-3 ml-5 mb-5">
-          <img :src="product.image" width="100%" height="90%" alt="image" />
+        <div class="index col-5 mb-5 ml-2">
+          <img :src="product.image" width="100%" alt="image" />
         </div>
 
         <!-- 商品資訊 -->
@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import NavTabs from "./../components/NavTabs";
+// import NavTabs from "./../components/NavTabs";
 import ProductInformation from "./../components/ProductInformation";
 import ProductSpecifications from "./../components/ProductSpecifications";
 import ProductDetails from "./../components/ProductDetails";
@@ -126,7 +126,7 @@ import { mapState } from "vuex";
 export default {
   mixins: [starFilter],
   components: {
-    NavTabs,
+    // NavTabs,
     ProductInformation,
     ProductSpecifications,
     ProductDetails,

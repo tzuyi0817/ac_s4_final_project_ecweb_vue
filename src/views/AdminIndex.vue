@@ -2,7 +2,7 @@
   <div>
     <Spinner v-if="isLoading" />
     <template v-else>
-      <div class="container-fluid admin_layout">
+      <div class="container-fluid admin_layout mb-5">
         <div class="row">
           <div class="col-2 d-flex flex-column">
             <AdminNavbar />
@@ -54,13 +54,13 @@
 
                       <button
                         v-if="isDisable"
-                        class="btn btn-select mt-3 mb-5"
+                        class="btn btn-select mt-3"
                         @click.stop.prevent="toUpdate()"
                       >編輯</button>
 
                       <button
                         v-else
-                        class="btn btn-select mt-3 mb-5"
+                        class="btn btn-select mt-3"
                         type="submit"
                         :disabled="isProcessing"
                       >更新</button>

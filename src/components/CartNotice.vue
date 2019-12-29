@@ -70,6 +70,10 @@ export default {
           cartNotice.style.top = "4950px";
         } else if (this.scrollTop > 4950 && this.scrollTop < 5400) {
           cartNotice.style.top = "5400px";
+        } else if (this.scrollTop > 5400 && this.scrollTop < 5850) {
+          cartNotice.style.top = "5850px";
+        } else if (this.scrollTop > 5850 && this.scrollTop < 6300) {
+          cartNotice.style.top = "6300px";
         } else {
           cartNotice.style.top = "450px";
         }

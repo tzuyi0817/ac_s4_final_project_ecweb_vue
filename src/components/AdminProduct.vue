@@ -1,10 +1,10 @@
 <template>
   <tr>
     <th scope="row">
-      <input type="checkbox" />
+      <input type="checkbox" class="mt-4" />
     </th>
     <td style="width:10%">
-      <img class="w-100" :src="product.image" alt="產品圖片" />
+      <img class="w-100 mt-4" :src="product.image" alt="產品圖片" />
     </td>
     <td>
       <p class="mt-4">{{product.name}}</p>

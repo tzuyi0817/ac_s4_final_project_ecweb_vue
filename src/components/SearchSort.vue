@@ -1,5 +1,5 @@
 <template>
-  <div class="search-sort col-12 mt-2 mb-2">
+  <div class="search-sort col-10 mt-2 mb-2" style="display:flex; justify-content: center;">
     <div class="row">
       <span class="mt-2 ml-2 mr-2">排序</span>
       <!-- 由新到舊 -->

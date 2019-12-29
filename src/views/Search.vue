@@ -18,7 +18,7 @@
           </div>
         </div>
         <!-- 搜尋結果 -->
-        <div class="col-8 mb-5">
+        <div class="col-9 mb-5 ml-1">
           <p class="ml-5">
             <i class="far fa-lightbulb mr-2" style="color:#0085a5"></i>
             「{{currentKeyword}}」搜尋到 {{products.length}} 件商品
@@ -32,7 +32,8 @@
             <div class="help-block mb-5">建議您，檢查輸入字詞是否有誤或使用其他相關的字詞再搜尋</div>
           </div>
           <!-- 搜尋成功 -->
-          <div v-else class="row ml-5">
+          <div v-else class="row">
+            <div class="col-1"></div>
             <!-- 排序 -->
             <SearchSort
               :current-keyword="currentKeyword"
@@ -40,6 +41,7 @@
               :current-value="currentValue"
             />
             <!-- 商品 -->
+            <div class="col-1"></div>
             <SearchProducts
               v-for="product in products"
               :key="product.id"
