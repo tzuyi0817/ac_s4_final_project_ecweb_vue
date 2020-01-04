@@ -52,4 +52,10 @@ h6 {
   box-shadow: 0 16px 22px 0 rgba(90, 91, 95, 0.3);
   top: -5px;
 }
+
+@media screen and (max-width: 1040px) {
+  h6 {
+    font-size: 20px;
+  }
+}
 </style>

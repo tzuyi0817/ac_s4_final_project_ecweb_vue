@@ -189,4 +189,12 @@ export default {
 .btn-select:hover {
   background-color: #0c99bd;
 }
+
+@media screen and (max-width: 1040px) {
+  .row,
+  .btn,
+  input {
+    font-size: 15px;
+  }
+}
 </style>

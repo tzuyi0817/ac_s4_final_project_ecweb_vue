@@ -160,4 +160,15 @@ hr {
   border: 0;
   border-top: 2px solid rgb(212, 210, 210);
 }
+
+@media screen and (max-width: 1040px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  p,
+  span {
+    font-size: 15px;
+  }
+}
 </style>

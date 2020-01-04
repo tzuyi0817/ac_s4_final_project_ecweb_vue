@@ -132,4 +132,24 @@ export default {
   display: inline-block;
   color: gray;
 }
+
+@media screen and (max-width: 1040px) {
+  .navbar-title {
+    font-size: 22px;
+  }
+
+  .searchBtn {
+    font-size: 16px;
+  }
+
+  .searchKeyword {
+    width: 300px;
+    font-size: 18px;
+  }
+
+  .btn-outline-success,
+  .nav-logo {
+    font-size: 18px;
+  }
+}
 </style>

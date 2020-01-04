@@ -142,4 +142,22 @@ p {
   -webkit-margin-start: 20px;
   left: -19px;
 }
+
+@media screen and (max-width: 1040px) {
+  .cartNotice {
+    width: 8%;
+  }
+
+  .cartImage img {
+    margin-top: -80px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  .cartBG {
+    width: 90px;
+  }
+}
 </style>

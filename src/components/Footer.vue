@@ -67,4 +67,10 @@ footer {
   line-height: 20px;
   margin-right: 15px;
 }
+
+@media screen and (max-width: 1040px) {
+  p {
+    font-size: 15px;
+  }
+}
 </style>

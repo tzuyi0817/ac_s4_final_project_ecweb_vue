@@ -40,4 +40,15 @@ export default {
   color: #0085a5;
   text-decoration: none;
 }
+
+@media screen and (max-width: 1040px) {
+  h5 {
+    font-size: 20px;
+  }
+
+  p,
+  .link {
+    font-size: 15px;
+  }
+}
 </style>

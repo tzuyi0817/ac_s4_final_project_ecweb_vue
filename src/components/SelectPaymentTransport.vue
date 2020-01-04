@@ -220,4 +220,21 @@ export default {
 .btn-primary:hover {
   background-color: #0c99bd;
 }
+
+@media screen and (max-width: 1040px) {
+  h1 {
+    font-size: 30px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  label,
+  input,
+  textarea,
+  .btn {
+    font-size: 15px;
+  }
+}
 </style>

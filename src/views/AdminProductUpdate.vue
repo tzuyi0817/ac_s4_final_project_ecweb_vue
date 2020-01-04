@@ -46,7 +46,7 @@
                       <hr />
 
                       <div class="row">
-                        <div class="col p-5">
+                        <div class="col">
                           <img
                             class="d-block img-thumbnail mb-3"
                             v-if="product.image"
@@ -55,7 +55,7 @@
                           />
                         </div>
 
-                        <div class="col p-5">
+                        <div class="col">
                           <img
                             class="d-block img-thumbnail mb-3"
                             v-if="product.imageI"
@@ -64,7 +64,7 @@
                           />
                         </div>
 
-                        <div class="col p-5">
+                        <div class="col">
                           <img
                             class="d-block img-thumbnail mb-3"
                             v-if="product.imageII"
@@ -307,6 +307,16 @@ a:hover {
 
 .img-thumbnail {
   height: 230px;
+}
+
+@media screen and (max-width: 1040px) {
+  .card,
+  select,
+  input,
+  textarea,
+  .btn {
+    font-size: 15px;
+  }
 }
 </style>
 

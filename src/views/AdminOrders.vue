@@ -157,7 +157,7 @@
                     <thead>
                       <tr style="background-color: #0085a5; color: white;">
                         <th scope="col">#</th>
-                        <th scope="col">訂單號碼</th>
+                        <th scope="col">編號</th>
                         <th scope="col">訂單日期</th>
                         <th scope="col">訂單狀態</th>
                         <th scope="col">付款狀態</th>
@@ -381,5 +381,16 @@ export default {
 .nav-link.active {
   color: white;
   background-color: #0085a5;
+}
+
+@media screen and (max-width: 1040px) {
+  .btn-select,
+  .dropdown-menu,
+  .btn,
+  .orders_table,
+  input,
+  li {
+    font-size: 14px;
+  }
 }
 </style>

@@ -45,4 +45,10 @@ export default {
   color: white;
   background-color: #0085a5;
 }
+
+@media screen and (max-width: 1040px) {
+  .list-group {
+    font-size: 15px;
+  }
+}
 </style>

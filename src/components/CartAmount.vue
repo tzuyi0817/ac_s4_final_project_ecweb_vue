@@ -51,4 +51,10 @@ export default {
 .amount {
   float: right;
 }
+
+@media screen and (max-width: 1040px) {
+  .row {
+    font-size: 15px;
+  }
+}
 </style>

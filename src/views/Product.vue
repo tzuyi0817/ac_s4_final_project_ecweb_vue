@@ -75,7 +75,11 @@
       <!-- 評價分頁 -->
       <commentPagination v-if="totalPage > 1" :current-page="currentPage" :total-page="totalPage" />
 
-      <div class="mt-5" style="text-align: center;" v-if="commentsPagination.length < 1">此商品暫時無評價</div>
+      <div
+        class="no-comments mt-5"
+        style="text-align: center;"
+        v-if="commentsPagination.length < 1"
+      >此商品暫時無評價</div>
 
       <!-- 新增評論 CreateComment -->
       <CreateComment
@@ -267,5 +271,16 @@ hr {
 
 .card-header {
   background-color: #d2f0f5;
+}
+
+@media screen and (max-width: 1040px) {
+  h5 {
+    font-size: 20px;
+  }
+
+  p,
+  .no-comments {
+    font-size: 15px;
+  }
 }
 </style>

@@ -161,4 +161,16 @@ export default {
 .btn-primary:hover {
   background-color: #0c99bd;
 }
+
+@media screen and (max-width: 1040px) {
+  h5 {
+    font-size: 20px;
+  }
+
+  p,
+  button,
+  textarea {
+    font-size: 15px;
+  }
+}
 </style>

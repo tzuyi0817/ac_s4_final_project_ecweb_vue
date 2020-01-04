@@ -28,7 +28,7 @@
                         <tr style="background-color: #0085a5; color: white;">
                           <th scope="col">#</th>
                           <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信箱</th>
-                          <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;產品名稱</th>
+                          <th scope="col">產品名稱</th>
                           <th scope="col">庫存數量</th>
                           <th scope="col">刪除</th>
                         </tr>
@@ -157,5 +157,12 @@ export default {
   margin-left: -89px;
   font-family: "DFKai-sb";
   width: 115%;
+}
+
+@media screen and (max-width: 1040px) {
+  .orders_table,
+  .btn {
+    font-size: 15px;
+  }
 }
 </style>

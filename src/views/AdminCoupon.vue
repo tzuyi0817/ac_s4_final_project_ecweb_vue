@@ -139,5 +139,16 @@ export default {
   font-family: "DFKai-sb";
   width: 115%;
 }
+
+@media screen and (max-width: 1040px) {
+  .card,
+  .btn {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+}
 </style>
 

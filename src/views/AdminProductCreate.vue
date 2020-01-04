@@ -342,4 +342,14 @@ a:hover {
 .img-thumbnail {
   height: 230px;
 }
+
+@media screen and (max-width: 1040px) {
+  .card,
+  select,
+  input,
+  textarea,
+  .btn {
+    font-size: 15px;
+  }
+}
 </style>

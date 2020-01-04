@@ -15,7 +15,7 @@
           </div>
 
           <div class="col-10">
-            <p class="ml-5 mr-5 mt-2" style="font-size: 18px;">{{comment.User.name}}</p>
+            <p class="ml-5 mr-5 mt-2">{{comment.User.name}}</p>
 
             <div>
               <span class="stars d-flex mb-3 mt-2 ml-5">
@@ -96,5 +96,24 @@ export default {
 
 small {
   color: gray;
+}
+
+p {
+  font-size: 18px;
+}
+
+@media screen and (max-width: 1040px) {
+  p {
+    font-size: 15px;
+  }
+
+  small {
+    font-size: 10px;
+  }
+
+  .avatar {
+    width: 45px;
+    height: 45px;
+  }
 }
 </style>

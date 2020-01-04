@@ -149,4 +149,12 @@ hr {
 .btn-success:hover {
   background-color: #0c99bd;
 }
+
+@media screen and (max-width: 1040px) {
+  label,
+  input,
+  .btn {
+    font-size: 15px;
+  }
+}
 </style>

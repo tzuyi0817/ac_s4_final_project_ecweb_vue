@@ -165,4 +165,27 @@ export default {
 .btn-primary:hover {
   background-color: #0c99bd;
 }
+
+.card-body {
+  background-color: #d2f0f5;
+}
+
+h5 {
+  color: #0085a5;
+}
+
+@media screen and (max-width: 1040px) {
+  h2 {
+    font-size: 25px;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  .row,
+  .btn {
+    font-size: 15px;
+  }
+}
 </style>

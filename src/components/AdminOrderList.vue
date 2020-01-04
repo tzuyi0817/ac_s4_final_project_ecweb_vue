@@ -4,10 +4,7 @@
       <input type="checkbox" />
     </th>
     <td>
-      <router-link
-        :to="{name: 'AdminOrder', params: {id: order.id}}"
-        class="orderId ml-4"
-      >{{order.id}}</router-link>
+      <router-link :to="{name: 'AdminOrder', params: {id: order.id}}" class="orderId">{{order.id}}</router-link>
     </td>
     <td>{{order.orderDate}}</td>
 
@@ -118,5 +115,11 @@ export default {
 .orderId:hover {
   color: #0c99bd;
   text-decoration: none;
+}
+
+@media screen and (max-width: 1040px) {
+  h5 {
+    font-size: 15px;
+  }
 }
 </style>

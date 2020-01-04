@@ -29,4 +29,14 @@
 .navbar-brand:hover {
   color: #0085a5;
 }
+
+@media screen and (max-width: 1040px) {
+  h2 {
+    font-size: 30px;
+  }
+
+  .navbar-brand {
+    font-size: 22px;
+  }
+}
 </style>

@@ -101,4 +101,21 @@ p:hover {
   width: 180px;
   border-radius: 100px;
 }
+
+@media screen and (max-width: 1040px) {
+  .btn,
+  .storename,
+  .navbar-title {
+    font-size: 15px;
+  }
+
+  .logoName {
+    height: 140px;
+    width: 140px;
+  }
+
+  .logo {
+    width: 75%;
+  }
+}
 </style>

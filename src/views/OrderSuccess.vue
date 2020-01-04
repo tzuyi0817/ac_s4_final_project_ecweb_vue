@@ -154,4 +154,12 @@ export default {
 .btn-primary:hover {
   background-color: #0c99bd;
 }
+
+@media screen and (max-width: 1040px) {
+  p,
+  span,
+  .btn {
+    font-size: 15px;
+  }
+}
 </style>

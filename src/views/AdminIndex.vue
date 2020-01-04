@@ -195,4 +195,19 @@ export default {
   width: 300px;
   border-radius: 100px;
 }
+
+@media screen and (max-width: 1040px) {
+  .row,
+  input,
+  textarea,
+  .navbar-title,
+  .btn {
+    font-size: 15px;
+  }
+
+  .logo {
+    height: 110px;
+    width: 200px;
+  }
+}
 </style>

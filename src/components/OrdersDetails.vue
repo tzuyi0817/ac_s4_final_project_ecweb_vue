@@ -159,4 +159,19 @@ span {
 h6 {
   color: #0085a5;
 }
+
+@media screen and (max-width: 1040px) {
+  h4 {
+    font-size: 20px;
+  }
+
+  h6 {
+    font-size: 18px;
+  }
+
+  .btn,
+  span {
+    font-size: 15px;
+  }
+}
 </style>

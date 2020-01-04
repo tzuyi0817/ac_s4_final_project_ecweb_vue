@@ -24,7 +24,11 @@
             <span class="star" :inner-html.prop="rating | star"></span>
           </span>
         </div>
-        <router-link class="mr-3" to="#evaluation" style="text-decoration: none; color: black;">
+        <router-link
+          class="rating mr-3"
+          to="#evaluation"
+          style="text-decoration: none; color: black;"
+        >
           |
           {{Comments.length}}
           評價
@@ -39,6 +43,7 @@
           frameborder="0"
           allowtransparency="true"
           allow="encrypted-media"
+          class="facebook"
         ></iframe>
       </div>
       <!-- 商品單價 -->
@@ -53,7 +58,7 @@
           class="ml-2 mt-1"
         />
         <p class="ml-1">滿$999，</p>
-        <p class="mt-1" style="font-size: 16px; color: #ff5722;">免運費</p>
+        <p class="free mt-1" style="color: #ff5722;">免運費</p>
         <p class="ml-5">&nbsp;&nbsp;&nbsp;&nbsp;</p>
       </div>
       <!-- 運費 -->
@@ -123,42 +128,25 @@
 
           <h5 class="mt-3" style="text-align: center; color: gray;">到貨通知</h5>
 
-          <div class="mt-2" style="text-align: center; color: gray; font-size: 16px;">
+          <div class="modalTitle mt-2" style="text-align: center; color: gray;">
             商品名稱：
-            <p
-              style="color: red; font-size: 16px;"
-            >【{{product.Product_category.name}}】{{product.name}}</p>
+            <p style="color: red;">【{{product.Product_category.name}}】{{product.name}}</p>
           </div>
 
           <p>---------------------------------------</p>
 
           <form @submit.stop.prevent="handleNotice">
-            <div class="form-group row ml-5">
-              <label style="color: gray; font-size: 16px;" for="inputEmail">電子郵件：&nbsp;</label>
-              <input
-                style="font-size: 16px;"
-                type="text"
-                name="email"
-                class="form"
-                v-model="email"
-                required
-                autofocus
-              />
+            <div class="email form-group row">
+              <label style="color: gray;" for="inputEmail">電子郵件：&nbsp;</label>
+              <input type="text" name="email" class="form" v-model="email" required autofocus />
             </div>
-            <div class="form-group row ml-4">
-              <label style="color: gray; font-size: 16px;" for="inputEmail">確認電子郵件：&nbsp;</label>
-              <input
-                style="font-size: 16px;"
-                type="text"
-                name="email_confirm"
-                class="form"
-                v-model="email_confirm"
-                required
-              />
+            <div class="email_confirm form-group row">
+              <label style="color: gray;" for="inputEmail">確認電子郵件：&nbsp;</label>
+              <input type="text" name="email_confirm" class="form" v-model="email_confirm" required />
             </div>
 
             <p>---------------------------------------</p>
-            <p style="text-align: center; color: red; font-size: 16px;">*此功能僅為貨到通知，無法保留商品喔。</p>
+            <p style="text-align: center; color: red;">*此功能僅為貨到通知，無法保留商品喔。</p>
 
             <div style="text-align: center;">
               <button
@@ -322,6 +310,10 @@ export default {
   font-family: "DFKai-sb";
 }
 
+.free {
+  font-size: 16px;
+}
+
 /* ========= 數量增減按鍵 ========= */
 .selectQty {
   text-align: center;
@@ -388,6 +380,18 @@ input.qtyMinus:active {
   width: 30%;
 }
 
+label {
+  font-size: 16px;
+}
+
+.email {
+  margin-left: 62px;
+}
+
+.email_confirm {
+  margin-left: 30px;
+}
+
 /* The Close Button */
 .close {
   color: #aaaaaa;
@@ -400,6 +404,57 @@ input.qtyMinus:active {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1040px) {
+  .facebook {
+    margin-top: 5px;
+  }
+
+  .price {
+    font-size: 30px;
+  }
+
+  .free {
+    font-size: 12px;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+
+  p,
+  .btn-primary,
+  button,
+  input,
+  .rating,
+  .no-comment,
+  .modalTitle,
+  label {
+    font-size: 15px;
+  }
+
+  input.qtyPlus,
+  input.qtyMinus {
+    width: 25px;
+  }
+
+  .modal {
+    width: 115%;
+    height: 100%;
+  }
+
+  label {
+    font-size: 13px;
+  }
+
+  .email {
+    margin-left: 45px;
+  }
+
+  .email_confirm {
+    margin-left: 20px;
+  }
 }
 </style>
 

@@ -13,15 +13,15 @@
           height="180px"
         />
         <div class="card-header mt-2">
-          <p class="card-title" style="font-size: 18px;">
+          <p class="card-title">
             【{{product.Product_category.name}}】
             <br />
             {{product.name}}
           </p>
         </div>
         <div class="card-body row" style="display:flex; justify-content: center;">
-          <p class="price mr-4" style="color:#0085a5; font-size: 18px;">$ {{product.price}}</p>
-          <p style="color:gray; font-size: 17px;">還剩{{product.count}}件</p>
+          <p class="price" style="color:#0085a5;">$ {{product.price}}</p>
+          <p class="count" style="color:gray;">還剩{{product.count}}件</p>
         </div>
       </div>
     </router-link>
@@ -66,5 +66,31 @@ export default {
 .card:hover {
   box-shadow: 0 16px 22px 0 rgba(90, 91, 95, 0.3);
   top: -5px;
+}
+
+p {
+  font-size: 18px;
+}
+
+.count {
+  font-size: 17px;
+}
+
+.price {
+  margin-right: 30px;
+}
+
+@media screen and (max-width: 1040px) {
+  p {
+    font-size: 14px;
+  }
+
+  .count {
+    font-size: 13px;
+  }
+
+  .price {
+    margin-right: 20px;
+  }
 }
 </style>

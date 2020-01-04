@@ -151,3 +151,20 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+@media screen and (max-width: 1040px) {
+  h5 {
+    font-size: 18px;
+  }
+
+  .card,
+  button,
+  h6,
+  p,
+  select,
+  input {
+    font-size: 15px;
+  }
+}
+</style>

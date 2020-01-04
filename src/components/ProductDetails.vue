@@ -31,3 +31,20 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+@media screen and (max-width: 1040px) {
+  h5 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  img {
+    width: 400px;
+    height: 400px;
+  }
+}
+</style>

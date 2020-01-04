@@ -1,7 +1,7 @@
 <template>
   <div class="search-sort col-12 mt-2" style="display:flex; justify-content: center;">
     <div class="row">
-      <span class="mt-2 ml-1 mr-2">排序</span>
+      <span class="mt-2 ml-1">排序</span>
       <!-- 由新到舊 -->
       <template v-if="currentKey === createdAt && currentValue === desc">
         <router-link
@@ -35,13 +35,13 @@
         <router-link
           class="search-select btn ml-2"
           :to="{name: 'category-products', query: { key: price, value: desc }, hash: '#pagination'}"
-        >價格: 由高至低</router-link>
+        >價格:由高至低</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn ml-2"
           :to="{name: 'category-products', query: { key: price, value: desc }, hash: '#pagination'}"
-        >價格: 由高至低</router-link>
+        >價格:由高至低</router-link>
       </template>
 
       <!-- 由低到高 -->
@@ -49,13 +49,13 @@
         <router-link
           class="search-select btn ml-2"
           :to="{name: 'category-products', query: { key: price, value: asc }, hash: '#pagination'}"
-        >價格: 由低至高</router-link>
+        >價格:由低至高</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn ml-2"
           :to="{name: 'category-products', query: { key: price, value: asc }, hash: '#pagination'}"
-        >價格: 由低至高</router-link>
+        >價格:由低至高</router-link>
       </template>
     </div>
   </div>
@@ -124,5 +124,26 @@ export default {
 
 span {
   font-size: 18px;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 1040px) {
+  span {
+    font-size: 15px;
+  }
+
+  .search-select,
+  .search {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  .search:hover {
+    font-size: 15px;
+  }
+
+  .search-select:hover {
+    font-size: 15px;
+  }
 }
 </style>

@@ -196,4 +196,13 @@ export default {
 .btn-create:hover {
   background-color: #0c99bd;
 }
+
+@media screen and (max-width: 1040px) {
+  .btn-select,
+  .dropdown-menu,
+  .btn,
+  .products_table {
+    font-size: 15px;
+  }
+}
 </style>

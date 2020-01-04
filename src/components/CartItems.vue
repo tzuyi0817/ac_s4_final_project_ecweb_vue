@@ -152,3 +152,19 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+@media screen and (max-width: 1040px) {
+  th,
+  p,
+  span,
+  .btn {
+    font-size: 15px;
+  }
+
+  .btn-outline-secondary {
+    width: 28px;
+    height: 28px;
+  }
+}
+</style>

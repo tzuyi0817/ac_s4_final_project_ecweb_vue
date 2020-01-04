@@ -145,4 +145,19 @@ h3 {
 .btn-select:hover {
   background-color: #0c99bd;
 }
+
+@media screen and (max-width: 1040px) {
+  h2 {
+    font-size: 25px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .row,
+  .btn {
+    font-size: 15px;
+  }
+}
 </style>

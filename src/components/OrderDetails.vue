@@ -157,4 +157,19 @@ hr {
 h4 {
   color: #0085a5;
 }
+
+@media screen and (max-width: 1040px) {
+  h2 {
+    font-size: 25px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  .row,
+  .bg-light {
+    font-size: 15px;
+  }
+}
 </style>

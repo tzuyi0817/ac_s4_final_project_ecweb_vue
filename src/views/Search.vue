@@ -150,4 +150,23 @@ export default {
   color: white;
   background-color: #0085a5;
 }
+
+@media screen and (max-width: 1040px) {
+  .list-group-item {
+    font-size: 15px;
+  }
+
+  p,
+  .help-block {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h5 {
+    font-size: 20px;
+  }
+}
 </style>

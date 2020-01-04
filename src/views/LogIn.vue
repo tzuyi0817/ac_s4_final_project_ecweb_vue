@@ -224,4 +224,22 @@ input.submit:hover {
 .more {
   color: gray;
 }
+
+@media screen and (max-width: 1040px) {
+  h1 {
+    font-size: 25px;
+  }
+
+  .tab a,
+  input,
+  input.submit {
+    font-size: 15px;
+    height: 50px;
+  }
+
+  img {
+    margin-top: 100px;
+    width: 110%;
+  }
+}
 </style>

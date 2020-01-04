@@ -236,5 +236,14 @@ export default {
 .btn-select:hover {
   background-color: #0c99bd;
 }
+
+@media screen and (max-width: 1040px) {
+  .container,
+  .btn,
+  input,
+  textarea {
+    font-size: 15px;
+  }
+}
 </style>
 

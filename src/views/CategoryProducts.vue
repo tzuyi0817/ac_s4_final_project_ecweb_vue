@@ -28,11 +28,11 @@
 
       <div class="row col-auto">
         <!-- 類別名稱 -->
-        <div class="col-2 ml-5">
+        <div class="title col-2">
           <h4 style="color:#0085a5">{{category.name}}</h4>
         </div>
         <!-- 排序 -->
-        <div class="col-7">
+        <div class="col-8">
           <Sort :current-key="currentKey" :current-value="currentValue" />
         </div>
       </div>
@@ -172,5 +172,23 @@ h4 {
 .no-products {
   font-family: "DFKai-sb";
   padding: 75px;
+}
+
+.title {
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 1040px) {
+  .list-group-item {
+    font-size: 15px;
+  }
+
+  h4 {
+    font-size: 20px;
+  }
+
+  .title {
+    margin-left: 25px;
+  }
 }
 </style>

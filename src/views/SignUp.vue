@@ -86,7 +86,7 @@ export default {
     };
   },
   methods: {
-    async handleSubmit(e) {
+    async handleSubmit() {
       try {
         // 如果 name、email、passwordCheck 或 password 為空，則使用 Toast 提示
         // 然後 return 不繼續往後執行
@@ -251,5 +251,23 @@ input.submit:hover {
 
 .more {
   color: gray;
+}
+
+@media screen and (max-width: 1040px) {
+  h1 {
+    font-size: 25px;
+  }
+
+  .tab a,
+  input,
+  input.submit {
+    font-size: 15px;
+    height: 45px;
+  }
+
+  img {
+    margin-top: 100px;
+    width: 110%;
+  }
 }
 </style>
