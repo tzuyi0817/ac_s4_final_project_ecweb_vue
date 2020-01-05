@@ -8,8 +8,8 @@
             <AdminNavbar />
           </div>
 
-          <div class="col-9 bg-light p-1">
-            <div class="col-12 productmodel_orders px-5">
+          <div class="col-10 bg-light p-1">
+            <div class="col-11 productmodel_orders">
               <div class="card my-5">
                 <div class="filiterBar input-group p-3">
                   <!-- 訂單篩選 -->
@@ -157,7 +157,6 @@
                     <thead>
                       <tr style="background-color: #0085a5; color: white;">
                         <th scope="col">#</th>
-                        <th scope="col">編號</th>
                         <th scope="col">訂單日期</th>
                         <th scope="col">訂單狀態</th>
                         <th scope="col">付款狀態</th>
@@ -383,7 +382,7 @@ export default {
   background-color: #0085a5;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1060px) {
   .btn-select,
   .dropdown-menu,
   .btn,
@@ -391,6 +390,17 @@ export default {
   input,
   li {
     font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .btn-select,
+  .dropdown-menu,
+  .btn,
+  .orders_table,
+  input,
+  li {
+    font-size: 10px;
   }
 }
 </style>

@@ -53,9 +53,23 @@ h6 {
   top: -5px;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   h6 {
     font-size: 20px;
+  }
+
+  img {
+    height: 150px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  h6 {
+    font-size: 15px;
+  }
+
+  img {
+    height: 125px;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div class="search-sort col-10 mt-2 mb-2" style="display:flex; justify-content: center;">
+  <div class="search-sort col-11 mt-2 mb-2" style="display:flex; justify-content: center;">
     <div class="row">
-      <span class="mt-2 ml-2">排序</span>
+      <span class="mt-2">排序</span>
       <!-- 由新到舊 -->
       <template v-if="currentKey === createdAt && currentValue === desc">
         <router-link
@@ -128,7 +128,7 @@ span {
   margin-right: 10px;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1290px) {
   span {
     font-size: 15px;
     margin-right: 0px;
@@ -146,9 +146,25 @@ span {
   .search-select:hover {
     font-size: 15px;
   }
+}
 
-  .search-sort {
-    width: 100px;
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  span {
+    font-size: 10px;
+    margin-right: 0px;
+  }
+
+  .search-select,
+  .search {
+    font-size: 10px;
+  }
+
+  .search:hover {
+    font-size: 10px;
+  }
+
+  .search-select:hover {
+    font-size: 10px;
   }
 }
 </style>

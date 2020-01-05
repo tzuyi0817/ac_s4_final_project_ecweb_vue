@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 1090px) and (max-width: 1180px) {
   h5 {
     font-size: 20px;
   }
@@ -45,6 +45,21 @@ export default {
   img {
     width: 400px;
     height: 400px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 1090px) {
+  h5 {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  img {
+    width: 300px;
+    height: 300px;
   }
 }
 </style>

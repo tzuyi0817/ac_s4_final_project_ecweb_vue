@@ -143,11 +143,19 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   .dropdown-menu,
   .input-group-prepend a,
   .btn {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .dropdown-menu,
+  .input-group-prepend a,
+  .btn {
+    font-size: 10px;
   }
 }
 </style>

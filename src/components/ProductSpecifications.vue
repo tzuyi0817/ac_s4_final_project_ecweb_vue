@@ -41,7 +41,7 @@ export default {
   text-decoration: none;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 1090px) and (max-width: 1180px) {
   h5 {
     font-size: 20px;
   }
@@ -49,6 +49,17 @@ export default {
   p,
   .link {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 1090px) {
+  h5 {
+    font-size: 15px;
+  }
+
+  p,
+  .link {
+    font-size: 10px;
   }
 }
 </style>

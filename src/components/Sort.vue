@@ -5,13 +5,13 @@
       <!-- 由新到舊 -->
       <template v-if="currentKey === createdAt && currentValue === desc">
         <router-link
-          class="search-select btn ml-2"
+          class="search-select btn"
           :to="{name: 'category-products', query: { key: createdAt, value: desc }, hash: '#pagination'}"
         >由新到舊</router-link>
       </template>
       <template v-else>
         <router-link
-          class="search btn ml-2"
+          class="search btn"
           :to="{name: 'category-products', query: { key: createdAt, value: desc }, hash: '#pagination'}"
         >由新到舊</router-link>
       </template>
@@ -19,13 +19,13 @@
       <!-- 由舊到新 -->
       <template v-if="currentKey === createdAt && currentValue === asc">
         <router-link
-          class="search-select btn ml-2"
+          class="search-select btn"
           :to="{name: 'category-products', query: { key: createdAt, value: asc }, hash: '#pagination'}"
         >由舊到新</router-link>
       </template>
       <template v-else>
         <router-link
-          class="search btn ml-2"
+          class="search btn"
           :to="{name: 'category-products', query: { key: createdAt, value: asc }, hash: '#pagination'}"
         >由舊到新</router-link>
       </template>
@@ -33,13 +33,13 @@
       <!-- 由高到低 -->
       <template v-if="currentKey === price && currentValue === desc">
         <router-link
-          class="search-select btn ml-2"
+          class="search-select btn"
           :to="{name: 'category-products', query: { key: price, value: desc }, hash: '#pagination'}"
         >價格:由高至低</router-link>
       </template>
       <template v-else>
         <router-link
-          class="search btn ml-2"
+          class="search btn"
           :to="{name: 'category-products', query: { key: price, value: desc }, hash: '#pagination'}"
         >價格:由高至低</router-link>
       </template>
@@ -47,13 +47,13 @@
       <!-- 由低到高 -->
       <template v-if="currentKey === price && currentValue === asc">
         <router-link
-          class="search-select btn ml-2"
+          class="search-select btn"
           :to="{name: 'category-products', query: { key: price, value: asc }, hash: '#pagination'}"
         >價格:由低至高</router-link>
       </template>
       <template v-else>
         <router-link
-          class="search btn ml-2"
+          class="search btn"
           :to="{name: 'category-products', query: { key: price, value: asc }, hash: '#pagination'}"
         >價格:由低至高</router-link>
       </template>
@@ -108,6 +108,7 @@ export default {
   background-color: white;
   color: #0085a5;
   font-size: 18px;
+  margin-left: 10px;
 }
 
 .search:hover {
@@ -120,6 +121,7 @@ export default {
   background-color: #0085a5;
   color: white;
   font-size: 18px;
+  margin-left: 10px;
 }
 
 span {
@@ -127,23 +129,49 @@ span {
   margin-right: 10px;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   span {
     font-size: 15px;
+    margin-right: 0px;
   }
 
   .search-select,
   .search {
     font-size: 15px;
-    margin-top: 10px;
+    margin-left: 5px;
   }
 
   .search:hover {
     font-size: 15px;
+    margin-left: 5px;
   }
 
   .search-select:hover {
     font-size: 15px;
+    margin-left: 5px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  span {
+    font-size: 10px;
+    margin-right: 0px;
+  }
+
+  .search-select,
+  .search {
+    font-size: 10px;
+    margin-left: 5px;
+  }
+
+  .search:hover {
+    font-size: 10px;
+    margin-left: 5px;
+  }
+
+  .search-select:hover {
+    font-size: 10px;
+    margin-left: 5px;
   }
 }
 </style>

@@ -85,13 +85,35 @@ p {
   font-size: 18px;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1110px) {
   p {
     font-size: 15px;
   }
 
   .count {
     font-size: 14px;
+  }
+
+  img {
+    height: 135px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  p {
+    font-size: 10px;
+  }
+
+  .count {
+    font-size: 10px;
+  }
+
+  img {
+    height: 90px;
+  }
+
+  .card {
+    width: 140px;
   }
 }
 </style>

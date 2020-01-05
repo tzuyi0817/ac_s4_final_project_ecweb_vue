@@ -40,7 +40,7 @@
       <div class="row mt-5 mb-5">
         <!-- 商品 -->
         <div class="col-2"></div>
-        <div class="ml-5 col-7">
+        <div class="all-products col-7">
           <div class="row">
             <Products
               v-for="product in products"
@@ -178,7 +178,11 @@ h4 {
   margin-left: 20px;
 }
 
-@media screen and (max-width: 1040px) {
+.all-products {
+  margin-left: 65px;
+}
+
+@media screen and (min-width: 960px) and (max-width: 1110px) {
   .list-group-item {
     font-size: 15px;
   }
@@ -188,7 +192,29 @@ h4 {
   }
 
   .title {
-    margin-left: 25px;
+    margin-left: 20px;
+  }
+
+  .all-products {
+    margin-left: 50px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .list-group-item {
+    font-size: 10px;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+
+  .title {
+    margin-left: 20px;
+  }
+
+  .all-products {
+    margin-left: 35px;
   }
 }
 </style>

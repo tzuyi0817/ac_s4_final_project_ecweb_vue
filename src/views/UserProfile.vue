@@ -146,7 +146,7 @@ h3 {
   background-color: #0c99bd;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   h2 {
     font-size: 25px;
   }
@@ -155,9 +155,32 @@ h3 {
     font-size: 20px;
   }
 
+  .email {
+    font-size: 13px;
+  }
+
   .row,
   .btn {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  .email {
+    font-size: 10px;
+  }
+
+  .row,
+  .btn {
+    font-size: 10px;
   }
 }
 </style>

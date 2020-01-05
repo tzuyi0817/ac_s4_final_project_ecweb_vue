@@ -146,7 +146,7 @@ hr {
   border-top: 2px solid rgb(212, 210, 210);
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   h1 {
     font-size: 30px;
   }
@@ -156,6 +156,19 @@ hr {
   .alert,
   .btn {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  h1 {
+    font-size: 25px;
+  }
+
+  p,
+  span,
+  .alert,
+  .btn {
+    font-size: 10px;
   }
 }
 </style>

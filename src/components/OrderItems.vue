@@ -14,7 +14,7 @@
         <!-- 商品 -->
         <td>
           <div style="display: flow-root;">
-            <img :src="item.image" class="card-img" alt="..." style="height: 100px;width: auto;" />
+            <img :src="item.image" class="card-img" alt="..." />
             <span class="ml-3">{{item.name}}</span>
           </div>
         </td>
@@ -47,11 +47,33 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 1040px) {
+.card-img {
+  width: auto;
+  height: 100px;
+}
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   p,
   span,
   th {
     font-size: 15px;
+  }
+
+  .card-img {
+    width: 100px;
+    height: 80px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  p,
+  span,
+  th {
+    font-size: 10px;
+  }
+
+  .card-img {
+    width: 80px;
+    height: 60px;
   }
 }
 </style>

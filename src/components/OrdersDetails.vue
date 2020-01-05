@@ -160,7 +160,7 @@ h6 {
   color: #0085a5;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   h4 {
     font-size: 20px;
   }
@@ -172,6 +172,21 @@ h6 {
   .btn,
   span {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  h4 {
+    font-size: 15px;
+  }
+
+  h6 {
+    font-size: 13px;
+  }
+
+  .btn,
+  span {
+    font-size: 10px;
   }
 }
 </style>

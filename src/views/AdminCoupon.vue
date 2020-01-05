@@ -14,12 +14,12 @@
                 <thead>
                   <tr style="background-color: #0085a5; color: white;">
                     <th scope="col">#</th>
-                    <th scope="col">&nbsp;&nbsp;序號</th>
-                    <th scope="col">&nbsp;種類</th>
+                    <th scope="col">序號</th>
+                    <th scope="col">種類</th>
                     <th scope="col">商城id</th>
-                    <th scope="col">&nbsp;&nbsp;描述</th>
+                    <th scope="col">描述</th>
                     <th scope="col">折扣</th>
-                    <th scope="col">&nbsp;&nbsp;到期日</th>
+                    <th scope="col">到期日</th>
                     <th scope="col">是否過期</th>
                     <th scope="col">編輯</th>
                   </tr>
@@ -140,7 +140,7 @@ export default {
   width: 115%;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   .card,
   .btn {
     font-size: 15px;
@@ -148,6 +148,17 @@ export default {
 
   p {
     font-size: 13px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .card,
+  .btn {
+    font-size: 10px;
+  }
+
+  p {
+    font-size: 10px;
   }
 }
 </style>

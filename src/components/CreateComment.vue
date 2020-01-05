@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="ml-4 mt-5">
+    <div class="ml-5 mt-5">
       <h5 class="ml-5">留下您的評價：</h5>
     </div>
 
     <form @submit.stop.prevent="handleSubmit">
-      <div class="form-group col-10 mt-3 ml-5">
+      <div class="form-group col-9 mt-3 ml-5">
         <textarea
-          class="form-control"
+          class="form-control ml-3"
           v-model="comment"
           id="comment"
           name="comment"
@@ -17,7 +17,7 @@
         ></textarea>
       </div>
 
-      <p class="mb-3 ml-4 d-flex align-items-center">
+      <p class="mb-3 ml-5 d-flex align-items-center">
         <span class="text-secondary ml-5">商品評分：</span>
         <span class="starrating risingstar d-flex justify-content-center flex-row-reverse">
           <input v-model="rating" type="radio" id="star5" name="rating" value="5" />
@@ -47,10 +47,10 @@
         </span>
       </p>
 
-      <div class="col-11 mt-2">
+      <div class="col-10 mt-2">
         <div class="d-flex align-items-center justify-content-between">
           <div class="col-10"></div>
-          <div class="col-2">
+          <div class="col-3">
             <button type="submit" class="btn btn-primary" :disabled="isProcessing">送出評價</button>
           </div>
         </div>
@@ -162,8 +162,9 @@ export default {
   background-color: #0c99bd;
 }
 
-@media screen and (max-width: 1040px) {
-  h5 {
+@media screen and (min-width: 1090px) and (max-width: 1180px) {
+  h5,
+  .fa-star {
     font-size: 20px;
   }
 
@@ -171,6 +172,19 @@ export default {
   button,
   textarea {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 1090px) {
+  h5,
+  .fa-star {
+    font-size: 15px;
+  }
+
+  p,
+  button,
+  textarea {
+    font-size: 10px;
   }
 }
 </style>

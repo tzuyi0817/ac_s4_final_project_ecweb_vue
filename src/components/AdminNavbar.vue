@@ -102,7 +102,7 @@ p:hover {
   border-radius: 100px;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   .btn,
   .storename,
   .navbar-title {
@@ -112,6 +112,23 @@ p:hover {
   .logoName {
     height: 140px;
     width: 140px;
+  }
+
+  .logo {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .btn,
+  .storename,
+  .navbar-title {
+    font-size: 10px;
+  }
+
+  .logoName {
+    height: 120px;
+    width: 120px;
   }
 
   .logo {

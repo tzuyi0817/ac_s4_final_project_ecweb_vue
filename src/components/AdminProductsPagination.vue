@@ -101,9 +101,15 @@ export default {
   background-color: #0085a5;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   nav {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  nav {
+    font-size: 10px;
   }
 }
 </style>

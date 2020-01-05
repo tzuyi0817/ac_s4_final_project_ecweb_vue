@@ -142,7 +142,7 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   h5 {
     font-size: 18px;
   }
@@ -153,6 +153,20 @@ export default {
   p,
   select {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  h5 {
+    font-size: 13px;
+  }
+
+  .card,
+  button,
+  h6,
+  p,
+  select {
+    font-size: 10px;
   }
 }
 </style>

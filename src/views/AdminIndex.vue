@@ -196,7 +196,7 @@ export default {
   border-radius: 100px;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   .row,
   input,
   textarea,
@@ -208,6 +208,21 @@ export default {
   .logo {
     height: 110px;
     width: 200px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .row,
+  input,
+  textarea,
+  .navbar-title,
+  .btn {
+    font-size: 10px;
+  }
+
+  .logo {
+    height: 90px;
+    width: 150px;
   }
 }
 </style>

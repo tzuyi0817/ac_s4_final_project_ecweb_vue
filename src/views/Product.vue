@@ -49,7 +49,7 @@
       </div>
 
       <div class="ml-4 mt-5">
-        <div class="card-header mt-3 ml-5 col-10">
+        <div class="card-header mt-3 ml-5 col-9">
           <div class="row ml-5">
             <!-- 無評價 -->
             <p v-if="Comments.length === 0" class="ml-1 mt-4 mr-4" style="color: orange;">0 / 5</p>
@@ -95,7 +95,7 @@
         <h5 class="ml-5">相似商品</h5>
       </div>
 
-      <div class="mt-5 ml-5 mb-5 col-10">
+      <div class="mt-5 ml-5 mb-5 col-9">
         <div class="row">
           <SimilarProducts
             v-for="product in similarProducts"
@@ -273,7 +273,7 @@ hr {
   background-color: #d2f0f5;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 1090px) and (max-width: 1180px) {
   h5 {
     font-size: 20px;
   }
@@ -281,6 +281,17 @@ hr {
   p,
   .no-comments {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 1090px) {
+  h5 {
+    font-size: 15px;
+  }
+
+  p,
+  .no-comments {
+    font-size: 10px;
   }
 }
 </style>

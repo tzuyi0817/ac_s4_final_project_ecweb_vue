@@ -118,13 +118,23 @@ export default {
   font-family: "DFKai-sb";
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   .content {
     font-size: 25px;
   }
 
   .list-group-item {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .content {
+    font-size: 18px;
+  }
+
+  .list-group-item {
+    font-size: 10px;
   }
 }
 </style>

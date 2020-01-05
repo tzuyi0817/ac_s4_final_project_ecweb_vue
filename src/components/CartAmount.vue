@@ -52,9 +52,15 @@ export default {
   float: right;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   .row {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .row {
+    font-size: 10px;
   }
 }
 </style>

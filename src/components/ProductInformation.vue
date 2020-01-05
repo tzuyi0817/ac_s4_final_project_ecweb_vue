@@ -16,19 +16,15 @@
 
       <!-- 商品評分 -->
       <div class="row" style="display:flex; justify-content: center;">
-        <div v-if="Comments.length === 0" class="no-comment mb-2 mr-3" style="color: red;">此商品尚未有人評價</div>
+        <div v-if="Comments.length === 0" class="no-comment mb-2" style="color: red;">此商品尚未有人評價</div>
         <!-- 平均評分 -->
-        <div v-else class="star row mr-5">
+        <div v-else class="av-star row">
           <span class="stars d-flex align-items-center">
             <p class="mt-3" style="color: orange;">{{rating}}</p>&nbsp;
             <span class="star" :inner-html.prop="rating | star"></span>
           </span>
         </div>
-        <router-link
-          class="rating mr-3"
-          to="#evaluation"
-          style="text-decoration: none; color: black;"
-        >
+        <router-link class="rating" to="#evaluation" style="text-decoration: none; color: black;">
           |
           {{Comments.length}}
           評價
@@ -50,7 +46,7 @@
       <h3 class="price mt-4 mb-5" style="text-align: center; color: #0085a5">$ {{product.price}}</h3>
       <!-- 滿額免運費 -->
       <div class="row" style="display:flex; justify-content: center;">
-        <p class="mr-5" style="color: gray;">運送</p>
+        <p class="transport" style="color: gray;">運送</p>
         <img
           src="https://cdngarenanow-a.akamaihd.net/shopee/shopee-pcmall-live-sg/assets/9d21899f3344277e34d40bfc08f60bc7.png"
           width="35"
@@ -59,12 +55,12 @@
         />
         <p class="ml-1">滿$999，</p>
         <p class="free mt-1" style="color: #ff5722;">免運費</p>
-        <p class="ml-5">&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <p class="empty">&nbsp;&nbsp;&nbsp;&nbsp;</p>
       </div>
       <!-- 運費 -->
       <div class="row mb-3" style="display:flex; justify-content: center;">
         <p>&nbsp;&nbsp;&nbsp;</p>
-        <p class="ml-3 mr-5">
+        <p class="freight">
           <i class="fa fa-truck" aria-hidden="true" style="color: #0085a5"></i> 運費
         </p>
         <p class="ml-3">$ 60</p>
@@ -72,9 +68,9 @@
       <!-- 加入購物車 -->
       <form @submit.stop.prevent="handleCart">
         <div class="row" style="display:flex; justify-content: center;">
-          <p class="mr-5 mt-2" style="color: gray;">數量</p>
+          <p class="qty-title mt-2" style="color: gray;">數量</p>
 
-          <div class="selectQty mr-3">
+          <div class="selectQty">
             <input
               type="button"
               value="-"
@@ -99,18 +95,18 @@
 
         <div class="cartBtn" style="display:flex; justify-content: center">
           <!-- 無庫存 -->
-          <button v-if="product.count === 0" class="btn btn-danger mt-4 mr-2" :disabled="isDisable">
+          <button v-if="product.count === 0" class="btn btn-danger mt-4" :disabled="isDisable">
             <i class="fa fa-truck" aria-hidden="true"></i> 商品補貨中
           </button>
           <span v-if="product.count === 0" class="notice btn btn-primary mt-4">
-            <i class="fa fa-envelope" aria-hidden="true"></i> 貨到通知我
+            <i class="fa fa-envelope" aria-hidden="true"></i> 貨到通知
           </span>
           <!-- 有庫存 -->
           <input v-if="product.count > 0" type="hidden" name="productId" :value="product.id" />
           <button
             v-if="product.count > 0"
             type="submit"
-            class="btn btn-success mt-4 mr-2"
+            class="btn btn-success mt-4"
             :disabled="isProcessing"
           >
             <i class="fas fa-shopping-cart"></i> 加入購物車
@@ -133,19 +129,22 @@
             <p style="color: red;">【{{product.Product_category.name}}】{{product.name}}</p>
           </div>
 
-          <p>---------------------------------------</p>
+          <p style="text-align: center;">-------------------------------</p>
 
           <form @submit.stop.prevent="handleNotice">
-            <div class="email form-group row">
+            <div class="email form-group row" style="display:flex; justify-content: center;">
               <label style="color: gray;" for="inputEmail">電子郵件：&nbsp;</label>
               <input type="text" name="email" class="form" v-model="email" required autofocus />
             </div>
-            <div class="email_confirm form-group row">
+            <div
+              class="email_confirm form-group row"
+              style="display:flex; justify-content: center;"
+            >
               <label style="color: gray;" for="inputEmail">確認電子郵件：&nbsp;</label>
               <input type="text" name="email_confirm" class="form" v-model="email_confirm" required />
             </div>
 
-            <p>---------------------------------------</p>
+            <p style="text-align: center;">-------------------------------</p>
             <p style="text-align: center; color: red;">*此功能僅為貨到通知，無法保留商品喔。</p>
 
             <div style="text-align: center;">
@@ -314,6 +313,29 @@ export default {
   font-size: 16px;
 }
 
+.av-star,
+.rating,
+.no-comment,
+.btn-success,
+.btn-danger {
+  margin-right: 12px;
+}
+
+.freight,
+.transport,
+.qty-title {
+  margin-right: 60px;
+}
+
+.count,
+.freight {
+  margin-left: 24px;
+}
+
+.empty {
+  margin-left: 60px;
+}
+
 /* ========= 數量增減按鍵 ========= */
 .selectQty {
   text-align: center;
@@ -385,11 +407,7 @@ label {
 }
 
 .email {
-  margin-left: 62px;
-}
-
-.email_confirm {
-  margin-left: 30px;
+  margin-left: 15px;
 }
 
 /* The Close Button */
@@ -406,7 +424,7 @@ label {
   cursor: pointer;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 1090px) and (max-width: 1180px) {
   .facebook {
     margin-top: 5px;
   }
@@ -434,6 +452,11 @@ label {
     font-size: 15px;
   }
 
+  .rating,
+  .no-comment {
+    margin-top: 5px;
+  }
+
   input.qtyPlus,
   input.qtyMinus {
     width: 25px;
@@ -449,11 +472,83 @@ label {
   }
 
   .email {
-    margin-left: 45px;
+    margin-left: 10px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 1090px) {
+  .facebook {
+    margin-top: 5px;
   }
 
-  .email_confirm {
-    margin-left: 20px;
+  .price {
+    font-size: 25px;
+  }
+
+  .free {
+    font-size: 10px;
+  }
+
+  h5 {
+    font-size: 15px;
+  }
+
+  .av-star,
+  .rating,
+  .no-comment,
+  .btn-success,
+  .btn-danger {
+    margin-right: 4px;
+  }
+
+  p,
+  .btn-primary,
+  button,
+  input,
+  .rating,
+  .no-comment,
+  .modalTitle,
+  label {
+    font-size: 10px;
+  }
+
+  input.qtyPlus,
+  input.qtyMinus {
+    width: 20px;
+    height: 25px;
+  }
+
+  .freight,
+  .transport,
+  .qty-title {
+    margin-right: 24px;
+  }
+
+  .count,
+  .freight {
+    margin-left: 5px;
+  }
+
+  .empty {
+    margin-left: 36px;
+  }
+
+  .modal {
+    width: 115%;
+    height: 100%;
+  }
+
+  label {
+    font-size: 10px;
+  }
+
+  .email {
+    margin-left: 7px;
+  }
+
+  .rating,
+  .no-comment {
+    margin-top: 5px;
   }
 }
 </style>
@@ -492,5 +587,17 @@ i.fa-star-yellow {
 
 .star > .fa {
   font-size: 25px;
+}
+
+@media screen and (min-width: 1090px) and (max-width: 1180px) {
+  .star > .fa {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 1090px) {
+  .star > .fa {
+    font-size: 15px;
+  }
 }
 </style>

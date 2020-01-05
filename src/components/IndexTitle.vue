@@ -30,13 +30,23 @@
   color: #0085a5;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   h2 {
     font-size: 30px;
   }
 
   .navbar-brand {
     font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  h2 {
+    font-size: 25px;
+  }
+
+  .navbar-brand {
+    font-size: 17px;
   }
 }
 </style>

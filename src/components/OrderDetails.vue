@@ -158,7 +158,7 @@ h4 {
   color: #0085a5;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   h2 {
     font-size: 25px;
   }
@@ -170,6 +170,21 @@ h4 {
   .row,
   .bg-light {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+
+  .row,
+  .bg-light {
+    font-size: 10px;
   }
 }
 </style>

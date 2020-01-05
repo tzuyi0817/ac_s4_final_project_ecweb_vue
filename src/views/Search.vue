@@ -2,7 +2,7 @@
   <div>
     <Spinner v-if="isLoading" />
     <template v-else>
-      <div class="row col-auto">
+      <div class="row">
         <!-- NavTabs -->
         <div class="col-2">
           <div class="nav flex-column">
@@ -18,8 +18,8 @@
           </div>
         </div>
         <!-- 搜尋結果 -->
-        <div class="col-9 mb-5 ml-1">
-          <p class="ml-5">
+        <div class="col-9 mb-5">
+          <p class="ml-1">
             <i class="far fa-lightbulb mr-2" style="color:#0085a5"></i>
             「{{currentKeyword}}」搜尋到 {{products.length}} 件商品
           </p>
@@ -33,7 +33,6 @@
           </div>
           <!-- 搜尋成功 -->
           <div v-else class="row">
-            <div class="col-1"></div>
             <!-- 排序 -->
             <SearchSort
               :current-keyword="currentKeyword"
@@ -41,12 +40,13 @@
               :current-value="currentValue"
             />
             <!-- 商品 -->
-            <div class="col-1"></div>
-            <SearchProducts
-              v-for="product in products"
-              :key="product.id"
-              :initial-product="product"
-            />
+            <div class="col-11 row">
+              <SearchProducts
+                v-for="product in products"
+                :key="product.id"
+                :initial-product="product"
+              />
+            </div>
           </div>
           <!-- 分頁標籤 RestaurantsPagination -->
           <SearchPagination
@@ -151,7 +151,7 @@ export default {
   background-color: #0085a5;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1290px) {
   .list-group-item {
     font-size: 15px;
   }
@@ -167,6 +167,25 @@ export default {
 
   h5 {
     font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .list-group-item {
+    font-size: 10px;
+  }
+
+  p,
+  .help-block {
+    font-size: 10px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  h5 {
+    font-size: 15px;
   }
 }
 </style>

@@ -20,7 +20,7 @@
           </p>
         </div>
         <div class="card-body row" style="display:flex; justify-content: center;">
-          <p class="price mr-4" style="color:#0085a5;">$ {{product.price}}</p>
+          <p class="price" style="color:#0085a5;">$ {{product.price}}</p>
           <p class="count" style="color:gray;">還剩{{product.count}}件</p>
         </div>
       </div>
@@ -76,7 +76,11 @@ p {
   font-size: 17px;
 }
 
-@media screen and (max-width: 1040px) {
+.price {
+  margin-right: 30px;
+}
+
+@media screen and (min-width: 1090px) and (max-width: 1180px) {
   h5 {
     font-size: 20px;
   }
@@ -87,6 +91,36 @@ p {
 
   .count {
     font-size: 14px;
+  }
+
+  img {
+    height: 150px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 1090px) {
+  h5 {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  .count {
+    font-size: 9px;
+  }
+
+  .card {
+    width: 130px;
+  }
+
+  img {
+    height: 120px;
+  }
+
+  .price {
+    margin-right: 20px;
   }
 }
 </style>

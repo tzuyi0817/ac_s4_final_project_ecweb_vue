@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="comment in commentsPagination" :key="comment.id">
-      <div class="list-group-item list-group-item-action ml-5 mt-2 col-10">
+      <div class="list-group-item list-group-item-action ml-5 mt-2 col-9">
         <button
           v-if="comment.User.id === currentUser.id"
           type="button"
@@ -102,7 +102,7 @@ p {
   font-size: 18px;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 1090px) and (max-width: 1180px) {
   p {
     font-size: 15px;
   }
@@ -114,6 +114,21 @@ p {
   .avatar {
     width: 45px;
     height: 45px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 1090px) {
+  p {
+    font-size: 10px;
+  }
+
+  small {
+    font-size: 10px;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
   }
 }
 </style>

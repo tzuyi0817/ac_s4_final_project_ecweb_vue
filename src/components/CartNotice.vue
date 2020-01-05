@@ -143,7 +143,7 @@ p {
   left: -19px;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   .cartNotice {
     width: 8%;
   }
@@ -158,6 +158,24 @@ p {
 
   .cartBG {
     width: 90px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .cartNotice {
+    width: 6%;
+  }
+
+  .cartImage img {
+    margin-top: -50px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  .cartBG {
+    width: 65px;
   }
 }
 </style>

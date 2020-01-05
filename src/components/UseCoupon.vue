@@ -150,11 +150,19 @@ hr {
   background-color: #0c99bd;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   label,
   input,
   .btn {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  label,
+  input,
+  .btn {
+    font-size: 10px;
   }
 }
 </style>

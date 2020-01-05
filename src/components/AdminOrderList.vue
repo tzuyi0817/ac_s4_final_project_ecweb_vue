@@ -1,8 +1,5 @@
 <template>
   <tr>
-    <th scope="row">
-      <input type="checkbox" />
-    </th>
     <td>
       <router-link :to="{name: 'AdminOrder', params: {id: order.id}}" class="orderId">{{order.id}}</router-link>
     </td>
@@ -117,9 +114,15 @@ export default {
   text-decoration: none;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1060px) {
   h5 {
     font-size: 15px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  h5 {
+    font-size: 10px;
   }
 }
 </style>

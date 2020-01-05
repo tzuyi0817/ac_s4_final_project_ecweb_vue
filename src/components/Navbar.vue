@@ -36,7 +36,7 @@
     </div>
     <div class="login" v-else>
       <router-link to="/users/logIn?redirect=/" class="nav-logo btn">
-        <i class="fas fa-user"></i> 登入會員
+        <i class="fas fa-user"></i> 登入
       </router-link>
     </div>
 
@@ -119,7 +119,7 @@ export default {
 }
 
 .searchKeyword {
-  width: 400px;
+  width: 350px;
 }
 
 .nav-logo:hover {
@@ -133,7 +133,7 @@ export default {
   color: gray;
 }
 
-@media screen and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1040px) {
   .navbar-title {
     font-size: 22px;
   }
@@ -150,6 +150,26 @@ export default {
   .btn-outline-success,
   .nav-logo {
     font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 840px) and (max-width: 960px) {
+  .navbar-title {
+    font-size: 17px;
+  }
+
+  .searchBtn {
+    font-size: 11px;
+  }
+
+  .searchKeyword {
+    width: 250px;
+    font-size: 13px;
+  }
+
+  .btn-outline-success,
+  .nav-logo {
+    font-size: 13px;
   }
 }
 </style>
