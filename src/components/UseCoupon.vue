@@ -175,7 +175,7 @@ hr {
 
   hr {
     width: 360px;
-    margin-left: -60px;
+    margin-left: -30px;
   }
 }
 </style>

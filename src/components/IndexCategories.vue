@@ -1,6 +1,6 @@
 <template>
   <div class="categories col-md-5">
-    <div class="mb-4 shadow-sm">
+    <div class="mb-3">
       <router-link
         :to="{ name: 'category-products', params: { id: category.id }}"
         class="category-name"
@@ -78,12 +78,12 @@ h6 {
     font-size: 15px;
   }
 
-  .card {
-    width: 300px;
-  }
-
   img {
     height: 125px;
+  }
+
+  .card {
+    width: 300px;
   }
 
   .categories {

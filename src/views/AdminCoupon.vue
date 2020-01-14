@@ -8,7 +8,7 @@
             <AdminNavbar />
           </div>
 
-          <div class="col-md-8 bg-light p-1 ml-5">
+          <div class="coupon col-md-8 bg-light p-1">
             <div class="card my-5">
               <table class="table">
                 <thead>
@@ -140,6 +140,10 @@ export default {
   width: 115%;
 }
 
+.coupon {
+  margin-left: 60px;
+}
+
 @media screen and (min-width: 960px) and (max-width: 1040px) {
   .card,
   .btn {
@@ -170,7 +174,7 @@ export default {
   }
 
   .card {
-    margin-left: -80px;
+    margin-left: 20px;
     width: 330px;
   }
 
@@ -188,6 +192,10 @@ export default {
   .expired,
   .type {
     display: none;
+  }
+
+  .coupon {
+    margin-left: 0px;
   }
 }
 </style>

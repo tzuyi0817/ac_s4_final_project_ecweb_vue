@@ -213,7 +213,7 @@ export default {
 
 @media screen and (max-width: 840px) {
   .table {
-    margin-left: -60px;
+    margin-left: -30px;
   }
 
   th,

@@ -175,7 +175,7 @@ export default {
   }
 
   .admin_traceCode {
-    margin-left: -45px;
+    margin-left: -5px;
     width: 350px;
   }
 

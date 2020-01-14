@@ -6,7 +6,7 @@
           <AdminNavbar />
         </div>
 
-        <div class="col-md-8 bg-light p-1 ml-5">
+        <div class="coupon-make col-md-8 bg-light p-1">
           <div class="container my-5">
             <template v-if="isCoupon">
               <table class="table mt-5">
@@ -190,6 +190,10 @@ export default {
   width: 115%;
 }
 
+.coupon-make {
+  margin-left: 60px;
+}
+
 .btn-select {
   border: none;
   outline: 0;
@@ -231,7 +235,7 @@ export default {
   }
 
   .container {
-    margin-left: -60px;
+    margin-left: 30px;
     width: 300px;
   }
 
@@ -240,6 +244,10 @@ export default {
   input,
   textarea {
     font-size: 10px;
+  }
+
+  .coupon-make {
+    margin-left: 0px;
   }
 }
 </style>

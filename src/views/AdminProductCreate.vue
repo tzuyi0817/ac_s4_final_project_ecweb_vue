@@ -8,7 +8,7 @@
             <AdminNavbar />
           </div>
 
-          <div class="col-md-8 bg-light p-1 ml-5">
+          <div class="editproduct col-md-8 bg-light p-1">
             <div class="productmodel_editproduct col-12 py-3">
               <!-- 商品編輯表單 -->
               <form @submit.stop.prevent="handleSubmit">
@@ -322,6 +322,10 @@ export default {
   width: 115%;
 }
 
+.editproduct {
+  margin-left: 60px;
+}
+
 a,
 p {
   color: #0085a5;
@@ -379,7 +383,7 @@ a:hover {
   }
 
   .card {
-    margin-left: -55px;
+    margin-left: 35px;
     width: 260px;
   }
 
@@ -393,6 +397,10 @@ a:hover {
 
   .img-thumbnail {
     height: 130px;
+  }
+
+  .editproduct {
+    margin-left: 0px;
   }
 }
 </style>

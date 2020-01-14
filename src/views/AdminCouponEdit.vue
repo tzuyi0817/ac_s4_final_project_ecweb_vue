@@ -8,7 +8,7 @@
             <AdminNavbar />
           </div>
 
-          <div class="col-md-8 bg-light p-1 ml-5">
+          <div class="coupon-edit col-md-8 bg-light p-1">
             <div class="container my-5">
               <form @submit.stop.prevent="handleSubmit">
                 <div class="form-group">
@@ -222,6 +222,10 @@ export default {
   width: 115%;
 }
 
+.coupon-edit {
+  margin-left: 60px;
+}
+
 .btn-select {
   border: none;
   outline: 0;
@@ -263,7 +267,7 @@ export default {
   }
 
   .container {
-    margin-left: -60px;
+    margin-left: 30px;
     width: 300px;
   }
 
@@ -272,6 +276,10 @@ export default {
   input,
   textarea {
     font-size: 10px;
+  }
+
+  .coupon-edit {
+    margin-left: 0px;
   }
 }
 </style>
