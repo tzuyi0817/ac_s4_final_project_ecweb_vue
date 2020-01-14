@@ -178,4 +178,10 @@ p {
     width: 65px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  .cart-link {
+    display: none;
+  }
+}
 </style>

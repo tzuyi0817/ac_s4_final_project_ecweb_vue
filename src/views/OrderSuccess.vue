@@ -170,4 +170,20 @@ export default {
     font-size: 10px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  .container {
+    margin-left: -45px;
+  }
+
+  p,
+  span,
+  .btn {
+    font-size: 10px;
+  }
+
+  .arrow {
+    font-size: 30px;
+  }
+}
 </style>

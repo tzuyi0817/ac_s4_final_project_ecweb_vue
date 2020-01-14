@@ -2,11 +2,11 @@
   <div>
     <div class="container-fluid admin_layout">
       <div class="row">
-        <div class="col-2 d-flex flex-column">
+        <div class="col-md-2 d-flex flex-column">
           <AdminNavbar />
         </div>
 
-        <div class="col-8 bg-light p-1 ml-5">
+        <div class="col-md-8 bg-light p-1 ml-5">
           <div class="container my-5">
             <template v-if="isCoupon">
               <table class="table mt-5">
@@ -215,6 +215,26 @@ export default {
 }
 
 @media screen and (min-width: 840px) and (max-width: 960px) {
+  .container,
+  .btn,
+  input,
+  textarea {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container-fluid {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
+
+  .container {
+    margin-left: -60px;
+    width: 300px;
+  }
+
   .container,
   .btn,
   input,

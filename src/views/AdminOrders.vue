@@ -4,12 +4,12 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-2 d-flex flex-column">
+          <div class="col-md-2 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="col-10 bg-light p-1">
-            <div class="col-11 productmodel_orders">
+          <div class="col-md-10 bg-light p-1">
+            <div class="col-md-11 productmodel_orders">
               <div class="card my-5">
                 <div class="filiterBar input-group p-3">
                   <!-- 訂單篩選 -->
@@ -159,9 +159,12 @@
                         <th scope="col">#</th>
                         <th scope="col">訂單日期</th>
                         <th scope="col">訂單狀態</th>
-                        <th scope="col">付款狀態</th>
-                        <th scope="col">送貨狀態</th>
-                        <th scope="col">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂購人</th>
+                        <th scope="col" class="payment-status">付款狀態</th>
+                        <th scope="col" class="shipment-status">送貨狀態</th>
+                        <th
+                          scope="col"
+                          class="orderer"
+                        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂購人</th>
                         <th scope="col">合計</th>
                       </tr>
                     </thead>
@@ -401,6 +404,34 @@ export default {
   input,
   li {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container-fluid {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
+
+  .productmodel_orders {
+    margin-left: -40px;
+    width: 370px;
+  }
+
+  .btn-select,
+  .dropdown-menu,
+  .btn,
+  .orders_table,
+  input,
+  li {
+    font-size: 10px;
+  }
+
+  .payment-status,
+  .shipment-status,
+  .orderer {
+    display: none;
   }
 }
 </style>

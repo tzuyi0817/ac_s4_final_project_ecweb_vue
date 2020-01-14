@@ -1,5 +1,5 @@
 <template>
-  <div class="col-5">
+  <div class="categories col-md-5">
     <div class="mb-4 shadow-sm">
       <router-link
         :to="{ name: 'category-products', params: { id: category.id }}"
@@ -70,6 +70,24 @@ h6 {
 
   img {
     height: 125px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  h6 {
+    font-size: 15px;
+  }
+
+  .card {
+    width: 300px;
+  }
+
+  img {
+    height: 125px;
+  }
+
+  .categories {
+    margin-left: 8px;
   }
 }
 </style>

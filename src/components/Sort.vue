@@ -174,4 +174,33 @@ span {
     margin-left: 5px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  span {
+    display: none;
+  }
+
+  .search-select,
+  .search {
+    font-size: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+
+  .search:hover {
+    font-size: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+
+  .search-select:hover {
+    font-size: 15px;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+
+  .search-sort {
+    margin-left: -20px;
+  }
+}
 </style>

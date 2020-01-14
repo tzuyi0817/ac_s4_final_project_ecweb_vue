@@ -1,18 +1,18 @@
 <template>
   <tr>
-    <th scope="row">
+    <th scope="row" class="checkbox">
       <input type="checkbox" class="mt-4" />
     </th>
-    <td style="width:10%">
+    <td class="image">
       <img class="w-100 mt-4" :src="product.image" alt="產品圖片" />
     </td>
     <td>
       <p class="mt-4">{{product.name}}</p>
     </td>
-    <td>
+    <td class="price">
       <p class="mt-4">{{product.price}}</p>
     </td>
-    <td>
+    <td class="count">
       <p class="mt-4">{{product.count}}</p>
     </td>
 
@@ -143,6 +143,10 @@ export default {
 </script>
 
 <style scoped>
+.image {
+  width: 10%;
+}
+
 @media screen and (min-width: 960px) and (max-width: 1040px) {
   .dropdown-menu,
   .input-group-prepend a,
@@ -156,6 +160,24 @@ export default {
   .input-group-prepend a,
   .btn {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .dropdown-menu,
+  .input-group-prepend a,
+  .btn {
+    font-size: 10px;
+  }
+
+  .checkbox,
+  .price,
+  .count {
+    display: none;
+  }
+
+  .image {
+    width: 80px;
   }
 }
 </style>

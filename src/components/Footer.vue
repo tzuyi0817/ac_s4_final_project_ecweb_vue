@@ -79,4 +79,10 @@ footer {
     font-size: 10px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  p {
+    font-size: 15px;
+  }
+}
 </style>

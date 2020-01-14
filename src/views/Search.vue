@@ -4,7 +4,7 @@
     <template v-else>
       <div class="row">
         <!-- NavTabs -->
-        <div class="col-2">
+        <div class="nav-box col-md-2">
           <div class="nav flex-column">
             <div class="list-group">
               <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
@@ -18,7 +18,7 @@
           </div>
         </div>
         <!-- 搜尋結果 -->
-        <div class="col-9 mb-5">
+        <div class="search col-md-9 mb-5">
           <p class="ml-1">
             <i class="far fa-lightbulb mr-2" style="color:#0085a5"></i>
             「{{currentKeyword}}」搜尋到 {{products.length}} 件商品
@@ -40,7 +40,7 @@
               :current-value="currentValue"
             />
             <!-- 商品 -->
-            <div class="col-11 row">
+            <div class="col-md-11 row">
               <SearchProducts
                 v-for="product in products"
                 :key="product.id"
@@ -186,6 +186,33 @@ export default {
 
   h5 {
     font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .nav-box {
+    display: none;
+  }
+
+  .search {
+    margin-top: 20px;
+  }
+
+  .undefined {
+    margin-left: -25px;
+  }
+
+  p,
+  .help-block {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h5 {
+    font-size: 20px;
   }
 }
 </style>

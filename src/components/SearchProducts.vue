@@ -123,4 +123,34 @@ p {
     width: 125px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  .products {
+    margin-left: -25px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  .count {
+    font-size: 14px;
+  }
+
+  .card-header {
+    height: auto;
+  }
+
+  .card-body {
+    height: 3rem;
+  }
+
+  .card {
+    width: 250px;
+  }
+
+  img {
+    height: 150px;
+  }
+}
 </style>

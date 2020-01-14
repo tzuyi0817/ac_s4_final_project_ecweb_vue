@@ -3,7 +3,7 @@
     <Spinner v-if="isLoading" />
     <template v-else>
       <!-- NavTabs -->
-      <div class="row col-auto mt-5">
+      <div class="row mt-5 col-12">
         <!-- <div class="col-2">
           <div class="nav flex-column">
             <div class="list-group">
@@ -19,7 +19,7 @@
         </div>-->
 
         <!-- 商品圖片 -->
-        <div class="index col-5 mb-5 ml-2">
+        <div class="index col-md-5 mb-5">
           <img :src="product.image" width="100%" alt="image" />
         </div>
 
@@ -32,7 +32,7 @@
         />
       </div>
 
-      <hr class="ml-4 col-10" />
+      <hr class="col-10" />
 
       <!-- 商品規格 -->
       <ProductSpecifications :initial-product="product" :key="product.id" />
@@ -40,17 +40,17 @@
       <!-- 商品詳情 -->
       <ProductDetails :initial-product="product" :key="product.id" />
 
-      <hr class="ml-4 col-10" />
+      <hr class="col-10" />
       <section id="evaluation"></section>
 
       <!-- 商品評價 -->
-      <div class="ml-4 mt-5">
-        <h5 class="ml-5">商品評價</h5>
+      <div class="comment-title mt-5">
+        <h5>商品評價</h5>
       </div>
 
-      <div class="ml-4 mt-5">
-        <div class="card-header mt-3 ml-5 col-9">
-          <div class="row ml-5">
+      <div class="comment-content mt-5">
+        <div class="card-header col-md-9 mt-3">
+          <div class="comment row">
             <!-- 無評價 -->
             <p v-if="Comments.length === 0" class="ml-1 mt-4 mr-4" style="color: orange;">0 / 5</p>
             <!-- 有評價 -->
@@ -88,14 +88,14 @@
         @after-create-comment="afterCreateComment"
       />
 
-      <hr class="ml-4 mt-5 col-10" />
+      <hr class="mt-5 col-10" />
 
       <!-- 相似商品 -->
-      <div class="ml-4 mt-5">
-        <h5 class="ml-5">相似商品</h5>
+      <div class="similar-products-title mt-5">
+        <h5>相似商品</h5>
       </div>
 
-      <div class="mt-5 ml-5 mb-5 col-9">
+      <div class="similar-products-box mt-5 mb-5 col-md-9">
         <div class="row">
           <SimilarProducts
             v-for="product in similarProducts"
@@ -257,6 +257,10 @@ export default {
   font-family: "DFKai-sb";
 }
 
+.index {
+  margin-left: 25px;
+}
+
 .list-group-item:hover {
   color: white;
   background-color: #0085a5;
@@ -267,10 +271,24 @@ hr {
   margin-bottom: 20px;
   border: 0;
   border-top: 1px solid #0085a5;
+  margin-left: 25px;
 }
 
 .card-header {
   background-color: #d2f0f5;
+  margin-left: 60px;
+}
+
+h5,
+.comment,
+.similar-products-box {
+  margin-left: 60px;
+}
+
+.comment-title,
+.comment-content,
+.similar-products-title {
+  margin-left: 30px;
 }
 
 @media screen and (min-width: 1090px) and (max-width: 1180px) {
@@ -292,6 +310,45 @@ hr {
   p,
   .no-comments {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .product {
+    margin-left: -65px;
+  }
+
+  .index {
+    margin-left: 0px;
+  }
+
+  h5 {
+    font-size: 20px;
+    margin-left: 15px;
+  }
+
+  .card-header {
+    margin-left: -10px;
+  }
+
+  .comment {
+    margin-left: 25px;
+  }
+
+  p,
+  .no-comments {
+    font-size: 15px;
+  }
+
+  hr {
+    margin-left: 5px;
+  }
+
+  .comment-title,
+  .comment-content,
+  .similar-products-box,
+  .similar-products-title {
+    margin-left: 0px;
   }
 }
 </style>

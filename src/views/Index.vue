@@ -5,7 +5,7 @@
       <IndexTitle />
       <!-- NavTabs -->
       <div class="row mt-5">
-        <div class="col-2">
+        <div class="col-md-2">
           <div class="nav flex-column">
             <div class="list-group">
               <router-link class="list-group-item list-group-item-action active" to="/">首頁</router-link>
@@ -19,7 +19,7 @@
           </div>
         </div>
         <!-- 首頁圖片 -->
-        <div class="index col-10 mb-3">
+        <div class="index col-md-10 mb-3">
           <img
             src="https://www.walkerland.com.tw/image/poi/p78749/m60497/c3b71fe2f38ee676cded94d0e751a433bd648544.jpg"
             width="80%"
@@ -30,17 +30,13 @@
       </div>
       <!-- 網站簡介和商品類別 -->
       <div class="row">
-        <div class="col-2"></div>
+        <div class="empty col-md-2"></div>
         <!-- 網站簡介 -->
-        <div class="col-10">
-          <div class="row d-flex ml-1 mb-5">
-            <p class="content">
-              MuseClub是一間實體結合線上的餐酒館，
-              <br />在線上，我們提供你，南美莊園原豆、法國酒莊葡萄酒
-              <br />與台灣本地小農食材；在實體概念店，我們用我們的食
-              <br />材做成精美的料理，並每周舉辦料理工作坊將異國的食
-              <br />材，與自己做料理，成為你的生活風格
-            </p>
+        <div class="col-md-10">
+          <div class="Introduction row d-flex mb-5">
+            <p
+              class="content"
+            >MuseClub是一間實體結合線上的餐酒館，在線上，我們提供你，南美莊園原豆、法國酒莊葡萄酒與台灣本地小農食材；在實體概念店，我們用我們的食材做成精美的料理，並每周舉辦料理工作坊將異國的食材，與自己做料理，成為你的生活風格</p>
           </div>
           <!-- 商品類別 -->
           <div class="row mb-5">
@@ -118,6 +114,12 @@ export default {
   font-family: "DFKai-sb";
 }
 
+.Introduction {
+  margin-left: 12px;
+  white-space: normal;
+  width: 700px;
+}
+
 @media screen and (min-width: 960px) and (max-width: 1040px) {
   .content {
     font-size: 25px;
@@ -125,6 +127,10 @@ export default {
 
   .list-group-item {
     font-size: 15px;
+  }
+
+  .Introduction {
+    width: 500px;
   }
 }
 
@@ -135,6 +141,47 @@ export default {
 
   .list-group-item {
     font-size: 10px;
+  }
+
+  .Introduction {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .row {
+    margin-left: -45px;
+  }
+
+  .content {
+    font-size: 15px;
+  }
+
+  .list-group {
+    width: 220px;
+    margin-left: 20px;
+  }
+
+  .list-group-item {
+    font-size: 15px;
+  }
+
+  .index {
+    margin-top: 20px;
+    margin-left: -25px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .empty {
+    display: none;
+  }
+
+  .Introduction {
+    margin-left: -20px;
+    width: 300px;
   }
 }
 </style>

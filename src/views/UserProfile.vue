@@ -3,7 +3,7 @@
     <Spinner v-if="isLoading" />
     <template v-else>
       <div class="row">
-        <div class="col-4">
+        <div class="col-md-4">
           <div class="mb-4">
             <h2 style="text-align:center">個人資料</h2>
           </div>
@@ -24,7 +24,7 @@
           </div>
         </div>
 
-        <div class="col-8">
+        <div class="col-md-8">
           <div class="mb-4">
             <h2 style="text-align:center">購物記錄</h2>
           </div>
@@ -166,6 +166,29 @@ h3 {
 }
 
 @media screen and (min-width: 840px) and (max-width: 960px) {
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 15px;
+  }
+
+  .email {
+    font-size: 10px;
+  }
+
+  .row,
+  .btn {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container {
+    margin-left: -45px;
+  }
+
   h2 {
     font-size: 20px;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="productInformation col-5 ml-3">
+  <div class="productInformation col-md-5">
     <div class="card-body">
       <div class="row" style="display:flex; justify-content: center;">
         <!-- 商品名稱 -->
@@ -551,6 +551,48 @@ label {
     margin-top: 5px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  h5 {
+    font-size: 20px;
+  }
+
+  .facebook {
+    margin-top: 10px;
+  }
+
+  p,
+  .btn-primary,
+  button,
+  input,
+  .rating,
+  .no-comment,
+  .modalTitle,
+  label {
+    font-size: 15px;
+  }
+
+  .transport {
+    margin-right: 25px;
+  }
+
+  .qty-title {
+    margin-right: 25px;
+  }
+
+  .freight {
+    margin-right: 15px;
+  }
+
+  .empty {
+    display: none;
+  }
+
+  input.qtyPlus,
+  input.qtyMinus {
+    width: 30px;
+  }
+}
 </style>
 
 <style>
@@ -598,6 +640,12 @@ i.fa-star-yellow {
 @media screen and (min-width: 840px) and (max-width: 1090px) {
   .star > .fa {
     font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .star > .fa {
+    font-size: 20px;
   }
 }
 </style>

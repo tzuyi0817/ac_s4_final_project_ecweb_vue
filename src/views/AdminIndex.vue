@@ -2,26 +2,26 @@
   <div>
     <Spinner v-if="isLoading" />
     <template v-else>
-      <div class="container-fluid admin_layout mb-5">
+      <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-2 d-flex flex-column">
+          <div class="col-md-2 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="col-9 d-flex flex-column bg-light p-1">
+          <div class="col-md-9 d-flex flex-column bg-light p-1">
             <div class="row admin_fuctionBlock vh-100">
               <div class="col-12 indexmodel_storeinfo px-5">
                 <form @submit.stop.prevent="handleSubmit">
                   <div class="row storeinfo_form py-4 my-5">
                     <!-- 商店logo -->
-                    <div class="col-6 text-center">
-                      <div class="logo ml-5">
+                    <div class="col-md-6 text-center">
+                      <div class="logo">
                         <p>&nbsp;</p>
                         <p class="navbar-title mt-3">MuseClub</p>
                       </div>
                     </div>
                     <!-- 商店類別和名稱 -->
-                    <div class="col-6 form-group mb-5">
+                    <div class="col-md-6 form-group mb-5">
                       <label for="storecategory">商店類別</label>
                       <input
                         v-model="storeData.Store_category.name"
@@ -42,7 +42,7 @@
                       />
                     </div>
                     <!-- 商店描述 -->
-                    <div class="col-12 form-group">
+                    <div class="store-description col-12 form-group">
                       <textarea
                         v-model="storeData.description"
                         class="form-control"
@@ -166,6 +166,7 @@ export default {
   margin-left: -89px;
   font-family: "DFKai-sb";
   width: 115%;
+  margin-bottom: 60px;
 }
 
 .navbar-title {
@@ -194,6 +195,7 @@ export default {
   height: 150px;
   width: 300px;
   border-radius: 100px;
+  margin-left: 60px;
 }
 
 @media screen and (min-width: 960px) and (max-width: 1040px) {
@@ -223,6 +225,29 @@ export default {
   .logo {
     height: 90px;
     width: 150px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container-fluid {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
+
+  .row,
+  input,
+  textarea,
+  .navbar-title,
+  .btn {
+    font-size: 15px;
+  }
+
+  .logo {
+    height: 110px;
+    width: 200px;
+    margin-left: 0px;
+    margin-bottom: 20px;
   }
 }
 </style>

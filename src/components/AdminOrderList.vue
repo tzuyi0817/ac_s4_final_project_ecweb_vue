@@ -24,7 +24,7 @@
       </h5>
     </td>
 
-    <td>
+    <td class="payment-status">
       <!-- 未付款 -->
       <h5 v-if="order.paymentStatusId === 1">
         <span class="badge badge-secondary">未付款</span>
@@ -43,7 +43,7 @@
       </h5>
     </td>
 
-    <td>
+    <td class="shipment-status">
       <!-- 備貨中 -->
       <h5 v-if="order.shipmentStatus === InStock">
         <span class="badge badge-secondary">{{order.shipmentStatus}}</span>
@@ -73,7 +73,7 @@
         <span class="badge badge-warning">{{order.shipmentStatus}}</span>
       </h5>
     </td>
-    <td>{{order.User.name}}({{order.User.email}})</td>
+    <td class="orderer">{{order.User.name}}({{order.User.email}})</td>
     <td>NT${{order.amount}}</td>
   </tr>
 </template>
@@ -123,6 +123,18 @@ export default {
 @media screen and (min-width: 840px) and (max-width: 960px) {
   h5 {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  h5 {
+    font-size: 10px;
+  }
+
+  .payment-status,
+  .shipment-status,
+  .orderer {
+    display: none;
   }
 }
 </style>

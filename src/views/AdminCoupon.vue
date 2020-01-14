@@ -4,23 +4,23 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-2 d-flex flex-column">
+          <div class="col-md-2 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="col-8 bg-light p-1 ml-5">
+          <div class="col-md-8 bg-light p-1 ml-5">
             <div class="card my-5">
               <table class="table">
                 <thead>
                   <tr style="background-color: #0085a5; color: white;">
                     <th scope="col">#</th>
                     <th scope="col">序號</th>
-                    <th scope="col">種類</th>
-                    <th scope="col">商城id</th>
-                    <th scope="col">描述</th>
+                    <th scope="col" class="type">種類</th>
+                    <th scope="col" class="store-id">商城id</th>
+                    <th scope="col" class="description">描述</th>
                     <th scope="col">折扣</th>
                     <th scope="col">到期日</th>
-                    <th scope="col">是否過期</th>
+                    <th scope="col" class="expired">是否過期</th>
                     <th scope="col">編輯</th>
                   </tr>
                 </thead>
@@ -34,15 +34,15 @@
                       <p class="mt-2">{{coupon.couponCode}}</p>
                     </td>
 
-                    <td>
+                    <td class="type">
                       <p class="mt-2">{{coupon.Coupon_type.couponType}}</p>
                     </td>
 
-                    <td>
+                    <td class="store-id">
                       <p class="mt-2 ml-3">{{coupon.StoreId}}</p>
                     </td>
 
-                    <td>
+                    <td class="description">
                       <p class="mt-2">{{coupon.description}}</p>
                     </td>
 
@@ -54,11 +54,11 @@
                       <p class="mt-2">{{coupon.expireDate | date}}</p>
                     </td>
 
-                    <td v-if="coupon.available === false">
+                    <td v-if="coupon.available === false" class="expired">
                       <p class="mt-2 ml-2">已過期</p>
                     </td>
 
-                    <td v-else>
+                    <td v-else class="expired">
                       <p class="mt-2 ml-2">未過期</p>
                     </td>
 
@@ -159,6 +159,35 @@ export default {
 
   p {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container-fluid {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
+
+  .card {
+    margin-left: -80px;
+    width: 330px;
+  }
+
+  .card,
+  .btn {
+    font-size: 10px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  .description,
+  .store-id,
+  .expired,
+  .type {
+    display: none;
   }
 }
 </style>

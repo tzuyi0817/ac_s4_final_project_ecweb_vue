@@ -135,4 +135,20 @@ p:hover {
     width: 75%;
   }
 }
+
+@media screen and (max-width: 840px) {
+  .btn {
+    font-size: 15px;
+  }
+
+  .storename,
+  .navbar-title {
+    font-size: 25px;
+  }
+
+  .logoName {
+    height: 200px;
+    width: 200px;
+  }
+}
 </style>

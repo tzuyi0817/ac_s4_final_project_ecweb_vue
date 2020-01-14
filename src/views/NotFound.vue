@@ -14,4 +14,10 @@
     font-size: 20px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  h1 {
+    font-size: 20px;
+  }
+}
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="create-comment">
     <div class="ml-5 mt-5">
       <h5 class="ml-5">留下您的評價：</h5>
     </div>
 
     <form @submit.stop.prevent="handleSubmit">
-      <div class="form-group col-9 mt-3 ml-5">
+      <div class="form-group col-9 mt-3">
         <textarea
           class="form-control ml-3"
           v-model="comment"
@@ -47,10 +47,10 @@
         </span>
       </p>
 
-      <div class="col-10 mt-2">
+      <div class="col-md-10 mt-2">
         <div class="d-flex align-items-center justify-content-between">
-          <div class="col-10"></div>
-          <div class="col-3">
+          <div class="col-md-10"></div>
+          <div class="col-md-3">
             <button type="submit" class="btn btn-primary" :disabled="isProcessing">送出評價</button>
           </div>
         </div>
@@ -162,6 +162,10 @@ export default {
   background-color: #0c99bd;
 }
 
+.form-group {
+  margin-left: 60px;
+}
+
 @media screen and (min-width: 1090px) and (max-width: 1180px) {
   h5,
   .fa-star {
@@ -185,6 +189,27 @@ export default {
   button,
   textarea {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  h5,
+  .fa-star {
+    font-size: 20px;
+  }
+
+  p,
+  button,
+  textarea {
+    font-size: 15px;
+  }
+
+  .create-comment {
+    margin-left: -85px;
+  }
+
+  .form-group {
+    margin-left: 70px;
   }
 }
 </style>

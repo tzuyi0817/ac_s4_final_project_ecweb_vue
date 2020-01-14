@@ -4,7 +4,7 @@
     <template v-else>
       <form @submit.stop.prevent="handleSubmit">
         <div class="row">
-          <div class="col-4 ml-5">
+          <div class="mug-shot col-md-4">
             <div class="form-group">
               <img
                 v-if="user.image"
@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <div class="col-6">
+          <div class="col-md-6">
             <div class="form_group row">
               <label class="col-2">名字:</label>
               <div class="col-10">
@@ -59,7 +59,7 @@
         <div class="form-group d-flex justify-content-between mt-4 mb-5">
           <button
             type="submit"
-            class="btn btn-select ml-5 col-10"
+            class="btn btn-select col-md-10"
             :disabled="isProcessing"
           >{{ isProcessing ? "處理中..." : "儲存" }}</button>
         </div>
@@ -184,10 +184,15 @@ export default {
   color: white;
   text-align: center;
   width: 100%;
+  margin-left: 60px;
 }
 
 .btn-select:hover {
   background-color: #0c99bd;
+}
+
+.mug-shot {
+  margin-left: 60px;
 }
 
 @media screen and (min-width: 960px) and (max-width: 1040px) {
@@ -203,6 +208,27 @@ export default {
   .btn,
   input {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container {
+    margin-left: -45px;
+  }
+
+  .row,
+  .btn,
+  input {
+    font-size: 10px;
+  }
+
+  .mug-shot {
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  .btn-select {
+    margin-left: 0px;
   }
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="specifications">
     <div class="ml-4 mt-5">
-      <h5 class="ml-5">商品規格</h5>
+      <h5>商品規格</h5>
     </div>
 
-    <div class="row ml-5">
+    <div class="row">
       <p class="ml-5 mr-5 mt-4" style="color: gray;">類別</p>
       <router-link
         class="link mt-4 ml-5"
@@ -12,7 +12,7 @@
       >{{product.Product_category.name}}</router-link>
     </div>
 
-    <div class="row ml-5">
+    <div class="row">
       <p class="ml-5 mr-5 mt-2" style="color: gray;">庫存</p>
       <p class="mt-2 ml-5">{{product.count}}</p>
     </div>
@@ -41,6 +41,11 @@ export default {
   text-decoration: none;
 }
 
+h5,
+.row {
+  margin-left: 60px;
+}
+
 @media screen and (min-width: 1090px) and (max-width: 1180px) {
   h5 {
     font-size: 20px;
@@ -60,6 +65,26 @@ export default {
   p,
   .link {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .specifications {
+    margin-left: -20px;
+  }
+
+  h5 {
+    font-size: 20px;
+    margin-left: 0px;
+  }
+
+  .row {
+    margin-left: 0px;
+  }
+
+  p,
+  .link {
+    font-size: 15px;
   }
 }
 </style>

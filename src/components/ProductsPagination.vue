@@ -116,4 +116,11 @@ export default {
     font-size: 10px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  nav {
+    font-size: 15px;
+    margin-left: -65px;
+  }
+}
 </style>

@@ -57,4 +57,10 @@ export default {
     font-size: 10px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  .list-group {
+    font-size: 15px;
+  }
+}
 </style>

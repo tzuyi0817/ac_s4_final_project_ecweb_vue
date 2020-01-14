@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <div class="card mb-4">
       <div class="card-header" style="text-align: center; background-color: #0085a5; color: white;">
         <form>
@@ -14,7 +14,7 @@
       </div>
       <div class="card-body" style="background-color: #d2f0f5;">
         <h6 class="ml-2">商品詳情：</h6>
-        <li class="bg-light text-dark list-group-item ml-1 mt-3 col-12">
+        <li class="bg-light text-dark list-group-item mt-3 col-12">
           <div class="row">
             <span class="col-6">商品</span>
             <span class="col-3">數量</span>
@@ -24,7 +24,7 @@
         <li
           v-for="item in order.items"
           :key="item.id"
-          class="bg-white text-dark list-group-item ml-1 col-12"
+          class="bg-white text-dark list-group-item col-12"
         >
           <div class="row">
             <span class="col-6">{{item.name}}</span>
@@ -34,15 +34,15 @@
         </li>
 
         <div class="row">
-          <div class="col-5">
+          <div class="col-md-5">
             <h6 class="mt-3 ml-2">金額詳情：</h6>
-            <div class="bg-light text-dark list-group-item ml-1 mt-3">
+            <div class="bg-light text-dark list-group-item mt-3">
               <span>金額總計:</span>
               <span style="color: red;">&nbsp;{{order.amount}} 元</span>
             </div>
           </div>
 
-          <div class="col-7 mt-3">
+          <div class="col-md-7 mt-3">
             <h6>收貨人資訊：</h6>
             <div class="bg-light text-dark list-group-item mt-3">
               <span>名字: &nbsp;{{order.name}}</span>
@@ -54,8 +54,8 @@
           </div>
         </div>
 
-        <h6 class="ml-2">出貨狀況：</h6>
-        <div class="bg-light text-dark list-group-item ml-1 mt-3 col-12">
+        <h6 class="shipping-status ml-2">出貨狀況：</h6>
+        <div class="bg-light text-dark list-group-item mt-3 col-12">
           <span>訂單狀態: &nbsp;{{order.Order_status.orderStatus}}</span>
           <br />
           <span v-if="lastPayments.PaymentTypeId === 1">付款方式: &nbsp;信用卡</span>
@@ -160,6 +160,10 @@ h6 {
   color: #0085a5;
 }
 
+.list-group-item {
+  margin-left: 5px;
+}
+
 @media screen and (min-width: 960px) and (max-width: 1040px) {
   h4 {
     font-size: 20px;
@@ -187,6 +191,25 @@ h6 {
   .btn,
   span {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  h4 {
+    font-size: 15px;
+  }
+
+  h6 {
+    font-size: 13px;
+  }
+
+  .btn,
+  span {
+    font-size: 10px;
+  }
+
+  .shipping-status {
+    margin-top: 20px;
   }
 }
 </style>

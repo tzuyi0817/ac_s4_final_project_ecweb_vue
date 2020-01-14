@@ -4,7 +4,7 @@
       <h1 class="orderNav d-inline text-white p-3 mt-3 mb-3">&nbsp;選擇您的付款與運送方式&nbsp;</h1>
 
       <div class="row">
-        <div class="col-7">
+        <div class="col-md-7">
           <div class="mt-5">
             <h4>購買人資訊：</h4>
 
@@ -38,13 +38,13 @@
           </div>
         </div>
 
-        <div class="col-5">
+        <div class="col-md-5">
           <div class="mt-5">
             <h4>運送與付款方式：</h4>
 
             <div class="form-group mt-5">
-              <label class="col-4">運送方式:</label>
-              <div class="col-10 mt-3">
+              <label class="col-md-4">運送方式:</label>
+              <div class="col-md-10 mt-3">
                 <!--value為對應的id-->
                 <label class="radio-inline">
                   <input
@@ -69,8 +69,8 @@
             </div>
 
             <div class="form-group mt-5">
-              <label class="col-4">付款方式:</label>
-              <div class="col-10 mt-3">
+              <label class="col-md-4">付款方式:</label>
+              <div class="col-md-10 mt-3">
                 <label
                   v-if="this.shipmentType === this.creditCard"
                   id="payment"
@@ -252,6 +252,28 @@ export default {
   textarea,
   .btn {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  h1 {
+    font-size: 19px;
+    margin-left: -30px;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+
+  label,
+  input,
+  textarea,
+  .btn {
+    font-size: 10px;
+  }
+
+  .pick-up {
+    margin-left: -20px;
   }
 }
 </style>

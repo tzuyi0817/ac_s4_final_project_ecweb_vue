@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3" style="text-align: center;">
+  <div class="similar-products col-md-3" style="text-align: center;">
     <router-link
       :to="{ name: 'product', params: { id: product.id }}"
       style="text-decoration: none; color: black;"
@@ -121,6 +121,36 @@ p {
 
   .price {
     margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .similar-products {
+    margin-left: 20px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  .count {
+    font-size: 14px;
+  }
+
+  .card-header {
+    height: auto;
+  }
+
+  .card-body {
+    height: 3rem;
+  }
+
+  .card {
+    width: 250px;
+  }
+
+  img {
+    height: 150px;
   }
 }
 </style>

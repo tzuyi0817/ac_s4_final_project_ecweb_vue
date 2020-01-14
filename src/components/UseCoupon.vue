@@ -165,4 +165,17 @@ hr {
     font-size: 10px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  label,
+  input,
+  .btn {
+    font-size: 10px;
+  }
+
+  hr {
+    width: 360px;
+    margin-left: -60px;
+  }
+}
 </style>

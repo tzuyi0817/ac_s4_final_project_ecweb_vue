@@ -4,7 +4,7 @@
     <template v-else>
       <!-- NavTabs -->
       <div class="row mt-5">
-        <div class="col-2">
+        <div class="col-md-2">
           <div class="nav flex-column">
             <div class="list-group">
               <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
@@ -18,29 +18,29 @@
           </div>
         </div>
         <!-- 類別圖片 -->
-        <div class="col-1"></div>
-        <div class="index col-8">
-          <img :src="category.image" class="h-75 w-75" alt="image" />
+        <div class="col-md-1"></div>
+        <div class="index col-md-8">
+          <img :src="category.image" width="75%" height="75%" alt="image" />
         </div>
       </div>
 
       <section id="pagination"></section>
 
-      <div class="row col-auto">
+      <div class="row">
         <!-- 類別名稱 -->
-        <div class="title col-2">
+        <div class="title col-md-2">
           <h4 style="color:#0085a5">{{category.name}}</h4>
         </div>
         <!-- 排序 -->
-        <div class="col-8">
+        <div class="col-md-8">
           <Sort :current-key="currentKey" :current-value="currentValue" />
         </div>
       </div>
 
       <div class="row mt-5 mb-5">
         <!-- 商品 -->
-        <div class="col-2"></div>
-        <div class="all-products col-7">
+        <div class="col-md-2"></div>
+        <div class="all-products col-md-7">
           <div class="row">
             <Products
               v-for="product in products"
@@ -211,6 +211,46 @@ h4 {
 
   .title {
     margin-left: 20px;
+  }
+
+  .all-products {
+    margin-left: 35px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .row {
+    margin-left: -45px;
+  }
+
+  .nav {
+    margin-top: 20px;
+  }
+
+  .list-group-item {
+    font-size: 15px;
+  }
+
+  .list-group {
+    width: 220px;
+    margin-left: 20px;
+  }
+
+  .index {
+    margin-top: 20px;
+    margin-left: -20px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+
+  .title {
+    display: none;
   }
 
   .all-products {

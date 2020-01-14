@@ -1,19 +1,19 @@
 <template>
   <div class="bg-light text-dark">
-    <div class="row col-8">
+    <div class="row col-md-8">
       <div class="col">商品金額總計:</div>
       <div class="amount">{{totalPrice}} 元</div>
     </div>
-    <div class="row col-8">
+    <div class="row col-md-8">
       <div class="col">運費:</div>
       <div class="amount">{{shippingFee}} 元</div>
     </div>
-    <div class="row col-8">
+    <div class="row col-md-8">
       <div class="col">折價券折抵:</div>
       <div v-if="coupon" class="amount">- {{coupon.discount}} 元</div>
       <div v-else class="amount" style="float: right;">0 元</div>
     </div>
-    <div class="row col-8">
+    <div class="row col-md-8">
       <div class="col">金額總計:</div>
       <div v-if="coupon" class="amount">{{subtotal - coupon.discount}} 元</div>
       <div v-else class="amount" style="float: right;">{{subtotal}} 元</div>
@@ -59,6 +59,12 @@ export default {
 }
 
 @media screen and (min-width: 840px) and (max-width: 960px) {
+  .row {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
   .row {
     font-size: 10px;
   }

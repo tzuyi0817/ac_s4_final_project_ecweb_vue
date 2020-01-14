@@ -4,11 +4,11 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-2 d-flex flex-column">
+          <div class="col-md-2 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="col-8 bg-light p-1 ml-5">
+          <div class="col-md-8 bg-light p-1 ml-5">
             <div class="productmodel_editproduct col-12 py-3">
               <!-- 商品編輯表單 -->
               <form @submit.stop.prevent="handleSubmit">
@@ -358,6 +358,31 @@ a:hover {
 }
 
 @media screen and (min-width: 840px) and (max-width: 960px) {
+  .card,
+  select,
+  input,
+  textarea,
+  .btn {
+    font-size: 10px;
+  }
+
+  .img-thumbnail {
+    height: 130px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container-fluid {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
+
+  .card {
+    margin-left: -55px;
+    width: 260px;
+  }
+
   .card,
   select,
   input,

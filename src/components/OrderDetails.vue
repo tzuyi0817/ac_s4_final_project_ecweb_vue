@@ -6,29 +6,25 @@
 
     <div class="card-body" style="background-color: #d2f0f5;">
       <h4 class="mt-5 ml-2">商品詳情：</h4>
-      <li class="bg-light text-dark list-group-item ml-3 mt-3 col-11">
+      <li class="bg-light text-dark list-group-item mt-3 col-md-11">
         <div class="row">
           <div class="col">商品</div>
           <div class="col">數量</div>
           <div class="col">小計</div>
         </div>
       </li>
-      <li
-        v-for="item in items"
-        :key="item.id"
-        class="bg-white text-dark list-group-item ml-3 col-11"
-      >
+      <li v-for="item in items" :key="item.id" class="bg-white text-dark list-group-item col-md-11">
         <div class="row">
           <div class="col">{{item.name}}</div>
-          <div class="col ml-3">{{item.Order_item.quantity}}</div>
+          <div class="col quantity">{{item.Order_item.quantity}}</div>
           <div class="col">{{item.price}}</div>
         </div>
       </li>
 
       <div class="row">
-        <div class="col-4">
+        <div class="col-md-4">
           <h4 class="mt-5 ml-2">金額詳情：</h4>
-          <div class="bg-light text-dark list-group-item ml-3 mt-3">
+          <div class="bg-light text-dark list-group-item mt-3">
             <div class="row">
               <div class="col">商品金額總計:</div>
               <div class="amount">{{originAmount}} 元</div>
@@ -48,9 +44,9 @@
           </div>
         </div>
 
-        <div class="col-7 ml-3 mt-5">
+        <div class="customer-information col-md-7 mt-5">
           <h4>顧客資訊：</h4>
-          <div class="bg-light text-dark list-group-item ml-2 mt-3">
+          <div class="bg-light text-dark list-group-item mt-3">
             <div>名字: &nbsp;{{order.name}}</div>
             <div>地址: &nbsp;{{order.address}}</div>
             <div>電話: &nbsp;{{order.phone}}</div>
@@ -59,7 +55,7 @@
       </div>
 
       <h4 class="mt-5 ml-2">出貨狀況：</h4>
-      <div class="bg-light text-dark list-group-item ml-3 mt-3 col-11">
+      <div class="bg-light text-dark list-group-item mt-3 col-md-11">
         <div>訂單狀態: &nbsp;{{order.Order_status.orderStatus}}</div>
         <div>付款方式: &nbsp;{{lastpaymentType.paymentType}}</div>
         <div>付款狀況: &nbsp;{{lastPaymentStatus.paymentStatus}}</div>
@@ -158,6 +154,12 @@ h4 {
   color: #0085a5;
 }
 
+.list-group-item,
+.quantity,
+.customer-information {
+  margin-left: 23px;
+}
+
 @media screen and (min-width: 960px) and (max-width: 1040px) {
   h2 {
     font-size: 25px;
@@ -185,6 +187,27 @@ h4 {
   .row,
   .bg-light {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  h2 {
+    font-size: 15px;
+  }
+
+  h4 {
+    font-size: 15px;
+  }
+
+  .row,
+  .bg-light {
+    font-size: 10px;
+  }
+
+  .list-group-item,
+  .quantity,
+  .customer-information {
+    margin-left: 0px;
   }
 }
 </style>

@@ -16,12 +16,15 @@
         <td>
           <div style="display: flow-root;">
             <img :src="item.image" class="card-img" alt="..." />
-            <span class="ml-3">{{item.name}}</span>
+            <span class="item-name">{{item.name}}</span>
           </div>
         </td>
         <!-- 價格 -->
         <td>
-          <p class="mt-4">$ {{item.price}}</p>
+          <p class="mt-4">
+            <span class="money-symbol">$</span>
+            {{item.price}}
+          </p>
         </td>
         <!-- 數量 -->
         <td>
@@ -32,7 +35,7 @@
               @click.stop.prevent="subCartItemFrom(item.Cart_item.id)"
             >-</button>
 
-            <span style="margin: 0 20px;">{{item.Cart_item.quantity}}</span>
+            <span class="quantity">{{item.Cart_item.quantity}}</span>
 
             <button
               type="button"
@@ -44,7 +47,10 @@
         </td>
         <!-- 小計 -->
         <td>
-          <p class="mt-4">$ {{item.price*item.Cart_item.quantity}}</p>
+          <p class="mt-4">
+            <span class="money-symbol">$</span>
+            {{item.price*item.Cart_item.quantity}}
+          </p>
         </td>
         <!-- 刪除 -->
         <td>
@@ -158,6 +164,15 @@ export default {
   width: auto;
   height: 100px;
 }
+
+.item-name {
+  margin-left: 10px;
+}
+
+.quantity {
+  margin: 0 20px;
+}
+
 @media screen and (min-width: 960px) and (max-width: 1040px) {
   th,
   p,
@@ -193,6 +208,45 @@ export default {
   .card-img {
     width: 80px;
     height: 60px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .table {
+    margin-left: -60px;
+  }
+
+  th,
+  p,
+  span,
+  .btn {
+    font-size: 10px;
+  }
+
+  .btn-outline-secondary {
+    width: 26px;
+    height: 26px;
+  }
+
+  .card-img {
+    width: 70px;
+    height: 50px;
+  }
+
+  .item-name {
+    margin-left: 0px;
+  }
+
+  .quantity {
+    margin: 0 10px;
+  }
+
+  .btn-link {
+    margin-left: -25px;
+  }
+
+  .money-symbol {
+    display: none;
   }
 }
 </style>

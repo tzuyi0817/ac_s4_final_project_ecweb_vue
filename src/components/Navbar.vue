@@ -3,7 +3,7 @@
     class="navbar navbar-expand-lg fixed-top navbar-light"
     style="display:flex; justify-content: center;"
   >
-    <router-link class="navbar-title mr-5" to="/">MuseClub</router-link>
+    <router-link class="navbar-title" to="/">MuseClub</router-link>
 
     <!-- 搜尋  -->
     <form @submit.prevent="handleSearch(keyword)">
@@ -15,13 +15,13 @@
         name="keyword"
         placeholder="請輸入 商品 關鍵字"
       />
-      <button class="searchBtn mr-5" type="submit">
+      <button class="searchBtn" type="submit">
         <span class="fa fa-search ml-1">&nbsp;搜尋商品&nbsp;</span>
       </button>
     </form>
 
     <!-- cart -->
-    <div class="cartIcon ml-2">
+    <div class="cartIcon">
       <router-link to="/cart" class="nav-logo btn">
         <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
         <div v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</div>
@@ -36,7 +36,7 @@
     </div>
     <div class="login" v-else>
       <router-link to="/users/logIn?redirect=/" class="nav-logo btn">
-        <i class="fas fa-user"></i> 登入
+        <i class="fas fa-user"></i> 登入會員
       </router-link>
     </div>
 
@@ -93,6 +93,7 @@ export default {
   font-family: "Pacifico", cursive;
   color: #0085a5;
   font-size: 25px;
+  margin-right: 60px;
 }
 
 .navAvatar {
@@ -116,6 +117,7 @@ export default {
   border-style: solid;
   cursor: pointer;
   padding: 3px;
+  margin-right: 60px;
 }
 
 .searchKeyword {
@@ -170,6 +172,28 @@ export default {
   .btn-outline-success,
   .nav-logo {
     font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .navbar-title {
+    margin-right: 0px;
+  }
+
+  .searchBtn {
+    font-size: 10px;
+    padding: 0px;
+    margin-right: 0px;
+  }
+
+  .searchKeyword {
+    width: 230px;
+    font-size: 15px;
+  }
+
+  .btn-outline-success,
+  .nav-logo {
+    font-size: 15px;
   }
 }
 </style>

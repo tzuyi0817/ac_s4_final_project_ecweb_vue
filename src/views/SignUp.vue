@@ -288,4 +288,29 @@ input.submit:hover {
     width: 110%;
   }
 }
+
+@media screen and (max-width: 840px) {
+  .container {
+    margin-left: -45px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .tab a,
+  input,
+  input.submit {
+    font-size: 10px;
+    height: 50px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .half {
+    width: 100%;
+  }
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="comments col-md-9">
     <div v-for="comment in commentsPagination" :key="comment.id">
-      <div class="list-group-item list-group-item-action ml-5 mt-2 col-9">
+      <div class="list-group-item list-group-item-action mt-2">
         <button
           v-if="comment.User.id === currentUser.id"
           type="button"
@@ -83,6 +83,10 @@ export default {
 </script>
 
 <style scoped>
+.comments {
+  margin-left: 60px;
+}
+
 /* ====== User 的評論大頭照 ====== */
 .avatar {
   position: absolute;
@@ -129,6 +133,25 @@ p {
   .avatar {
     width: 40px;
     height: 40px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  p {
+    font-size: 15px;
+  }
+
+  small {
+    font-size: 10px;
+  }
+
+  .avatar {
+    width: 45px;
+    height: 45px;
+  }
+
+  .comments {
+    margin-left: -10px;
   }
 }
 </style>

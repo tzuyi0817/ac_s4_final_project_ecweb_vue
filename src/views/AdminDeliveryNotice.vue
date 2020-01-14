@@ -4,11 +4,11 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-2 d-flex flex-column">
+          <div class="col-md-2 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="col-9 bg-light p-1 mt-4 mb-4">
+          <div class="col-md-9 bg-light p-1 mt-4 mb-4">
             <div class="col-12 productmodel_orders px-5">
               <!-- 貨到通知總覽 -->
               <div class="card my-3">
@@ -47,7 +47,7 @@
                           </td>
 
                           <td>
-                            <p class="ml-4 mt-2">{{deliveryNotice.Product.count}}</p>
+                            <p class="ml-2 mt-2">{{deliveryNotice.Product.count}}</p>
                           </td>
 
                           <td>
@@ -167,6 +167,24 @@ export default {
 }
 
 @media screen and (min-width: 840px) and (max-width: 960px) {
+  .orders_table,
+  .btn {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container-fluid {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
+
+  .card {
+    margin-left: -80px;
+    width: 330px;
+  }
+
   .orders_table,
   .btn {
     font-size: 10px;

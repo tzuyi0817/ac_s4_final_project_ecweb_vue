@@ -182,4 +182,19 @@ export default {
     font-size: 10px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  h5 {
+    font-size: 13px;
+  }
+
+  .card,
+  button,
+  h6,
+  p,
+  select,
+  input {
+    font-size: 10px;
+  }
+}
 </style>

@@ -1,10 +1,10 @@
 <template>
   <div class="row">
-    <div class="col-2 ml-3">
+    <div class="logo col-2 ml-3">
       <router-link class="navbar-brand" id="logo" to="/">MuseClub</router-link>
     </div>
 
-    <div class="title col-8">
+    <div class="title col-md-8">
       <h2>
         <strong>都市人的療癒餐酒館</strong>
       </h2>
@@ -47,6 +47,21 @@
 
   .navbar-brand {
     font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .logo {
+    display: none;
+  }
+
+  .title {
+    margin-top: 20px;
+    margin-left: -20px;
+  }
+
+  h2 {
+    font-size: 25px;
   }
 }
 </style>

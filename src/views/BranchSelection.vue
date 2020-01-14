@@ -12,7 +12,7 @@
         <div class="card-body">
           <!-- 商品詳情 -->
           <h5 class="mt-3 ml-2">商品詳情：</h5>
-          <li class="bg-light text-dark list-group-item ml-3 mt-3 col-11">
+          <li class="bg-light text-dark list-group-item mt-3 col-md-11">
             <div class="row">
               <div class="col">商品</div>
               <div class="col">數量</div>
@@ -23,20 +23,20 @@
           <li
             v-for="item in items"
             :key="item.id"
-            class="bg-white text-dark list-group-item ml-3 col-11"
+            class="bg-white text-dark list-group-item col-md-11"
           >
             <div class="row">
               <div class="col">{{item.name}}</div>
-              <div class="col ml-3">{{item.Order_item.quantity}}</div>
+              <div class="col quantity">{{item.Order_item.quantity}}</div>
               <div class="col">{{item.price}}</div>
             </div>
           </li>
 
           <div class="row">
             <!-- 付款金額 -->
-            <div class="col-4">
+            <div class="col-md-4">
               <h5 class="mt-5 ml-2">付款金額：</h5>
-              <div class="bg-light text-dark list-group-item ml-3 mt-3">
+              <div class="bg-light text-dark list-group-item mt-3">
                 <div class="row">
                   <div class="col">金額總計:</div>
                   <div class="amount" style="color: red;">{{order.amount}} 元</div>
@@ -174,6 +174,11 @@ h5 {
   color: #0085a5;
 }
 
+.list-group-item,
+.quantity {
+  margin-left: 23px;
+}
+
 @media screen and (min-width: 960px) and (max-width: 1040px) {
   h2 {
     font-size: 25px;
@@ -201,6 +206,30 @@ h5 {
   .row,
   .btn {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container {
+    margin-left: -45px;
+  }
+
+  h2 {
+    font-size: 15px;
+  }
+
+  h5 {
+    font-size: 15px;
+  }
+
+  .row,
+  .btn {
+    font-size: 10px;
+  }
+
+  .list-group-item,
+  .quantity {
+    margin-left: 0px;
   }
 }
 </style>

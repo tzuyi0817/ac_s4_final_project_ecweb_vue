@@ -228,4 +228,30 @@ hr {
     font-size: 10px;
   }
 }
+
+@media screen and (max-width: 840px) {
+  .container {
+    margin-left: -45px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  p,
+  span,
+  .alert,
+  .btn {
+    font-size: 10px;
+  }
+
+  .arrow {
+    font-size: 30px;
+  }
+
+  hr {
+    width: 360px;
+    margin-left: -60px;
+  }
+}
 </style>

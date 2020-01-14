@@ -4,12 +4,12 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-2 d-flex flex-column">
+          <div class="col-md-2 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="col-9 bg-light p-1 mt-4 mb-4 ml-3">
-            <div class="admin_traceCode col-11">
+          <div class="col-md-9 bg-light p-1 mt-4 mb-4 ml-3">
+            <div class="admin_traceCode col-md-11">
               <form @submit.stop.prevent="handleSubmit">
                 <!-- GA追蹤碼 -->
                 <div class="card m-3">
@@ -164,6 +164,28 @@ export default {
   .admin_traceCode,
   .btn {
     font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .container-fluid {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
+
+  .admin_traceCode {
+    margin-left: -45px;
+    width: 350px;
+  }
+
+  .admin_traceCode,
+  .btn {
+    font-size: 10px;
+  }
+
+  textarea {
+    width: 230px;
   }
 }
 </style>
