@@ -60,4 +60,31 @@
 
 # 2.專案圖片
 
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/11.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/1.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/2.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/3.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/作品產品頁面.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/4.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/購物車頁面.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/5.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/6.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/7.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/8.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/後台頁面.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/9.png)
+
+![image](https://github.com/tzuyi0817/ac_s4_final_project_ecweb_vue/blob/master/src/assets/10.png)
 
