@@ -120,7 +120,7 @@ export default {
   width: 700px;
 }
 
-@media screen and (min-width: 960px) and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1100px) {
   .content {
     font-size: 25px;
   }
@@ -134,7 +134,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
+@media screen and (min-width: 768px) and (max-width: 960px) {
   .content {
     font-size: 18px;
   }
@@ -148,7 +148,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 768px) {
   .row {
     margin-left: -45px;
   }

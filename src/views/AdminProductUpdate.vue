@@ -269,7 +269,7 @@ export default {
         this.isProcessing = false;
         this.$router.push("/admin/productmodel/product_mange");
       } catch (error) {
-        this.isLoading = false;
+        this.isProcessing = false;
         Toast.fire({
           type: "error",
           title: "無法修改資料，請稍後再試"

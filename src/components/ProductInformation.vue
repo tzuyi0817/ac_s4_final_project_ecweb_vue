@@ -592,6 +592,53 @@ label {
   input.qtyMinus {
     width: 30px;
   }
+
+  .modal {
+    width: 130%;
+    margin-left: -150px;
+  }
+
+  /* ========= 到貨通知 ========= */
+
+  @media screen and (max-width: 750px) {
+    .modal {
+      width: 200%;
+      margin-left: -350px;
+      margin-top: 50px;
+    }
+  }
+
+  @media screen and (max-width: 520px) {
+    .modal {
+      width: 250%;
+      margin-left: -400px;
+      margin-top: 50px;
+    }
+  }
+
+  @media screen and (max-width: 470px) {
+    .modal {
+      width: 250%;
+      margin-left: -350px;
+      margin-top: 78px;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    .modal {
+      width: 280%;
+      margin-left: -380px;
+      margin-top: 78px;
+    }
+  }
+
+  @media screen and (max-width: 380px) {
+    .modal {
+      width: 280%;
+      margin-left: -340px;
+      margin-top: 78px;
+    }
+  }
 }
 </style>
 

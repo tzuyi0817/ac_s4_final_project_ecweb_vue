@@ -1,5 +1,5 @@
 <template>
-  <div class="products col-md-4 mt-2">
+  <div class="products col-sm-6 col-md-6 col-lg-4 mt-2">
     <router-link
       :to="{ name: 'product', params: { id: product.id }}"
       style="text-decoration: none; color: black;"
@@ -93,31 +93,19 @@ p {
   .count {
     font-size: 14px;
   }
-
-  img {
-    height: 135px;
-  }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
+@media screen and (min-width: 768px) and (max-width: 960px) {
   p {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   .count {
-    font-size: 10px;
-  }
-
-  img {
-    height: 90px;
-  }
-
-  .card {
-    width: 140px;
+    font-size: 13px;
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 768px) {
   p {
     font-size: 15px;
   }

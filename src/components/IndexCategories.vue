@@ -63,7 +63,7 @@ h6 {
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
+@media screen and (min-width: 768px) and (max-width: 960px) {
   h6 {
     font-size: 15px;
   }
@@ -73,7 +73,7 @@ h6 {
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 768px) {
   h6 {
     font-size: 15px;
   }

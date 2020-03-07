@@ -234,7 +234,7 @@ export default {
   }
 
   .item-name {
-    margin-left: 0px;
+    display: none;
   }
 
   .quantity {

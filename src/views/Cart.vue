@@ -248,10 +248,5 @@ hr {
   .arrow {
     font-size: 30px;
   }
-
-  hr {
-    width: 360px;
-    margin-left: -30px;
-  }
 }
 </style>

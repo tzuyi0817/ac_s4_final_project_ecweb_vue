@@ -1,5 +1,5 @@
 <template>
-  <div class="similar-products col-md-3" style="text-align: center;">
+  <div class="similar-products col-sm-5 col-md-5 col-lg-3" style="text-align: center;">
     <router-link
       :to="{ name: 'product', params: { id: product.id }}"
       style="text-decoration: none; color: black;"
@@ -92,10 +92,6 @@ p {
   .count {
     font-size: 14px;
   }
-
-  img {
-    height: 150px;
-  }
 }
 
 @media screen and (min-width: 840px) and (max-width: 1090px) {
@@ -109,14 +105,6 @@ p {
 
   .count {
     font-size: 9px;
-  }
-
-  .card {
-    width: 130px;
-  }
-
-  img {
-    height: 120px;
   }
 
   .price {

@@ -155,9 +155,10 @@ export default {
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
+@media screen and (min-width: 768px) and (max-width: 960px) {
   .navbar-title {
     font-size: 17px;
+    margin-right: 30px;
   }
 
   .searchBtn {
@@ -175,9 +176,9 @@ export default {
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 768px) {
   .navbar-title {
-    margin-right: 0px;
+    margin-right: 10px;
   }
 
   .searchBtn {

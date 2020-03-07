@@ -46,19 +46,19 @@ export default {
   background-color: #0085a5;
 }
 
-@media screen and (min-width: 960px) and (max-width: 1040px) {
+@media screen and (min-width: 960px) and (max-width: 1100px) {
   .list-group {
     font-size: 15px;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
+@media screen and (min-width: 768px) and (max-width: 960px) {
   .list-group {
     font-size: 10px;
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 768px) {
   .list-group {
     font-size: 15px;
   }

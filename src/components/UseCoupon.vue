@@ -172,10 +172,5 @@ hr {
   .btn {
     font-size: 10px;
   }
-
-  hr {
-    width: 360px;
-    margin-left: -30px;
-  }
 }
 </style>

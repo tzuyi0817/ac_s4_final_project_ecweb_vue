@@ -1,5 +1,5 @@
 <template>
-  <div class="products col-md-3 mt-3">
+  <div class="products col-md-4 col-lg-3 mt-3">
     <router-link
       :to="{ name: 'product', params: { id: product.id }}"
       style="text-decoration: none; color: black;"
@@ -102,7 +102,7 @@ p {
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
+@media screen and (min-width: 768px) and (max-width: 960px) {
   p {
     font-size: 10px;
   }
@@ -124,7 +124,7 @@ p {
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 768px) {
   .products {
     margin-left: -25px;
   }

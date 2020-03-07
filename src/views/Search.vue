@@ -170,7 +170,7 @@ export default {
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
+@media screen and (min-width: 768px) and (max-width: 960px) {
   .list-group-item {
     font-size: 10px;
   }
@@ -189,7 +189,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 840px) {
+@media screen and (max-width: 768px) {
   .nav-box {
     display: none;
   }
