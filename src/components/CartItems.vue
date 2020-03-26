@@ -1,5 +1,5 @@
 <template>
-  <table class="table">
+  <table class="table col-12">
     <thead>
       <tr>
         <th>&nbsp;&nbsp;&nbsp;商品</th>
@@ -28,7 +28,7 @@
         </td>
         <!-- 數量 -->
         <td>
-          <div class="mt-4" style="display: flex;">
+          <div class="qyt-select mt-4" style="display: flex;">
             <button
               type="button"
               class="btn btn-sm btn-outline-secondary"
@@ -47,7 +47,7 @@
         </td>
         <!-- 小計 -->
         <td>
-          <p class="mt-4">
+          <p class="Subtotal mt-4">
             <span class="money-symbol">$</span>
             {{item.price*item.Cart_item.quantity}}
           </p>
@@ -159,94 +159,104 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    @content;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
+table {
+  margin-left: -15px;
+}
+
 .card-img {
   width: auto;
   height: 100px;
+  @include respond-between(960px, 1100px) {
+    width: 100px;
+    height: 80px;
+  }
+  @include respond-between(768px, 960px) {
+    width: 80px;
+    height: 60px;
+  }
+  @include respond-and(768px) {
+    width: 60px;
+    height: 40px;
+    margin-top: 20px;
+  }
 }
 
 .item-name {
   margin-left: 10px;
+  @include respond-and(768px) {
+    display: none;
+  }
 }
 
 .quantity {
   margin: 0 20px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  th,
-  p,
-  span,
-  .btn {
-    font-size: 15px;
-  }
-
-  .btn-outline-secondary {
-    width: 28px;
-    height: 28px;
-  }
-
-  .card-img {
-    width: 100px;
-    height: 80px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  th,
-  p,
-  span,
-  .btn {
-    font-size: 10px;
-  }
-
-  .btn-outline-secondary {
-    width: 28px;
-    height: 28px;
-  }
-
-  .card-img {
-    width: 80px;
-    height: 60px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .table {
-    margin-left: -30px;
-  }
-
-  th,
-  p,
-  span,
-  .btn {
-    font-size: 10px;
-  }
-
-  .btn-outline-secondary {
-    width: 26px;
-    height: 26px;
-  }
-
-  .card-img {
-    width: 70px;
-    height: 50px;
-  }
-
-  .item-name {
-    display: none;
-  }
-
-  .quantity {
+  @include respond-and(768px) {
     margin: 0 10px;
   }
+}
 
-  .btn-link {
-    margin-left: -25px;
+th,
+p,
+span,
+.btn {
+  @include respond-between(960px, 1100px) {
+    font-size: 15px;
   }
+  @include respond-between(768px, 960px) {
+    font-size: 10px;
+  }
+  @include respond-and(768px) {
+    font-size: 10px;
+  }
+}
 
-  .money-symbol {
+.btn-outline-secondary {
+  @include respond-between(960px, 1100px) {
+    width: 28px;
+    height: 28px;
+  }
+  @include respond-between(768px, 960px) {
+    width: 28px;
+    height: 28px;
+  }
+  @include respond-and(768px) {
+    width: 20px;
+    height: 28px;
+  }
+}
+
+.money-symbol {
+  @include respond-and(768px) {
     display: none;
   }
+}
+
+.btn-link {
+  @include respond-and(768px) {
+    margin-left: -35px;
+  }
+}
+
+.qyt-select {
+  @include respond-and(768px) {
+    margin-left: -20px;
+  }
+}
+
+.Subtotal {
+  margin-left: -10px;
 }
 </style>

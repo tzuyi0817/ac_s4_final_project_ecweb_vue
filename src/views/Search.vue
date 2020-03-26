@@ -13,7 +13,6 @@
               v-for="category in categories"
               :key="category.id"
               :initial-category="category"
-              :category-id="categoryId"
             />
           </div>
         </div>
@@ -40,7 +39,7 @@
               :current-value="currentValue"
             />
             <!-- 商品 -->
-            <div class="col-md-11 row">
+            <div class="col-10 col-sm-10 col-md-12 row">
               <SearchProducts
                 v-for="product in products"
                 :key="product.id"
@@ -140,79 +139,75 @@ export default {
 };
 </script>
 
-<style>
-.list-group-item,
-.row {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
 }
 
-.list-group-item:hover {
-  color: white;
-  background-color: #0085a5;
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
 }
 
-@media screen and (min-width: 960px) and (max-width: 1290px) {
-  .list-group-item {
+.list-group-item {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  &:hover {
+    color: white;
+    background-color: #0085a5;
+  }
+}
+
+p {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 15px;
   }
+}
 
-  p,
-  .help-block {
+.help-block {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 15px;
   }
+}
 
-  h1 {
+h1 {
+  @include respond-between(960px, 1100px, 30px);
+  @include respond-between(768px, 960px, 25px);
+  @include respond-and(768px) {
     font-size: 30px;
   }
+}
 
-  h5 {
+h5 {
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px) {
     font-size: 20px;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 960px) {
-  .list-group-item {
-    font-size: 10px;
-  }
-
-  p,
-  .help-block {
-    font-size: 10px;
-  }
-
-  h1 {
-    font-size: 25px;
-  }
-
-  h5 {
-    font-size: 15px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .nav-box {
+.nav-box {
+  @include respond-and(768px) {
     display: none;
   }
+}
 
-  .search {
+.search {
+  @include respond-and(768px) {
     margin-top: 20px;
   }
+}
 
-  .undefined {
+.undefined {
+  @include respond-and(768px) {
     margin-left: -25px;
-  }
-
-  p,
-  .help-block {
-    font-size: 15px;
-  }
-
-  h1 {
-    font-size: 30px;
-  }
-
-  h5 {
-    font-size: 20px;
   }
 }
 </style>

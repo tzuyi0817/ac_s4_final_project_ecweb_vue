@@ -1,5 +1,5 @@
 <template>
-  <div class="similar-products col-sm-5 col-md-5 col-lg-3" style="text-align: center;">
+  <div class="similar-products col-10 col-sm-5 col-md-5 col-lg-3" style="text-align: center;">
     <router-link
       :to="{ name: 'product', params: { id: product.id }}"
       style="text-decoration: none; color: black;"
@@ -32,7 +32,7 @@
 export default {
   props: {
     initialSimilarProduct: {
-      type: Array,
+      type: Object,
       required: true
     },
     categoryName: {
@@ -49,9 +49,25 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .card {
   margin-bottom: 1rem !important;
+  &:hover {
+    box-shadow: 0 16px 22px 0 rgba(90, 91, 95, 0.3);
+    top: -5px;
+  }
 }
 
 .card-header {
@@ -63,82 +79,42 @@ export default {
   height: 4rem;
 }
 
-.card:hover {
-  box-shadow: 0 16px 22px 0 rgba(90, 91, 95, 0.3);
-  top: -5px;
-}
-
 p {
   font-size: 18px;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
 }
 
 .count {
   font-size: 17px;
+  @include respond-between(960px, 1100px, 14px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 14px;
+  }
 }
 
 .price {
   margin-right: 30px;
-}
-
-@media screen and (min-width: 1090px) and (max-width: 1180px) {
-  h5 {
-    font-size: 20px;
-  }
-
-  p {
-    font-size: 15px;
-  }
-
-  .count {
-    font-size: 14px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 1090px) {
-  h5 {
-    font-size: 15px;
-  }
-
-  p {
-    font-size: 10px;
-  }
-
-  .count {
-    font-size: 9px;
-  }
-
-  .price {
+  @media screen and (min-width: 960px) and (max-width: 1100px) {
     margin-right: 20px;
   }
 }
 
-@media screen and (max-width: 840px) {
-  .similar-products {
+h5 {
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px) {
+    font-size: 20px;
+  }
+}
+
+.similar-products {
+  @include respond-and(768px) {
     margin-left: 20px;
-  }
-
-  p {
-    font-size: 15px;
-  }
-
-  .count {
-    font-size: 14px;
-  }
-
-  .card-header {
-    height: auto;
-  }
-
-  .card-body {
-    height: 3rem;
-  }
-
-  .card {
-    width: 250px;
-  }
-
-  img {
-    height: 150px;
   }
 }
 </style>

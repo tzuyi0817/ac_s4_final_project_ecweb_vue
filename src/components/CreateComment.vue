@@ -131,7 +131,19 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .starrating > input {
   display: none;
 }
@@ -140,6 +152,11 @@ export default {
   margin: 2px;
   font-size: 30px;
   display: inline-block;
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px) {
+    font-size: 20px;
+  }
 }
 
 .starrating > label {
@@ -156,60 +173,39 @@ export default {
 
 .btn-primary {
   background-color: #0085a5;
-}
-
-.btn-primary:hover {
-  background-color: #0c99bd;
+  &:hover {
+    background-color: #0c99bd;
+  }
 }
 
 .form-group {
   margin-left: 60px;
-}
-
-@media screen and (min-width: 1090px) and (max-width: 1180px) {
-  h5,
-  .fa-star {
-    font-size: 20px;
-  }
-
-  p,
-  button,
-  textarea {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 1090px) {
-  h5,
-  .fa-star {
-    font-size: 15px;
-  }
-
-  p,
-  button,
-  textarea {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  h5,
-  .fa-star {
-    font-size: 20px;
-  }
-
-  p,
-  button,
-  textarea {
-    font-size: 15px;
-  }
-
-  .create-comment {
-    margin-left: -85px;
-  }
-
-  .form-group {
+  @include respond-and(768px) {
     margin-left: 70px;
+  }
+}
+
+h5 {
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px) {
+    font-size: 20px;
+  }
+}
+
+p,
+button,
+textarea {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
+}
+
+.create-comment {
+  @include respond-and(768px) {
+    margin-left: -65px;
   }
 }
 </style>

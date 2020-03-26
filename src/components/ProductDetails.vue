@@ -20,7 +20,7 @@
 export default {
   props: {
     initialProduct: {
-      type: Array,
+      type: Object,
       required: true
     }
   },
@@ -32,66 +32,64 @@ export default {
 };
 </script>
 
-<style scoped>
-img,
-.details-content,
-h5 {
-  margin-left: 60px;
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
 }
 
-@media screen and (min-width: 1090px) and (max-width: 1180px) {
-  h5 {
-    font-size: 20px;
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
   }
+}
 
-  p {
-    font-size: 15px;
+.details-content {
+  margin-left: 60px;
+  @include respond-and(768px) {
+    margin-left: 20px;
   }
+}
 
-  img {
+img {
+  margin-left: 60px;
+  @media screen and (min-width: 960px) and (max-width: 1100px) {
     width: 400px;
     height: 400px;
   }
-}
-
-@media screen and (min-width: 840px) and (max-width: 1090px) {
-  h5 {
-    font-size: 15px;
-    margin-left: 0px;
-  }
-
-  p {
-    font-size: 10px;
-  }
-
-  img {
+  @media screen and (min-width: 768px) and (max-width: 1100px) {
     width: 300px;
     height: 300px;
   }
-}
-
-@media screen and (max-width: 840px) {
-  .details {
-    margin-left: -45px;
-  }
-
-  h5 {
-    font-size: 20px;
-    margin-left: 25px;
-  }
-
-  p {
-    font-size: 15px;
-  }
-
-  .details-content {
-    margin-left: 20px;
-  }
-
-  img {
-    margin-left: 20px;
+  @include respond-and(768px) {
     width: 250px;
     height: 250px;
+    margin-left: 20px;
+  }
+}
+
+h5 {
+  margin-left: 60px;
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px) {
+    font-size: 20px;
+    margin-left: 15px;
+  }
+}
+
+p {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
+}
+
+.details {
+  @include respond-and(768px) {
+    margin-left: -15px;
   }
 }
 </style>

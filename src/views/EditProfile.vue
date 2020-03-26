@@ -170,9 +170,17 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
 }
 
 .btn-select {
@@ -185,50 +193,36 @@ export default {
   text-align: center;
   width: 100%;
   margin-left: 60px;
-}
-
-.btn-select:hover {
-  background-color: #0c99bd;
+  @include respond-and(768px) {
+    margin-left: 0px;
+  }
+  &:hover {
+    background-color: #0c99bd;
+  }
 }
 
 .mug-shot {
   margin-left: 60px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  .row,
-  .btn,
-  input {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  .row,
-  .btn,
-  input {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .container {
-    margin-left: -45px;
-  }
-
-  .row,
-  .btn,
-  input {
-    font-size: 10px;
-  }
-
-  .mug-shot {
+  @include respond-and(768px) {
     margin-left: 20px;
     margin-bottom: 10px;
+    margin-top: 50px;
   }
+}
 
-  .btn-select {
-    margin-left: 0px;
+.row,
+.btn,
+input {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 10px;
+  }
+}
+
+.container {
+  @include respond-and(768px) {
+    margin-left: -45px;
   }
 }
 </style>

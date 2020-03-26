@@ -37,7 +37,7 @@
       </div>
 
       <!-- 訂單明細 -->
-      <div class="orderNav row text-white mt-3" style="padding: 8px;">
+      <div class="orderNav row text-white mt-3 col-12" style="padding: 8px;">
         <h1>&nbsp;訂單明細</h1>
       </div>
 
@@ -122,9 +122,17 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
 }
 
 .step-by-step {
@@ -134,6 +142,7 @@ export default {
 
 .arrow {
   font-size: 40px;
+  @include respond-and(768px, 30px);
 }
 
 .orderNav {
@@ -146,50 +155,24 @@ hr {
   border-top: 2px solid rgb(212, 210, 210);
 }
 
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  h1 {
-    font-size: 30px;
-  }
-
-  p,
-  span,
-  .alert,
-  .btn {
-    font-size: 15px;
-  }
+h1 {
+  @include respond-between(960px, 1100px, 30px);
+  @include respond-between(768px, 960px, 25px);
+  @include respond-and(768px, 20px);
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  h1 {
-    font-size: 25px;
-  }
-
-  p,
-  span,
-  .alert,
-  .btn {
-    font-size: 10px;
-  }
+p,
+span,
+.alert,
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 10px);
 }
 
-@media screen and (max-width: 840px) {
-  .container {
-    margin-left: -45px;
-  }
-
-  h1 {
-    font-size: 20px;
-  }
-
-  p,
-  span,
-  .alert,
-  .btn {
-    font-size: 10px;
-  }
-
-  .arrow {
-    font-size: 30px;
+.step {
+  @media screen and (max-width: 768px) {
+    margin-top: 50px;
   }
 }
 </style>

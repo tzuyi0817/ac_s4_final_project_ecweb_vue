@@ -8,15 +8,15 @@
               <img src="https://trade.1111.com.tw/ProductImg/92/182392/182392_P_Pr9x5.jpg" />
               <br />
               <template v-if="cartItemNumber">
-                <div class="row">
-                  <p style="color: red;">&nbsp;&nbsp;&nbsp;{{cartItemNumber}}&nbsp;</p>
-                  <p style="color: #0085a5;">件商品</p>
+                <div class="row" style="display: flex; justify-content: center;">
+                  <p style="color: red;">{{cartItemNumber}}&nbsp;</p>
+                  <p>件商品</p>
                 </div>
               </template>
               <template v-else>
-                <div class="row">
-                  <p style="color: red;">&nbsp;&nbsp;&nbsp;0&nbsp;</p>
-                  <p style="color: #0085a5;">件商品</p>
+                <div class="row" style="display: flex; justify-content: center;">
+                  <p style="color: red;">0&nbsp;</p>
+                  <p>件商品</p>
                 </div>
               </template>
               <hr />
@@ -84,9 +84,24 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    @content;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .cart-link {
   text-decoration: none;
+  @include respond-and(768px) {
+    display: none;
+  }
 }
 
 hr {
@@ -94,15 +109,26 @@ hr {
 }
 
 p {
-  font-family: "DFKai-sb";
   color: #0085a5;
   font-size: 17px;
+  @include respond-between(960px, 1100px) {
+    font-size: 15px;
+  }
+  @include respond-between(768px, 960px) {
+    font-size: 10px;
+  }
 }
 
 .cartNotice {
   position: absolute;
   border: 1px;
   border-color: #000000;
+  @include respond-between(960px, 1100px) {
+    width: 8%;
+  }
+  @include respond-between(768px, 960px) {
+    width: 6%;
+  }
 }
 
 .cartBG {
@@ -112,18 +138,21 @@ p {
   height: 44px;
   border: 1pt solid #cccccc;
   padding: 1px;
-  font-family: Arial, Helvetica, sans-serif, "新細明體";
   border-collapse: separate;
   border-radius: 3px;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   margin: 20px 0 5px 0;
-}
-
-.cartBG:hover {
-  border: 1pt solid #0085a5;
-  background-color: rgb(202, 245, 255);
-  color: #0085a5;
+  @include respond-between(960px, 1100px) {
+    width: 90px;
+  }
+  @include respond-between(768px, 960px) {
+    width: 65px;
+  }
+  &:hover {
+    border: 1.5pt solid #0085a5;
+    background-color: rgba(210, 213, 216, 0.7);
+  }
 }
 
 .cartImage {
@@ -132,56 +161,19 @@ p {
   border-bottom: 1px solid #ccc;
   padding: 0 0 8px 0;
   margin: 0;
-}
-
-.cartImage img {
-  position: absolute;
-  width: 100%;
-  margin-top: -100px;
-  background-color: transparent;
-  -webkit-margin-start: 20px;
-  left: -19px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  .cartNotice {
-    width: 8%;
-  }
-
-  .cartImage img {
-    margin-top: -80px;
-  }
-
-  p {
-    font-size: 15px;
-  }
-
-  .cartBG {
-    width: 90px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  .cartNotice {
-    width: 6%;
-  }
-
-  .cartImage img {
-    margin-top: -50px;
-  }
-
-  p {
-    font-size: 10px;
-  }
-
-  .cartBG {
-    width: 65px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .cart-link {
-    display: none;
+  img {
+    position: absolute;
+    width: 100%;
+    margin-top: -100px;
+    background-color: transparent;
+    -webkit-margin-start: 20px;
+    left: -19px;
+    @include respond-between(960px, 1100px) {
+      margin-top: -80px;
+    }
+    @include respond-between(768px, 960px) {
+      margin-top: -50px;
+    }
   }
 }
 </style>

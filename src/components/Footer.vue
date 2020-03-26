@@ -40,13 +40,24 @@
   </footer>
 </template>
 
-<style scoped>
-.container {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
 }
 
 p {
   color: #0085a5;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 15px);
 }
 
 footer {
@@ -56,33 +67,21 @@ footer {
   color: #0085a5;
 }
 
-.footer-content p {
-  line-height: 22px;
-}
-
-.footer-social-icon a i {
-  color: #0085a5;
-  display: inline-block;
-  font-size: 20px;
-  line-height: 20px;
-  margin-right: 15px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
+.footer-content {
   p {
-    font-size: 15px;
+    line-height: 22px;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  p {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  p {
-    font-size: 15px;
+.footer-social-icon {
+  a {
+    i {
+      color: #0085a5;
+      display: inline-block;
+      font-size: 20px;
+      line-height: 20px;
+      margin-right: 15px;
+    }
   }
 }
 </style>

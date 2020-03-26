@@ -135,7 +135,19 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
 hr {
   border: 0;
   border-top: 2px solid rgb(212, 210, 210);
@@ -144,33 +156,16 @@ hr {
 .btn-success {
   float: right;
   background-color: #0085a5;
-}
-
-.btn-success:hover {
-  background-color: #0c99bd;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  label,
-  input,
-  .btn {
-    font-size: 15px;
+  &:hover {
+    background-color: #0c99bd;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  label,
-  input,
-  .btn {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  label,
-  input,
-  .btn {
-    font-size: 10px;
-  }
+label,
+input,
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 10px);
 }
 </style>

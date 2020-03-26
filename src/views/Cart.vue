@@ -37,14 +37,14 @@
       </div>
 
       <!-- 購物車明細 -->
-      <div class="cartNav row text-white mt-3" style="padding: 8px;">
+      <div class="cartNav row text-white mt-3 col-12" style="padding: 8px;">
         <h1>&nbsp;購物車明細</h1>
       </div>
 
       <CartItems v-if="this.items.length > 0" :items="items" />
 
       <template v-else>
-        <div class="alert alert-secondary mt-3" role="alert">您的購物車是空的!!</div>
+        <div class="alert alert-secondary mt-3 col-11" role="alert">您的購物車是空的!!</div>
         <div class="row">
           <p class="col">&nbsp;</p>
           <router-link to="/" class="btn btn-primary mt-5">繼續購物</router-link>
@@ -164,9 +164,17 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
 }
 
 .step-by-step {
@@ -176,6 +184,7 @@ export default {
 
 .arrow {
   font-size: 40px;
+  @include respond-and(768px, 30px);
 }
 
 .cartNav {
@@ -188,65 +197,41 @@ hr {
   border-top: 2px solid rgb(212, 210, 210);
 }
 
-.btn-primary,
-.btn-select {
+%btn-style {
   float: right;
   background-color: #0085a5;
   color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0c99bd;
-}
-
-.btn-select:hover {
-  background-color: #0c99bd;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  h1 {
-    font-size: 30px;
-  }
-
-  p,
-  span,
-  .alert,
-  .btn {
-    font-size: 15px;
+  &:hover {
+    background-color: #0c99bd;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  h1 {
-    font-size: 25px;
-  }
-
-  p,
-  span,
-  .alert,
-  .btn {
-    font-size: 10px;
-  }
+.btn-primary {
+  @extend %btn-style;
 }
 
-@media screen and (max-width: 840px) {
-  .container {
-    margin-left: -45px;
-  }
+.btn-select {
+  @extend %btn-style;
+}
 
-  h1 {
-    font-size: 20px;
-  }
+h1 {
+  @include respond-between(960px, 1100px, 30px);
+  @include respond-between(768px, 960px, 25px);
+  @include respond-and(768px, 15px);
+}
 
-  p,
-  span,
-  .alert,
-  .btn {
-    font-size: 10px;
-  }
+p,
+span,
+.alert,
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 10px);
+}
 
-  .arrow {
-    font-size: 30px;
+.step {
+  @media screen and (max-width: 768px) {
+    margin-top: 50px;
   }
 }
 </style>

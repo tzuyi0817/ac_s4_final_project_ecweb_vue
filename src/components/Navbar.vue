@@ -3,7 +3,7 @@
     class="navbar navbar-expand-lg fixed-top navbar-light"
     style="display:flex; justify-content: center;"
   >
-    <router-link class="navbar-title" to="/">MuseClub</router-link>
+    <router-link class="navbar-title btn" to="/">MuseClub</router-link>
 
     <!-- 搜尋  -->
     <form @submit.prevent="handleSearch(keyword)">
@@ -80,20 +80,47 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
 
-.navbar {
-  font-family: "DFKai-sb";
-  background-color: #d2f0f5;
-  padding: 20px;
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+    @content;
+  }
 }
 
-.navbar-title {
-  font-family: "Pacifico", cursive;
-  color: #0085a5;
-  font-size: 25px;
-  margin-right: 60px;
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
+%hover {
+  background-color: #3ac4e2;
+  color: white;
+}
+
+.navbar {
+  background-color: #d2f0f5;
+  padding: 20px;
+  &-title {
+    font-family: "Pacifico", cursive;
+    color: #0085a5;
+    font-size: 25px;
+    margin-right: 60px;
+    @include respond-between(960px, 1100px, 22px);
+    @include respond-between(768px, 960px, 17px) {
+      margin-right: 30px;
+    }
+    @include respond-and(768px) {
+      margin-right: 10px;
+    }
+    &:hover {
+      @extend %hover;
+      text-decoration: none;
+    }
+  }
 }
 
 .navAvatar {
@@ -103,30 +130,53 @@ export default {
 
 .nav-logo {
   color: #0085a5;
+  @include respond-between(960px, 1100px, 18px);
+  @include respond-between(768px, 960px, 13px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
+  &:hover {
+    @extend %hover;
+  }
 }
 
 .searchBtn {
-  border-color: #00b2da;
-  margin: 0 5px;
   background-color: #3ac4e2;
   color: white;
-  font-size: 18px;
-  border-radius: 5px;
-  line-height: 30px;
-  border-width: 2px;
-  border-style: solid;
   cursor: pointer;
   padding: 3px;
+  font-size: 18px;
+  line-height: 30px;
+  margin: 0 5px;
   margin-right: 60px;
+  border: {
+    radius: 5px;
+    width: 2px;
+    style: solid;
+  }
+  @include respond-between(960px, 1100px, 16px);
+  @include respond-between(768px, 960px, 11px) {
+    margin-right: 20px;
+  }
+  @include respond-and(768px) {
+    font-size: 10px;
+    padding: 0px;
+    margin-right: 0px;
+  }
 }
 
 .searchKeyword {
   width: 350px;
-}
-
-.nav-logo:hover {
-  background-color: #3ac4e2;
-  color: white;
+  @include respond-between(960px, 1100px, 18px) {
+    width: 300px;
+  }
+  @include respond-between(768px, 960px, 13px) {
+    width: 250px;
+  }
+  @include respond-and(768px) {
+    width: 230px;
+    font-size: 15px;
+  }
 }
 
 .badge {
@@ -135,65 +185,10 @@ export default {
   color: gray;
 }
 
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  .navbar-title {
-    font-size: 22px;
-  }
-
-  .searchBtn {
-    font-size: 16px;
-  }
-
-  .searchKeyword {
-    width: 300px;
-    font-size: 18px;
-  }
-
-  .btn-outline-success,
-  .nav-logo {
-    font-size: 18px;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 960px) {
-  .navbar-title {
-    font-size: 17px;
-    margin-right: 30px;
-  }
-
-  .searchBtn {
-    font-size: 11px;
-  }
-
-  .searchKeyword {
-    width: 250px;
-    font-size: 13px;
-  }
-
-  .btn-outline-success,
-  .nav-logo {
-    font-size: 13px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .navbar-title {
-    margin-right: 10px;
-  }
-
-  .searchBtn {
-    font-size: 10px;
-    padding: 0px;
-    margin-right: 0px;
-  }
-
-  .searchKeyword {
-    width: 230px;
-    font-size: 15px;
-  }
-
-  .btn-outline-success,
-  .nav-logo {
+.btn-outline-success {
+  @include respond-between(960px, 1100px, 18px);
+  @include respond-between(768px, 960px, 13px);
+  @include respond-and(768px) {
     font-size: 15px;
   }
 }

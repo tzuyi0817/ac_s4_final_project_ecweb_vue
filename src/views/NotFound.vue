@@ -2,22 +2,22 @@
   <h1>404 Page Not Found</h1>
 </template>
 
-<style scoped>
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  h1 {
-    font-size: 25px;
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  h1 {
-    font-size: 20px;
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
   }
 }
 
-@media screen and (max-width: 840px) {
-  h1 {
-    font-size: 20px;
-  }
+h1 {
+  @include respond-between(960px, 1100px, 25px);
+  @include respond-between(768px, 960px, 20px);
+  @include respond-and(768px, 20px);
 }
 </style>

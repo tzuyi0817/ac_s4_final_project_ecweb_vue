@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .spinner {
   padding-top: 100px;
 }

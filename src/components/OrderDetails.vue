@@ -136,7 +136,19 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
 hr {
   border: 0;
   border-top: 2px solid rgb(212, 210, 210);
@@ -152,62 +164,30 @@ hr {
 
 h4 {
   color: #0085a5;
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px, 12px);
 }
 
 .list-group-item,
 .quantity,
 .customer-information {
   margin-left: 23px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  h2 {
-    font-size: 25px;
-  }
-
-  h4 {
-    font-size: 20px;
-  }
-
-  .row,
-  .bg-light {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  h2 {
-    font-size: 20px;
-  }
-
-  h4 {
-    font-size: 15px;
-  }
-
-  .row,
-  .bg-light {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  h2 {
-    font-size: 15px;
-  }
-
-  h4 {
-    font-size: 15px;
-  }
-
-  .row,
-  .bg-light {
-    font-size: 10px;
-  }
-
-  .list-group-item,
-  .quantity,
-  .customer-information {
+  @media screen and (max-width: 768px) {
     margin-left: 0px;
   }
+}
+
+h2 {
+  @include respond-between(960px, 1100px, 25px);
+  @include respond-between(768px, 960px, 20px);
+  @include respond-and(768px, 15px);
+}
+
+.row,
+.bg-light {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 10px);
 }
 </style>

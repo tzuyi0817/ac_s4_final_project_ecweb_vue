@@ -1,5 +1,5 @@
 <template>
-  <div class="productInformation col-md-5">
+  <div class="productInformation col-md-6">
     <div class="card-body">
       <div class="row" style="display:flex; justify-content: center;">
         <!-- 商品名稱 -->
@@ -25,7 +25,7 @@
           </span>
         </div>
         <router-link class="rating" to="#evaluation" style="text-decoration: none; color: black;">
-          |
+          |&nbsp;
           {{Comments.length}}
           評價
         </router-link>
@@ -129,11 +129,12 @@
             <p style="color: red;">【{{product.Product_category.name}}】{{product.name}}</p>
           </div>
 
-          <p style="text-align: center;">-------------------------------</p>
-
           <form @submit.stop.prevent="handleNotice">
             <div class="email form-group row" style="display:flex; justify-content: center;">
-              <label style="color: gray;" for="inputEmail">電子郵件：&nbsp;</label>
+              <label
+                style="color: gray;"
+                for="inputEmail"
+              >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;電子郵件：&nbsp;</label>
               <input type="text" name="email" class="form" v-model="email" required autofocus />
             </div>
             <div
@@ -144,10 +145,9 @@
               <input type="text" name="email_confirm" class="form" v-model="email_confirm" required />
             </div>
 
-            <p style="text-align: center;">-------------------------------</p>
             <p style="text-align: center; color: red;">*此功能僅為貨到通知，無法保留商品喔。</p>
 
-            <div style="text-align: center;">
+            <div class="mb-4" style="text-align: center;">
               <button
                 class="btn btn-primary"
                 :disabled="isProcessing"
@@ -171,7 +171,7 @@ export default {
   inject: ["reload"],
   props: {
     initialProduct: {
-      type: Array,
+      type: Object,
       required: true
     },
     Comments: {
@@ -304,18 +304,80 @@ export default {
 };
 </script>
 
-<style scoped>
-.productInformation {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+    @content;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
 }
 
 .free {
   font-size: 16px;
+  @include respond-between(960px, 1100px, 13px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 13px;
+  }
+}
+
+h5 {
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px) {
+    font-size: 20px;
+  }
+}
+
+.price {
+  @include respond-between(960px, 1100px, 25px);
+  @include respond-between(768px, 960px, 20px);
+  @include respond-and(768px) {
+    font-size: 25px;
+  }
+}
+
+.no-comment {
+  margin-right: 12px;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
+}
+
+.rating {
+  margin-right: 12px;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
+}
+
+p {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
+}
+
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
 }
 
 .av-star,
-.rating,
-.no-comment,
 .btn-success,
 .btn-danger {
   margin-right: 12px;
@@ -325,6 +387,12 @@ export default {
 .transport,
 .qty-title {
   margin-right: 60px;
+  @media screen and (min-width: 768px) and (max-width: 960px) {
+    margin-right: 30px;
+  }
+  @include respond-and(768px) {
+    margin-right: 25px;
+  }
 }
 
 .count,
@@ -349,10 +417,17 @@ export default {
   text-align: center;
   border: transparent;
   background-color: transparent;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px) {
+    width: 50px;
+  }
+  @include respond-and(768px) {
+    font-size: 15px;
+    width: 50px;
+  }
 }
 
-input.qtyPlus,
-input.qtyMinus {
+%qty-plus-minus {
   width: 33px;
   height: 33px;
   background-color: transparent;
@@ -360,26 +435,53 @@ input.qtyMinus {
   border-radius: 5px;
 }
 
-input.qtyPlus {
-  font-family: FontAwesome;
-}
-
-input.qtyPlus:hover,
-input.qtyMinus:hover {
+%qty-hover {
   cursor: pointer;
   background-color: #0085a5;
   transition: background-color 0.5s;
   color: white;
 }
 
-input.qtyPlus:active,
-input.qtyMinus:active {
+%qty-active {
   background-color: #0085a5;
   box-shadow: 0 5px rgb(172, 169, 169);
   transform: translateY(4px);
 }
 
+input.qtyPlus {
+  font-family: FontAwesome;
+  @extend %qty-plus-minus;
+  @media screen and (min-width: 768px) and (max-width: 960px) {
+    width: 25px;
+    height: 30px;
+  }
+  &:hover {
+    @extend %qty-hover;
+  }
+  &:active {
+    @extend %qty-active;
+  }
+}
+
+input.qtyMinus {
+  @extend %qty-plus-minus;
+  @media screen and (min-width: 768px) and (max-width: 960px) {
+    width: 25px;
+    height: 30px;
+  }
+  &:hover {
+    @extend %qty-hover;
+  }
+  &:active {
+    @extend %qty-active;
+  }
+}
+
 /* ========= 到貨通知 modal =========*/
+.notice {
+  cursor: pointer;
+}
+
 .modal {
   display: none;
   position: fixed;
@@ -392,6 +494,28 @@ input.qtyMinus:active {
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+  @media screen and (min-width: 960px) and (max-width: 1100px) {
+    width: 115%;
+  }
+  @media screen and (min-width: 768px) and (max-width: 960px) {
+    width: 130%;
+    margin-left: -150px;
+  }
+  @include respond-and(768px) {
+    width: 200%;
+    margin-top: 50px;
+    margin-left: -400px;
+  }
+  @include respond-and(600px) {
+    width: 250%;
+    margin-top: 100px;
+    margin-left: -450px;
+  }
+  @include respond-and(520px) {
+    width: 240%;
+    margin-top: 120px;
+    margin-left: -300px;
+  }
 }
 
 .modal-content {
@@ -406,244 +530,40 @@ label {
   font-size: 16px;
 }
 
-.email {
-  margin-left: 15px;
-}
-
 /* The Close Button */
-.close {
-  color: #aaaaaa;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
+%close-style {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
-@media screen and (min-width: 1090px) and (max-width: 1180px) {
-  .facebook {
-    margin-top: 5px;
+.close {
+  color: #aaaaaa;
+  font-size: 28px;
+  font-weight: bold;
+  &:hover {
+    @extend %close-style;
   }
-
-  .price {
-    font-size: 30px;
-  }
-
-  .free {
-    font-size: 12px;
-  }
-
-  h5 {
-    font-size: 20px;
-  }
-
-  p,
-  .btn-primary,
-  button,
-  input,
-  .rating,
-  .no-comment,
-  .modalTitle,
-  label {
-    font-size: 15px;
-  }
-
-  .rating,
-  .no-comment {
-    margin-top: 5px;
-  }
-
-  input.qtyPlus,
-  input.qtyMinus {
-    width: 25px;
-  }
-
-  .modal {
-    width: 115%;
-    height: 100%;
-  }
-
-  label {
-    font-size: 13px;
-  }
-
-  .email {
-    margin-left: 10px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 1090px) {
-  .facebook {
-    margin-top: 5px;
-  }
-
-  .price {
-    font-size: 25px;
-  }
-
-  .free {
-    font-size: 10px;
-  }
-
-  h5 {
-    font-size: 15px;
-  }
-
-  .av-star,
-  .rating,
-  .no-comment,
-  .btn-success,
-  .btn-danger {
-    margin-right: 4px;
-  }
-
-  p,
-  .btn-primary,
-  button,
-  input,
-  .rating,
-  .no-comment,
-  .modalTitle,
-  label {
-    font-size: 10px;
-  }
-
-  input.qtyPlus,
-  input.qtyMinus {
-    width: 20px;
-    height: 25px;
-  }
-
-  .freight,
-  .transport,
-  .qty-title {
-    margin-right: 24px;
-  }
-
-  .count,
-  .freight {
-    margin-left: 5px;
-  }
-
-  .empty {
-    margin-left: 36px;
-  }
-
-  .modal {
-    width: 115%;
-    height: 100%;
-  }
-
-  label {
-    font-size: 10px;
-  }
-
-  .email {
-    margin-left: 7px;
-  }
-
-  .rating,
-  .no-comment {
-    margin-top: 5px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  h5 {
-    font-size: 20px;
-  }
-
-  .facebook {
-    margin-top: 10px;
-  }
-
-  p,
-  .btn-primary,
-  button,
-  input,
-  .rating,
-  .no-comment,
-  .modalTitle,
-  label {
-    font-size: 15px;
-  }
-
-  .transport {
-    margin-right: 25px;
-  }
-
-  .qty-title {
-    margin-right: 25px;
-  }
-
-  .freight {
-    margin-right: 15px;
-  }
-
-  .empty {
-    display: none;
-  }
-
-  input.qtyPlus,
-  input.qtyMinus {
-    width: 30px;
-  }
-
-  .modal {
-    width: 130%;
-    margin-left: -150px;
-  }
-
-  /* ========= 到貨通知 ========= */
-
-  @media screen and (max-width: 750px) {
-    .modal {
-      width: 200%;
-      margin-left: -350px;
-      margin-top: 50px;
-    }
-  }
-
-  @media screen and (max-width: 520px) {
-    .modal {
-      width: 250%;
-      margin-left: -400px;
-      margin-top: 50px;
-    }
-  }
-
-  @media screen and (max-width: 470px) {
-    .modal {
-      width: 250%;
-      margin-left: -350px;
-      margin-top: 78px;
-    }
-  }
-
-  @media screen and (max-width: 420px) {
-    .modal {
-      width: 280%;
-      margin-left: -380px;
-      margin-top: 78px;
-    }
-  }
-
-  @media screen and (max-width: 380px) {
-    .modal {
-      width: 280%;
-      margin-left: -340px;
-      margin-top: 78px;
-    }
+  &:focus {
+    @extend %close-style;
   }
 }
 </style>
 
-<style>
+<style lang="scss">
 /* ========= 評價星星 ========= */
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
 .star {
   position: relative;
   margin: 0;
@@ -676,23 +596,8 @@ i.fa-star-yellow {
 
 .star > .fa {
   font-size: 25px;
-}
-
-@media screen and (min-width: 1090px) and (max-width: 1180px) {
-  .star > .fa {
-    font-size: 20px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 1090px) {
-  .star > .fa {
-    font-size: 15px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .star > .fa {
-    font-size: 20px;
-  }
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px, 20px);
 }
 </style>

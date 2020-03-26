@@ -152,18 +152,25 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
 }
 
 .btn-primary {
   background-color: #0085a5;
   color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0c99bd;
+  &:hover {
+    background-color: #0c99bd;
+  }
 }
 
 .card-body {
@@ -172,64 +179,35 @@ export default {
 
 h5 {
   color: #0085a5;
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px, 13px);
 }
 
 .list-group-item,
 .quantity {
   margin-left: 23px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  h2 {
-    font-size: 25px;
-  }
-
-  h5 {
-    font-size: 20px;
-  }
-
-  .row,
-  .btn {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  h2 {
-    font-size: 20px;
-  }
-
-  h5 {
-    font-size: 15px;
-  }
-
-  .row,
-  .btn {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .container {
-    margin-left: -45px;
-  }
-
-  h2 {
-    font-size: 15px;
-  }
-
-  h5 {
-    font-size: 15px;
-  }
-
-  .row,
-  .btn {
-    font-size: 10px;
-  }
-
-  .list-group-item,
-  .quantity {
+  @media screen and (max-width: 768px) {
     margin-left: 0px;
+  }
+}
+
+h2 {
+  @include respond-between(960px, 1100px, 25px);
+  @include respond-between(768px, 960px, 20px);
+  @include respond-and(768px, 15px);
+}
+
+.row,
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 10px);
+}
+
+.container {
+  @media screen and (max-width: 768px) {
+    margin-left: -45px;
   }
 }
 </style>

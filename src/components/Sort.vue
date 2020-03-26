@@ -7,13 +7,13 @@
         <router-link
           class="search-select btn"
           :to="{name: 'category-products', query: { key: createdAt, value: desc }, hash: '#pagination'}"
-        >由新到舊</router-link>
+        >新到舊</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn"
           :to="{name: 'category-products', query: { key: createdAt, value: desc }, hash: '#pagination'}"
-        >由新到舊</router-link>
+        >新到舊</router-link>
       </template>
 
       <!-- 由舊到新 -->
@@ -21,13 +21,13 @@
         <router-link
           class="search-select btn"
           :to="{name: 'category-products', query: { key: createdAt, value: asc }, hash: '#pagination'}"
-        >由舊到新</router-link>
+        >舊到新</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn"
           :to="{name: 'category-products', query: { key: createdAt, value: asc }, hash: '#pagination'}"
-        >由舊到新</router-link>
+        >舊到新</router-link>
       </template>
 
       <!-- 由高到低 -->
@@ -35,13 +35,13 @@
         <router-link
           class="search-select btn"
           :to="{name: 'category-products', query: { key: price, value: desc }, hash: '#pagination'}"
-        >價格:由高至低</router-link>
+        >價格: 高至低</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn"
           :to="{name: 'category-products', query: { key: price, value: desc }, hash: '#pagination'}"
-        >價格:由高至低</router-link>
+        >價格: 高至低</router-link>
       </template>
 
       <!-- 由低到高 -->
@@ -49,13 +49,13 @@
         <router-link
           class="search-select btn"
           :to="{name: 'category-products', query: { key: price, value: asc }, hash: '#pagination'}"
-        >價格:由低至高</router-link>
+        >價格: 低至高</router-link>
       </template>
       <template v-else>
         <router-link
           class="search btn"
           :to="{name: 'category-products', query: { key: price, value: asc }, hash: '#pagination'}"
-        >價格:由低至高</router-link>
+        >價格: 低至高</router-link>
       </template>
     </div>
   </div>
@@ -84,9 +84,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .search-sort {
-  font-family: "DFKai-sb";
   font-weight: 400;
   background: #d2f0f5;
   padding: 0.8125rem 1.25rem;
@@ -102,6 +113,9 @@ export default {
   -moz-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  @include respond-and(768px) {
+    margin-left: -15px;
+  }
 }
 
 .search {
@@ -109,98 +123,57 @@ export default {
   color: #0085a5;
   font-size: 18px;
   margin-left: 10px;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+    margin-top: 5px;
+  }
+  &:hover {
+    background-color: #0085a5;
+    color: white;
+    @include respond-between(960px, 1100px, 15px);
+    @include respond-between(768px, 960px, 10px);
+    @include respond-and(768px) {
+      font-size: 15px;
+      margin-top: 5px;
+    }
+  }
 }
 
-.search:hover {
-  background-color: #0085a5;
-  color: white;
-}
-
-.search-select,
-.search-select:hover {
+%search-select-style {
   background-color: #0085a5;
   color: white;
   font-size: 18px;
   margin-left: 10px;
 }
 
+.search-select {
+  @extend %search-select-style;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+    margin-top: 5px;
+  }
+  &:hover {
+    @extend %search-select-style;
+    @include respond-between(960px, 1100px, 15px);
+    @include respond-between(768px, 960px, 10px);
+    @include respond-and(768px) {
+      font-size: 15px;
+      margin-top: 5px;
+    }
+  }
+}
+
 span {
   font-size: 18px;
   margin-right: 10px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  span {
-    font-size: 15px;
-    margin-right: 0px;
-  }
-
-  .search-select,
-  .search {
-    font-size: 15px;
-    margin-left: 5px;
-  }
-
-  .search:hover {
-    font-size: 15px;
-    margin-left: 5px;
-  }
-
-  .search-select:hover {
-    font-size: 15px;
-    margin-left: 5px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  span {
-    font-size: 10px;
-    margin-right: 0px;
-  }
-
-  .search-select,
-  .search {
-    font-size: 10px;
-    margin-left: 5px;
-  }
-
-  .search:hover {
-    font-size: 10px;
-    margin-left: 5px;
-  }
-
-  .search-select:hover {
-    font-size: 10px;
-    margin-left: 5px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  span {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     display: none;
-  }
-
-  .search-select,
-  .search {
-    font-size: 15px;
-    margin-left: 5px;
-    margin-top: 5px;
-  }
-
-  .search:hover {
-    font-size: 15px;
-    margin-left: 5px;
-    margin-top: 5px;
-  }
-
-  .search-select:hover {
-    font-size: 15px;
-    margin-left: 5px;
-    margin-top: 5px;
-  }
-
-  .search-sort {
-    margin-left: -20px;
   }
 }
 </style>

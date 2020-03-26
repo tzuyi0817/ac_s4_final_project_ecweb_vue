@@ -20,7 +20,7 @@
 export default {
   props: {
     initialCategory: {
-      type: Array,
+      type: Object,
       required: true
     },
     categoryId: {
@@ -36,31 +36,26 @@ export default {
 };
 </script>
 
-<style scoped>
-.list-group-item {
-  font-family: "DFKai-sb";
-}
-
-.list-group-item:hover {
-  color: white;
-  background-color: #0085a5;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1100px) {
-  .list-group {
-    font-size: 15px;
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 960px) {
-  .list-group {
-    font-size: 10px;
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .list-group {
-    font-size: 15px;
+.list-group {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 15px);
+  &-item:hover {
+    color: white;
+    background-color: #0085a5;
   }
 }
 </style>

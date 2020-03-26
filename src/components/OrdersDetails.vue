@@ -96,7 +96,7 @@ export default {
   inject: ["reload"],
   props: {
     initialOrder: {
-      type: Array,
+      type: Object,
       required: true
     }
   },
@@ -151,64 +151,46 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+.btn,
 span {
   font-size: 18px;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 10px);
 }
 
 h6 {
   color: #0085a5;
+  @include respond-between(960px, 1100px, 18px);
+  @include respond-between(768px, 960px, 13px);
+  @include respond-and(768px, 13px);
 }
 
 .list-group-item {
   margin-left: 5px;
 }
 
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  h4 {
-    font-size: 20px;
-  }
-
-  h6 {
-    font-size: 18px;
-  }
-
-  .btn,
-  span {
-    font-size: 15px;
-  }
+h4 {
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px, 15px);
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  h4 {
-    font-size: 15px;
-  }
-
-  h6 {
-    font-size: 13px;
-  }
-
-  .btn,
-  span {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  h4 {
-    font-size: 15px;
-  }
-
-  h6 {
-    font-size: 13px;
-  }
-
-  .btn,
-  span {
-    font-size: 10px;
-  }
-
-  .shipping-status {
+.shipping-status {
+  @media screen and (max-width: 768px) {
     margin-top: 20px;
   }
 }

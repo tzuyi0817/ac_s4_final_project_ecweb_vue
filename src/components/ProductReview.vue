@@ -1,5 +1,5 @@
 <template>
-  <div class="comments col-md-9">
+  <div class="comments col-md-9 col-10">
     <div v-for="comment in commentsPagination" :key="comment.id">
       <div class="list-group-item list-group-item-action mt-2">
         <button
@@ -82,9 +82,24 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .comments {
   margin-left: 60px;
+  @include respond-and(768px) {
+    margin-left: 30px;
+  }
 }
 
 /* ====== User 的評論大頭照 ====== */
@@ -96,62 +111,35 @@ export default {
   height: 50px;
   display: block;
   border-radius: 50%;
+  @media screen and (min-width: 960px) and (max-width: 1100px) {
+    width: 45px;
+    height: 45px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 960px) {
+    width: 40px;
+    height: 40px;
+  }
+  @include respond-and(768px) {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 small {
   color: gray;
+  @include respond-between(960px, 1100px, 10px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 10px;
+  }
 }
 
 p {
   font-size: 18px;
-}
-
-@media screen and (min-width: 1090px) and (max-width: 1180px) {
-  p {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 15px;
-  }
-
-  small {
-    font-size: 10px;
-  }
-
-  .avatar {
-    width: 45px;
-    height: 45px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 1090px) {
-  p {
-    font-size: 10px;
-  }
-
-  small {
-    font-size: 10px;
-  }
-
-  .avatar {
-    width: 40px;
-    height: 40px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  p {
-    font-size: 15px;
-  }
-
-  small {
-    font-size: 10px;
-  }
-
-  .avatar {
-    width: 45px;
-    height: 45px;
-  }
-
-  .comments {
-    margin-left: -10px;
   }
 }
 </style>

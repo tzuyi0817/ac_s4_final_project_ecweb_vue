@@ -132,9 +132,17 @@ export default {
 };
 </script>
 
-<style scoped>
-.container {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
 }
 
 .step-by-step {
@@ -144,46 +152,34 @@ export default {
 
 .arrow {
   font-size: 40px;
+  @include respond-and(768px, 30px);
 }
 
 .btn-primary {
   background-color: #0085a5;
   color: white;
-}
-
-.btn-primary:hover {
-  background-color: #0c99bd;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  p,
-  span,
-  .btn {
-    font-size: 15px;
+  &:hover {
+    background-color: #0c99bd;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  p,
-  span,
-  .btn {
-    font-size: 10px;
+p,
+span,
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 10px);
+}
+
+.step {
+  @media screen and (max-width: 768px) {
+    margin-top: 50px;
   }
 }
 
-@media screen and (max-width: 840px) {
-  .container {
+.container {
+  @media screen and (max-width: 768px) {
     margin-left: -45px;
-  }
-
-  p,
-  span,
-  .btn {
-    font-size: 10px;
-  }
-
-  .arrow {
-    font-size: 30px;
   }
 }
 </style>

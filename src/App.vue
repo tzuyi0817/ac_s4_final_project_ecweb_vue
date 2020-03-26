@@ -41,9 +41,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+
+#ec-web {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
 .main {
-  margin-top: 180px;
-  margin-left: 90px;
+  margin: {
+    top: 180px;
+    left: 90px;
+  }
 }
 </style>

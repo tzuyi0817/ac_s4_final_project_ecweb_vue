@@ -2,24 +2,9 @@
   <div class="product">
     <Spinner v-if="isLoading" />
     <template v-else>
-      <!-- NavTabs -->
       <div class="row mt-5 col-12">
-        <!-- <div class="col-2">
-          <div class="nav flex-column">
-            <div class="list-group">
-              <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
-            </div>
-            <NavTabs
-              v-for="category in categories"
-              :key="category.id"
-              :initial-category="category"
-              :category-id="categoryId"
-            />
-          </div>
-        </div>-->
-
         <!-- 商品圖片 -->
-        <div class="index col-md-5 mb-5">
+        <div class="index col-md-4 mb-5">
           <img :src="product.image" width="100%" alt="image" />
         </div>
 
@@ -49,7 +34,7 @@
       </div>
 
       <div class="comment-content mt-5">
-        <div class="card-header col-md-9 mt-3">
+        <div class="card-header col-md-9 col-10 mt-3">
           <div class="comment row">
             <!-- 無評價 -->
             <p v-if="Comments.length === 0" class="ml-1 mt-4 mr-4" style="color: orange;">0 / 5</p>
@@ -95,7 +80,7 @@
         <h5>相似商品</h5>
       </div>
 
-      <div class="similar-products-box mt-5 mb-5 col-md-9">
+      <div class="similar-products-box mt-5 mb-5 col-md-10">
         <div class="row">
           <SimilarProducts
             v-for="product in similarProducts"
@@ -130,7 +115,6 @@ import { mapState } from "vuex";
 export default {
   mixins: [starFilter],
   components: {
-    // NavTabs,
     ProductInformation,
     ProductSpecifications,
     ProductDetails,
@@ -252,18 +236,32 @@ export default {
 };
 </script>
 
-<style scoped>
-.product {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
 }
 
 .index {
   margin-left: 25px;
+  @include respond-and(768px) {
+    margin-left: 0px;
+    margin-top: 20px;
+  }
 }
 
-.list-group-item:hover {
-  color: white;
-  background-color: #0085a5;
+.list-group-item {
+  &:hover {
+    color: white;
+    background-color: #0085a5;
+  }
 }
 
 hr {
@@ -272,83 +270,80 @@ hr {
   border: 0;
   border-top: 1px solid #0085a5;
   margin-left: 25px;
+  @include respond-and(768px) {
+    margin-left: 5px;
+  }
 }
 
 .card-header {
   background-color: #d2f0f5;
   margin-left: 60px;
+  @include respond-and(768px) {
+    margin-left: 25px;
+  }
 }
 
-h5,
-.comment,
-.similar-products-box {
+h5 {
   margin-left: 60px;
-}
-
-.comment-title,
-.comment-content,
-.similar-products-title {
-  margin-left: 30px;
-}
-
-@media screen and (min-width: 1090px) and (max-width: 1180px) {
-  h5 {
-    font-size: 20px;
-  }
-
-  p,
-  .no-comments {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 1090px) {
-  h5 {
-    font-size: 15px;
-  }
-
-  p,
-  .no-comments {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .product {
-    margin-left: -65px;
-  }
-
-  .index {
-    margin-left: 0px;
-  }
-
-  h5 {
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px) {
     font-size: 20px;
     margin-left: 15px;
   }
+}
 
-  .card-header {
-    margin-left: -10px;
+.comment {
+  margin-left: 60px;
+}
+
+.similar-products-box {
+  margin-left: 60px;
+  @include respond-and(768px) {
+    margin-left: 0px;
   }
+}
 
-  .comment {
-    margin-left: 25px;
+.comment-title {
+  margin-left: 30px;
+  @include respond-and(768px) {
+    margin-left: 15px;
   }
+}
 
-  p,
-  .no-comments {
+.comment-content {
+  margin-left: 30px;
+  @include respond-and(768px) {
+    margin-left: 0px;
+  }
+}
+
+.similar-products-title {
+  margin-left: 30px;
+  @include respond-and(768px) {
+    margin-left: 15px;
+  }
+}
+
+.no-comments {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 15px;
   }
+}
 
-  hr {
-    margin-left: 5px;
+p {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
   }
+}
 
-  .comment-title,
-  .comment-content,
-  .similar-products-box,
-  .similar-products-title {
-    margin-left: 0px;
+.product {
+  @include respond-and(768px) {
+    margin-left: -65px;
   }
 }
 </style>

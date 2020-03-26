@@ -52,69 +52,63 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    @content;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
+.table {
+  margin-left: -15px;
+}
+
 .card-img {
   width: auto;
   height: 100px;
+  @include respond-between(960px, 1100px) {
+    width: 100px;
+    height: 80px;
+  }
+  @include respond-between(768px, 960px) {
+    width: 80px;
+    height: 60px;
+  }
+  @include respond-and(768px) {
+    width: 70px;
+    height: 50px;
+  }
 }
 
 .item-name {
   margin-left: 10px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  p,
-  span,
-  th {
-    font-size: 15px;
-  }
-
-  .card-img {
-    width: 100px;
-    height: 80px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  p,
-  span,
-  th {
-    font-size: 10px;
-  }
-
-  .card-img {
-    width: 80px;
-    height: 60px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .table {
-    margin-left: -10px;
-  }
-
-  th,
-  p,
-  span,
-  .btn {
-    font-size: 10px;
-  }
-
-  .btn-outline-secondary {
-    width: 26px;
-    height: 26px;
-  }
-
-  .card-img {
-    width: 70px;
-    height: 50px;
-  }
-
-  .item-name {
+  @include respond-and(768px) {
     display: none;
   }
+}
 
-  .money-symbol {
+p,
+span,
+th {
+  @include respond-between(960px, 1100px) {
+    font-size: 15px;
+  }
+  @include respond-between(768px, 960px) {
+    font-size: 10px;
+  }
+  @include respond-and(768px) {
+    font-size: 10px;
+  }
+}
+
+.money-symbol {
+  @include respond-and(768px) {
     display: none;
   }
 }

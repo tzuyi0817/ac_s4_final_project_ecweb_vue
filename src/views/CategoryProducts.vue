@@ -4,7 +4,7 @@
     <template v-else>
       <!-- NavTabs -->
       <div class="row mt-5">
-        <div class="col-md-2">
+        <div class="col-lg-2 col-md-3 col-sm-9 col-9 mb-2">
           <div class="nav flex-column">
             <div class="list-group">
               <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
@@ -19,20 +19,20 @@
         </div>
         <!-- 類別圖片 -->
         <div class="col-md-1"></div>
-        <div class="index col-md-8">
+        <div class="index col-lg-8 col-md-7">
           <img :src="category.image" width="75%" height="75%" alt="image" />
         </div>
       </div>
 
       <section id="pagination"></section>
 
-      <div class="row">
+      <div class="row mt-2">
         <!-- 類別名稱 -->
         <div class="title col-md-2">
           <h4 style="color:#0085a5">{{category.name}}</h4>
         </div>
         <!-- 排序 -->
-        <div class="col-md-8">
+        <div class="col-md-8 col-10">
           <Sort :current-key="currentKey" :current-value="currentValue" />
         </div>
       </div>
@@ -40,7 +40,7 @@
       <div class="row mt-5 mb-5">
         <!-- 商品 -->
         <div class="col-md-2"></div>
-        <div class="all-products col-md-7">
+        <div class="all-products col-md-7 col-10">
           <div class="row">
             <Products
               v-for="product in products"
@@ -158,103 +158,72 @@ export default {
 };
 </script>
 
-<style scoped>
-.list-group-item,
-h4 {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
 }
 
-.list-group-item:hover {
-  color: white;
-  background-color: #0085a5;
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
+.list-group-item {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
+  &:hover {
+    color: white;
+    background-color: #0085a5;
+  }
+}
+
+h4 {
+  @include respond-between(960px, 1100px, 20px);
+  @include respond-between(768px, 960px, 15px);
+  @include respond-and(768px) {
+    font-size: 15px;
+  }
 }
 
 .no-products {
-  font-family: "DFKai-sb";
   padding: 75px;
 }
 
 .title {
   margin-left: 20px;
+  @include respond-and(768px) {
+    display: none;
+  }
 }
 
 .all-products {
   margin-left: 65px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1110px) {
-  .list-group-item {
-    font-size: 15px;
-  }
-
-  h4 {
-    font-size: 20px;
-  }
-
-  .title {
-    margin-left: 20px;
-  }
-
-  .all-products {
+  @media screen and (min-width: 960px) and (max-width: 1100px) {
     margin-left: 50px;
   }
-}
-
-@media screen and (min-width: 768px) and (max-width: 960px) {
-  .list-group-item {
-    font-size: 10px;
-  }
-
-  h4 {
-    font-size: 15px;
-  }
-
-  .title {
-    margin-left: 20px;
-  }
-
-  .all-products {
+  @media screen and (min-width: 768px) and (max-width: 960px) {
     margin-left: 35px;
+  }
+  @include respond-and(768px) {
+    margin-left: -10px;
   }
 }
 
-@media screen and (max-width: 768px) {
-  .row {
-    margin-left: -45px;
-  }
-
-  .nav {
+.index {
+  @include respond-and(768px) {
     margin-top: 20px;
   }
+}
 
-  .list-group-item {
-    font-size: 15px;
-  }
-
-  .list-group {
-    width: 220px;
-    margin-left: 20px;
-  }
-
-  .index {
-    margin-top: 20px;
-    margin-left: -20px;
-  }
-
-  img {
-    width: 100%;
-  }
-
-  h4 {
-    font-size: 15px;
-  }
-
-  .title {
-    display: none;
-  }
-
-  .all-products {
-    margin-left: 35px;
+.nav {
+  @include respond-and(768px) {
+    margin-top: 30px;
   }
 }
 </style>

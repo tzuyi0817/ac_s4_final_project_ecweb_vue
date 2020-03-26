@@ -4,64 +4,62 @@
       <router-link class="navbar-brand" id="logo" to="/">MuseClub</router-link>
     </div>
 
-    <div class="title col-md-8">
+    <div class="title col-md-8 col-10">
       <h2>
-        <strong>都市人的療癒餐酒館</strong>
+        <strong>都市人的餐酒坊</strong>
       </h2>
     </div>
   </div>
 </template>
 
-<style scoped>
-.row {
-  font-family: "DFKai-sb";
+<style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css?family=Long+Cang&display=swap");
+
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
 }
 
 .title {
   text-align: center;
+  font-family: "Long Cang", cursive;
+  @include respond-and(768px) {
+    margin: {
+      top: 30px;
+      left: -20px;
+    }
+  }
 }
 
 .navbar-brand {
   font-family: "Pacifico", "Noto Sans TC", sans-serif;
   color: black;
-}
-
-.navbar-brand:hover {
-  color: #0085a5;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  h2 {
-    font-size: 30px;
+  &:hover {
+    color: #0085a5;
   }
 
-  .navbar-brand {
-    font-size: 22px;
-  }
+  @include respond-between(960px, 1100px, 22px);
+  @include respond-between(768px, 960px, 17px);
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  h2 {
+h2 {
+  @include respond-between(960px, 1100px, 30px);
+  @include respond-between(768px, 960px, 25px);
+  @include respond-and(768px) {
     font-size: 25px;
   }
-
-  .navbar-brand {
-    font-size: 17px;
-  }
 }
 
-@media screen and (max-width: 840px) {
-  .logo {
+.logo {
+  @include respond-and(768px) {
     display: none;
-  }
-
-  .title {
-    margin-top: 20px;
-    margin-left: -20px;
-  }
-
-  h2 {
-    font-size: 25px;
   }
 }
 </style>
