@@ -8,6 +8,16 @@ import store from './store'
 
 Vue.use(Router)
 
+const authorizeIsAdmin = (to, from, next) => {
+  const currentUser = store.state.currentUser
+  if (currentUser && currentUser.role === 0) {
+    next('/404')
+    return
+  }
+
+  next()
+}
+
 const router = new Router({
   linkExactActiveClass: 'active',
   routes: [
@@ -89,57 +99,68 @@ const router = new Router({
     {
       path: '/admin/index',
       name: 'AdminIndex',
-      component: () => import('./views/AdminIndex')
+      component: () => import('./views/AdminIndex'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/productmodel/product_mange',
       name: 'AdminProducts',
-      component: () => import('./views/AdminProducts')
+      component: () => import('./views/AdminProducts'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/productmodel/create',
       name: 'AdminProductCreate',
-      component: () => import('./views/AdminProductCreate')
+      component: () => import('./views/AdminProductCreate'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/productmodel/update/:id',
       name: 'AdminProductUpdate',
-      component: () => import('./views/AdminProductUpdate')
+      component: () => import('./views/AdminProductUpdate'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/productmodel/order_mange',
       name: 'AdminOrders',
-      component: () => import('./views/AdminOrders')
+      component: () => import('./views/AdminOrders'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/productmodel/order_mange/:id',
       name: 'AdminOrder',
-      component: () => import('./views/AdminOrder')
+      component: () => import('./views/AdminOrder'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/productmodel/deliveryNotice',
       name: 'AdminDeliveryNotice',
-      component: () => import('./views/AdminDeliveryNotice')
+      component: () => import('./views/AdminDeliveryNotice'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/coupon/managePage',
       name: 'AdminCoupon',
-      component: () => import('./views/AdminCoupon')
+      component: () => import('./views/AdminCoupon'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/coupon/managePage/:id/edit',
       name: 'AdminCouponEdit',
-      component: () => import('./views/AdminCouponEdit')
+      component: () => import('./views/AdminCouponEdit'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/coupon/makingPage',
       name: 'AdminCouponMake',
-      component: () => import('./views/AdminCouponMake')
+      component: () => import('./views/AdminCouponMake'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '/admin/marketingmodel/track_code',
       name: 'AdminTrackCode',
-      component: () => import('./views/AdminTrackCode')
+      component: () => import('./views/AdminTrackCode'),
+      beforeEnter: authorizeIsAdmin
     },
     {
       path: '*',
