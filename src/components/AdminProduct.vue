@@ -1,8 +1,5 @@
 <template>
   <tr>
-    <th scope="row" class="checkbox">
-      <input type="checkbox" class="mt-4" />
-    </th>
     <td class="image">
       <img class="w-100 mt-4" :src="product.image" alt="產品圖片" />
     </td>
@@ -68,7 +65,7 @@ export default {
   inject: ["reload"],
   props: {
     initialProduct: {
-      type: Array,
+      type: Object,
       required: true
     }
   },
@@ -142,42 +139,40 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .image {
   width: 10%;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  .dropdown-menu,
-  .input-group-prepend a,
-  .btn {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  .dropdown-menu,
-  .input-group-prepend a,
-  .btn {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .dropdown-menu,
-  .input-group-prepend a,
-  .btn {
-    font-size: 10px;
-  }
-
-  .checkbox,
-  .price,
-  .count {
-    display: none;
-  }
-
-  .image {
+  @include respond-and(768px) {
     width: 80px;
+  }
+}
+
+.dropdown-menu,
+.input-group-prepend a,
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 10px;
+  }
+}
+
+.price,
+.count {
+  @include respond-and(768px) {
+    display: none;
   }
 }
 </style>

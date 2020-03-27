@@ -3,6 +3,7 @@
     <router-link to="/admin/index">
       <img
         class="logo mt-3 ml-3"
+        style="display:flex; justify-content: center;"
         src="https://mitjobs.s3.amazonaws.com/uploads/organization/520/cover_photo/shopline-logo-white-on-blue.png"
         alt
       />
@@ -71,15 +72,38 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .logo {
   width: 85%;
+  @media screen and (min-width: 960px) and (max-width: 1100px) {
+    width: 75%;
+  }
+  @media screen and (min-width: 768px) and (max-width: 960px) {
+    width: 75%;
+  }
 }
 
 .navbar-title {
   font-family: "Pacifico", cursive;
   color: #0085a5;
   font-size: 25px;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 25px;
+  }
 }
 
 .text-center {
@@ -93,6 +117,11 @@ p:hover {
 .storename {
   color: #0085a5;
   font-size: 25px;
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
+    font-size: 25px;
+  }
 }
 
 .logoName {
@@ -100,55 +129,25 @@ p:hover {
   height: 180px;
   width: 180px;
   border-radius: 100px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  .btn,
-  .storename,
-  .navbar-title {
-    font-size: 15px;
-  }
-
-  .logoName {
+  @media screen and (min-width: 960px) and (max-width: 1100px) {
     height: 140px;
     width: 140px;
   }
-
-  .logo {
-    width: 75%;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  .btn,
-  .storename,
-  .navbar-title {
-    font-size: 10px;
-  }
-
-  .logoName {
+  @media screen and (min-width: 768px) and (max-width: 960px) {
     height: 120px;
     width: 120px;
   }
-
-  .logo {
-    width: 75%;
+  @include respond-and(768px) {
+    height: 200px;
+    width: 200px;
   }
 }
 
-@media screen and (max-width: 840px) {
-  .btn {
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 15px;
-  }
-
-  .storename,
-  .navbar-title {
-    font-size: 25px;
-  }
-
-  .logoName {
-    height: 200px;
-    width: 200px;
   }
 }
 </style>

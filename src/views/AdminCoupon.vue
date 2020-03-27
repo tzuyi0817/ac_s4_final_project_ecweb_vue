@@ -4,11 +4,11 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-md-2 d-flex flex-column">
+          <div class="navbar col-md-2 col-10 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="coupon col-md-8 bg-light p-1">
+          <div class="coupon col-md-8 col-11 bg-light p-1">
             <div class="card my-5">
               <table class="table">
                 <thead>
@@ -132,70 +132,66 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .container-fluid {
   margin-top: -92px;
   margin-left: -89px;
-  font-family: "DFKai-sb";
   width: 115%;
-}
-
-.coupon {
-  margin-left: 60px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  .card,
-  .btn {
-    font-size: 15px;
-  }
-
-  p {
-    font-size: 13px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  .card,
-  .btn {
-    font-size: 10px;
-  }
-
-  p {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  .container-fluid {
+  @include respond-and(768px) {
     margin-top: 0px;
     margin-left: -60px;
     margin-bottom: 150px;
   }
+}
 
-  .card {
-    margin-left: 20px;
-    width: 330px;
+.coupon {
+  margin-left: 60px;
+  @include respond-and(768px) {
+    margin-left: 0px;
   }
+}
 
-  .card,
-  .btn {
+.card,
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 10px;
   }
+}
 
-  p {
+p {
+  @include respond-between(960px, 1100px, 13px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 10px;
   }
+}
 
-  .description,
-  .store-id,
-  .expired,
-  .type {
+.description,
+.store-id,
+.expired,
+.type {
+  @include respond-and(768px) {
     display: none;
   }
+}
 
-  .coupon {
-    margin-left: 0px;
+.navbar {
+  @include respond-and(768px) {
+    margin-left: 25px;
   }
 }
 </style>

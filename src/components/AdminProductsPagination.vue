@@ -69,53 +69,55 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
 .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
 
+%hover-style {
+  color: white;
+  background-color: #0085a5;
+}
+
 .page-link {
   color: #0085a5;
   height: 37px;
   padding: 7px 20px;
-}
-
-.page-link span {
-  color: #0085a5;
-}
-
-.page-link:hover,
-.page-link:hover span {
-  color: white;
-  background-color: #0085a5;
-}
-
-.page-link:active {
-  background-color: #0085a5;
+  &:hover {
+    @extend %hover-style;
+    span {
+      @extend %hover-style;
+    }
+  }
+  &:active {
+    background-color: #0085a5;
+  }
+  span {
+    color: #0085a5;
+  }
 }
 
 .page-item.active .page-link {
-  color: white;
-  background-color: #0085a5;
+  @extend %hover-style;
 }
 
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  nav {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  nav {
-    font-size: 10px;
-  }
-}
-
-@media screen and (max-width: 840px) {
-  nav {
-    font-size: 10px;
-  }
+nav {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 10px);
 }
 </style>

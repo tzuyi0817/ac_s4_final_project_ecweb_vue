@@ -4,11 +4,11 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-md-2 d-flex flex-column">
+          <div class="navbar col-10 col-md-2 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="editproduct col-md-8 bg-light p-1">
+          <div class="editproduct col-md-8 col-11 bg-light p-1">
             <div class="productmodel_editproduct col-12 py-3">
               <!-- 商品編輯表單 -->
               <form @submit.stop.prevent="handleSubmit">
@@ -280,16 +280,35 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    @content;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .container-fluid {
   margin-top: -92px;
   margin-left: -89px;
-  font-family: "DFKai-sb";
   width: 115%;
+  @include respond-and(768px) {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
 }
 
 .editproduct {
   margin-left: 60px;
+  @include respond-and(768px) {
+    margin-left: 0px;
+  }
 }
 
 a,
@@ -303,70 +322,48 @@ a:hover {
 
 .btn-primary {
   background-color: #0085a5;
-}
-
-.btn-primary:hover {
-  background-color: #0c99bd;
+  &:hover {
+    background-color: #0c99bd;
+  }
 }
 
 .img-thumbnail {
   height: 230px;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  .card,
-  select,
-  input,
-  textarea,
-  .btn {
-    font-size: 15px;
-  }
-
-  .img-thumbnail {
+  @include respond-between(960px, 1100px) {
     height: 180px;
   }
-}
-
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  .card,
-  select,
-  input,
-  textarea,
-  .btn {
-    font-size: 10px;
+  @include respond-between(768px, 960px) {
+    height: 130px;
   }
-
-  .img-thumbnail {
+  @include respond-and(768px) {
     height: 130px;
   }
 }
 
-@media screen and (max-width: 840px) {
-  .container-fluid {
-    margin-top: 0px;
-    margin-left: -60px;
-    margin-bottom: 150px;
+.card,
+select,
+input,
+textarea,
+.btn {
+  @include respond-between(960px, 1100px) {
+    font-size: 15px;
   }
-
-  .productmodel_editproduct {
-    margin-left: 0px;
-    width: 440px;
-  }
-
-  .card,
-  select,
-  input,
-  textarea,
-  .btn {
+  @include respond-between(768px, 960px) {
     font-size: 10px;
   }
-
-  .img-thumbnail {
-    height: 50px;
+  @include respond-and(768px) {
+    font-size: 10px;
   }
+}
 
-  .editproduct {
-    margin-left: 0px;
+.card {
+  @include respond-and(768px) {
+  }
+}
+
+.navbar {
+  @include respond-and(768px) {
+    margin-left: 25px;
   }
 }
 </style>

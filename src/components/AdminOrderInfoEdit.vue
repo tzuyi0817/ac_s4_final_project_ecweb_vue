@@ -152,49 +152,33 @@ export default {
 };
 </script>
 
-<style scoped>
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  h5 {
-    font-size: 18px;
-  }
-
-  .card,
-  button,
-  h6,
-  p,
-  select,
-  input {
-    font-size: 15px;
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  h5 {
-    font-size: 13px;
-  }
-
-  .card,
-  button,
-  h6,
-  p,
-  select,
-  input {
-    font-size: 10px;
+@mixin respond-and($upper, $font-size) {
+  @media screen and (max-width: $upper) {
+    font-size: $font-size;
   }
 }
 
-@media screen and (max-width: 840px) {
-  h5 {
-    font-size: 13px;
-  }
+h5 {
+  @include respond-between(960px, 1100px, 18px);
+  @include respond-between(768px, 960px, 13px);
+  @include respond-and(768px, 13px);
+}
 
-  .card,
-  button,
-  h6,
-  p,
-  select,
-  input {
-    font-size: 10px;
-  }
+.card,
+button,
+h6,
+p,
+select,
+input {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px, 10px);
 }
 </style>

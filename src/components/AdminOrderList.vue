@@ -73,7 +73,10 @@
         <span class="badge badge-warning">{{order.shipmentStatus}}</span>
       </h5>
     </td>
-    <td class="orderer">{{order.User.name}}({{order.User.email}})</td>
+    <td class="orderer">
+      {{order.User.name}}
+      <span class="orderer-email">({{order.User.email}})</span>
+    </td>
     <td>NT${{order.amount}}</td>
   </tr>
 </template>
@@ -82,7 +85,7 @@
 export default {
   props: {
     initialOrder: {
-      type: Array,
+      type: Object,
       required: true
     }
   },
@@ -104,36 +107,45 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .orderId {
   color: #0085a5;
-}
-
-.orderId:hover {
-  color: #0c99bd;
-  text-decoration: none;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1060px) {
-  h5 {
-    font-size: 15px;
+  &:hover {
+    color: #0c99bd;
+    text-decoration: none;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  h5 {
+h5 {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 10px;
   }
 }
 
-@media screen and (max-width: 840px) {
-  h5 {
-    font-size: 10px;
+.orderer-email {
+  @media screen and (min-width: 768px) and (max-width: 960px) {
+    display: none;
   }
+}
 
-  .payment-status,
-  .shipment-status,
-  .orderer {
+.payment-status,
+.shipment-status,
+.orderer-email {
+  @include respond-and(768px) {
     display: none;
   }
 }

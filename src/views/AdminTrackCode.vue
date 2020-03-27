@@ -4,11 +4,11 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-md-2 d-flex flex-column">
+          <div class="navbar col-md-2 col-10 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="col-md-9 bg-light p-1 mt-4 mb-4 ml-3">
+          <div class="col-md-9 col-11 bg-light p-1 mt-4 mb-4 ml-3">
             <div class="admin_traceCode col-md-11">
               <form @submit.stop.prevent="handleSubmit">
                 <!-- GA追蹤碼 -->
@@ -135,57 +135,57 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .container-fluid {
   margin-top: -92px;
   margin-left: -89px;
-  font-family: "DFKai-sb";
   width: 115%;
+  @include respond-and(768px) {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
 }
 
 .btn-select {
   background-color: #0085a5;
   color: white;
   text-align: center;
-}
-
-.btn-select:hover {
-  background-color: #0c99bd;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  .admin_traceCode,
-  .btn {
-    font-size: 15px;
+  &:hover {
+    background-color: #0c99bd;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  .admin_traceCode,
-  .btn {
+.admin_traceCode,
+.btn {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 10px;
   }
 }
 
-@media screen and (max-width: 840px) {
-  .container-fluid {
-    margin-top: 0px;
-    margin-left: -60px;
-    margin-bottom: 150px;
+textarea {
+  @include respond-and(768px) {
+    width: 200px;
   }
+}
 
-  .admin_traceCode {
-    margin-left: -5px;
-    width: 350px;
-  }
-
-  .admin_traceCode,
-  .btn {
-    font-size: 10px;
-  }
-
-  textarea {
-    width: 230px;
+.navbar {
+  @include respond-and(768px) {
+    margin-left: 25px;
   }
 }
 </style>

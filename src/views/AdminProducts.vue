@@ -4,11 +4,11 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-md-2 d-flex flex-column">
+          <div class="navbar col-md-2 col-10 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="col-md-9 bg-light p-1">
+          <div class="col-md-9 col-12 bg-light p-1">
             <div class="productmodel_products px-5">
               <div class="card my-5">
                 <div class="function_bar pt-3 px-3">
@@ -53,8 +53,7 @@
                     <table class="table">
                       <thead>
                         <tr style="background-color: #0085a5; color: white;">
-                          <th scope="col" class="checkbox">#</th>
-                          <th scope="col">圖片</th>
+                          <th scope="col">&nbsp;&nbsp;圖片</th>
                           <th scope="col">商品名稱</th>
                           <th scope="col" class="price">價格</th>
                           <th scope="col" class="count">數量</th>
@@ -159,12 +158,28 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .container-fluid {
   margin-top: -92px;
   margin-left: -89px;
-  font-family: "DFKai-sb";
   width: 115%;
+  @include respond-and(768px) {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
 }
 
 .btn-select {
@@ -176,68 +191,51 @@ export default {
   color: white;
   text-align: center;
   width: 200px;
-}
-
-.btn-select:hover {
-  background-color: #0c99bd;
-}
-
-.btn-select:focus {
-  background-color: #0085a5;
-  color: white;
+  &:hover {
+    background-color: #0c99bd;
+  }
+  &:focus {
+    background-color: #0085a5;
+    color: white;
+  }
 }
 
 .btn-create {
   background-color: #0085a5;
   color: white;
   text-align: center;
-}
-
-.btn-create:hover {
-  background-color: #0c99bd;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1040px) {
-  .btn-select,
-  .dropdown-menu,
-  .btn,
-  .products_table {
-    font-size: 15px;
+  &:hover {
+    background-color: #0c99bd;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  .btn-select,
-  .dropdown-menu,
-  .btn,
-  .products_table {
+.btn-select,
+.dropdown-menu,
+.btn,
+.products_table {
+  @include respond-between(960px, 1100px, 15px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 10px;
   }
 }
 
-@media screen and (max-width: 840px) {
-  .container-fluid {
-    margin-top: 0px;
-    margin-left: -60px;
-    margin-bottom: 150px;
-  }
-
-  .productmodel_products {
-    margin-left: -35px;
-    width: 440px;
-  }
-
-  .btn-select,
-  .dropdown-menu,
-  .btn,
-  .products_table {
-    font-size: 10px;
-  }
-
-  .checkbox,
-  .price,
-  .count {
+.price,
+.count {
+  @include respond-and(768px) {
     display: none;
+  }
+}
+
+.navbar {
+  @include respond-and(768px) {
+    margin-left: 25px;
+  }
+}
+
+.card {
+  @include respond-and(768px) {
+    margin-left: -50px;
   }
 }
 </style>

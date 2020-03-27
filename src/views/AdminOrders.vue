@@ -4,11 +4,11 @@
     <template v-else>
       <div class="container-fluid admin_layout">
         <div class="row">
-          <div class="col-md-2 d-flex flex-column">
+          <div class="navbar col-10 col-md-2 d-flex flex-column">
             <AdminNavbar />
           </div>
 
-          <div class="col-md-10 bg-light p-1">
+          <div class="col-md-10 col-12 bg-light p-1">
             <div class="col-md-11 productmodel_orders">
               <div class="card my-5">
                 <div class="filiterBar input-group p-3">
@@ -161,10 +161,7 @@
                         <th scope="col">訂單狀態</th>
                         <th scope="col" class="payment-status">付款狀態</th>
                         <th scope="col" class="shipment-status">送貨狀態</th>
-                        <th
-                          scope="col"
-                          class="orderer"
-                        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;訂購人</th>
+                        <th scope="col" class="orderer">訂購人</th>
                         <th scope="col">合計</th>
                       </tr>
                     </thead>
@@ -178,16 +175,6 @@
                   </table>
                 </div>
               </div>
-
-              <!-- 分頁標籤 -->
-              <!-- <AdminOrdersPagination
-                v-if="totalPage > 1"
-                :current-page="currentPage"
-                :total-page="totalPage"
-                :current-order-status-id="currentOrderStatusId"
-                :current-payment-Status-id="currentPaymentStatusId"
-                :current-shipment-Status-id="currentShipmentStatusId"
-              />-->
             </div>
           </div>
         </div>
@@ -199,7 +186,6 @@
 <script>
 import AdminNavbar from "./../components/AdminNavbar";
 import AdminOrderList from "./../components/AdminOrderList";
-// import AdminOrdersPagination from "./../components/AdminOrdersPagination";
 import AdminAPI from "./../apis/admin";
 import Spinner from "./../components/Spinner";
 import { Toast } from "./../utils/helpers";
@@ -209,7 +195,6 @@ export default {
   components: {
     AdminNavbar,
     AdminOrderList,
-    // AdminOrdersPagination,
     Spinner
   },
   data() {
@@ -343,12 +328,28 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@mixin respond-between($lower, $upper, $font-size) {
+  @media screen and (min-width: $lower) and (max-width: $upper) {
+    font-size: $font-size;
+  }
+}
+
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
+  }
+}
+
 .container-fluid {
   margin-top: -92px;
   margin-left: -89px;
-  font-family: "DFKai-sb";
   width: 115%;
+  @include respond-and(768px) {
+    margin-top: 0px;
+    margin-left: -60px;
+    margin-bottom: 150px;
+  }
 }
 
 .btn-filter {
@@ -360,78 +361,56 @@ export default {
   color: white;
   text-align: center;
   width: 200px;
-}
-
-.btn-filter:hover {
-  background-color: #0c99bd;
-}
-
-.btn-filter:focus {
-  background-color: #0085a5;
-  color: white;
+  &:hover {
+    background-color: #0c99bd;
+  }
+  &:focus {
+    background-color: #0085a5;
+    color: white;
+  }
 }
 
 .nav-link {
   color: #0085a5;
-}
-
-.nav-link:hover {
-  color: white;
-  background-color: #0085a5;
-}
-
-.nav-link.active {
-  color: white;
-  background-color: #0085a5;
-}
-
-@media screen and (min-width: 960px) and (max-width: 1060px) {
-  .btn-select,
-  .dropdown-menu,
-  .btn,
-  .orders_table,
-  input,
-  li {
-    font-size: 14px;
+  &:hover {
+    color: white;
+    background-color: #0085a5;
+  }
+  &.active {
+    color: white;
+    background-color: #0085a5;
   }
 }
 
-@media screen and (min-width: 840px) and (max-width: 960px) {
-  .btn-select,
-  .dropdown-menu,
-  .btn,
-  .orders_table,
-  input,
-  li {
+.btn-select,
+.dropdown-menu,
+.btn,
+.orders_table,
+input,
+li {
+  @include respond-between(960px, 1100px, 14px);
+  @include respond-between(768px, 960px, 10px);
+  @include respond-and(768px) {
     font-size: 10px;
   }
 }
 
-@media screen and (max-width: 840px) {
-  .container-fluid {
-    margin-top: 0px;
-    margin-left: -60px;
-    margin-bottom: 150px;
-  }
-
-  .productmodel_orders {
-    margin-left: 0px;
-    width: 370px;
-  }
-
-  .btn-select,
-  .dropdown-menu,
-  .btn,
-  .orders_table,
-  input,
-  li {
-    font-size: 10px;
-  }
-
-  .payment-status,
-  .shipment-status,
-  .orderer {
+.payment-status,
+.shipment-status {
+  @include respond-and(768px) {
     display: none;
+  }
+}
+
+.navbar {
+  @include respond-and(768px) {
+    margin-left: 25px;
+  }
+}
+
+.card {
+  @include respond-and(768px) {
+    margin-left: -25px;
   }
 }
 </style>
