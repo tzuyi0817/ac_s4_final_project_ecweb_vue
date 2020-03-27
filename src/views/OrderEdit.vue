@@ -175,4 +175,10 @@ span,
     margin-top: 50px;
   }
 }
+
+.container {
+  @media screen and (max-width: 768px) {
+    margin-left: -30px;
+  }
+}
 </style>
