@@ -33,53 +33,27 @@
 import { mapState } from "vuex";
 
 export default {
+  data() {
+    return {
+      scrolled: false
+    };
+  },
   computed: {
     ...mapState(["cartItemNumber"])
   },
-  mounted() {
-    const cartNotice = document.querySelector(".cartNotice");
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  methods: {
+    handleScroll() {
+      const cartNotice = document.querySelector(".cartNotice");
 
-    window.addEventListener(
-      "scroll",
-      () => {
-        this.scrollTop =
-          document.documentElement.scrollTop ||
-          window.pageYOffset ||
-          document.body.scrollTop ||
-          document.querySelector(".element").scrollTop;
-
-        if (this.scrollTop > 450 && this.scrollTop < 900) {
-          cartNotice.style.top = "900px";
-        } else if (this.scrollTop > 900 && this.scrollTop < 1350) {
-          cartNotice.style.top = "1350px";
-        } else if (this.scrollTop > 1350 && this.scrollTop < 1800) {
-          cartNotice.style.top = "1800px";
-        } else if (this.scrollTop > 1800 && this.scrollTop < 2250) {
-          cartNotice.style.top = "2250px";
-        } else if (this.scrollTop > 2250 && this.scrollTop < 2700) {
-          cartNotice.style.top = "2700px";
-        } else if (this.scrollTop > 2700 && this.scrollTop < 3150) {
-          cartNotice.style.top = "3150px";
-        } else if (this.scrollTop > 3150 && this.scrollTop < 3600) {
-          cartNotice.style.top = "3600px";
-        } else if (this.scrollTop > 3600 && this.scrollTop < 4050) {
-          cartNotice.style.top = "4050px";
-        } else if (this.scrollTop > 4050 && this.scrollTop < 4500) {
-          cartNotice.style.top = "4500px";
-        } else if (this.scrollTop > 4500 && this.scrollTop < 4950) {
-          cartNotice.style.top = "4950px";
-        } else if (this.scrollTop > 4950 && this.scrollTop < 5400) {
-          cartNotice.style.top = "5400px";
-        } else if (this.scrollTop > 5400 && this.scrollTop < 5850) {
-          cartNotice.style.top = "5850px";
-        } else if (this.scrollTop > 5850 && this.scrollTop < 6300) {
-          cartNotice.style.top = "6300px";
-        } else {
-          cartNotice.style.top = "450px";
-        }
-      },
-      true
-    );
+      this.scrolled = window.scrollY > 0;
+      let scroll = window.scrollY;
+      if (scroll > 250) {
+        cartNotice.style.top = `${scroll + 200}px`;
+      }
+    }
   }
 };
 </script>
@@ -123,6 +97,11 @@ p {
   position: absolute;
   border: 1px;
   border-color: #000000;
+  -moz-transition: all 1.5s;
+  -webkit-transition: all 1.5s;
+  -ms-transition: all 1.5s;
+  -o-transition: all 1.5s;
+  transition: all 1.5s;
   @include respond-between(960px, 1100px) {
     width: 8%;
   }
