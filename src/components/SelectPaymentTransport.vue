@@ -81,7 +81,7 @@
                     class="payment"
                     type="radio"
                     name="paymentType"
-                    value="1"
+                    value="2"
                     disabled
                   />&nbsp;線上支付
                 </label>
@@ -111,7 +111,7 @@
         <!--先將cardId儲存起來-->
         <input type="hidden" name="amount" :value="totalPrice" />
         <!--先將totalPrice儲存起來-->
-        <input v-if="coupon" type="hidden" name="couponId" :value="couponId" />
+        <input v-if="couponId" type="hidden" name="couponId" :value="couponId" />
         <input type="hidden" name="shipping_status" value="0" />
         <input type="hidden" name="payment_status" value="0" />
         <input type="hidden" name="StoreId" :value="user.StoreId" />
@@ -140,8 +140,7 @@ export default {
       default: -1
     },
     couponId: {
-      type: Number,
-      default: -1
+      type: Number
     }
   },
   data() {

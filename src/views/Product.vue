@@ -20,7 +20,7 @@
       <hr class="col-10" />
 
       <!-- 商品規格 -->
-      <ProductSpecifications :initial-product="product" :key="product.id" />
+      <ProductSpecifications :initial-product="product" :key="'spec-' + product.id" />
 
       <!-- 商品詳情 -->
       <ProductDetails :initial-product="product" :key="product.id" />

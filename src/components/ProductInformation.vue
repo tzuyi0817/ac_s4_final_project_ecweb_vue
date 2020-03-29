@@ -298,19 +298,21 @@ export default {
     }
   },
   mounted() {
-    const modal = document.querySelector(".modal");
-    const btn = document.querySelector(".notice");
-    const span = document.querySelector(".close");
+    if (this.product.count === 0) {
+      const modal = document.querySelector(".modal");
+      const btn = document.querySelector(".notice");
+      const span = document.querySelector(".close");
 
-    // When the user clicks the button, open the modal
-    btn.onclick = () => {
-      modal.style.display = "block";
-    };
+      // When the user clicks the button, open the modal
+      btn.onclick = () => {
+        modal.style.display = "block";
+      };
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = () => {
-      modal.style.display = "none";
-    };
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = () => {
+        modal.style.display = "none";
+      };
+    }
   }
 };
 </script>

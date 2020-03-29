@@ -48,10 +48,12 @@ export default {
     handleScroll() {
       const cartNotice = document.querySelector(".cartNotice");
 
-      this.scrolled = window.scrollY > 0;
-      let scroll = window.scrollY;
-      if (scroll > 250) {
-        cartNotice.style.top = `${scroll + 200}px`;
+      if (cartNotice) {
+        this.scrolled = window.scrollY > 0;
+        let scroll = window.scrollY;
+        if (scroll > 250) {
+          cartNotice.style.top = `${scroll + 200}px`;
+        }
       }
     }
   }

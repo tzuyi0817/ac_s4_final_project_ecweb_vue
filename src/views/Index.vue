@@ -113,7 +113,6 @@ export default {
     this.fetchCategories();
     this.play();
   },
-  computed: {},
   methods: {
     async fetchCategories() {
       try {
