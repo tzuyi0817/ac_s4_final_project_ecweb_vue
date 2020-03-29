@@ -23,7 +23,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'index',
+      name: 'root',
       redirect: '/index'
     },
     {
@@ -185,12 +185,19 @@ const router = new Router({
 
 router.beforeEach(async (to, from, next) => {
   const tokenInLocalStorage = localStorage.getItem('token')
+  const cartItemNumberInLocalStorage = localStorage.getItem('cartItemNumber')
   const tokenInStore = store.state.token
   let isAuthenticated = store.state.isAuthenticated
+
 
   // 比較 localStorage 和 store 中的 token 是否一樣
   if (tokenInLocalStorage && tokenInLocalStorage !== tokenInStore) {
     isAuthenticated = await store.dispatch('fetchCurrentUser')
+  }
+
+  // 刷新頁面從 localStorage 取出 cartItemNumber
+  if (cartItemNumberInLocalStorage) {
+    store.dispatch('fetchCartItemNumber')
   }
 
   // 對於不需要驗證 token 的頁面

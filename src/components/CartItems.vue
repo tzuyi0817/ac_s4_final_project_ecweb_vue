@@ -93,7 +93,16 @@ export default {
           throw new Error(statusText);
         }
 
-        this.$store.commit("setCartItemNumber", -1);
+        let cartItemNumberInLocalStorage = Number(
+          localStorage.getItem("cartItemNumber")
+        );
+
+        if (cartItemNumberInLocalStorage > 0) {
+          cartItemNumberInLocalStorage -= 1;
+          localStorage.setItem("cartItemNumber", cartItemNumberInLocalStorage);
+        }
+
+        this.$store.commit("setCartItemNumber");
 
         this.reload();
       } catch (error) {
@@ -120,7 +129,14 @@ export default {
           throw new Error(statusText);
         }
 
-        this.$store.commit("setCartItemNumber", 1);
+        let cartItemNumberInLocalStorage = Number(
+          localStorage.getItem("cartItemNumber")
+        );
+
+        cartItemNumberInLocalStorage++;
+        localStorage.setItem("cartItemNumber", cartItemNumberInLocalStorage);
+
+        this.$store.commit("setCartItemNumber");
 
         this.reload();
       } catch (error) {
@@ -140,7 +156,16 @@ export default {
           throw new Error(statusText);
         }
 
-        this.$store.commit("setCartItemNumber", -quantity);
+        let cartItemNumberInLocalStorage = Number(
+          localStorage.getItem("cartItemNumber")
+        );
+
+        if (cartItemNumberInLocalStorage > 0) {
+          cartItemNumberInLocalStorage -= quantity;
+          localStorage.setItem("cartItemNumber", cartItemNumberInLocalStorage);
+        }
+
+        this.$store.commit("setCartItemNumber");
 
         Toast.fire({
           type: "success",

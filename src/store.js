@@ -24,10 +24,14 @@ export default new Vuex.Store({
     cartItemNumber: 0
   },
   mutations: {
-    setCartItemNumber(state, number) {
-      const cartItemNumber = state.cartItemNumber
-      if (cartItemNumber + number < 0) return state.cartItemNumber = 0
-      return state.cartItemNumber += number
+    setCartItemNumber(state) {
+      const localStorageNumber = Number(localStorage.getItem('cartItemNumber'))
+
+      if (localStorageNumber > 0) return state.cartItemNumber = localStorageNumber
+      else {
+        state.cartItemNumber = 0
+        localStorage.removeItem('cartItemNumber')
+      }
     },
     setCurrentUser(state, currentUser) {
       state.currentUser = {
@@ -49,6 +53,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    fetchCartItemNumber({ commit }) {
+      commit('setCartItemNumber')
+    },
     async fetchCurrentUser({ commit }) {
       try {
         // 呼叫 usersAPI.getCurrentUser() 方法，並將 response 顯示出來

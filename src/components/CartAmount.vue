@@ -25,8 +25,7 @@
 export default {
   props: {
     coupon: {
-      type: Object,
-      required: true
+      type: Object
     },
     totalPrice: {
       type: Number,

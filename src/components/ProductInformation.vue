@@ -266,7 +266,18 @@ export default {
           throw new Error(statusText);
         }
 
-        this.$store.commit("setCartItemNumber", this.qty);
+        let cartItemNumberInLocalStorage = Number(
+          localStorage.getItem("cartItemNumber")
+        );
+
+        if (cartItemNumberInLocalStorage > 0) {
+          cartItemNumberInLocalStorage += this.qty;
+          localStorage.setItem("cartItemNumber", cartItemNumberInLocalStorage);
+        } else {
+          localStorage.setItem("cartItemNumber", this.qty);
+        }
+
+        this.$store.commit("setCartItemNumber");
 
         this.isProcessing = false;
         // 加入購物車後
