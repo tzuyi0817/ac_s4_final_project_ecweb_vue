@@ -176,20 +176,19 @@ export default {
         }
 
         this.isProcessing = false;
+        localStorage.setItem("cartItemNumber", 0);
+        this.$store.commit("setCartItemNumber");
 
         Toast.fire({
           type: "success",
           title: "已成功建立訂單"
         });
 
-        this.$store.commit("setCartItemNumber", -1000);
-
         if (this.paymentType === "1") {
-          return this.$router.push(`order/${data.order.id}/payment`);
+          this.$router.push(`order/${data.order.id}/payment`);
         } else if (this.shipmentType === "2") {
-          return this.$router.push(`order/${data.order.id}/branchselection`);
-        }
-        return this.$router.push(`order/${data.order.id}/success`);
+          this.$router.push(`order/${data.order.id}/branchselection`);
+        } else this.$router.push(`order/${data.order.id}/success`);
       } catch (error) {
         this.isProcessing = false;
 
