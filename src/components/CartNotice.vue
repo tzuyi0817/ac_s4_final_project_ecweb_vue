@@ -5,7 +5,9 @@
         <tbody>
           <tr>
             <td class="cartImage">
-              <img src="https://trade.1111.com.tw/ProductImg/92/182392/182392_P_Pr9x5.jpg" />
+              <img
+                src="https://thumbs.dreamstime.com/b/d-man-shopping-cart-trolley-illustration-pushing-empty-metal-rendering-human-people-character-57785129.jpg"
+              />
               <br />
               <template v-if="cartItemNumber">
                 <div class="row" style="display: flex; justify-content: center;">
@@ -146,7 +148,7 @@ p {
   img {
     position: absolute;
     width: 100%;
-    margin-top: -100px;
+    margin-top: -110px;
     background-color: transparent;
     -webkit-margin-start: 20px;
     left: -19px;

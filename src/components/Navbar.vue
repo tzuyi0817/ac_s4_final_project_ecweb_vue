@@ -244,6 +244,11 @@ export default {
     width: 2px;
     style: solid;
   }
+  &:hover {
+    background-color: #d2f0f5;
+    color: #0085a5;
+    transition: all 0.3s ease-in-out;
+  }
   @include respond-between(960px, 1100px, 16px);
   @include respond-between(768px, 960px, 11px) {
     margin-right: 20px;
