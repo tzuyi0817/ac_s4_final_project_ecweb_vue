@@ -132,7 +132,8 @@ p {
   }
   &:hover {
     border: 1.5pt solid #0085a5;
-    background-color: rgba(210, 213, 216, 0.7);
+    background-color: #d2f0f5;
+    transition: all 0.3s ease-in-out;
   }
 }
 

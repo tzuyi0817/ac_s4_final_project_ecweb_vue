@@ -43,6 +43,7 @@
   color: black;
   &:hover {
     color: #0085a5;
+    transition: all 0.3s ease-in-out;
   }
 
   @include respond-between(960px, 1100px, 22px);

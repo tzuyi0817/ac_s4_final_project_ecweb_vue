@@ -192,7 +192,6 @@ export default {
 
 .list-group-item {
   background-color: #0085a5;
-
   @include respond-between(960px, 1100px, 15px);
   @include respond-between(768px, 960px, 10px);
   @include respond-and(768px) {
@@ -202,7 +201,6 @@ export default {
 
 .content {
   font-size: 30px;
-
   @include respond-between(960px, 1100px, 25px);
   @include respond-between(768px, 960px, 18px);
   @include respond-and(768px) {
@@ -228,7 +226,8 @@ export default {
   cursor: pointer;
   opacity: 0.2;
   &:hover {
-    opacity: 1;
+    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
   }
 }
 
@@ -280,6 +279,9 @@ span {
   border-radius: 5px;
   &:hover {
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    background: #0085a5;
+    color: white;
   }
   @include respond-between(960px, 1100px, 15px);
   @include respond-between(768px, 960px, 10px);

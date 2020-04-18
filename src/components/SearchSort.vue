@@ -107,7 +107,7 @@ export default {
 
 .search-sort {
   font-weight: 400;
-  background: #d2f0f5;
+  background: linear-gradient(-40deg, #d2f0f5, #abe3ed) !important;
   padding: 0.8125rem 1.25rem;
   border-radius: 2px;
   display: flex;
@@ -126,6 +126,7 @@ export default {
 %hover-style {
   background-color: #0085a5;
   color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 .search {

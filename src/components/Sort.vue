@@ -99,7 +99,7 @@ export default {
 
 .search-sort {
   font-weight: 400;
-  background: #d2f0f5;
+  background: linear-gradient(-40deg, #d2f0f5, #abe3ed) !important;
   padding: 0.8125rem 1.25rem;
   border-radius: 2px;
   display: flex;
@@ -132,6 +132,7 @@ export default {
   &:hover {
     background-color: #0085a5;
     color: white;
+    transition: all 0.3s ease-in-out;
     @include respond-between(960px, 1100px, 15px);
     @include respond-between(768px, 960px, 10px);
     @include respond-and(768px) {
@@ -146,6 +147,7 @@ export default {
   color: white;
   font-size: 18px;
   margin-left: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 .search-select {

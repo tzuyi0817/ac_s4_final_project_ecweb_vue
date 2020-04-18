@@ -54,6 +54,7 @@ export default {
   @include respond-between(768px, 960px, 10px);
   @include respond-and(768px, 15px);
   &-item:hover {
+    transition: all 0.3s ease-in-out;
     color: white;
     background-color: #0085a5;
   }

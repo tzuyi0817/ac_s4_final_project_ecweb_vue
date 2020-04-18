@@ -4,7 +4,7 @@
       :to="{ name: 'product', params: { id: product.id }}"
       style="text-decoration: none; color: black;"
     >
-      <div class="card shadow-sm">
+      <div class="card shadow">
         <img
           class="card-img-top"
           :src="product.image"
@@ -68,8 +68,10 @@ export default {
 
 .card {
   margin-bottom: 1rem !important;
+  transition: all 0.3s ease-in-out;
+  top: 0;
+  left: 0;
   &:hover {
-    box-shadow: 0 16px 22px 0 rgba(90, 91, 95, 0.3);
     top: -5px;
   }
 }

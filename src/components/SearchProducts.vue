@@ -4,7 +4,7 @@
       :to="{ name: 'product', params: { id: product.id }}"
       style="text-decoration: none; color: black;"
     >
-      <div class="card shadow-sm">
+      <div class="card shadow">
         <img
           class="card-img-top"
           :src="product.image"
@@ -63,8 +63,10 @@ export default {
 
 .card {
   margin-bottom: 1rem !important;
+  transition: all 0.3s ease-in-out;
+  top: 0;
+  left: 0;
   &:hover {
-    box-shadow: 0 16px 22px 0 rgba(90, 91, 95, 0.3);
     top: -5px;
   }
 }
@@ -107,55 +109,4 @@ p {
 .price {
   margin-right: 30px;
 }
-
-// @media screen and (min-width: 960px) and (max-width: 1290px) {
-//   .price {
-//     margin-right: 20px;
-//   }
-
-//   img {
-//     height: 135px;
-//   }
-
-//   .card {
-//     width: 145px;
-//   }
-// }
-
-// @media screen and (min-width: 768px) and (max-width: 960px) {
-//   .price {
-//     margin-right: 15px;
-//   }
-
-//   img {
-//     height: 90px;
-//   }
-
-//   .card {
-//     width: 125px;
-//   }
-// }
-
-// @media screen and (max-width: 768px) {
-//   .products {
-//     margin-left: -25px;
-//   }
-
-//   .card-header {
-//     height: auto;
-//   }
-
-//   .card-body {
-//     height: 3rem;
-//   }
-
-//   .card {
-//     width: 250px;
-//   }
-
-//   img {
-//     height: 150px;
-//   }
-// }
-//
 </style>

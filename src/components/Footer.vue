@@ -63,7 +63,7 @@ p {
 footer {
   padding: 20px 0;
   text-align: center;
-  background-color: #d2f0f5;
+  background: linear-gradient(-40deg, #d2f0f5, #abe3ed) !important;
   color: #0085a5;
 }
 

@@ -97,7 +97,6 @@
 </template>
 
 <script>
-// import NavTabs from "./../components/NavTabs";
 import ProductInformation from "./../components/ProductInformation";
 import ProductSpecifications from "./../components/ProductSpecifications";
 import ProductDetails from "./../components/ProductDetails";
@@ -276,7 +275,7 @@ hr {
 }
 
 .card-header {
-  background-color: #d2f0f5;
+  background: linear-gradient(-40deg, #d2f0f5, #abe3ed) !important;
   margin-left: 60px;
   @include respond-and(768px) {
     margin-left: 25px;

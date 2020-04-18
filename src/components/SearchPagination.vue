@@ -100,6 +100,7 @@ export default {
 %hover-style {
   color: white;
   background-color: #0085a5;
+  transition: all 0.3s ease-in-out;
 }
 
 .page-link {

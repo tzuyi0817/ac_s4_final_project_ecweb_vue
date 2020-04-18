@@ -99,10 +99,11 @@ export default {
 %hover {
   background-color: #3ac4e2;
   color: white;
+  transition: all 0.3s ease-in-out;
 }
 
 .navbar {
-  background-color: #d2f0f5;
+  background: linear-gradient(-40deg, #d2f0f5, #abe3ed) !important;
   padding: 20px;
   &-title {
     font-family: "Pacifico", cursive;
@@ -186,6 +187,7 @@ export default {
 }
 
 .btn-outline-success {
+  transition: all 0.3s ease-in-out;
   @include respond-between(960px, 1100px, 18px);
   @include respond-between(768px, 960px, 13px);
   @include respond-and(768px) {
