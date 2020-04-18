@@ -211,6 +211,7 @@ h1 {
 a:hover,
 .tab.active a {
   color: #0085a5;
+  transition: all 0.3s ease-in-out;
 }
 
 .tab.active {
@@ -280,6 +281,7 @@ input.submit {
   &:hover {
     background-color: #0085a5;
     color: #d9d9d9;
+    transition: all 0.3s ease-in-out;
   }
 }
 

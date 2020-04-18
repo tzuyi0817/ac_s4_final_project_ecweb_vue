@@ -4,10 +4,13 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import '@fortawesome/fontawesome-free/css/all.css'
+import { BootstrapVue } from 'bootstrap-vue'
 
 Vue.config.productionTip = false
 
 axios.defaults.withCredentials = true
+
+Vue.use(BootstrapVue)
 
 new Vue({
   router,

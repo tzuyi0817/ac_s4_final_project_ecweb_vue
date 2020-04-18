@@ -11,6 +11,7 @@
 <script>
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -52,6 +53,9 @@ export default {
   margin: {
     top: 180px;
     left: 90px;
+  }
+  @media screen and (max-width: 768px) {
+    margin-top: 150px;
   }
 }
 </style>

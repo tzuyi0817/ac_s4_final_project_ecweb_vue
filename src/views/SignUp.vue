@@ -306,6 +306,7 @@ input.submit {
     height: 50px;
   }
   &:hover {
+    transition: all 0.3s ease-in-out;
     background-color: #0085a5;
     color: #d9d9d9;
   }

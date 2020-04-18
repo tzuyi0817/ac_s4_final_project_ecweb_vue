@@ -32,7 +32,6 @@
   font-family: "Long Cang", cursive;
   @include respond-and(768px) {
     margin: {
-      top: 30px;
       left: -20px;
     }
   }

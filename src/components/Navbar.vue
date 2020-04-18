@@ -1,57 +1,141 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg fixed-top navbar-light"
-    style="display:flex; justify-content: center;"
-  >
-    <router-link class="navbar-title btn" to="/">MuseClub</router-link>
+  <div>
+    <nav class="navbar navbar-expand-md fixed-top navbar-light" style="display:flex;">
+      <div class="col-2">
+        <router-link class="navbar-title btn" to="/">MuseClub</router-link>
+      </div>
 
-    <!-- 搜尋  -->
-    <form @submit.prevent="handleSearch(keyword)">
-      <input
-        class="searchKeyword mr-1"
-        type="text"
-        id="keyword"
-        v-model="keyword"
-        name="keyword"
-        placeholder="請輸入 商品 關鍵字"
-      />
-      <button class="searchBtn" type="submit">
-        <span class="fa fa-search ml-1">&nbsp;搜尋商品&nbsp;</span>
-      </button>
-    </form>
+      <!-- 搜尋  -->
+      <div class="nav-search-box col-6">
+        <form @submit.prevent="handleSearch(keyword)">
+          <input
+            class="searchKeyword mr-1"
+            type="text"
+            id="keyword"
+            v-model="keyword"
+            name="keyword"
+            placeholder="請輸入 商品 關鍵字"
+          />
+          <button class="searchBtn" type="submit">
+            <span class="fa fa-search">&nbsp;搜尋商品&nbsp;</span>
+          </button>
+        </form>
+      </div>
 
-    <!-- cart -->
-    <div class="cartIcon">
-      <router-link to="/cart" class="nav-logo btn">
-        <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
-        <div v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</div>
-      </router-link>
-    </div>
+      <div class="icon-md row">
+        <router-link to="/cart" class="nav-logo btn">
+          <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
+          <div v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</div>
+        </router-link>
 
-    <!-- profile -->
-    <div class="user" v-if="isAuthenticated">
-      <router-link :to="{name: 'UserProfile', params: { id: currentUser.id }}" class="nav-logo btn">
-        <img class="navAvatar" :src="currentUser.image" />
-      </router-link>
-    </div>
-    <div class="login" v-else>
-      <router-link to="/users/logIn?redirect=/" class="nav-logo btn">
-        <i class="fas fa-user"></i> 登入會員
-      </router-link>
-    </div>
+        <div class="search-icon">
+          <b-button v-b-toggle.collapse-2 class="fa fa-search nav-logo"></b-button>
+        </div>
+      </div>
 
-    <!-- admin -->
-    <div class="admin mr-2" v-if="currentUser.role === 1">
-      <router-link to="/admin/index" class="nav-logo btn">
-        <i class="fas fa-tasks"></i>
-      </router-link>
-    </div>
+      <div class="toggler">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          @click.prevent.stop="checked"
+        >
+          <span class="navbar-toggler-icon" />
+        </button>
+      </div>
 
-    <!-- logout -->
-    <div class="logout" v-if="isAuthenticated">
-      <button class="btn btn-outline-success my-2 my-sm-0" @click="logout">登出</button>
-    </div>
-  </nav>
+      <div id="navbarSupportedContent" class="navbar-collapse collapse">
+        <div class="ml-auto d-flex align-items-center">
+          <!-- cart -->
+          <div class="cartIcon">
+            <router-link to="/cart" class="nav-logo btn">
+              <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
+              <div v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</div>
+            </router-link>
+          </div>
+
+          <!-- profile -->
+          <div class="user" v-if="isAuthenticated">
+            <router-link
+              :to="{name: 'UserProfile', params: { id: currentUser.id }}"
+              class="nav-logo btn"
+            >
+              <img class="navAvatar" :src="currentUser.image" />
+            </router-link>
+          </div>
+          <div class="login" v-else>
+            <router-link to="/users/logIn?redirect=/" class="nav-logo btn">
+              <i class="fas fa-user"></i> 登入會員
+            </router-link>
+          </div>
+
+          <!-- admin -->
+          <div class="admin mr-2" v-if="currentUser.role === 1">
+            <router-link to="/admin/index" class="nav-logo btn">
+              <i class="fas fa-tasks"></i>
+            </router-link>
+          </div>
+
+          <!-- logout -->
+          <div class="logout" v-if="isAuthenticated">
+            <button class="btn btn-outline-success my-2 my-sm-0" @click="logout">登出</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <b-collapse id="collapse-2" style="margin-top: 80px; text-align: center;">
+      <b-card>
+        <form @submit.prevent="handleSearch(keyword)" class="mt-2">
+          <input
+            class="searchKeyword mr-1"
+            type="text"
+            id="keyword"
+            v-model="keyword"
+            name="keyword"
+            placeholder="請輸入 商品 關鍵字"
+          />
+          <button class="searchBtn" type="submit">
+            <span class="fa fa-search">&nbsp;搜尋商品&nbsp;</span>
+          </button>
+        </form>
+      </b-card>
+    </b-collapse>
+
+    <ul v-show="open" class="checked-nav">
+      <li @click.prevent.stop="checked">
+        <div class="user" v-if="isAuthenticated">
+          <router-link
+            :to="{name: 'UserProfile', params: { id: currentUser.id }}"
+            class="nav-logo btn"
+          >
+            <img class="navAvatar" :src="currentUser.image" />
+          </router-link>
+        </div>
+        <div class="login" v-else>
+          <router-link to="/users/logIn?redirect=/" class="nav-logo btn">
+            <i class="fas fa-user"></i> 登入會員
+          </router-link>
+        </div>
+      </li>
+
+      <li @click.prevent.stop="checked">
+        <router-link to="/admin/index" class="nav-logo btn">
+          <i class="fas fa-tasks"></i>
+        </router-link>
+      </li>
+
+      <li @click.prevent.stop="checked">
+        <div class="logout" v-if="isAuthenticated">
+          <button class="btn btn-outline-success my-2 my-sm-0" @click="logout">登出</button>
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -60,7 +144,8 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      keyword: ""
+      keyword: "",
+      open: false
     };
   },
   computed: {
@@ -75,6 +160,9 @@ export default {
     logout() {
       this.$store.commit("revokeAuthentication");
       this.$router.push("/users/logIn");
+    },
+    checked() {
+      this.open = !this.open;
     }
   }
 };
@@ -100,6 +188,10 @@ export default {
   background-color: #3ac4e2;
   color: white;
   transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon {
+  color: #0085a5;
 }
 
 .navbar {
@@ -133,9 +225,6 @@ export default {
   color: #0085a5;
   @include respond-between(960px, 1100px, 18px);
   @include respond-between(768px, 960px, 13px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
   &:hover {
     @extend %hover;
   }
@@ -167,16 +256,15 @@ export default {
 }
 
 .searchKeyword {
-  width: 350px;
+  width: 325px;
   @include respond-between(960px, 1100px, 18px) {
-    width: 300px;
-  }
-  @include respond-between(768px, 960px, 13px) {
     width: 250px;
   }
+  @include respond-between(768px, 960px, 13px) {
+    width: 190px;
+  }
   @include respond-and(768px) {
-    width: 230px;
-    font-size: 15px;
+    width: 250px;
   }
 }
 
@@ -192,6 +280,47 @@ export default {
   @include respond-between(768px, 960px, 13px);
   @include respond-and(768px) {
     font-size: 15px;
+  }
+}
+
+.nav-search-box {
+  display: flex;
+  justify-content: center;
+  @include respond-and(768px) {
+    display: none;
+  }
+}
+
+.icon-md {
+  margin-left: 60px;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.fa-search {
+  background: transparent;
+  border: none;
+  margin-top: 7px;
+}
+
+.checked-nav {
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -78px;
+  margin-right: 15px;
+  list-style-type: none;
+  width: 100%;
+  padding: 15px 0 0;
+  text-align: center;
+  background: white;
+  right: 0;
+  border: 0.2px solid rgb(185, 179, 179);
+  li {
+    margin-top: 5px;
+    padding: 10px;
   }
 }
 </style>
