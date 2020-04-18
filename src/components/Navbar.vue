@@ -124,13 +124,15 @@
       </li>
 
       <li @click.prevent.stop="checked">
-        <router-link to="/admin/index" class="nav-logo btn">
-          <i class="fas fa-tasks"></i>
-        </router-link>
+        <div class="admin mr-2" v-if="currentUser.role === 1">
+          <router-link to="/admin/index" class="nav-logo btn">
+            <i class="fas fa-tasks"></i>
+          </router-link>
+        </div>
       </li>
 
       <li @click.prevent.stop="checked">
-        <div class="logout" v-if="isAuthenticated">
+        <div class="logout mt-1" v-if="isAuthenticated">
           <button class="btn btn-outline-success my-2 my-sm-0" @click="logout">登出</button>
         </div>
       </li>
