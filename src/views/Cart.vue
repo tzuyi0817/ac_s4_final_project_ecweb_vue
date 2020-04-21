@@ -69,7 +69,10 @@
         <!-- 未登入 -->
         <template v-if="!isAuthenticated">
           <p class="col">&nbsp;</p>
-          <router-link to="/users/logIn?redirect=cart" class="btn btn-select mt-4">前往選擇付款及運送方式</router-link>
+
+          <div @click.prevent.stop="handlePrompt">
+            <router-link to="/users/logIn?redirect=cart" class="btn btn-select mt-4">前往選擇付款及運送方式</router-link>
+          </div>
         </template>
 
         <!-- 已登入 -->
@@ -159,6 +162,12 @@ export default {
           title: "無法取得購物車資料，請稍後再試"
         });
       }
+    },
+    handlePrompt() {
+      Toast.fire({
+        type: "warning",
+        title: "請先登入會員，即可繼續後續購物流程"
+      });
     }
   }
 };

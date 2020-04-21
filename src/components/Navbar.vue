@@ -82,7 +82,7 @@
 
           <!-- logout -->
           <div class="logout" v-if="isAuthenticated">
-            <button class="btn btn-outline-success my-2 my-sm-0" @click="logout">登出</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" @click.prevent.stop="logout">登出</button>
           </div>
         </div>
       </div>
