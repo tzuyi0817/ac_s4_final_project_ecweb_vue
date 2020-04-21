@@ -2,7 +2,9 @@
   <div id="ec-web">
     <Navbar />
     <main role="main" class="main">
-      <router-view v-if="isRouterAlive" />
+      <transition :name="transitionName">
+        <router-view v-if="isRouterAlive" class="child-view" />
+      </transition>
     </main>
     <Footer />
   </div>
@@ -28,7 +30,8 @@ export default {
   },
   data() {
     return {
-      isRouterAlive: true
+      isRouterAlive: true,
+      transitionName: "slide-left"
     };
   },
   methods: {
@@ -37,6 +40,13 @@ export default {
       this.$nextTick(() => {
         this.isRouterAlive = true;
       });
+    }
+  },
+  watch: {
+    $route(to, from) {
+      const toDepth = to.path.split("/").length;
+      const fromDepth = from.path.split("/").length;
+      this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
     }
   }
 };
@@ -57,5 +67,23 @@ export default {
   @media screen and (max-width: 768px) {
     margin-top: 150px;
   }
+}
+
+.child-view {
+  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+  opacity: 0;
+  -webkit-transform: translate(30px, 0);
+  transform: translate(30px, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+  opacity: 0;
+  -webkit-transform: translate(-30px, 0);
+  transform: translate(-30px, 0);
 }
 </style>

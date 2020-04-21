@@ -297,20 +297,13 @@ span {
 }
 
 // vue動畫
-.fade {
-  &-enter {
-    opacity: 0;
-    &-active {
-      transition: opacity 1.3s ease;
-    }
-  }
-  &-leave {
-    &-to {
-      opacity: 0;
-    }
-    &-active {
-      transition: opacity 1.3s ease;
-    }
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

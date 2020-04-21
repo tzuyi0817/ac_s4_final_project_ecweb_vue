@@ -2,20 +2,22 @@
   <div class="product">
     <Spinner v-if="isLoading" />
     <template v-else>
-      <div class="row mt-5 col-12">
-        <!-- 商品圖片 -->
-        <div class="index col-md-4 mb-5">
-          <img :src="product.image" width="100%" alt="image" />
-        </div>
+      <transition name="fade" mode="out-in">
+        <div v-if="show" class="row mt-5 col-12">
+          <!-- 商品圖片 -->
+          <div class="index col-md-4 mb-5">
+            <img :src="product.image" width="100%" alt="image" />
+          </div>
 
-        <!-- 商品資訊 -->
-        <ProductInformation
-          :initial-product="product"
-          :key="product.id"
-          :Comments="Comments"
-          :ratingAve="ratingAve"
-        />
-      </div>
+          <!-- 商品資訊 -->
+          <ProductInformation
+            :initial-product="product"
+            :key="product.id"
+            :Comments="Comments"
+            :ratingAve="ratingAve"
+          />
+        </div>
+      </transition>
 
       <hr class="col-10" />
 
@@ -33,32 +35,42 @@
         <h5>商品評價</h5>
       </div>
 
-      <div class="comment-content mt-5">
-        <div class="card-header col-md-9 col-10 mt-3">
-          <div class="comment row">
-            <!-- 無評價 -->
-            <p v-if="Comments.length === 0" class="ml-1 mt-4 mr-4" style="color: orange;">0 / 5</p>
-            <!-- 有評價 -->
-            <p v-else class="ml-1 mt-4 mr-4" style="color: orange;">{{ratingAve}} / 5</p>
-            <p class="mt-4 ml-1" style="color: #0085a5;">| 共有 {{Comments.length}} 則評價</p>
-          </div>
+      <transition name="fade" mode="out-in">
+        <div v-if="show" class="comment-content mt-5">
+          <div class="card-header col-md-9 col-10 mt-3">
+            <div class="comment row">
+              <!-- 無評價 -->
+              <p v-if="Comments.length === 0" class="ml-1 mt-4 mr-4" style="color: orange;">0 / 5</p>
+              <!-- 有評價 -->
+              <p v-else class="ml-1 mt-4 mr-4" style="color: orange;">{{ratingAve}} / 5</p>
+              <p class="mt-4 ml-1" style="color: #0085a5;">| 共有 {{Comments.length}} 則評價</p>
+            </div>
 
-          <!-- 商品平均評分 -->
-          <div class="ml-3 mb-4">
-            <span class="stars d-flex align-items-center ml-1">
-              <span class="star" :inner-html.prop="ratingAve | star"></span>
-            </span>
+            <!-- 商品平均評分 -->
+            <div class="ml-3 mb-4">
+              <span class="stars d-flex align-items-center ml-1">
+                <span class="star" :inner-html.prop="ratingAve | star"></span>
+              </span>
+            </div>
           </div>
+          <!-- 商品評論 -->
+          <ProductReview
+            :comments-pagination="commentsPagination"
+            @after-delete-comment="afterDeleteComment"
+          />
         </div>
-        <!-- 商品評論 -->
-        <ProductReview
-          :comments-pagination="commentsPagination"
-          @after-delete-comment="afterDeleteComment"
-        />
-      </div>
+      </transition>
 
       <!-- 評價分頁 -->
-      <commentPagination v-if="totalPage > 1" :current-page="currentPage" :total-page="totalPage" />
+      <transition name="fade" mode="out-in">
+        <template v-if="show">
+          <commentPagination
+            v-if="totalPage > 1"
+            :current-page="currentPage"
+            :total-page="totalPage"
+          />
+        </template>
+      </transition>
 
       <div
         class="no-comments mt-5"
@@ -81,14 +93,16 @@
       </div>
 
       <div class="similar-products-box mt-5 mb-5 col-md-10">
-        <div class="row">
-          <SimilarProducts
-            v-for="product in similarProducts"
-            :key="product.id"
-            :initial-similar-product="product"
-            :category-name="categoryName"
-          />
-        </div>
+        <transition name="fade" mode="out-in">
+          <div v-if="show" class="row">
+            <SimilarProducts
+              v-for="product in similarProducts"
+              :key="product.id"
+              :initial-similar-product="product"
+              :category-name="categoryName"
+            />
+          </div>
+        </transition>
       </div>
       <!-- 購物車通知 -->
       <CartNotice />
@@ -149,7 +163,8 @@ export default {
           name: ""
         }
       },
-      isLoading: true
+      isLoading: true,
+      show: false
     };
   },
   computed: {
@@ -170,6 +185,7 @@ export default {
   methods: {
     async fetchProduct({ productId, page }) {
       try {
+        this.show = false;
         const { data, statusText } = await categoriesAPI.getProduct({
           productId,
           page
@@ -203,6 +219,7 @@ export default {
           name: data.product.Product_category.name
         };
         this.isLoading = false;
+        this.show = true;
       } catch (error) {
         this.isLoading = false;
         Toast.fire({
@@ -344,5 +361,15 @@ p {
   @include respond-and(768px) {
     margin-left: -65px;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

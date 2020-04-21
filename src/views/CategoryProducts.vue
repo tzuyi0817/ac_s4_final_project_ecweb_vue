@@ -20,7 +20,9 @@
         <!-- 類別圖片 -->
         <div class="col-md-1"></div>
         <div class="index col-lg-8 col-md-7">
-          <img :src="category.image" width="75%" height="75%" alt="image" />
+          <transition name="fade" mode="out-in">
+            <img v-if="show" :src="category.image" width="75%" height="75%" alt="image" />
+          </transition>
         </div>
       </div>
 
@@ -41,24 +43,30 @@
         <!-- 商品 -->
         <div class="col-md-2"></div>
         <div class="all-products col-md-7 col-10">
-          <div class="row">
-            <Products
-              v-for="product in products"
-              :key="product.id"
-              :initial-product="product"
-              :category="category"
-            />
-          </div>
+          <transition name="fade" mode="out-in">
+            <div v-if="show" class="row">
+              <Products
+                v-for="product in products"
+                :key="product.id"
+                :initial-product="product"
+                :category="category"
+              />
+            </div>
+          </transition>
         </div>
       </div>
       <!-- 分頁標籤 RestaurantsPagination -->
-      <ProductsPagination
-        v-if="totalPage > 1"
-        :current-key="currentKey"
-        :current-value="currentValue"
-        :current-page="currentPage"
-        :total-page="totalPage"
-      />
+      <transition name="fade" mode="out-in">
+        <template v-if="show">
+          <ProductsPagination
+            v-if="totalPage > 1"
+            :current-key="currentKey"
+            :current-value="currentValue"
+            :current-page="currentPage"
+            :total-page="totalPage"
+          />
+        </template>
+      </transition>
 
       <div
         class="no-products mt-5"
@@ -104,7 +112,8 @@ export default {
       totalPage: -1,
       currentKey: "",
       currentValue: "",
-      isLoading: true
+      isLoading: true,
+      show: false
     };
   },
   created() {
@@ -122,6 +131,7 @@ export default {
   methods: {
     async fetchCategories({ categoryId, key, value, page }) {
       try {
+        this.show = false;
         const { data, statusText } = await categoriesAPI.getCategory({
           categoryId,
           key,
@@ -146,6 +156,7 @@ export default {
         this.currentPage = data.page;
         this.totalPage = data.totalPage.length;
         this.isLoading = false;
+        this.show = true;
       } catch (error) {
         this.isLoading = false;
         Toast.fire({
@@ -226,5 +237,15 @@ h4 {
   @include respond-and(768px) {
     margin-top: 30px;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
