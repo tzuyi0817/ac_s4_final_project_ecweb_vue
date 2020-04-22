@@ -34,7 +34,7 @@
       </div>
 
       <div class="footer-content mt-3">
-        <p>&copy; 2019 MuseClub | All Rights Reserved.</p>
+        <p>&copy; 2019-20 MuseClub | All Rights Reserved.</p>
       </div>
     </div>
   </footer>

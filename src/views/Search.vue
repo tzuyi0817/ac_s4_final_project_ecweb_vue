@@ -39,23 +39,29 @@
               :current-value="currentValue"
             />
             <!-- 商品 -->
-            <div class="col-10 col-sm-10 col-md-12 row">
-              <SearchProducts
-                v-for="product in products"
-                :key="product.id"
-                :initial-product="product"
-              />
-            </div>
+            <transition name="fade" mode="out-in">
+              <div v-if="show" class="col-10 col-sm-10 col-md-12 row">
+                <SearchProducts
+                  v-for="product in products"
+                  :key="product.id"
+                  :initial-product="product"
+                />
+              </div>
+            </transition>
           </div>
           <!-- 分頁標籤 RestaurantsPagination -->
-          <SearchPagination
-            v-if="totalPage > 1"
-            :current-keyword="currentKeyword"
-            :current-key="currentKey"
-            :current-value="currentValue"
-            :current-page="currentPage"
-            :total-page="totalPage"
-          />
+          <transition name="fade" mode="out-in">
+            <template v-if="show">
+              <SearchPagination
+                v-if="totalPage > 1"
+                :current-keyword="currentKeyword"
+                :current-key="currentKey"
+                :current-value="currentValue"
+                :current-page="currentPage"
+                :total-page="totalPage"
+              />
+            </template>
+          </transition>
         </div>
       </div>
       <!-- 購物車通知 -->
@@ -92,7 +98,8 @@ export default {
       currentValue: "",
       currentPage: 1,
       totalPage: -1,
-      isLoading: true
+      isLoading: true,
+      show: false
     };
   },
   created() {
@@ -108,6 +115,8 @@ export default {
   methods: {
     async fetchSearch({ keyword, key, value, page }) {
       try {
+        this.show = false;
+
         const { data, statusText } = await categoriesAPI.getSearch({
           keyword,
           key,
@@ -127,6 +136,7 @@ export default {
         this.currentPage = data.page;
         this.totalPage = data.totalPage.length;
         this.isLoading = false;
+        this.show = true;
       } catch (error) {
         this.isLoading = false;
         Toast.fire({
@@ -210,5 +220,15 @@ h5 {
   @include respond-and(768px) {
     margin-left: -25px;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
