@@ -1,18 +1,12 @@
 <template>
-  <div class="categories col-md-5 col-10">
+  <div class="col-lg-6 col-12">
     <div class="category-box mb-3">
       <router-link
         :to="{ name: 'category-products', params: { id: category.id }}"
         class="category-name"
       >
         <div class="card shadow">
-          <img
-            class="card-img-top mb-3"
-            :src="category.image"
-            alt="Card image cap"
-            width="80%"
-            height="80%"
-          />
+          <img class="card-img-top mb-3" :src="category.image" alt="Card image cap" width="100%" />
           <h6>{{category.name}}</h6>
         </div>
       </router-link>
@@ -37,18 +31,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-@mixin respond-and($upper) {
-  @media screen and (max-width: $upper) {
-    @content;
-  }
-}
-
 .category-name {
   text-decoration: none;
   &:hover {
@@ -60,12 +42,6 @@ export default {
 h6 {
   text-align: center;
   color: #0085a5;
-  font-size: 25px;
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
 }
 
 .category-box {

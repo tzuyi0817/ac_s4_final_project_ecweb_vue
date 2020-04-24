@@ -1,7 +1,7 @@
 <template>
   <div id="ec-web">
     <Navbar />
-    <main role="main" class="main">
+    <main role="main" class="container">
       <transition :name="transitionName">
         <router-view v-if="isRouterAlive" class="child-view" />
       </transition>
@@ -59,14 +59,8 @@ export default {
   font-family: "Noto Sans TC", sans-serif;
 }
 
-.main {
-  margin: {
-    top: 180px;
-    left: 90px;
-  }
-  @media screen and (max-width: 768px) {
-    margin-top: 150px;
-  }
+.container {
+  margin-top: 150px;
 }
 
 .child-view {

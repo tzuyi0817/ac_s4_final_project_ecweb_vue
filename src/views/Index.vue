@@ -2,56 +2,63 @@
   <div>
     <Spinner v-if="isLoading" />
     <template v-else>
-      <IndexTitle />
       <!-- NavTabs -->
-      <div class="row mt-5">
-        <div class="col-md-2 col-sm-9 col-9 mt-5">
-          <div class="nav flex-column">
-            <div class="list-group">
-              <router-link class="list-group-item list-group-item-action active" to="/">首頁</router-link>
-            </div>
+      <div class="row">
+        <div class="card col-lg-2">
+          <div class="card-header">
+            <p>全站分類</p>
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <router-link class="list-group-item list-group-item-action active" to="/">首頁</router-link>
 
             <NavTabs
               v-for="category in categories"
               :key="category.id"
               :initial-category="category"
             />
-          </div>
+          </ul>
         </div>
         <!-- 首頁圖片 -->
-        <div class="index col-md-10 row" @mouseover="stop()" @mouseout="move()">
-          <div class="prev" @click="prevHandler">&lsaquo;</div>
+        <div class="index col-lg-10">
+          <b-carousel
+            id="carousel-1"
+            v-model="slide"
+            :interval="4000"
+            controls
+            background="#ababab"
+            img-width="1024"
+            img-height="480"
+            style="text-shadow: 1px 1px 2px #333;"
+            @sliding-start="onSlideStart"
+            @sliding-end="onSlideEnd"
+          >
+            <b-carousel-slide v-for="image in images" :key="image.id" :text="image.text">
+              <template v-slot:img>
+                <img class="index-img" width="1024" :src="image.src" alt="image slot" />
+              </template>
+            </b-carousel-slide>
 
-          <transition name="fade" mode="out-in">
-            <img v-if="show" :src="images[currentIndex].src" width="80%" height="80%" alt="image" />
-          </transition>
-
-          <div class="next" @click="nextHandler">&rsaquo;</div>
+            <ol class="indicators">
+              <li
+                v-for="item in images"
+                :key="item.id"
+                :class="{ 'active' :item.id - 1 === slide }"
+                @click="oncChange(item.id - 1)"
+              >
+                <i class="fa fa-circle" aria-hidden="true"></i>
+              </li>
+            </ol>
+          </b-carousel>
         </div>
       </div>
-
-      <div class="bullet mb-5">
-        <span
-          v-for="item in images"
-          :class="{ 'active' :item.id -1 === currentIndex }"
-          :key="item.id"
-          @click="change(item.id - 1)"
-          @mouseover="stop()"
-          @mouseout="move()"
-        >{{item.id}}</span>
-      </div>
       <!-- 網站簡介和商品類別 -->
-      <div class="row">
-        <div class="empty col-md-2"></div>
+      <div class="row mt-3">
         <!-- 網站簡介 -->
-        <div class="col-md-10">
-          <div class="Introduction row d-flex mb-5 col-9">
-            <p
-              class="content"
-            >MuseClub是一間實體結合線上的餐酒館，在線上，我們提供你，南美莊園原豆、法國酒莊葡萄酒與台灣本地小農食材；在實體概念店，我們用我們的食材做成精美的料理，並每周舉辦料理工作坊將異國的食材，與自己做料理，成為你的生活風格</p>
-          </div>
+        <div class="col-12">
+          <IndexTitle />
           <!-- 商品類別 -->
-          <div class="row mb-5">
+          <div class="categories row">
             <IndexCategories
               v-for="category in categories"
               :key="category.id"
@@ -90,28 +97,36 @@ export default {
       images: [
         {
           id: 1,
+          text: "烘焙咖啡使咖啡生豆的化學與物理性質轉變為已烘焙的咖啡製品。",
           src:
-            "http://www.newsancai.com/wp-content/uploads/2018/04/20180412D-640x400.jpg"
+            "https://tshop.r10s.com/6c5/98a/16cf/7ab6/c022/392a/ec81/1198e787262c600c7376cd.jpg"
         },
         {
           id: 2,
+          text: "葡萄酒是用新鮮葡萄果實或葡萄汁，經過發酵釀製而成的酒精飲料。",
           src:
-            "https://cw1.tw/CH/images/channel_master/ffc08fce-a894-4f38-89d5-683375b41c31.jpg"
+            "https://storage.googleapis.com/winentaste-assets/images/article/special/special_uksaywine_vinotypesec_00.jpg"
         },
         {
           id: 3,
+          text:
+            "不使用化學合成農藥、化學合成肥料、基因改造生物、動物及植物生長調節劑等非天然物質的農產品。",
           src:
-            "https://www.walkerland.com.tw/image/poi/p78749/m60497/c3b71fe2f38ee676cded94d0e751a433bd648544.jpg"
+            "https://1.bp.blogspot.com/-CrzR_prJz4E/WnGVeBp9U8I/AAAAAAAAz04/SRo1-GPHS1AFxsF3KcoCbLBVTHipHELTgCLcBGAs/s1600/vegetables-343837_960_720.jpg"
+        },
+        {
+          id: 4,
+          src:
+            "https://jooshop.url.com.tw/website/uploads/website_225/zh-tw/prod_sort_imgs_518_0.jpg"
         }
       ],
-      currentIndex: 0,
-      timer: null,
-      show: true
+      show: true,
+      slide: 0,
+      sliding: null
     };
   },
   created() {
     this.fetchCategories();
-    this.play();
   },
   methods: {
     async fetchCategories() {
@@ -132,178 +147,90 @@ export default {
         });
       }
     },
-    nextHandler() {
-      this.currentIndex++;
-      if (this.currentIndex > 2) this.currentIndex = 0;
-      this.show = !this.show;
-      setTimeout(() => {
-        this.show = !this.show;
-      }, 1000);
+    onSlideStart() {
+      this.sliding = true;
     },
-
-    prevHandler() {
-      this.currentIndex--;
-      if (this.currentIndex < 0) this.currentIndex = 2;
-      this.show = !this.show;
-      setTimeout(() => {
-        this.show = !this.show;
-      }, 1000);
+    onSlideEnd() {
+      this.sliding = false;
     },
-    autoPlay() {
-      this.currentIndex++;
-      if (this.currentIndex > 2) this.currentIndex = 0;
-      this.show = !this.show;
-      setTimeout(() => {
-        this.show = !this.show;
-      }, 1000);
-    },
-    play() {
-      this.timer = setInterval(this.autoPlay, 4000);
-    },
-    change(i) {
-      this.currentIndex = i;
-      this.show = !this.show;
-      setTimeout(() => {
-        this.show = !this.show;
-      }, 1000);
-    },
-    stop() {
-      clearInterval(this.timer);
-    },
-    move() {
-      this.timer = setInterval(this.autoPlay, 4000);
+    oncChange(i) {
+      this.slide = i;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
+.card {
+  padding: 0;
 }
 
-@mixin respond-and($upper) {
-  @media screen and (max-width: $upper) {
-    @content;
-  }
+.card-header {
+  color: #0085a5;
 }
 
 .list-group-item {
   background-color: #0085a5;
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
+  font-size: 17px;
 }
 
-.content {
-  font-size: 30px;
-  @include respond-between(960px, 1100px, 25px);
-  @include respond-between(768px, 960px, 18px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
+.categories {
+  padding: 50px 0;
 }
 
-.Introduction {
-  margin-left: 12px;
-  white-space: normal;
-  font-family: "Long Cang", cursive;
-}
-
-%common {
-  width: 4%;
-  height: 80%;
+.indicators {
+  z-index: 15;
+  position: relative;
   display: flex;
-  align-items: center;
+  list-style-type: none;
   justify-content: center;
-  background: rgba(63, 64, 65, 0.7);
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  opacity: 0.2;
-  &:hover {
-    opacity: 0.8;
-    transition: all 0.3s ease-in-out;
+  align-items: flex-end;
+  margin-top: 46.5%;
+  margin-right: 40px;
+  li {
+    margin-right: 10px;
+    opacity: 0.3;
+    &:hover {
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      color: #0085a5;
+      opacity: 0.7;
+    }
+  }
+  .active {
+    color: #0085a5;
+    opacity: 0.7;
   }
 }
 
 .index {
-  display: flex;
-  align-items: center;
-  @include respond-and(768px) {
+  @media screen and (max-width: 992px) {
     margin-top: 20px;
   }
-  .prev {
-    @extend %common;
-    @include respond-between(960px, 1100px, 1.5rem);
-    @include respond-between(768px, 960px, 1.3rem);
-    @include respond-and(768px) {
-      font-size: 1rem;
-    }
-    @include respond-and(600px) {
-      font-size: 0.5rem;
-    }
-  }
-  .next {
-    @extend %common;
-    @include respond-between(960px, 1100px, 1.5rem);
-    @include respond-between(768px, 960px, 1.3rem);
-    @include respond-and(768px) {
-      font-size: 1rem;
-    }
-    @include respond-and(600px) {
-      font-size: 0.5rem;
-    }
-  }
 }
 
-.bullet {
-  display: flex;
-  justify-content: center;
-  margin-top: -15px;
-  @include respond-and(768px) {
-    margin-right: 100px;
-    margin-top: 0px;
+.index-img {
+  height: 480px;
+  @media screen and (min-width: 992px) and (max-width: 1200px) {
+    height: 450px;
   }
-}
-
-span {
-  background-color: rgba(210, 213, 216, 0.7);
-  color: rgba(63, 64, 65, 0.7);
-  padding: 8px 12px;
-  margin-left: 10px;
-  border-radius: 5px;
-  &:hover {
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    background: #0085a5;
-    color: white;
+  @media screen and (min-width: 768px) and (max-width: 992px) {
+    height: 371px;
   }
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 10px;
-    padding: 4px 6px;
+  @media screen and (min-width: 576px) and (max-width: 768px) {
+    height: 287px;
   }
-}
-
-.active {
-  background: #0085a5;
-  color: white;
-}
-
-// vue動畫
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1.3s ease;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+  @media screen and (min-width: 550px) and (max-width: 576px) {
+    height: 302px;
+  }
+  @media screen and (min-width: 500px) and (max-width: 550px) {
+    height: 287px;
+  }
+  @media screen and (min-width: 450px) and (max-width: 500px) {
+    height: 265px;
+  }
+  @media screen and (max-width: 450px) {
+    height: 242px;
+  }
 }
 </style>

@@ -1,0 +1,22 @@
+// transition
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.3s ease;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+p {
+  font-size: 16px;
+}
+
+h2 {
+  font-size: 35px;
+}
+
+h6 {
+  font-size: 20px;
+}
