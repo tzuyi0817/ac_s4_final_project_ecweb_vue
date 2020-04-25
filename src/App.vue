@@ -60,7 +60,7 @@ export default {
 }
 
 .container {
-  margin-top: 150px;
+  margin-top: 180px;
 }
 
 .child-view {

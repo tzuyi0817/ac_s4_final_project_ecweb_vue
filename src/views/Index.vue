@@ -27,15 +27,15 @@
             :interval="4000"
             controls
             background="#ababab"
-            img-width="1024"
-            img-height="480"
+            img-width="80vw"
+            img-height="50vh"
             style="text-shadow: 1px 1px 2px #333;"
             @sliding-start="onSlideStart"
             @sliding-end="onSlideEnd"
           >
             <b-carousel-slide v-for="image in images" :key="image.id" :text="image.text">
               <template v-slot:img>
-                <img class="index-img" width="1024" :src="image.src" alt="image slot" />
+                <img class="index-img" :src="image.src" alt="image slot" />
               </template>
             </b-carousel-slide>
 
@@ -185,7 +185,7 @@ export default {
   list-style-type: none;
   justify-content: center;
   align-items: flex-end;
-  margin-top: 46.5%;
+  margin-top: 48vh;
   margin-right: 40px;
   li {
     margin-right: 10px;
@@ -206,31 +206,24 @@ export default {
 .index {
   @media screen and (max-width: 992px) {
     margin-top: 20px;
+    padding: 0;
   }
 }
 
 .index-img {
-  height: 480px;
+  width: 60vw;
+  height: 55vh;
+  @media screen and (min-width: 1200px) and (max-width: 1550px) {
+    width: 77vw;
+  }
   @media screen and (min-width: 992px) and (max-width: 1200px) {
-    height: 450px;
+    width: 81vw;
   }
-  @media screen and (min-width: 768px) and (max-width: 992px) {
-    height: 371px;
+  @media screen and (min-width: 576px) and (max-width: 992px) {
+    width: 94vw;
   }
-  @media screen and (min-width: 576px) and (max-width: 768px) {
-    height: 287px;
-  }
-  @media screen and (min-width: 550px) and (max-width: 576px) {
-    height: 302px;
-  }
-  @media screen and (min-width: 500px) and (max-width: 550px) {
-    height: 287px;
-  }
-  @media screen and (min-width: 450px) and (max-width: 500px) {
-    height: 265px;
-  }
-  @media screen and (max-width: 450px) {
-    height: 242px;
+  @media screen and (max-width: 576px) {
+    width: 100vw;
   }
 }
 </style>

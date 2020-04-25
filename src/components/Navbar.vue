@@ -1,139 +1,204 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-md fixed-top navbar-light" style="display:flex;">
-      <div class="col-2">
-        <router-link class="navbar-title btn" to="/">MuseClub</router-link>
-      </div>
-
-      <!-- 搜尋  -->
-      <div class="nav-search-box col-6">
-        <form @submit.prevent="handleSearch(keyword)">
-          <input
-            class="searchKeyword mr-1"
-            type="text"
-            id="keyword"
-            v-model="keyword"
-            name="keyword"
-            placeholder="請輸入 商品 關鍵字"
-          />
-          <button class="searchBtn" type="submit">
-            <span class="fa fa-search">&nbsp;搜尋商品&nbsp;</span>
-          </button>
-        </form>
-      </div>
-
-      <div class="icon-md row">
-        <router-link to="/cart" class="nav-logo btn">
-          <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
-          <div v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</div>
-        </router-link>
-
-        <div class="search-icon">
-          <b-button v-b-toggle.collapse-2 class="fa fa-search nav-logo"></b-button>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light" style="display:flex;">
+      <div class="container">
+        <div class="navber-title-box col-lg-3 col-6">
+          <router-link class="navbar-title btn" to="/">MuseClub . 繆斯</router-link>
         </div>
-      </div>
 
-      <div class="toggler">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          @click.prevent.stop="checked"
-        >
-          <span class="navbar-toggler-icon" />
-        </button>
-      </div>
+        <!-- search -->
+        <div class="nav-search-box col-6">
+          <form @submit.prevent="handleSearch(keyword)" class="keyword">
+            <div class="input-group">
+              <input
+                class="form-control form-control-inline"
+                type="text"
+                id="keyword"
+                v-model="keyword"
+                name="keyword"
+                placeholder="請輸入 商品 關鍵字"
+                aria-label="Search"
+              />
+              <div class="input-group-append">
+                <button class="input-group-text searchBtn lighten-3" type="submit">
+                  <i class="fas fa-search text-grey" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
 
-      <div id="navbarSupportedContent" class="navbar-collapse collapse">
-        <div class="ml-auto d-flex align-items-center">
-          <!-- cart -->
-          <div class="cartIcon">
-            <router-link to="/cart" class="nav-logo btn">
-              <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
-              <div v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</div>
-            </router-link>
-          </div>
+        <!-- icon-lg -->
+        <div class="icon-lg">
+          <router-link to="/cart" class="nav-logo btn">
+            <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
+            <div v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</div>
+          </router-link>
 
-          <!-- profile -->
-          <div class="user" v-if="isAuthenticated">
-            <router-link
-              :to="{name: 'UserProfile', params: { id: currentUser.id }}"
-              class="nav-logo btn"
-            >
-              <img class="navAvatar" :src="currentUser.image" />
-            </router-link>
-          </div>
-          <div class="login" v-else>
-            <router-link to="/users/logIn?redirect=/" class="nav-logo btn">
-              <i class="fas fa-user"></i> 登入會員
-            </router-link>
-          </div>
+          <i class="fa fa-search nav-logo btn" @click.prevent.stop="checked"></i>
+        </div>
 
-          <!-- admin -->
-          <div class="admin mr-2" v-if="currentUser.role === 1">
-            <router-link to="/admin/index" class="nav-logo btn">
-              <i class="fas fa-tasks"></i>
-            </router-link>
-          </div>
+        <!-- sidebar -->
+        <div class="toggler">
+          <b-button
+            v-b-toggle.sidebar-right
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            @click.prevent.stop
+          >
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </b-button>
 
-          <!-- logout -->
-          <div class="logout" v-if="isAuthenticated">
-            <button class="btn btn-outline-success my-2 my-sm-0" @click.prevent.stop="logout">登出</button>
+          <b-sidebar id="sidebar-right" title="會員管理" right shadow>
+            <div class="sidebar-text px-3 py-2">
+              <!-- profile -->
+              <div class="user-sidebar" v-if="isAuthenticated">
+                <router-link
+                  :to="{name: 'UserProfile', params: { id: currentUser.id }}"
+                  class="account-item"
+                >
+                  <img class="navAvatar mr-1" :src="currentUser.image" />
+                </router-link>
+
+                <router-link
+                  :to="{name: 'UserProfile', params: { id: currentUser.id }}"
+                  class="account-item"
+                >
+                  <p class="account-item">我的帳號</p>
+                </router-link>
+              </div>
+
+              <!-- signup -->
+              <div v-else>
+                <div class="signup-sidebar">
+                  <router-link to="/users/signUp" class="account-item">
+                    <i class="fa fa-user-plus mr-2" aria-hidden="true"></i>
+                  </router-link>
+
+                  <router-link to="/users/signUp" class="account-item">
+                    <p>註冊</p>
+                  </router-link>
+                </div>
+
+                <!-- login -->
+                <div class="login-sidebar">
+                  <router-link to="/users/logIn?redirect=/" class="account-item"></router-link>
+                  <i class="fa fa-user mr-2" aria-hidden="true"></i>
+                  <router-link to="/users/logIn?redirect=/" class="account-item">
+                    <p>登入</p>
+                  </router-link>
+                </div>
+              </div>
+
+              <!-- admin -->
+              <div class="admin-sidebar" v-if="currentUser.role === 1">
+                <router-link to="/admin/index" class="account-item">
+                  <i class="fas fa-tasks mr-2 mt-1"></i>
+                </router-link>
+
+                <router-link to="/admin/index" class="account-item">
+                  <p class="admin-title">後台管理</p>
+                </router-link>
+              </div>
+
+              <!-- logout -->
+              <div class="logout-sidebar" v-if="isAuthenticated">
+                <i class="fa fa-share mr-2" aria-hidden="true" @click.prevent.stop="logout"></i>
+                <p class="account-item" @click.prevent.stop="logout">登出</p>
+              </div>
+            </div>
+          </b-sidebar>
+        </div>
+
+        <div id="navbarSupportedContent" class="navbar-collapse collapse">
+          <div class="ml-auto d-flex align-items-center">
+            <!-- cart -->
+            <div class="cartIcon">
+              <router-link to="/cart" class="nav-logo btn">
+                <i class="fa fa-shopping-cart mr-1" aria-hidden="true"></i>
+                <div v-if="cartItemNumber" class="badge badge-warning">{{cartItemNumber}}</div>
+                <p class="cart-title">購物車</p>
+              </router-link>
+            </div>
+
+            <!-- admin -->
+            <div class="admin mr-2" v-if="currentUser.role === 1">
+              <router-link to="/admin/index" class="nav-logo btn">
+                <i class="fas fa-tasks"></i>
+                <p class="admin-title">後台管理</p>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
     </nav>
 
-    <b-collapse id="collapse-2" style="margin-top: 80px; text-align: center;">
-      <b-card>
-        <form @submit.prevent="handleSearch(keyword)" class="mt-2">
-          <input
-            class="searchKeyword mr-1"
-            type="text"
-            id="keyword"
-            v-model="keyword"
-            name="keyword"
-            placeholder="請輸入 商品 關鍵字"
-          />
-          <button class="searchBtn" type="submit">
-            <span class="fa fa-search">&nbsp;搜尋商品&nbsp;</span>
-          </button>
-        </form>
-      </b-card>
-    </b-collapse>
+    <div class="navbar-account">
+      <div class="container">
+        <div class="account">
+          <!-- profile -->
+          <div class="user" v-if="isAuthenticated">
+            <router-link
+              :to="{name: 'UserProfile', params: { id: currentUser.id }}"
+              class="account-item"
+            >
+              <img class="navAvatar mr-1" :src="currentUser.image" />
+            </router-link>
 
+            <router-link
+              :to="{name: 'UserProfile', params: { id: currentUser.id }}"
+              class="account-item"
+            >
+              <p class="account-item">我的帳號</p>
+            </router-link>
+
+            <p class="account-mid">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+
+            <!-- logout -->
+            <p class="account-item" @click.prevent.stop="logout">登出</p>
+          </div>
+          <div class="login row" v-else>
+            <router-link to="/users/signUp" class="account-item">
+              <p>註冊</p>
+            </router-link>
+
+            <p class="account-mid">&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+
+            <router-link to="/users/logIn?redirect=/" class="account-item">
+              <p>登入</p>
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- search-checked -->
     <ul v-show="open" class="checked-nav">
-      <li @click.prevent.stop="checked">
-        <div class="user" v-if="isAuthenticated">
-          <router-link
-            :to="{name: 'UserProfile', params: { id: currentUser.id }}"
-            class="nav-logo btn"
-          >
-            <img class="navAvatar" :src="currentUser.image" />
-          </router-link>
-        </div>
-        <div class="login" v-else>
-          <router-link to="/users/logIn?redirect=/" class="nav-logo btn">
-            <i class="fas fa-user"></i> 登入會員
-          </router-link>
-        </div>
-      </li>
-
-      <li @click.prevent.stop="checked">
-        <div class="admin mr-2" v-if="currentUser.role === 1">
-          <router-link to="/admin/index" class="nav-logo btn">
-            <i class="fas fa-tasks"></i>
-          </router-link>
-        </div>
-      </li>
-
-      <li @click.prevent.stop="checked">
-        <div class="logout mt-1" v-if="isAuthenticated">
-          <button class="btn btn-outline-success my-2 my-sm-0" @click="logout">登出</button>
+      <li>
+        <div class="nav-search col-12">
+          <form @submit.prevent="handleSearch(keyword)" class="keyword">
+            <div class="input-group">
+              <input
+                class="form-control form-control-inline"
+                type="text"
+                id="keyword"
+                v-model="keyword"
+                name="keyword"
+                placeholder="請輸入 商品 關鍵字"
+                aria-label="Search"
+              />
+              <div class="input-group-append">
+                <button class="input-group-text searchBtn lighten-3" type="submit">
+                  <i class="fas fa-search text-grey" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </li>
     </ul>
@@ -142,6 +207,7 @@
 
 <script>
 import { mapState } from "vuex";
+import { Toast } from "./../utils/helpers";
 
 export default {
   data() {
@@ -161,6 +227,12 @@ export default {
     },
     logout() {
       this.$store.commit("revokeAuthentication");
+
+      Toast.fire({
+        type: "success",
+        title: "已成功登出"
+      });
+
       this.$router.push("/users/logIn");
     },
     checked() {
@@ -173,27 +245,21 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
 
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-    @content;
-  }
-}
-
-@mixin respond-and($upper) {
-  @media screen and (max-width: $upper) {
-    @content;
-  }
-}
-
 %hover {
   background-color: #3ac4e2;
   color: white;
   transition: all 0.3s ease-in-out;
 }
 
-.navbar-toggler-icon {
-  color: #0085a5;
+.navber-title-box {
+  padding: 0;
+}
+
+.nav-search-box {
+  padding: 0;
+  @media screen and (max-width: 992px) {
+    display: none;
+  }
 }
 
 .navbar {
@@ -203,19 +269,22 @@ export default {
     font-family: "Pacifico", cursive;
     color: #0085a5;
     font-size: 25px;
-    margin-right: 60px;
-    @include respond-between(960px, 1100px, 22px);
-    @include respond-between(768px, 960px, 17px) {
-      margin-right: 30px;
-    }
-    @include respond-and(768px) {
-      margin-right: 10px;
-    }
     &:hover {
       @extend %hover;
       text-decoration: none;
     }
+    @media screen and (max-width: 576px) {
+      font-size: 20px;
+    }
   }
+}
+
+.keyword {
+  width: 100%;
+}
+
+.form-control-inline {
+  font-size: 18px;
 }
 
 .navAvatar {
@@ -225,53 +294,30 @@ export default {
 
 .nav-logo {
   color: #0085a5;
-  @include respond-between(960px, 1100px, 18px);
-  @include respond-between(768px, 960px, 13px);
+  &:hover {
+    @extend %hover;
+  }
+  @media screen and (max-width: 576px) {
+    font-size: 16px;
+  }
+}
+
+.searchBtn {
+  cursor: pointer;
   &:hover {
     @extend %hover;
   }
 }
 
-.searchBtn {
-  background-color: #3ac4e2;
-  color: white;
-  cursor: pointer;
-  padding: 3px;
-  font-size: 18px;
-  line-height: 30px;
-  margin: 0 5px;
-  margin-right: 60px;
-  border: {
-    radius: 5px;
-    width: 2px;
-    style: solid;
-  }
-  &:hover {
-    background-color: #d2f0f5;
-    color: #0085a5;
-    transition: all 0.3s ease-in-out;
-  }
-  @include respond-between(960px, 1100px, 16px);
-  @include respond-between(768px, 960px, 11px) {
-    margin-right: 20px;
-  }
-  @include respond-and(768px) {
-    font-size: 10px;
-    padding: 0px;
-    margin-right: 0px;
-  }
+.cart-title,
+.admin-title,
+p {
+  margin-bottom: 0;
 }
 
-.searchKeyword {
-  width: 325px;
-  @include respond-between(960px, 1100px, 18px) {
-    width: 250px;
-  }
-  @include respond-between(768px, 960px, 13px) {
-    width: 190px;
-  }
-  @include respond-and(768px) {
-    width: 250px;
+.icon-lg {
+  @media screen and (min-width: 992px) {
+    display: none;
   }
 }
 
@@ -281,53 +327,74 @@ export default {
   color: gray;
 }
 
-.btn-outline-success {
-  transition: all 0.3s ease-in-out;
-  @include respond-between(960px, 1100px, 18px);
-  @include respond-between(768px, 960px, 13px);
-  @include respond-and(768px) {
-    font-size: 15px;
+.navbar-account {
+  background-color: white;
+  position: fixed;
+  margin-top: -70px;
+  border-bottom: 1px solid rgb(209, 208, 208);
+  width: 100%;
+  z-index: 50;
+  padding: 10px 20px;
+  @media screen and (max-width: 992px) {
+    display: none;
   }
 }
 
-.nav-search-box {
+.account {
+  text-align: right;
+  padding: 0 20px;
   display: flex;
-  justify-content: center;
-  @include respond-and(768px) {
-    display: none;
+  justify-content: flex-end;
+}
+
+.account-item {
+  color: rgb(112, 109, 109);
+  &:hover {
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    color: #0085a5;
+    cursor: pointer;
   }
 }
 
-.icon-md {
-  margin-left: 60px;
-  @media screen and (min-width: 768px) {
-    display: none;
+.account-mid {
+  color: rgb(185, 179, 179);
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+.user-sidebar,
+.signup-sidebar,
+.login-sidebar,
+.admin-sidebar,
+.logout-sidebar {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgb(209, 208, 208);
+}
+
+.navbar-toggler {
+  border: 2px solid #0085a5;
+  &:focus {
+    background-color: transparent;
   }
 }
 
-.fa-search {
-  background: transparent;
-  border: none;
-  margin-top: 7px;
+.fa-bars {
+  color: #0085a5;
 }
 
 .checked-nav {
   position: fixed;
   z-index: 100;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -78px;
-  margin-right: 15px;
-  list-style-type: none;
+  margin-top: -93px;
+  background: linear-gradient(-40deg, #d2f0f5, #abe3ed) !important;
   width: 100%;
-  padding: 15px 0 0;
-  text-align: center;
-  background: white;
-  right: 0;
-  border: 0.2px solid rgb(185, 179, 179);
-  li {
-    margin-top: 5px;
-    padding: 10px;
-  }
+  padding: 20px;
+  list-style-type: none;
 }
 </style>

@@ -103,6 +103,11 @@ export default {
 
         // 前往首頁
         this.$router.push("/index");
+
+        Toast.fire({
+          type: "success",
+          title: "已成功登入"
+        });
       } catch (error) {
         // 將密碼欄位清空
         this.password = "";

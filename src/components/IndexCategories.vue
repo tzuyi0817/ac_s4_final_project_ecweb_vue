@@ -1,12 +1,12 @@
 <template>
-  <div class="col-lg-6 col-12">
+  <div class="categories-box col-lg-6 col-12">
     <div class="category-box mb-3">
       <router-link
         :to="{ name: 'category-products', params: { id: category.id }}"
         class="category-name"
       >
         <div class="card shadow">
-          <img class="card-img-top mb-3" :src="category.image" alt="Card image cap" width="100%" />
+          <img class="card-img-top mb-3" :src="category.image" alt="Card image cap" />
           <h6>{{category.name}}</h6>
         </div>
       </router-link>
@@ -31,6 +31,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.categories-box {
+  @media screen and (max-width: 992px) {
+    padding: 0;
+  }
+}
+
 .category-name {
   text-decoration: none;
   &:hover {
@@ -60,6 +66,13 @@ h6 {
   left: 0;
   &:hover {
     top: -5px;
+  }
+}
+
+.card-img-top {
+  width: 100%;
+  @media screen and (max-width: 992px) {
+    height: 40vh;
   }
 }
 </style>

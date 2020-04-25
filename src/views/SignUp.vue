@@ -130,6 +130,11 @@ export default {
         }
 
         this.$router.push("/users/logIn");
+
+        Toast.fire({
+          type: "success",
+          title: "已註冊成功"
+        });
       } catch (error) {
         // 將密碼欄位清空
         this.password = "";
