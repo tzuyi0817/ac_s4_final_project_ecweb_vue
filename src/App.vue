@@ -61,6 +61,10 @@ export default {
 
 .container {
   margin-top: 180px;
+  padding: 0;
+  @media screen and (max-width: 992px) {
+    margin-top: 130px;
+  }
 }
 
 .child-view {

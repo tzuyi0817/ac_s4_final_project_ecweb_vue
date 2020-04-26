@@ -18,6 +18,23 @@ h2 {
   font-size: 35px;
 }
 
+h4 {
+  font-size: 25px;
+}
+
 h6 {
   font-size: 20px;
+}
+
+a {
+  color: #918b8b;
+  &:hover {
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    color: #0085a5;
+  } 
+}
+
+.row {
+  margin: 0;
 }

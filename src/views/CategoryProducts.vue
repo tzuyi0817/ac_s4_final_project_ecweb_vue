@@ -2,71 +2,82 @@
   <div class="mb-5">
     <Spinner v-if="isLoading" />
     <template v-else>
+      <!-- 類別圖片 -->
+      <div class="index col-12">
+        <transition name="fade" mode="out-in">
+          <img v-if="show" :src="category.image" alt="image" />
+        </transition>
+      </div>
+
+      <div class="index-title col-12 row">
+        <router-link to="/">首頁&nbsp;</router-link>
+        <h6>&nbsp;&gt;&nbsp;</h6>
+        <router-link
+          :to="{ name: 'category-products', params: { id: category.id }}"
+          class="index-title-name"
+        >&nbsp;{{category.name}}</router-link>
+      </div>
+
       <!-- NavTabs -->
-      <div class="row mt-5">
-        <div class="col-lg-2 col-md-3 col-sm-9 col-9 mb-2">
-          <div class="nav flex-column">
-            <div class="list-group">
-              <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
-            </div>
+      <div class="row">
+        <div class="card col-lg-2">
+          <div class="card-header">
+            <p>全站分類</p>
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
             <NavTabs
               v-for="category in categories"
               :key="category.id"
               :initial-category="category"
               :category-id="categoryId"
             />
+          </ul>
+        </div>
+
+        <section id="pagination"></section>
+
+        <div class="sort-box col-lg-10">
+          <!-- 類別名稱 -->
+          <div class="title">
+            <h4 style="color:#0085a5">{{category.name}}</h4>
           </div>
-        </div>
-        <!-- 類別圖片 -->
-        <div class="col-md-1"></div>
-        <div class="index col-lg-8 col-md-7">
-          <transition name="fade" mode="out-in">
-            <img v-if="show" :src="category.image" width="75%" height="75%" alt="image" />
-          </transition>
-        </div>
-      </div>
+          <!-- 排序 -->
+          <div class="sort">
+            <Sort :current-key="currentKey" :current-value="currentValue" />
+          </div>
 
-      <section id="pagination"></section>
-
-      <div class="row mt-2">
-        <!-- 類別名稱 -->
-        <div class="title col-md-2">
-          <h4 style="color:#0085a5">{{category.name}}</h4>
-        </div>
-        <!-- 排序 -->
-        <div class="col-md-8 col-10">
-          <Sort :current-key="currentKey" :current-value="currentValue" />
-        </div>
-      </div>
-
-      <div class="row mt-5 mb-5">
-        <!-- 商品 -->
-        <div class="col-md-2"></div>
-        <div class="all-products col-md-7 col-10">
-          <transition name="fade" mode="out-in">
-            <div v-if="show" class="row">
-              <Products
-                v-for="product in products"
-                :key="product.id"
-                :initial-product="product"
-                :category="category"
-              />
+          <div class="all-products-box row">
+            <!-- 商品 -->
+            <div class="all-products">
+              <transition name="fade" mode="out-in">
+                <div v-if="show" class="row">
+                  <Products
+                    v-for="product in products"
+                    :key="product.id"
+                    :initial-product="product"
+                    :category="category"
+                  />
+                </div>
+              </transition>
             </div>
+          </div>
+
+          <!-- 分頁標籤 RestaurantsPagination -->
+          <transition name="fade" mode="out-in">
+            <template v-if="show">
+              <ProductsPagination
+                v-if="totalPage > 1"
+                :current-key="currentKey"
+                :current-value="currentValue"
+                :current-page="currentPage"
+                :total-page="totalPage"
+              />
+            </template>
           </transition>
         </div>
       </div>
-      <!-- 分頁標籤 RestaurantsPagination -->
-      <transition name="fade" mode="out-in">
-        <template v-if="show">
-          <ProductsPagination
-            v-if="totalPage > 1"
-            :current-key="currentKey"
-            :current-value="currentValue"
-            :current-page="currentPage"
-            :total-page="totalPage"
-          />
-        </template>
-      </transition>
 
       <div
         class="no-products mt-5"
@@ -170,12 +181,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
@@ -183,11 +188,7 @@ export default {
 }
 
 .list-group-item {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
+  font-size: 17px;
   &:hover {
     color: white;
     background-color: #0085a5;
@@ -195,42 +196,18 @@ export default {
   }
 }
 
-h4 {
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
+.card {
+  padding: 0;
+  border: none;
+}
+
+.card-header {
+  color: #0085a5;
+  border: 1px solid #cfcfcf;
 }
 
 .no-products {
   padding: 75px;
-}
-
-.title {
-  margin-left: 20px;
-  @include respond-and(768px) {
-    display: none;
-  }
-}
-
-.all-products {
-  margin-left: 65px;
-  @media screen and (min-width: 960px) and (max-width: 1100px) {
-    margin-left: 50px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 960px) {
-    margin-left: 35px;
-  }
-  @include respond-and(768px) {
-    margin-left: -10px;
-  }
-}
-
-.index {
-  @include respond-and(768px) {
-    margin-top: 20px;
-  }
 }
 
 .nav {
@@ -239,13 +216,50 @@ h4 {
   }
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1.3s ease;
+.index {
+  padding: 0;
+  img {
+    width: 100%;
+    height: 55vh;
+  }
 }
 
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+.index-title {
+  padding: 20px;
+}
+
+h6 {
+  color: #918b8b;
+  margin-top: 3px;
+}
+
+.index-title-name {
+  color: rgb(112, 109, 109);
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    color: #0085a5;
+    cursor: pointer;
+  }
+}
+
+.title {
+  text-align: center;
+  @include respond-and(992px) {
+    margin-top: 30px;
+  }
+}
+
+.sort {
+  padding: 20px 0;
+}
+
+.sort-box {
+  @include respond-and(992px) {
+    padding: 0;
+  }
+}
+
+.all-products-box {
+  padding: 0 15px;
 }
 </style>

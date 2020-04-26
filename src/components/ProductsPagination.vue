@@ -74,23 +74,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-@mixin respond-and($upper, $font-size) {
-  @media screen and (max-width: $upper) {
-    font-size: $font-size;
-    @content;
-  }
-}
-
 .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  font-size: 16px;
 }
 
 %hover-style {
@@ -120,13 +108,5 @@ export default {
 .page-item.active .page-link {
   color: white;
   background-color: #0085a5;
-}
-
-nav {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 15px) {
-    margin-left: -65px;
-  }
 }
 </style>

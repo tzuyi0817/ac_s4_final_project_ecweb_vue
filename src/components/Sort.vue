@@ -85,12 +85,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
@@ -113,67 +107,47 @@ export default {
   -moz-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  @include respond-and(768px) {
-    margin-left: -15px;
-  }
+  padding: 16.25px 5px;
 }
 
 .search {
   background-color: white;
   color: #0085a5;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 10px;
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-    margin-top: 5px;
-  }
   &:hover {
     background-color: #0085a5;
     color: white;
     transition: all 0.3s ease-in-out;
-    @include respond-between(960px, 1100px, 15px);
-    @include respond-between(768px, 960px, 10px);
-    @include respond-and(768px) {
-      font-size: 15px;
-      margin-top: 5px;
-    }
   }
 }
 
 %search-select-style {
   background-color: #0085a5;
   color: white;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 10px;
   transition: all 0.3s ease-in-out;
 }
 
 .search-select {
   @extend %search-select-style;
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-    margin-top: 5px;
-  }
   &:hover {
     @extend %search-select-style;
-    @include respond-between(960px, 1100px, 15px);
-    @include respond-between(768px, 960px, 10px);
-    @include respond-and(768px) {
-      font-size: 15px;
-      margin-top: 5px;
-    }
+  }
+}
+
+.search-select,
+.search {
+  @include respond-and(576px) {
+    padding: 7.5px;
+    margin-left: 7px;
   }
 }
 
 span {
-  font-size: 18px;
+  font-size: 16px;
   margin-right: 10px;
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
   @include respond-and(768px) {
     display: none;
   }
