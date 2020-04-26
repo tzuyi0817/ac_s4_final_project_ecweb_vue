@@ -391,7 +391,7 @@ p {
 .checked-nav {
   position: fixed;
   z-index: 100;
-  margin-top: -93px;
+  margin-top: -43px;
   background: linear-gradient(-40deg, #d2f0f5, #abe3ed) !important;
   width: 100%;
   padding: 20px;

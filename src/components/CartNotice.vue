@@ -63,12 +63,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    @content;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
@@ -77,7 +71,7 @@ export default {
 
 .cart-link {
   text-decoration: none;
-  @include respond-and(768px) {
+  @include respond-and(1400px) {
     display: none;
   }
 }
@@ -88,13 +82,7 @@ hr {
 
 p {
   color: #0085a5;
-  font-size: 17px;
-  @include respond-between(960px, 1100px) {
-    font-size: 15px;
-  }
-  @include respond-between(768px, 960px) {
-    font-size: 10px;
-  }
+  font-size: 16px;
 }
 
 .cartNotice {
@@ -106,12 +94,6 @@ p {
   -ms-transition: all 1.5s;
   -o-transition: all 1.5s;
   transition: all 1.5s;
-  @include respond-between(960px, 1100px) {
-    width: 8%;
-  }
-  @include respond-between(768px, 960px) {
-    width: 6%;
-  }
 }
 
 .cartBG {
@@ -126,12 +108,6 @@ p {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   margin: 20px 0 5px 0;
-  @include respond-between(960px, 1100px) {
-    width: 90px;
-  }
-  @include respond-between(768px, 960px) {
-    width: 65px;
-  }
   &:hover {
     border: 1.5pt solid #0085a5;
     background-color: #d2f0f5;
@@ -152,12 +128,6 @@ p {
     background-color: transparent;
     -webkit-margin-start: 20px;
     left: -19px;
-    @include respond-between(960px, 1100px) {
-      margin-top: -80px;
-    }
-    @include respond-between(768px, 960px) {
-      margin-top: -50px;
-    }
   }
 }
 </style>

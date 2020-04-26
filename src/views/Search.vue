@@ -3,27 +3,35 @@
     <Spinner v-if="isLoading" />
     <template v-else>
       <div class="row">
+        <div class="search-title col-12 row">
+          <router-link to="/">首頁&nbsp;</router-link>
+          <h6>&nbsp;&gt;&nbsp;</h6>
+          <h6 style="color: black;">搜尋結果</h6>
+        </div>
+
         <!-- NavTabs -->
-        <div class="nav-box col-md-2">
-          <div class="nav flex-column">
-            <div class="list-group">
-              <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
-            </div>
+        <div class="nav-box col-lg-2">
+          <div class="card-header">
+            <p>全站分類</p>
+          </div>
+
+          <ul class="list-group list-group-flush">
+            <router-link class="list-group-item list-group-item-action" to="/">首頁</router-link>
             <NavTabs
               v-for="category in categories"
               :key="category.id"
               :initial-category="category"
             />
-          </div>
+          </ul>
         </div>
         <!-- 搜尋結果 -->
-        <div class="search col-md-9 mb-5">
-          <p class="ml-1">
+        <div class="search col-lg-10">
+          <p class="ml-3">
             <i class="far fa-lightbulb mr-2" style="color:#0085a5"></i>
             「{{currentKeyword}}」搜尋到 {{products.length}} 件商品
           </p>
           <!-- 搜尋無結果 -->
-          <div v-if="products < 1" class="undefined col-12 mb-5 mt-5" style="text-align: center;">
+          <div v-if="products < 1" class="undefined col-12 mt-5" style="text-align: center;">
             <h1>
               <i class="far fa-file-excel" style="color:#0085a5"></i>
             </h1>
@@ -40,7 +48,7 @@
             />
             <!-- 商品 -->
             <transition name="fade" mode="out-in">
-              <div v-if="show" class="col-10 col-sm-10 col-md-12 row">
+              <div v-if="show" class="products-box col-12 row">
                 <SearchProducts
                   v-for="product in products"
                   :key="product.id"
@@ -150,21 +158,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
   }
 }
 
+.nav-box,
+.products-box {
+  padding: 0;
+}
+
+.search {
+  @include respond-and(992px) {
+    padding: 0;
+  }
+}
+
+.search-title {
+  padding: 20px;
+}
+
+h6 {
+  color: #918b8b;
+  margin-top: 3px;
+}
+
+.card-header {
+  color: #0085a5;
+  border: 1px solid #cfcfcf;
+}
+
 .list-group-item {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
+  font-size: 17px;
   &:hover {
     color: white;
     background-color: #0085a5;
@@ -172,63 +198,17 @@ export default {
   }
 }
 
-p {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
+.undefined {
+  margin-bottom: 300px;
 }
 
 .help-block {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
-}
-
-h1 {
-  @include respond-between(960px, 1100px, 30px);
-  @include respond-between(768px, 960px, 25px);
-  @include respond-and(768px) {
-    font-size: 30px;
-  }
-}
-
-h5 {
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px) {
-    font-size: 20px;
-  }
-}
-
-.nav-box {
-  @include respond-and(768px) {
-    display: none;
-  }
+  font-size: 16px;
 }
 
 .search {
-  @include respond-and(768px) {
-    margin-top: 20px;
+  @include respond-and(992px) {
+    margin-top: 30px;
   }
-}
-
-.undefined {
-  @include respond-and(768px) {
-    margin-left: -25px;
-  }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1.3s ease;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

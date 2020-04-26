@@ -18,6 +18,8 @@
         >&nbsp;{{category.name}}</router-link>
       </div>
 
+      <section id="pagination"></section>
+
       <!-- NavTabs -->
       <div class="row">
         <div class="card col-lg-2">
@@ -36,21 +38,19 @@
           </ul>
         </div>
 
-        <section id="pagination"></section>
-
         <div class="sort-box col-lg-10">
           <!-- 類別名稱 -->
-          <div class="title">
+          <div class="title col-12">
             <h4 style="color:#0085a5">{{category.name}}</h4>
           </div>
           <!-- 排序 -->
-          <div class="sort">
+          <div class="sort col-12">
             <Sort :current-key="currentKey" :current-value="currentValue" />
           </div>
 
-          <div class="all-products-box row">
+          <div class="all-products-box row col-12">
             <!-- 商品 -->
-            <div class="all-products">
+            <div class="all-products col-12">
               <transition name="fade" mode="out-in">
                 <div v-if="show" class="row">
                   <Products
@@ -259,7 +259,8 @@ h6 {
   }
 }
 
-.all-products-box {
-  padding: 0 15px;
+.all-products-box,
+.all-products {
+  padding: 0;
 }
 </style>
