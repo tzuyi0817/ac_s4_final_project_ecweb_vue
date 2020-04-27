@@ -1,36 +1,38 @@
 <template>
   <div class="mt-5">
     <form @submit.stop.prevent="handleSubmit">
-      <h1 class="orderNav d-inline text-white mt-3 mb-3">&nbsp;選擇您的付款與運送方式&nbsp;</h1>
+      <div class="orderNav col-12 mt-3">
+        <h3 class="d-inline text-white">&nbsp;選擇您的付款與運送方式&nbsp;</h3>
+      </div>
 
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-lg-7">
           <div class="mt-5">
             <h4>購買人資訊：</h4>
 
             <div class="form_group row mt-5">
               <label class="col-2">名字:</label>
-              <div class="col-9">
+              <div class="col-10">
                 <input v-model="user.name" type="text" class="form-control" name="name" required />
               </div>
             </div>
 
             <div class="form-group row mt-4">
               <label class="col-2">電話:</label>
-              <div class="col-9">
+              <div class="col-10">
                 <input v-model="user.phone" type="tel" class="form-control" name="phone" required />
               </div>
             </div>
 
             <div class="form-group row mt-4">
               <label class="col-2">地址:</label>
-              <div class="col-9">
+              <div class="col-10">
                 <textarea
                   v-model="user.address"
                   type="address"
                   class="form-control"
                   name="address"
-                  rows="3"
+                  rows="5"
                   required
                 ></textarea>
               </div>
@@ -38,7 +40,7 @@
           </div>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-lg-5">
           <div class="mt-5">
             <h4>運送與付款方式：</h4>
 
@@ -56,7 +58,7 @@
                   />&nbsp;宅配
                 </label>
 
-                <label class="radio-inline ml-5">
+                <label class="radio-inline">
                   <input
                     v-model="shipmentType"
                     class="pick-up"
@@ -115,7 +117,7 @@
         <input type="hidden" name="shipping_status" value="0" />
         <input type="hidden" name="payment_status" value="0" />
         <input type="hidden" name="StoreId" :value="user.StoreId" />
-        <button type="submit" class="btn btn-primary" :disabled="isProcessing">前往結帳</button>
+        <button type="submit" class="btn btn-success" :disabled="isProcessing">前往結帳</button>
       </div>
     </form>
   </div>
@@ -203,60 +205,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-@mixin respond-and($upper, $font-size) {
+@mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
-    font-size: $font-size;
     @content;
   }
 }
 
 .orderNav {
   border-radius: 10px;
+  padding: 20px;
+  margin-left: 0;
   background-color: #0085a5;
-  padding: 10px;
-}
-
-.btn-primary {
-  float: right;
-  background-color: #0085a5;
-  color: white;
-  &:hover {
-    background-color: #0c99bd;
+  @include respond-and(768px) {
+    padding: 10px;
   }
-}
-
-h1 {
-  @include respond-between(960px, 1100px, 30px);
-  @include respond-between(768px, 960px, 25px);
-  @include respond-and(768px, 20px) {
-    margin-left: -30px;
-  }
-}
-
-h4 {
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px, 15px);
 }
 
 label,
 input,
 textarea,
 .btn {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
+  font-size: 16px;
 }
 
 .pick-up {
-  @media screen and (max-width: 768px) {
-    margin-left: -20px;
-  }
+  margin-left: 48px;
+}
+
+.btn-success {
+  margin: 20px 10px 5px 0;
 }
 </style>
