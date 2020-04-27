@@ -1,29 +1,29 @@
 <template>
   <div class="card mt-4">
     <div class="card-header" style="text-align: center; background-color: #0085a5; color: white;">
-      <h2>訂單資訊 - 編號({{order.id}})</h2>
+      <h3>訂單資訊 - 編號({{order.id}})</h3>
     </div>
 
     <div class="card-body" style="background-color: #d2f0f5;">
-      <h4 class="mt-5 ml-2">商品詳情：</h4>
-      <li class="bg-light text-dark list-group-item mt-3 col-md-11">
+      <h6 class="mt-5 ml-2">商品詳情：</h6>
+      <li class="bg-light text-dark list-group-item mt-3 col-12">
         <div class="row">
-          <div class="col">商品</div>
-          <div class="col">數量</div>
-          <div class="col">小計</div>
+          <div class="col-6">商品</div>
+          <div class="col-3">數量</div>
+          <div class="col-3">小計</div>
         </div>
       </li>
-      <li v-for="item in items" :key="item.id" class="bg-white text-dark list-group-item col-md-11">
+      <li v-for="item in items" :key="item.id" class="bg-white text-dark list-group-item col-12">
         <div class="row">
-          <div class="col">{{item.name}}</div>
-          <div class="col quantity">{{item.Order_item.quantity}}</div>
-          <div class="col">{{item.price}}</div>
+          <div class="col-6">{{item.name}}</div>
+          <div class="col-3 quantity">{{item.Order_item.quantity}}</div>
+          <div class="col-3">{{item.price}}</div>
         </div>
       </li>
 
       <div class="row">
-        <div class="col-md-4">
-          <h4 class="mt-5 ml-2">金額詳情：</h4>
+        <div class="amount-box col-md-4">
+          <h6 class="mt-5 ml-2">金額詳情：</h6>
           <div class="bg-light text-dark list-group-item mt-3">
             <div class="row">
               <div class="col">商品金額總計:</div>
@@ -44,8 +44,8 @@
           </div>
         </div>
 
-        <div class="customer-information col-md-7 mt-5">
-          <h4>顧客資訊：</h4>
+        <div class="customer-information col-md-8 mt-5">
+          <h6>顧客資訊：</h6>
           <div class="bg-light text-dark list-group-item mt-3">
             <div>名字: &nbsp;{{order.name}}</div>
             <div>地址: &nbsp;{{order.address}}</div>
@@ -54,8 +54,8 @@
         </div>
       </div>
 
-      <h4 class="mt-5 ml-2">出貨狀況：</h4>
-      <div class="bg-light text-dark list-group-item mt-3 col-md-11">
+      <h6 class="mt-5 ml-2">出貨狀況：</h6>
+      <div class="bg-light text-dark list-group-item mt-3 col-12">
         <div>訂單狀態: &nbsp;{{order.Order_status.orderStatus}}</div>
         <div>付款方式: &nbsp;{{lastpaymentType.paymentType}}</div>
         <div>付款狀況: &nbsp;{{lastPaymentStatus.paymentStatus}}</div>
@@ -137,57 +137,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-@mixin respond-and($upper, $font-size) {
+@mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
-    font-size: $font-size;
+    @content;
   }
-}
-
-hr {
-  border: 0;
-  border-top: 2px solid rgb(212, 210, 210);
 }
 
 .amount {
   float: right;
 }
 
-.shipmentType {
-  margin-left: 0px;
-}
-
-h4 {
+h6 {
   color: #0085a5;
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px, 12px);
-}
-
-.list-group-item,
-.quantity,
-.customer-information {
-  margin-left: 23px;
-  @media screen and (max-width: 768px) {
-    margin-left: 0px;
-  }
-}
-
-h2 {
-  @include respond-between(960px, 1100px, 25px);
-  @include respond-between(768px, 960px, 20px);
-  @include respond-and(768px, 15px);
 }
 
 .row,
 .bg-light {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
+  font-size: 16px;
+}
+
+.list-group-item {
+  padding: 15px 10px;
+}
+
+.col,
+.customer-information,
+.col-6 {
+  padding: 0;
+}
+
+.amount-box {
+  padding: 0 15px 0 0;
+  @include respond-and(768px) {
+    padding: 0;
+  }
 }
 </style>

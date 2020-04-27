@@ -1,37 +1,33 @@
 <template>
-  <div class="container mb-4">
+  <div class="container mb-5">
     <Spinner v-if="isLoading" />
     <template v-else>
       <!-- 購物車流程 Navbar -->
-      <div class="row justify-content-center mt-3">
-        <div class="col-12 col-md-8">
-          <div class="row step">
-            <div class="col-3 text-center">
-              <span class="step-by-step bg-secondary rounded-pill text-dark d-inline-block">Step 1</span>
-              <p class="step-text text-dark">確認購物車</p>
-            </div>
+      <div class="success-box row">
+        <div class="row step col-12">
+          <div class="col-3 text-center">
+            <span class="step-by-step bg-secondary rounded-pill text-dark d-inline-block">Step 1</span>
+            <p class="step-text text-dark">確認購物車</p>
+          </div>
 
-            <div class="arrow col-1">
-              <i class="fas fa-long-arrow-alt-right"></i>
-            </div>
+          <div class="arrow col-1">
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
 
-            <div class="col-3 text-center">
-              <span
-                class="step-by-step border bg-secondary rounded-pill text-dark d-inline-block"
-              >Step 2</span>
-              <p class="step-text text-dark">付款與運送方式</p>
-            </div>
+          <div class="col-3 text-center">
+            <span
+              class="step-by-step border bg-secondary rounded-pill text-dark d-inline-block"
+            >Step 2</span>
+            <p class="step-text text-dark">付款與運送方式</p>
+          </div>
 
-            <div class="arrow col-1" style="color: gray">
-              <i class="fas fa-long-arrow-alt-right"></i>
-            </div>
+          <div class="arrow col-1" style="color: gray">
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
 
-            <div class="col-3 text-center step-point-line step-point">
-              <span
-                class="step-by-step border bg-dark rounded-pill text-light d-inline-block"
-              >Step 3</span>
-              <p class="step-text text-dark">成立訂單</p>
-            </div>
+          <div class="col-3 text-center step-point-line step-point">
+            <span class="step-by-step border bg-dark rounded-pill text-light d-inline-block">Step 3</span>
+            <p class="step-text text-dark">成立訂單</p>
           </div>
         </div>
       </div>
@@ -50,7 +46,7 @@
         :shipment-convenience-store="shipmentConvenienceStore"
       />
 
-      <router-link to="/" class="btn btn-primary mt-3 col-12">繼續購物</router-link>
+      <router-link to="/" class="btn btn-success mt-3 col-12">繼續購物</router-link>
     </template>
   </div>
 </template>
@@ -133,53 +129,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
   }
 }
 
-@mixin respond-and($upper, $font-size) {
-  @media screen and (max-width: $upper) {
-    font-size: $font-size;
-  }
+.success-box {
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .step-by-step {
   padding: 10px 16px;
   margin-bottom: 18px;
+  font-size: 18px;
 }
 
 .arrow {
   font-size: 40px;
-  @include respond-and(768px, 30px);
-}
-
-.btn-primary {
-  background-color: #0085a5;
-  color: white;
-  &:hover {
-    background-color: #0c99bd;
+  @include respond-and(768px) {
+    padding: 0;
+    margin-left: 5px;
   }
 }
 
 p,
 span,
 .btn {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
-}
-
-.step {
-  @media screen and (max-width: 768px) {
-    margin-top: 50px;
-  }
-}
-
-.container {
-  @media screen and (max-width: 768px) {
-    margin-left: -45px;
-  }
+  font-size: 16px;
 }
 </style>
