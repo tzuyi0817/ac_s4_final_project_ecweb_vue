@@ -6,7 +6,7 @@
         <div class="search-title col-12 row">
           <router-link to="/">首頁&nbsp;</router-link>
           <h6>&nbsp;&gt;&nbsp;</h6>
-          <h6 style="color: black;">搜尋結果</h6>
+          <h6 style="color: black;">&nbsp;搜尋結果</h6>
         </div>
 
         <!-- NavTabs -->

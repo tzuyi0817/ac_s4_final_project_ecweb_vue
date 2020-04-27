@@ -1,13 +1,13 @@
 <template>
   <div class="create-comment">
-    <div class="ml-5 mt-5">
-      <h5 class="ml-5">留下您的評價：</h5>
+    <div class="mt-5">
+      <h5 class="create-comment-title">留下您的評價：</h5>
     </div>
 
     <form @submit.stop.prevent="handleSubmit">
-      <div class="form-group col-9 mt-3">
+      <div class="form-group col-12 mt-5">
         <textarea
-          class="form-control ml-3"
+          class="form-control"
           v-model="comment"
           id="comment"
           name="comment"
@@ -17,8 +17,8 @@
         ></textarea>
       </div>
 
-      <p class="mb-3 ml-5 d-flex align-items-center">
-        <span class="text-secondary ml-5">商品評分：</span>
+      <p class="mb-3 d-flex align-items-center">
+        <span class="text-secondary ml-3">商品評分：</span>
         <span class="starrating risingstar d-flex justify-content-center flex-row-reverse">
           <input v-model="rating" type="radio" id="star5" name="rating" value="5" />
           <label for="star5" title="5分">
@@ -47,12 +47,9 @@
         </span>
       </p>
 
-      <div class="col-md-10 mt-2">
+      <div class="col-12 mt-4">
         <div class="d-flex align-items-center justify-content-between">
-          <div class="col-md-10"></div>
-          <div class="col-md-3">
-            <button type="submit" class="btn btn-primary" :disabled="isProcessing">送出評價</button>
-          </div>
+          <button type="submit" class="btn btn-success col-12" :disabled="isProcessing">送出評價</button>
         </div>
       </div>
     </form>
@@ -144,6 +141,14 @@ export default {
   }
 }
 
+.create-comment-title {
+  padding: 0 0 0 15px;
+}
+
+.form-group {
+  padding: 0;
+}
+
 .starrating > input {
   display: none;
 }
@@ -152,11 +157,8 @@ export default {
   margin: 2px;
   font-size: 30px;
   display: inline-block;
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px) {
-    font-size: 20px;
-  }
+  padding: 10px 0 0 0;
+  font-size: 25px;
 }
 
 .starrating > label {
@@ -171,41 +173,12 @@ export default {
   color: #ffca08;
 }
 
-.btn-primary {
-  background-color: #0085a5;
-  &:hover {
-    background-color: #0c99bd;
-  }
+p {
+  font-size: 20px;
 }
 
-.form-group {
-  margin-left: 60px;
-  @include respond-and(768px) {
-    margin-left: 70px;
-  }
-}
-
-h5 {
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px) {
-    font-size: 20px;
-  }
-}
-
-p,
-button,
 textarea {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
-}
-
-.create-comment {
-  @include respond-and(768px) {
-    margin-left: -65px;
-  }
+  font-size: 16px;
+  padding: 20px;
 }
 </style>

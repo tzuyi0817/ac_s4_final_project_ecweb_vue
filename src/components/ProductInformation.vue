@@ -1,9 +1,9 @@
 <template>
-  <div class="productInformation col-md-6">
+  <div class="productInformation col-lg-6">
     <div class="card-body">
-      <div class="row" style="display:flex; justify-content: center;">
+      <div class="row">
         <!-- 商品名稱 -->
-        <h5 class="card-title mb-4" style="text-align: center;">
+        <h5 class="card-title" style="text-align: center;">
           【
           <router-link
             class="categoryName"
@@ -15,7 +15,7 @@
       </div>
 
       <!-- 商品評分 -->
-      <div class="row" style="display:flex; justify-content: center;">
+      <div class="rating-box row">
         <div v-if="Comments.length === 0" class="no-comment mb-2" style="color: red;">此商品尚未有人評價</div>
         <!-- 平均評分 -->
         <div v-else class="av-star row">
@@ -24,8 +24,8 @@
             <span class="star" :inner-html.prop="rating | star"></span>
           </span>
         </div>
-        <router-link class="rating" to="#evaluation" style="text-decoration: none; color: black;">
-          |&nbsp;
+        <p style="color: rgb(185, 179, 179);">|&nbsp;&nbsp;</p>
+        <router-link class="rating" to="#evaluation" style="text-decoration: none;">
           {{Comments.length}}
           評價
         </router-link>
@@ -43,119 +43,119 @@
         ></iframe>
       </div>
       <!-- 商品單價 -->
-      <h3 class="price mt-4 mb-5" style="text-align: center; color: #0085a5">$ {{product.price}}</h3>
+      <div class="price-box row">
+        <h5>新台幣</h5>
+        <h3 class="price" style="color: #0085a5">{{product.price}}</h3>
+        <h5>元</h5>
+      </div>
+
+      <hr />
+
+      <h6 class="transport">運送費用</h6>
+
+      <!-- 運費 -->
+      <div class="freight-box row">
+        <p class="freight ml-1">
+          <i class="fa fa-truck mr-1" aria-hidden="true" style="color: #0085a5"></i> 運費
+        </p>
+        <p class="ml-3" style="color: #0085a5">$ 60</p>
+      </div>
+
       <!-- 滿額免運費 -->
-      <div class="row" style="display:flex; justify-content: center;">
-        <p class="transport" style="color: gray;">運送</p>
+      <div class="free-box row">
         <img
           src="https://cdngarenanow-a.akamaihd.net/shopee/shopee-pcmall-live-sg/assets/9d21899f3344277e34d40bfc08f60bc7.png"
           width="35"
           height="20"
-          class="ml-2 mt-1"
+          class="mr-1"
         />
-        <p class="ml-1">滿$999，</p>
-        <p class="free mt-1" style="color: #ff5722;">免運費</p>
-        <p class="empty">&nbsp;&nbsp;&nbsp;&nbsp;</p>
-      </div>
-      <!-- 運費 -->
-      <div class="row mb-3" style="display:flex; justify-content: center;">
-        <p>&nbsp;&nbsp;&nbsp;</p>
-        <p class="freight">
-          <i class="fa fa-truck" aria-hidden="true" style="color: #0085a5"></i> 運費
+        <p class="free-content">
+          滿$999，
+          <span class="free" style="color: #ff5722;">免運費</span>
         </p>
-        <p class="ml-3">$ 60</p>
       </div>
+
+      <hr />
+
       <!-- 加入購物車 -->
       <form @submit.stop.prevent="handleCart">
-        <div class="row" style="display:flex; justify-content: center;">
-          <p class="qty-title mt-2" style="color: gray;">數量</p>
+        <div class="qty-box">
+          <h6 class="qty-title">數量</h6>
 
-          <div class="selectQty">
-            <input
-              type="button"
-              value="-"
-              class="qtyMinus"
-              field="quantity"
-              @click="qtyMinus"
-              :disable="minus"
-            />
-            <input type="text" name="quantity" class="qty" v-model.number="qty" @input="qtyValue" />
-            <input
-              type="button"
-              value="+"
-              class="qtyPlus"
-              field="quantity"
-              @click="qtyPlus"
-              :disable="plus"
-            />
-          </div>
+          <input
+            type="number"
+            name="quantity"
+            class="qty"
+            min="1"
+            :max="product.count"
+            v-model.number="qty"
+            @input="qtyValue"
+          />
+
           <!-- 庫存數量 -->
-          <p class="count mt-2" style="color: gray;">還剩 {{product.count}} 件</p>
+          <p class="count mt-2">
+            還剩 {{product.count}} 件
+            <span v-if="product.count === 0" style="color: #ff5722;">『商品補貨中』</span>
+          </p>
         </div>
 
-        <div class="cartBtn" style="display:flex; justify-content: center">
+        <div class="cartBtn">
           <!-- 無庫存 -->
-          <button v-if="product.count === 0" class="btn btn-danger mt-4" :disabled="isDisable">
-            <i class="fa fa-truck" aria-hidden="true"></i> 商品補貨中
-          </button>
-          <span v-if="product.count === 0" class="notice btn btn-primary mt-4">
-            <i class="fa fa-envelope" aria-hidden="true"></i> 貨到通知
-          </span>
+          <b-button
+            v-if="product.count === 0"
+            v-b-modal.modal-1
+            class="notice col-12"
+            variant="primary"
+          >
+            <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;貨到通知
+          </b-button>
           <!-- 有庫存 -->
           <input v-if="product.count > 0" type="hidden" name="productId" :value="product.id" />
           <button
             v-if="product.count > 0"
             type="submit"
-            class="btn btn-success mt-4"
+            class="btn btn-success col-12"
             :disabled="isProcessing"
           >
-            <i class="fas fa-shopping-cart"></i> 加入購物車
+            <i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;加入購物車
           </button>
-          <router-link v-if="product.count > 0" to="/cart" class="btn btn-primary mt-4">前往購物車 ></router-link>
         </div>
       </form>
 
       <!-- 到貨通知 -->
-      <div class="modal">
-        <div class="modal-content">
-          <div style="float: right;">
-            <span class="close">&times;</span>
-          </div>
-
-          <h5 class="mt-3" style="text-align: center; color: gray;">到貨通知</h5>
-
-          <div class="modalTitle mt-2" style="text-align: center; color: gray;">
-            商品名稱：
-            <p style="color: red;">【{{product.Product_category.name}}】{{product.name}}</p>
-          </div>
-
-          <form @submit.stop.prevent="handleNotice">
-            <div class="email form-group row" style="display:flex; justify-content: center;">
-              <label
-                style="color: gray;"
-                for="inputEmail"
-              >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;電子郵件：&nbsp;</label>
-              <input type="text" name="email" class="form" v-model="email" required autofocus />
-            </div>
-            <div
-              class="email_confirm form-group row"
-              style="display:flex; justify-content: center;"
-            >
-              <label style="color: gray;" for="inputEmail">確認電子郵件：&nbsp;</label>
-              <input type="text" name="email_confirm" class="form" v-model="email_confirm" required />
-            </div>
-
-            <p style="text-align: center; color: red;">*此功能僅為貨到通知，無法保留商品喔。</p>
-
-            <div class="mb-4" style="text-align: center;">
-              <button
-                class="btn btn-primary"
-                :disabled="isProcessing"
-              >{{ isProcessing ? "處理中..." : "送出" }}</button>
-            </div>
-          </form>
+      <b-modal id="modal-1" title="到貨通知" hide-footer>
+        <div class="modalTitle">
+          商品名稱：
+          <p style="color: red;">【{{product.Product_category.name}}】{{product.name}}</p>
         </div>
-      </div>
+
+        <form @submit.stop.prevent="handleNotice">
+          <div class="email form-group">
+            <label style="color: gray;" for="inputEmail">電子郵件：</label>
+            <input type="text" name="email" class="form col-12" v-model="email" required autofocus />
+          </div>
+
+          <div class="email_confirm form-group">
+            <label style="color: gray;" for="inputEmail">確認電子郵件：</label>
+            <input
+              type="text"
+              name="email_confirm"
+              class="form col-12"
+              v-model="email_confirm"
+              required
+            />
+          </div>
+
+          <p class="warning" style="text-align: center; color: red;">此功能僅為貨到通知，無法保留商品喔。</p>
+
+          <div class="mb-4" style="text-align: center;">
+            <button
+              class="modal-btn btn btn-primary col-12"
+              :disabled="isProcessing"
+            >{{ isProcessing ? "處理中..." : "送出" }}</button>
+          </div>
+        </form>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -197,14 +197,6 @@ export default {
     };
   },
   methods: {
-    qtyMinus() {
-      if (this.qty > 1) return this.qty--;
-      return (this.minus = true);
-    },
-    qtyPlus() {
-      if (this.qty >= this.product.count) return (this.plus = true);
-      return this.qty++;
-    },
     qtyValue() {
       if (this.qty >= this.product.count)
         return (this.qty = this.product.count);
@@ -296,98 +288,73 @@ export default {
         });
       }
     }
-  },
-  mounted() {
-    if (this.product.count === 0) {
-      const modal = document.querySelector(".modal");
-      const btn = document.querySelector(".notice");
-      const span = document.querySelector(".close");
-
-      // When the user clicks the button, open the modal
-      btn.onclick = () => {
-        modal.style.display = "block";
-      };
-
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = () => {
-        modal.style.display = "none";
-      };
-    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-    @content;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
   }
 }
 
-.free {
-  font-size: 16px;
-  @include respond-between(960px, 1100px, 13px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 13px;
+.card-body {
+  padding: 0 0 0 50px;
+  @media screen and (max-width: 992px) {
+    padding: 0;
   }
 }
 
-h5 {
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px) {
-    font-size: 20px;
-  }
+.rating-box {
+  padding: 20px 0;
+}
+
+.price-box {
+  padding: 20px 0 0 0;
 }
 
 .price {
-  @include respond-between(960px, 1100px, 25px);
-  @include respond-between(768px, 960px, 20px);
-  @include respond-and(768px) {
-    font-size: 25px;
-  }
+  padding: 0 10px;
+  margin-top: -3px;
+}
+
+.free {
+  font-size: 16px;
+}
+
+.transport,
+.freight-box,
+.qty-box {
+  padding: 5px 0;
+}
+
+.free-content {
+  margin: 0;
+}
+
+p,
+h6 {
+  color: #918b8b;
 }
 
 .no-comment {
+  font-size: 16px;
   margin-right: 12px;
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
 }
 
 .rating {
+  font-size: 16px;
   margin-right: 12px;
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
-}
-
-p {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
+  color: rgb(112, 109, 109);
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    color: #0085a5;
   }
 }
 
 .btn {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
+  font-size: 16px;
 }
 
 .av-star,
@@ -395,188 +362,45 @@ p {
 .btn-danger {
   margin-right: 12px;
 }
-
-.freight,
-.transport,
-.qty-title {
-  margin-right: 60px;
-  @media screen and (min-width: 768px) and (max-width: 960px) {
-    margin-right: 30px;
-  }
-  @include respond-and(768px) {
-    margin-right: 25px;
-  }
-}
-
-.count,
-.freight {
-  margin-left: 24px;
-}
-
-.empty {
-  margin-left: 60px;
-}
-
-/* ========= 數量增減按鍵 ========= */
-.selectQty {
-  text-align: center;
-  padding: 5px;
-  margin: 5px;
-}
+/* ========= 數量增減 ========= */
 
 .qty {
-  width: 70px;
-  height: 30px;
-  text-align: center;
-  border: transparent;
+  width: 130px;
+  height: 38px;
+  font-size: 16px;
+  padding: 0 0 0 16px;
   background-color: transparent;
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px) {
-    width: 50px;
-  }
-  @include respond-and(768px) {
-    font-size: 15px;
-    width: 50px;
-  }
-}
-
-%qty-plus-minus {
-  width: 33px;
-  height: 33px;
-  background-color: transparent;
-  border: 1px solid rgb(182, 178, 178);
-  border-radius: 5px;
-}
-
-%qty-hover {
-  cursor: pointer;
-  background-color: #0085a5;
-  transition: background-color 0.5s;
-  color: white;
-}
-
-%qty-active {
-  background-color: #0085a5;
-  box-shadow: 0 5px rgb(172, 169, 169);
-  transform: translateY(4px);
-}
-
-input.qtyPlus {
-  font-family: FontAwesome;
-  @extend %qty-plus-minus;
-  @media screen and (min-width: 768px) and (max-width: 960px) {
-    width: 25px;
-    height: 30px;
-  }
-  &:hover {
-    @extend %qty-hover;
-  }
-  &:active {
-    @extend %qty-active;
-  }
-}
-
-input.qtyMinus {
-  @extend %qty-plus-minus;
-  @media screen and (min-width: 768px) and (max-width: 960px) {
-    width: 25px;
-    height: 30px;
-  }
-  &:hover {
-    @extend %qty-hover;
-  }
-  &:active {
-    @extend %qty-active;
-  }
+  border: 1px solid #918b8b;
 }
 
 /* ========= 到貨通知 modal =========*/
-.notice {
-  cursor: pointer;
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+
+.email,
+.email_confirm,
+.modalTitle,
+.warning,
+.modal-btn {
+  font-family: "Noto Sans TC", sans-serif;
 }
 
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-  @media screen and (min-width: 960px) and (max-width: 1100px) {
-    width: 115%;
-  }
-  @media screen and (min-width: 768px) and (max-width: 960px) {
-    width: 130%;
-    margin-left: -150px;
-  }
-  @include respond-and(768px) {
-    width: 200%;
-    margin-top: 50px;
-    margin-left: -400px;
-  }
-  @include respond-and(600px) {
-    width: 250%;
-    margin-top: 100px;
-    margin-left: -450px;
-  }
-  @include respond-and(520px) {
-    width: 240%;
-    margin-top: 120px;
-    margin-left: -300px;
+.modalTitle {
+  padding: 10px 0;
+  text-align: center;
+  p {
+    padding: 10px 0;
   }
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 30%;
-}
-
-label {
+label,
+.email,
+.email_confirm {
   font-size: 16px;
-}
-
-/* The Close Button */
-%close-style {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.close {
-  color: #aaaaaa;
-  font-size: 28px;
-  font-weight: bold;
-  &:hover {
-    @extend %close-style;
-  }
-  &:focus {
-    @extend %close-style;
-  }
 }
 </style>
 
 <style lang="scss">
 /* ========= 評價星星 ========= */
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-@mixin respond-and($upper, $font-size) {
-  @media screen and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 .star {
   position: relative;
   margin: 0;
@@ -609,8 +433,5 @@ i.fa-star-yellow {
 
 .star > .fa {
   font-size: 25px;
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px, 20px);
 }
 </style>

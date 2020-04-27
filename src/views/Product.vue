@@ -2,11 +2,48 @@
   <div class="product">
     <Spinner v-if="isLoading" />
     <template v-else>
+      <div class="product-title col-12 row">
+        <router-link to="/">首頁&nbsp;</router-link>
+        <h6>&nbsp;&gt;&nbsp;</h6>
+        <router-link
+          :to="{ name: 'category-products', params: { id: categoryId }}"
+        >&nbsp;{{categoryName}}&nbsp;</router-link>
+        <h6>&nbsp;&gt;&nbsp;</h6>
+        <h6 style="color: black;">&nbsp;{{product.name}}</h6>
+      </div>
+
       <transition name="fade" mode="out-in">
-        <div v-if="show" class="row mt-5 col-12">
+        <div v-if="show" class="index-box row mt-3 col-12">
+          <!-- 選取圖片 -->
+          <div class="select-img-box col-lg-1 col-2">
+            <img
+              class="select-img"
+              :src="product.image"
+              alt="image"
+              @mouseover="changeImg(product.image)"
+            />
+            <img
+              class="select-img"
+              :src="product.imageI"
+              alt="image"
+              @mouseover="changeImg(product.imageI)"
+            />
+            <img
+              class="select-img"
+              :src="product.imageII"
+              alt="image"
+              @mouseover="changeImg(product.imageII)"
+            />
+          </div>
+
           <!-- 商品圖片 -->
-          <div class="index col-md-4 mb-5">
-            <img :src="product.image" width="100%" alt="image" />
+          <div class="index col-lg-5 col-10 mb-5">
+            <img
+              :src="productImg === '' ? productImg = product.image : productImg"
+              width="100%"
+              height="400vh"
+              alt="image"
+            />
           </div>
 
           <!-- 商品資訊 -->
@@ -19,15 +56,27 @@
         </div>
       </transition>
 
-      <hr class="col-10" />
+      <!-- 相似商品 -->
+      <div class="similar-products-title mt-5">
+        <h5>推薦相似商品</h5>
+      </div>
 
-      <!-- 商品規格 -->
-      <ProductSpecifications :initial-product="product" :key="'spec-' + product.id" />
+      <div class="similar-products-box mt-5 mb-5 col-12">
+        <transition name="fade" mode="out-in">
+          <div v-if="show" class="similar-products">
+            <SimilarProducts
+              v-for="product in similarProducts"
+              :key="product.id"
+              :initial-similar-product="product"
+              :category-name="categoryName"
+            />
+          </div>
+        </transition>
+      </div>
 
-      <!-- 商品詳情 -->
+      <!-- 商品簡介 -->
       <ProductDetails :initial-product="product" :key="product.id" />
 
-      <hr class="col-10" />
       <section id="evaluation"></section>
 
       <!-- 商品評價 -->
@@ -37,13 +86,19 @@
 
       <transition name="fade" mode="out-in">
         <div v-if="show" class="comment-content mt-5">
-          <div class="card-header col-md-9 col-10 mt-3">
+          <div class="card-header col-12 mt-3">
             <div class="comment row">
               <!-- 無評價 -->
               <p v-if="Comments.length === 0" class="ml-1 mt-4 mr-4" style="color: orange;">0 / 5</p>
               <!-- 有評價 -->
               <p v-else class="ml-1 mt-4 mr-4" style="color: orange;">{{ratingAve}} / 5</p>
-              <p class="mt-4 ml-1" style="color: #0085a5;">| 共有 {{Comments.length}} 則評價</p>
+              <p class="commit-title mt-4 ml-1">
+                <span style="color: rgb(185, 179, 179);">|</span>
+                &nbsp;&nbsp;共有&nbsp;
+                <span
+                  class="commit-total-number"
+                >{{Comments.length}}</span> &nbsp;則評價
+              </p>
             </div>
 
             <!-- 商品平均評分 -->
@@ -85,25 +140,6 @@
         @after-create-comment="afterCreateComment"
       />
 
-      <hr class="mt-5 col-10" />
-
-      <!-- 相似商品 -->
-      <div class="similar-products-title mt-5">
-        <h5>相似商品</h5>
-      </div>
-
-      <div class="similar-products-box mt-5 mb-5 col-md-10">
-        <transition name="fade" mode="out-in">
-          <div v-if="show" class="row">
-            <SimilarProducts
-              v-for="product in similarProducts"
-              :key="product.id"
-              :initial-similar-product="product"
-              :category-name="categoryName"
-            />
-          </div>
-        </transition>
-      </div>
       <!-- 購物車通知 -->
       <CartNotice />
     </template>
@@ -112,7 +148,6 @@
 
 <script>
 import ProductInformation from "./../components/ProductInformation";
-import ProductSpecifications from "./../components/ProductSpecifications";
 import ProductDetails from "./../components/ProductDetails";
 import ProductReview from "./../components/ProductReview";
 import CommentPagination from "./../components/CommentPagination";
@@ -129,7 +164,6 @@ export default {
   mixins: [starFilter],
   components: {
     ProductInformation,
-    ProductSpecifications,
     ProductDetails,
     ProductReview,
     CommentPagination,
@@ -164,7 +198,8 @@ export default {
         }
       },
       isLoading: true,
-      show: false
+      show: false,
+      productImg: ""
     };
   },
   computed: {
@@ -219,6 +254,7 @@ export default {
           name: data.product.Product_category.name
         };
         this.isLoading = false;
+        this.changeImg(data.product.image);
         this.show = true;
       } catch (error) {
         this.isLoading = false;
@@ -228,12 +264,15 @@ export default {
         });
       }
     },
+    changeImg(img) {
+      this.productImg = img;
+    },
     afterDeleteComment() {
       if (this.isLoading === false) {
         setTimeout(() => {
           window.scrollTo({
-            top: 2200,
-            behavior: "smooth"
+            top: 1500,
+            behavior: "auto"
           });
         }, 2000);
       }
@@ -242,8 +281,8 @@ export default {
       if (this.isLoading === false) {
         setTimeout(() => {
           window.scrollTo({
-            top: 2200,
-            behavior: "smooth"
+            top: 1500,
+            behavior: "auto"
           });
         }, 2000);
       }
@@ -253,123 +292,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
   }
 }
 
+.product {
+  margin-bottom: 60px;
+}
+
+.index-box {
+  padding: 0;
+}
+
 .index {
-  margin-left: 25px;
-  @include respond-and(768px) {
-    margin-left: 0px;
-    margin-top: 20px;
-  }
-}
-
-.list-group-item {
-  &:hover {
-    color: white;
-    background-color: #0085a5;
-  }
-}
-
-hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 0;
-  border-top: 1px solid #0085a5;
-  margin-left: 25px;
-  @include respond-and(768px) {
-    margin-left: 5px;
+  @include respond-and(992px) {
+    padding: 0 15px 0 5px;
   }
 }
 
 .card-header {
   background: linear-gradient(-40deg, #d2f0f5, #abe3ed) !important;
-  margin-left: 60px;
-  @include respond-and(768px) {
-    margin-left: 25px;
-  }
 }
 
-h5 {
-  margin-left: 60px;
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px) {
-    font-size: 20px;
-    margin-left: 15px;
-  }
-}
-
-.comment {
-  margin-left: 60px;
+.similar-products-title,
+.comment-title {
+  padding: 0 0 0 15px;
 }
 
 .similar-products-box {
-  margin-left: 60px;
-  @include respond-and(768px) {
-    margin-left: 0px;
-  }
+  padding: 0;
 }
 
-.comment-title {
-  margin-left: 30px;
-  @include respond-and(768px) {
-    margin-left: 15px;
-  }
+.similar-products {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  width: 100%;
 }
 
-.comment-content {
-  margin-left: 30px;
-  @include respond-and(768px) {
-    margin-left: 0px;
-  }
+.commit-title {
+  color: rgb(112, 109, 109);
 }
 
-.similar-products-title {
-  margin-left: 30px;
-  @include respond-and(768px) {
-    margin-left: 15px;
-  }
+.commit-total-number {
+  color: #0085a5;
 }
 
 .no-comments {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
+  font-size: 16px;
+}
+
+.select-img-box {
+  padding: 0;
+}
+
+.product-title {
+  padding: 20px;
+}
+
+h6 {
+  color: #918b8b;
+  margin-top: 3px;
+}
+
+.select-img {
+  margin-bottom: 15px;
+  display: block;
+  width: 70px;
+  height: 53px;
+  &:hover {
+    border: 2px solid #0085a5;
+    cursor: pointer;
   }
-}
-
-p {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
+  @include respond-and(576px) {
+    width: 65px;
+    height: 48px;
+    padding: 0 5px;
   }
-}
-
-.product {
-  @include respond-and(768px) {
-    margin-left: -65px;
-  }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1.3s ease;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

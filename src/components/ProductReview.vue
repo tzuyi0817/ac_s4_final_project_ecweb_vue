@@ -1,5 +1,5 @@
 <template>
-  <div class="comments col-md-9 col-10">
+  <div class="comments col-12">
     <div v-for="comment in commentsPagination" :key="comment.id">
       <div class="list-group-item list-group-item-action mt-2">
         <button
@@ -15,7 +15,7 @@
           </div>
 
           <div class="col-10">
-            <p class="ml-5 mr-5 mt-2">{{comment.User.name}}</p>
+            <p class="commit-user mr-5 mt-2">{{comment.User.name}}</p>
 
             <div>
               <span class="stars d-flex mb-3 mt-2 ml-5">
@@ -25,8 +25,8 @@
           </div>
         </div>
 
-        <p class="ml-5 mt-4">{{comment.comment}}</p>
-        <small class="ml-5">{{comment.createdAt | fromNow}}</small>
+        <p class="commit mt-4">{{comment.comment}}</p>
+        <small class="commit-date">{{comment.createdAt | fromNow}}</small>
       </div>
     </div>
   </div>
@@ -83,12 +83,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
@@ -96,13 +90,13 @@ export default {
 }
 
 .comments {
-  margin-left: 60px;
-  @include respond-and(768px) {
-    margin-left: 30px;
-  }
+  padding: 0;
 }
 
-/* ====== User 的評論大頭照 ====== */
+.list-group-item {
+  padding: 15px;
+}
+
 .avatar {
   position: absolute;
   top: 0px;
@@ -111,35 +105,19 @@ export default {
   height: 50px;
   display: block;
   border-radius: 50%;
-  @media screen and (min-width: 960px) and (max-width: 1100px) {
-    width: 45px;
-    height: 45px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 960px) {
-    width: 40px;
-    height: 40px;
-  }
-  @include respond-and(768px) {
-    width: 45px;
-    height: 45px;
-  }
 }
 
 small {
   color: gray;
-  @include respond-between(960px, 1100px, 10px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 10px;
-  }
+  font-size: 10px;
 }
 
-p {
-  font-size: 18px;
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
+.commit-user {
+  margin-left: 64px;
+}
+
+.commit,
+.commit-date {
+  margin-left: 80px;
 }
 </style>
