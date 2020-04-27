@@ -45,10 +45,4 @@
     transform: translateY(-1rem);
   }
 }
-
-@media screen and (max-width: 840px) {
-  .spinner {
-    margin-left: -65px;
-  }
-}
 </style>

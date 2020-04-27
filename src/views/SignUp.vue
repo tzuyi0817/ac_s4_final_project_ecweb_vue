@@ -1,6 +1,6 @@
 <template>
-  <div class="container w-100 mb-5">
-    <article class="half">
+  <div class="signup-box col-12 row">
+    <article class="half col-lg-6">
       <h1>Museclub</h1>
       <div class="tabs">
         <span class="tab signin">
@@ -65,7 +65,7 @@
         </div>
       </div>
     </article>
-    <div class="half bg mb-5">
+    <div class="half bg col-lg-6">
       <img src="https://pbs.twimg.com/media/EHGMmkhW4Acstmt.jpg" />
     </div>
   </div>
@@ -154,53 +154,20 @@ export default {
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
 
-@mixin respond-between($lower, $upper) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    @content;
-  }
-}
-
-@mixin respond-and($upper) {
-  @media screen and (max-width: $upper) {
-    @content;
-  }
-}
-
-.container {
+.signup-box {
   background-color: #f8f8f8;
   position: relative;
   overflow: hidden;
-  @include respond-and(768px) {
-    margin-left: -45px;
-  }
+  padding: 75px 0;
+  margin-bottom: 50px;
 }
 
 h1 {
   font-family: "Pacifico", cursive;
   color: #0085a5;
-  font-size: 35px;
   font-weight: 700;
   margin-bottom: 23px;
   text-align: center;
-  @include respond-between(960px, 1100px) {
-    font-size: 25px;
-  }
-  @include respond-between(768px, 960px) {
-    font-size: 20px;
-  }
-  @include respond-and(768px) {
-    font-size: 20px;
-  }
-}
-
-.half {
-  float: left;
-  width: 50%;
-  height: 100%;
-  padding: 58px 40px 20px;
-  @include respond-and(768px) {
-    width: 100%;
-  }
 }
 
 .tabs {
@@ -221,33 +188,24 @@ h1 {
 
 .tab {
   a {
-    font-size: 20px;
+    font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
     color: gray;
     transition: all 0.1s ease-in-out;
-    @include respond-between(960px, 1100px) {
-      font-size: 15px;
-      height: 50px;
-    }
-    @include respond-between(768px, 960px) {
-      font-size: 10px;
-      height: 50px;
-    }
-    @include respond-and(768px) {
-      font-size: 10px;
-      height: 50px;
-    }
   }
 }
 
 a:hover,
 .tab.active a {
   color: #0085a5;
+  transition: all 0.8s ease-in-out;
 }
 
-.tab.active {
+.tab.active,
+.tab:hover {
   border-bottom: 1px solid #0085a5;
+  transition: all 0.8s ease-in-out;
 }
 
 form {
@@ -269,25 +227,13 @@ input {
   color: #0085a5;
   border: 1px solid #d9d9d9;
   background: transparent;
-  @include respond-between(960px, 1100px) {
-    font-size: 15px;
-    height: 50px;
-  }
-  @include respond-between(768px, 960px) {
-    font-size: 10px;
-    height: 50px;
-  }
-  @include respond-and(768px) {
-    font-size: 10px;
-    height: 50px;
-  }
   &:focus {
     border-color: #0085a5;
   }
 }
 
 input.submit {
-  font-size: 20px;
+  font-size: 16px;
   display: block;
   width: 100%;
   height: 55px;
@@ -298,22 +244,10 @@ input.submit {
   color: #0085a5;
   border: 1px solid #0085a5;
   background: transparent;
-  @include respond-between(960px, 1100px) {
-    font-size: 15px;
-    height: 50px;
-  }
-  @include respond-between(768px, 960px) {
-    font-size: 10px;
-    height: 50px;
-  }
-  @include respond-and(768px) {
-    font-size: 10px;
-    height: 50px;
-  }
   &:hover {
-    transition: all 0.3s ease-in-out;
     background-color: #0085a5;
     color: #d9d9d9;
+    transition: all 0.5s ease-in-out;
   }
 }
 
@@ -322,16 +256,10 @@ input.submit {
 }
 
 img {
-  @include respond-between(960px, 1100px) {
-    margin-top: 100px;
-    width: 110%;
-  }
-  @include respond-between(768px, 960px) {
-    margin-top: 100px;
-    width: 110%;
-  }
-  @include respond-and(768px) {
-    width: 100%;
-  }
+  width: 100%;
+}
+
+.bg {
+  margin-top: 60px;
 }
 </style>
