@@ -1,5 +1,5 @@
 <template>
-  <div class="coupon mt-5">
+  <div class="coupon">
     <hr />
 
     <form @submit.stop.prevent="handleSubmit">
@@ -136,36 +136,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper, $font-size) {
   @media screen and (max-width: $upper) {
     font-size: $font-size;
   }
 }
 
-hr {
-  border: 0;
-  border-top: 2px solid rgb(212, 210, 210);
-}
-
 .btn-success {
   float: right;
-  background-color: #0085a5;
-  &:hover {
-    background-color: #0c99bd;
-  }
+}
+
+label {
+  padding: 0 0 0 15px;
 }
 
 label,
 input,
 .btn {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
+  font-size: 16px;
 }
 </style>

@@ -1,54 +1,49 @@
 <template>
-  <div class="container mb-4">
+  <div class="container mb-5">
     <Spinner v-if="isLoading" />
     <template v-else>
       <!-- 購物車流程 Navbar -->
-      <div class="row justify-content-center mt-3">
-        <div class="col-12 col-md-8">
-          <div class="row step">
-            <div class="col-3 text-center step-point-line step-point">
-              <span class="step-by-step bg-dark rounded-pill text-light d-inline-block">Step 1</span>
-              <p class="step-text text-dark">確認購物車</p>
-            </div>
+      <div class="cart-box row">
+        <div class="row step col-12">
+          <div class="col-3 text-center step-point-line step-point">
+            <span class="step-by-step bg-dark rounded-pill text-light d-inline-block">Step 1</span>
+            <p class="step-text text-dark">確認購物車</p>
+          </div>
 
-            <div class="arrow col-1">
-              <i class="fas fa-long-arrow-alt-right"></i>
-            </div>
+          <div class="arrow col-1">
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
 
-            <div class="col-3 text-center">
-              <span
-                class="step-by-step border bg-secondary rounded-pill text-dark d-inline-block"
-              >Step 2</span>
-              <p class="step-text text-dark">付款與運送方式</p>
-            </div>
+          <div class="col-3 text-center">
+            <span
+              class="step-by-step border bg-secondary rounded-pill text-dark d-inline-block"
+            >Step 2</span>
+            <p class="step-text text-dark">付款與運送方式</p>
+          </div>
 
-            <div class="arrow col-1" style="color: gray">
-              <i class="fas fa-long-arrow-alt-right"></i>
-            </div>
+          <div class="arrow col-1" style="color: gray">
+            <i class="fas fa-long-arrow-alt-right"></i>
+          </div>
 
-            <div class="col-3 text-center">
-              <span
-                class="step-by-step border bg-secondary rounded-pill text-dark d-inline-block"
-              >Step 3</span>
-              <p class="step-text text-dark">成立訂單</p>
-            </div>
+          <div class="col-3 text-center">
+            <span
+              class="step-by-step border bg-secondary rounded-pill text-dark d-inline-block"
+            >Step 3</span>
+            <p class="step-text text-dark">成立訂單</p>
           </div>
         </div>
       </div>
 
       <!-- 購物車明細 -->
-      <div class="cartNav row text-white mt-3 col-12" style="padding: 8px;">
-        <h1>&nbsp;購物車明細</h1>
+      <div class="cartNav row text-white col-12 mt-3">
+        <h3>&nbsp;購物車明細</h3>
       </div>
 
       <CartItems v-if="this.items.length > 0" :items="items" />
 
       <template v-else>
-        <div class="alert alert-secondary mt-3 col-11" role="alert">您的購物車是空的!!</div>
-        <div class="row">
-          <p class="col">&nbsp;</p>
-          <router-link to="/" class="btn btn-primary mt-5">繼續購物</router-link>
-        </div>
+        <div class="alert mt-3 col-12" role="alert">您的購物車是空的!!</div>
+        <router-link to="/" class="btn btn-success shopping-btn mt-1 col-12">繼續購物</router-link>
       </template>
 
       <!-- 折價券使用 -->
@@ -71,7 +66,7 @@
           <p class="col">&nbsp;</p>
 
           <div @click.prevent.stop="handlePrompt">
-            <router-link to="/users/logIn?redirect=cart" class="btn btn-select mt-4">前往選擇付款及運送方式</router-link>
+            <router-link to="/users/logIn?redirect=cart" class="btn btn-success mt-4">前往選擇付款及運送方式</router-link>
           </div>
         </template>
 
@@ -82,12 +77,12 @@
           <!-- 使用折價券 -->
           <router-link
             v-if="coupon"
-            class="btn btn-select mt-4"
+            class="btn btn-success mt-4"
             :to="{name: 'CouponOrder', params: { id: coupon.id }}"
           >前往選擇付款及運送方式</router-link>
 
           <!-- 未使用折價券 -->
-          <router-link v-else to="/orderEdit" class="btn btn-select mt-4">前往選擇付款及運送方式</router-link>
+          <router-link v-else to="/orderEdit" class="btn btn-success mt-4">前往選擇付款及運送方式</router-link>
         </template>
       </div>
     </template>
@@ -174,79 +169,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
   }
 }
 
-@mixin respond-and($upper, $font-size) {
-  @media screen and (max-width: $upper) {
-    font-size: $font-size;
-  }
+.cart-box {
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .step-by-step {
   padding: 10px 16px;
   margin-bottom: 18px;
+  font-size: 18px;
 }
 
 .arrow {
   font-size: 40px;
-  @include respond-and(768px, 30px);
+  @include respond-and(768px) {
+    padding: 0;
+    margin-left: 5px;
+  }
 }
 
 .cartNav {
   border-radius: 10px;
+  padding: 20px;
+  margin-left: 0;
   background-color: #0085a5;
-}
-
-hr {
-  border: 0;
-  border-top: 2px solid rgb(212, 210, 210);
-}
-
-%btn-style {
-  float: right;
-  background-color: #0085a5;
-  color: white;
-  &:hover {
-    background-color: #0c99bd;
+  @include respond-and(768px) {
+    padding: 10px;
   }
 }
 
-.btn-primary {
-  @extend %btn-style;
+.alert {
+  text-align: center;
+  font-size: 16px;
+  padding: 35px;
+  background-color: #e5ebec;
 }
 
-.btn-select {
-  @extend %btn-style;
-}
-
-h1 {
-  @include respond-between(960px, 1100px, 30px);
-  @include respond-between(768px, 960px, 25px);
-  @include respond-and(768px, 15px);
-}
-
-p,
-span,
-.alert,
-.btn {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
-}
-
-.step {
-  @media screen and (max-width: 768px) {
-    margin-top: 50px;
-  }
-}
-
-.container {
-  @media screen and (max-width: 768px) {
-    margin-left: -30px;
-  }
+.btn-success {
+  margin: 20px 10px 5px 0;
 }
 </style>
