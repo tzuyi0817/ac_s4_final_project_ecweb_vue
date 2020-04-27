@@ -3,9 +3,9 @@
     <Spinner v-if="isLoading" />
     <template v-else>
       <div class="row">
-        <div class="title col-md-4">
+        <div class="title col-lg-4">
           <div class="mb-4">
-            <h2 style="text-align:center">個人資料</h2>
+            <h3 style="text-align:center">個人資料</h3>
           </div>
 
           <div class="card mb-5">
@@ -19,14 +19,14 @@
             <router-link
               v-if="profile.id === currentUser.id"
               :to="{name: 'EditProfile', params: { id: profile.id }}"
-              class="btn btn-select mt-2"
+              class="btn btn-success mt-2 col-12"
             >編輯個人資料</router-link>
           </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-lg-8">
           <div class="mb-4">
-            <h2 style="text-align:center">購物記錄</h2>
+            <h3 style="text-align:center">購物記錄</h3>
           </div>
           <!-- 訂單詳情 -->
           <OrdersDetails v-for="order in orders" :key="order.id" :initial-order="order" />
@@ -96,15 +96,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-@mixin respond-and($upper, $font-size) {
+@mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
-    font-size: $font-size;
+    @content;
   }
 }
 
@@ -130,57 +124,22 @@ export default {
   border: 1px solid #0085a5;
 }
 
-h3 {
-  margin: 10px 0;
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px, 15px);
-}
-
 .email {
   color: grey;
-  font-size: 18px;
-  @include respond-between(960px, 1100px, 13px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
-}
-
-.btn-select {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  background-color: #0085a5;
-  color: white;
-  text-align: center;
-  width: 100%;
-  &:hover {
-    background-color: #0c99bd;
-  }
-}
-
-h2 {
-  @include respond-between(960px, 1100px, 25px);
-  @include respond-between(768px, 960px, 20px);
-  @include respond-and(768px, 20px);
+  font-size: 16px;
 }
 
 .row,
 .btn {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
-}
-
-.container {
-  @media screen and (max-width: 768px) {
-    margin-left: -45px;
-  }
+  font-size: 16px;
 }
 
 .title {
-  @media screen and (max-width: 768px) {
-    margin-top: 50px;
+  @include respond-and(992px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>

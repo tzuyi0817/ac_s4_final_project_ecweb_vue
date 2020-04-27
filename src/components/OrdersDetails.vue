@@ -34,7 +34,7 @@
         </li>
 
         <div class="row">
-          <div class="col-md-5">
+          <div class="amount-box col-md-5">
             <h6 class="mt-3 ml-2">金額詳情：</h6>
             <div class="bg-light text-dark list-group-item mt-3">
               <span>金額總計:</span>
@@ -42,8 +42,8 @@
             </div>
           </div>
 
-          <div class="col-md-7 mt-3">
-            <h6>收貨人資訊：</h6>
+          <div class="customer-information col-md-7 mt-3">
+            <h6 class="ml-2">收貨人資訊：</h6>
             <div class="bg-light text-dark list-group-item mt-3">
               <span>名字: &nbsp;{{order.name}}</span>
               <br />
@@ -54,7 +54,7 @@
           </div>
         </div>
 
-        <h6 class="shipping-status ml-2">出貨狀況：</h6>
+        <h6 class="shipping-status ml-2 mt-3">出貨狀況：</h6>
         <div class="bg-light text-dark list-group-item mt-3 col-12">
           <span>訂單狀態: &nbsp;{{order.Order_status.orderStatus}}</span>
           <br />
@@ -152,46 +152,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
+@mixin respond-and($upper) {
+  @media screen and (max-width: $upper) {
+    @content;
   }
 }
 
-@mixin respond-and($upper, $font-size) {
-  @media screen and (max-width: $upper) {
-    font-size: $font-size;
-  }
+.card-header {
+  padding: 15px 10px;
 }
 
 .btn,
 span {
-  font-size: 18px;
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
+  font-size: 16px;
 }
 
 h6 {
   color: #0085a5;
-  @include respond-between(960px, 1100px, 18px);
-  @include respond-between(768px, 960px, 13px);
-  @include respond-and(768px, 13px);
 }
 
 .list-group-item {
-  margin-left: 5px;
+  padding: 15px 10px;
 }
 
-h4 {
-  @include respond-between(960px, 1100px, 20px);
-  @include respond-between(768px, 960px, 15px);
-  @include respond-and(768px, 15px);
+.col,
+.col-6,
+.customer-information {
+  padding: 0;
 }
 
-.shipping-status {
-  @media screen and (max-width: 768px) {
-    margin-top: 20px;
+.amount-box {
+  padding: 0 15px 0 0;
+  @include respond-and(768px) {
+    padding: 0;
   }
 }
 </style>

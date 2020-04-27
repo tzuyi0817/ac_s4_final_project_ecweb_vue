@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container mb-5">
     <Spinner v-if="isLoading" />
     <template v-else>
       <form @submit.stop.prevent="handleSubmit">
-        <div class="row">
-          <div class="mug-shot col-md-4">
+        <div class="edit-user-box row">
+          <div class="mug-shot col-lg-5">
             <div class="form-group">
               <img
                 v-if="user.image"
@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <div class="col-md-6">
+          <div class="user-info-box col-lg-7">
             <div class="form_group row">
               <label class="col-2">名字:</label>
               <div class="col-10">
@@ -59,7 +59,7 @@
         <div class="form-group d-flex justify-content-between mt-4 mb-5">
           <button
             type="submit"
-            class="btn btn-select col-md-10"
+            class="btn btn-success col-12"
             :disabled="isProcessing"
           >{{ isProcessing ? "處理中..." : "儲存" }}</button>
         </div>
@@ -171,58 +171,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
   }
 }
 
-.btn-select {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  background-color: #0085a5;
-  color: white;
-  text-align: center;
-  width: 100%;
-  margin-left: 60px;
-  @include respond-and(768px) {
-    margin-left: 0px;
-  }
-  &:hover {
-    background-color: #0c99bd;
-  }
-}
-
-.mug-shot {
-  margin-left: 60px;
-  @include respond-and(768px) {
-    margin-left: 20px;
-    margin-bottom: 10px;
-    margin-top: 50px;
-  }
+.edit-user-box {
+  padding: 30px 0 10px 0;
 }
 
 .row,
 .btn,
 input {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 10px;
-  }
+  font-size: 16px;
 }
 
-.container {
-  @include respond-and(768px) {
-    margin-left: -45px;
+.col-2 {
+  padding: 5px 0;
+}
+
+.col-10 {
+  padding: 0;
+}
+
+.user-info-box {
+  @include respond-and(992px) {
+    margin-top: 20px;
   }
 }
 </style>
