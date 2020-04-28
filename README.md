@@ -1,4 +1,4 @@
-<h3 align="center">MuseClub</h3>
+<h1 align="center">MuseClub</h1>
 <p align="center">
   
   <br>
@@ -11,7 +11,7 @@
 E-commerce platform for single-brand stores.
 
 
-# HOw to use
+# How to use
 
 **1. Clone the project**
 ```

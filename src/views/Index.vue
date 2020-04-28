@@ -35,7 +35,9 @@
           >
             <b-carousel-slide v-for="image in images" :key="image.id" :text="image.text">
               <template v-slot:img>
-                <img class="index-img" :src="image.src" alt="image slot" />
+                <router-link :to="image.url">
+                  <img class="index-img" :src="image.src" alt="image slot" />
+                </router-link>
               </template>
             </b-carousel-slide>
 
@@ -98,12 +100,14 @@ export default {
         {
           id: 1,
           text: "烘焙咖啡使咖啡生豆的化學與物理性質轉變為已烘焙的咖啡製品。",
+          url: "/Category/1",
           src:
             "https://tshop.r10s.com/6c5/98a/16cf/7ab6/c022/392a/ec81/1198e787262c600c7376cd.jpg"
         },
         {
           id: 2,
           text: "葡萄酒是用新鮮葡萄果實或葡萄汁，經過發酵釀製而成的酒精飲料。",
+          url: "/Category/2",
           src:
             "https://storage.googleapis.com/winentaste-assets/images/article/special/special_uksaywine_vinotypesec_00.jpg"
         },
@@ -111,11 +115,13 @@ export default {
           id: 3,
           text:
             "不使用化學合成農藥、化學合成肥料、基因改造生物、動物及植物生長調節劑等非天然物質的農產品。",
+          url: "/Category/3",
           src:
             "https://1.bp.blogspot.com/-CrzR_prJz4E/WnGVeBp9U8I/AAAAAAAAz04/SRo1-GPHS1AFxsF3KcoCbLBVTHipHELTgCLcBGAs/s1600/vegetables-343837_960_720.jpg"
         },
         {
           id: 4,
+          url: "/product/27",
           src:
             "https://jooshop.url.com.tw/website/uploads/website_225/zh-tw/prod_sort_imgs_518_0.jpg"
         }

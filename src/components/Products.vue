@@ -14,6 +14,7 @@
         />
         <div class="card-body product-content mt-2">
           <p class="card-title">
+            <span v-if="product.id === 27" class="badge badge-danger">促銷中</span>
             【{{Category.name}}】
             {{product.name}}
           </p>
@@ -51,7 +52,7 @@ export default {
 <style lang="scss" scoped>
 .products {
   text-align: center;
-  padding: 0 0 0 15px;
+  padding: 0 7.5px;
 }
 
 .card {

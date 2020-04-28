@@ -11,6 +11,7 @@
             :to="{ name: 'category-products', params: { id: product.ProductCategoryId }}"
           >{{product.Product_category.name}}</router-link>
           】{{product.name}}
+          <span v-if="product.id === 27" class="badge badge-danger">促銷中</span>
         </h5>
       </div>
 
