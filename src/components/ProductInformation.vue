@@ -359,7 +359,6 @@ h6 {
 }
 
 .av-star,
-.btn-success,
 .btn-danger {
   margin-right: 12px;
 }

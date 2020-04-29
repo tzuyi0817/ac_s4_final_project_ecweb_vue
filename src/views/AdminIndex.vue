@@ -2,26 +2,26 @@
   <div>
     <Spinner v-if="isLoading" />
     <template v-else>
-      <div class="container-fluid admin_layout">
-        <div class="row">
-          <div class="navbar col-md-2 col-10 d-flex flex-column">
+      <div class="admin_layout">
+        <div class="admin_layout-box row">
+          <div class="navbar col-lg-2 col-12">
             <AdminNavbar />
           </div>
 
-          <div class="col-md-9 col-11 d-flex flex-column bg-light p-1">
-            <div class="row admin_fuctionBlock vh-100">
-              <div class="col-12 indexmodel_storeinfo px-5">
+          <div class="col-lg-10 col-12 d-flex flex-column p-2">
+            <div class="row admin_fuctionBlock mb-5 bg-light">
+              <div class="col-12 indexmodel_storeinfo">
                 <form @submit.stop.prevent="handleSubmit">
-                  <div class="row storeinfo_form py-4 my-5">
+                  <div class="row storeinfo_form py-4">
                     <!-- 商店logo -->
-                    <div class="col-md-6 text-center">
+                    <div class="logo-box col-lg-6">
                       <div class="logo">
                         <p>&nbsp;</p>
-                        <p class="navbar-title mt-3">MuseClub</p>
+                        <h4 class="navbar-title">MuseClub</h4>
                       </div>
                     </div>
                     <!-- 商店類別和名稱 -->
-                    <div class="col-md-6 form-group mb-5">
+                    <div class="col-lg-6 form-group mb-5">
                       <label for="storecategory">商店類別</label>
                       <input
                         v-model="storeData.Store_category.name"
@@ -54,7 +54,7 @@
 
                       <button
                         v-if="isDisable"
-                        class="btn btn-select mt-3"
+                        class="btn btn-success mt-3 col-12"
                         @click.stop.prevent="toUpdate()"
                       >編輯</button>
 
@@ -161,87 +161,64 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
   }
 }
 
-.container-fluid {
-  margin-top: -92px;
-  margin-left: -89px;
-  width: 115%;
-  margin-bottom: 60px;
-  @include respond-and(768px) {
-    margin-top: 0px;
-    margin-left: -60px;
-    margin-bottom: 150px;
+.admin_layout-box,
+.logo-box {
+  display: flex;
+  justify-content: center;
+}
+
+.logo-box {
+  @include respond-and(992px) {
+    margin-bottom: 20px;
   }
+}
+
+.indexmodel_storeinfo {
+  @include respond-and(992px) {
+    padding: 0;
+  }
+}
+
+.navbar {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar-title {
   font-family: "Pacifico", cursive;
-  font-size: 25px;
   color: #0085a5;
-}
-
-.btn-select {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  background-color: #0085a5;
-  color: white;
-  text-align: center;
-  width: 100%;
-  &:hover {
-    background-color: #0c99bd;
-  }
 }
 
 .logo {
   background-color: #d2f0f5;
-  height: 150px;
-  width: 300px;
+  height: 24vh;
+  width: 24vw;
   border-radius: 100px;
-  margin-left: 60px;
-  @media screen and (min-width: 960px) and (max-width: 1100px) {
-    height: 110px;
-    width: 200px;
-  }
-  @media screen and (min-width: 768px) and (max-width: 960px) {
-    height: 90px;
-    width: 150px;
-  }
-  @include respond-and(768px) {
-    height: 110px;
-    width: 200px;
-    margin-left: 0px;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include respond-and(992px) {
+    height: 30vh;
+    width: 90vw;
+    border-radius: 20px;
   }
 }
 
 .row,
 input,
 textarea,
-.navbar-title,
 .btn {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 15px;
-  }
+  font-size: 16px;
 }
 
-.navbar {
-  @include respond-and(768px) {
-    margin-left: 25px;
-  }
+textarea {
+  padding: 20px;
 }
 </style>

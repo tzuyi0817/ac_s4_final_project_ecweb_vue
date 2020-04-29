@@ -19,7 +19,7 @@
           <!-- 未登入 -->
           <router-link
             v-if="!isAuthenticated"
-            class="btn btn-success mt-3 mr-3 mb-1"
+            class="btn btn-success mt-3 mr-2 mb-1"
             to="/users/logIn?redirect=cart"
           >使用折價券</router-link>
 
@@ -27,7 +27,7 @@
           <button
             v-else
             type="submit"
-            class="btn btn-success mt-3 mr-3 mb-1"
+            class="btn btn-success mt-3 mr-2 mb-1"
             :disabled="isProcessing"
           >使用折價券</button>
         </div>

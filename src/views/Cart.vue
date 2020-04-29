@@ -210,10 +210,19 @@ export default {
   text-align: center;
   font-size: 16px;
   padding: 35px;
+  border: 10px solid white;
   background-color: #e5ebec;
+  border-radius: 15px;
+  margin-bottom: 0px;
 }
 
 .btn-success {
   margin: 20px 10px 5px 0;
+}
+
+.shopping-btn {
+  margin: 0;
+  border: 10px solid white;
+  border-radius: 15px;
 }
 </style>

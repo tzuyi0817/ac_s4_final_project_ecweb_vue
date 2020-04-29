@@ -236,7 +236,7 @@ span,
 }
 
 .money-symbol {
-  @include respond-and(768px) {
+  @include respond-and(992px) {
     display: none;
   }
 }
