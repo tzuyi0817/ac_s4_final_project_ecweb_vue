@@ -1,55 +1,67 @@
 <template>
   <tr>
-    <td class="image">
-      <img class="w-100 mt-4" :src="product.image" alt="產品圖片" />
-    </td>
     <td>
-      <p class="mt-4">{{product.name}}</p>
+      <img class="image" :src="product.image" alt="產品圖片" />
+    </td>
+    <td class="name">
+      <div class="td-box">
+        <p>{{product.name}}</p>
+      </div>
     </td>
     <td class="price">
-      <p class="mt-4">{{product.price}}</p>
+      <div class="td-box">
+        <p>{{product.price}}</p>
+      </div>
     </td>
     <td class="count">
-      <p class="mt-4">{{product.count}}</p>
+      <div class="td-box">
+        <p>{{product.count}}</p>
+      </div>
     </td>
 
     <td v-if="product.launched">
-      <p class="mt-4">上架</p>
+      <div class="td-box">
+        <p>上架</p>
+      </div>
     </td>
     <td v-else>
-      <p class="mt-4">下架</p>
+      <div class="td-box">
+        <p>下架</p>
+      </div>
     </td>
 
     <td>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <router-link
-            :to="{ name: 'AdminProductUpdate', params: {id: product.id} }"
-            class="btn btn-outline-secondary mt-4"
-          >編輯</router-link>
+      <div class="td-box">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <router-link
+              :to="{ name: 'AdminProductUpdate', params: {id: product.id} }"
+              class="btn btn-outline-secondary"
+            >編輯</router-link>
 
-          <button
-            type="button"
-            class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split mt-4"
-            data-toggle="dropdown"
-          ></button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+              data-toggle="dropdown"
+            ></button>
 
-          <div class="dropdown-menu">
-            <template v-if="product.launched">
-              <form @submit.stop.prevent="handleShelves(product.id, 0)">
-                <button type="submit" class="dropdown-item" :disabled="isProcessing">下架</button>
+            <div class="dropdown-menu">
+              <template v-if="product.launched">
+                <form @submit.stop.prevent="handleShelves(product.id, 0)">
+                  <button type="submit" class="dropdown-item" :disabled="isProcessing">下架</button>
+                </form>
+              </template>
+
+              <template v-else>
+                <form @submit.stop.prevent="handleShelves(product.id, 1)">
+                  <button type="submit" class="dropdown-item" :disabled="isProcessing">上架</button>
+                </form>
+              </template>
+
+              <form @submit.stop.prevent="handleDelete(product.id)">
+                <button class="dropdown-item" type="submit" :disabled="isProcessing">刪除</button>
               </form>
-            </template>
-
-            <template v-else>
-              <form @submit.stop.prevent="handleShelves(product.id, 1)">
-                <button type="submit" class="dropdown-item" :disabled="isProcessing">上架</button>
-              </form>
-            </template>
-
-            <form @submit.stop.prevent="handleDelete(product.id)">
-              <button class="dropdown-item" type="submit" :disabled="isProcessing">刪除</button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -140,38 +152,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
   }
 }
 
+.td-box {
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
 .image {
-  width: 10%;
-  @include respond-and(768px) {
-    width: 80px;
-  }
+  width: 60px;
+  height: 60px;
+}
+
+.name {
+  max-width: 260px;
 }
 
 .dropdown-menu,
 .input-group-prepend a,
 .btn {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 10px;
-  }
+  font-size: 16px;
+}
+
+p {
+  margin-bottom: 0px;
 }
 
 .price,
 .count {
-  @include respond-and(768px) {
+  @include respond-and(992px) {
     display: none;
   }
 }

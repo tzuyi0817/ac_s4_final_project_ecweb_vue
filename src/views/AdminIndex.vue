@@ -167,13 +167,9 @@ export default {
   }
 }
 
-.admin_layout-box,
 .logo-box {
   display: flex;
   justify-content: center;
-}
-
-.logo-box {
   @include respond-and(992px) {
     margin-bottom: 20px;
   }
@@ -183,12 +179,6 @@ export default {
   @include respond-and(992px) {
     padding: 0;
   }
-}
-
-.navbar {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
 }
 
 .navbar-title {
