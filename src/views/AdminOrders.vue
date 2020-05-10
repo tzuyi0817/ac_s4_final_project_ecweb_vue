@@ -2,15 +2,15 @@
   <div>
     <Spinner v-if="isLoading" />
     <template v-else>
-      <div class="container-fluid admin_layout">
-        <div class="row">
-          <div class="navbar col-10 col-md-2 d-flex flex-column">
+      <div class="admin_layout">
+        <div class="admin_layout-box row">
+          <div class="navbar col-lg-2 col-12">
             <AdminNavbar />
           </div>
 
-          <div class="col-md-10 col-12 bg-light p-1">
-            <div class="col-md-11 productmodel_orders">
-              <div class="card my-5">
+          <div class="orders-box col-lg-10 col-12 mt-2">
+            <div class="col-12 productmodel_orders bg-light">
+              <div class="card">
                 <div class="filiterBar input-group p-3">
                   <!-- 訂單篩選 -->
                   <div class="dropdown">
@@ -49,7 +49,7 @@
                   </div>
 
                   <!-- 訂單狀態 -->
-                  <div v-if="isOrderstatus" class="orderStatus ml-4">
+                  <div v-if="isOrderstatus" class="status-link ml-3">
                     <ul class="nav nav-pills">
                       <li class="nav-item">
                         <router-link
@@ -73,7 +73,7 @@
                   </div>
 
                   <!-- 付款狀態 -->
-                  <div v-if="isPaymentstatus" class="orderStatus ml-4">
+                  <div v-if="isPaymentstatus" class="status-link ml-3">
                     <ul class="nav nav-pills nav-fill">
                       <li class="nav-item">
                         <router-link
@@ -103,7 +103,7 @@
                   </div>
 
                   <!-- 送貨狀態 -->
-                  <div v-if="isShipmentstatus" class="orderStatus ml-4">
+                  <div v-if="isShipmentstatus" class="status-link ml-3">
                     <ul class="nav nav-pills nav-fill">
                       <li class="nav-item">
                         <router-link
@@ -162,16 +162,18 @@
                         <th scope="col" class="payment-status">付款狀態</th>
                         <th scope="col" class="shipment-status">送貨狀態</th>
                         <th scope="col" class="orderer">訂購人</th>
-                        <th scope="col">合計</th>
+                        <th scope="col" class="amount">合計</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <AdminOrderList
-                        v-for="order in orders"
-                        :key="order.id"
-                        :initial-order="order"
-                      />
-                    </tbody>
+                    <transition name="fade" mode="out-in">
+                      <tbody v-if="show">
+                        <AdminOrderList
+                          v-for="order in orders"
+                          :key="order.id"
+                          :initial-order="order"
+                        />
+                      </tbody>
+                    </transition>
                   </table>
                 </div>
               </div>
@@ -210,7 +212,8 @@ export default {
       currentOrderStatusId: "",
       currentPaymentStatusId: "",
       currentShipmentStatusId: "",
-      orderer: ""
+      orderer: "",
+      show: false
     };
   },
   computed: {
@@ -295,6 +298,7 @@ export default {
       orderer = ""
     }) {
       try {
+        this.show = false;
         const { data, statusText } = await AdminAPI.getOrderManagePage({
           page,
           orderstatusid,
@@ -316,6 +320,7 @@ export default {
         this.orderer = this.$route.query.orderer;
 
         this.isLoading = false;
+        this.show = true;
       } catch (error) {
         this.isLoading = false;
         Toast.fire({
@@ -329,27 +334,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
   }
 }
 
-.container-fluid {
-  margin-top: -92px;
-  margin-left: -89px;
-  width: 115%;
-  @include respond-and(768px) {
-    margin-top: 0px;
-    margin-left: -60px;
-    margin-bottom: 150px;
+.orders-box {
+  padding-left: 20px;
+  margin-bottom: 60px;
+  @include respond-and(992px) {
+    padding: 0 15px;
   }
+}
+
+.productmodel_orders {
+  padding: 35px 15px;
 }
 
 .btn-filter {
@@ -382,17 +382,17 @@ export default {
   }
 }
 
+.status-link {
+  margin-top: 15px;
+}
+
 .btn-select,
 .dropdown-menu,
 .btn,
 .orders_table,
 input,
 li {
-  @include respond-between(960px, 1100px, 14px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 10px;
-  }
+  font-size: 16px;
 }
 
 .payment-status,
@@ -402,15 +402,9 @@ li {
   }
 }
 
-.navbar {
-  @include respond-and(768px) {
-    margin-left: 25px;
-  }
-}
-
-.card {
-  @include respond-and(768px) {
-    margin-left: -25px;
+.amount {
+  @include respond-and(576px) {
+    display: none;
   }
 }
 </style>
