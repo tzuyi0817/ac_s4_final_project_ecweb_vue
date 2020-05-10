@@ -2,14 +2,14 @@
   <div>
     <Spinner v-if="isLoading" />
     <template v-else>
-      <div class="container-fluid admin_layout">
-        <div class="row">
-          <div class="navbar col-md-2 col-10 d-flex flex-column">
+      <div class="admin_layout">
+        <div class="admin_layout-box row">
+          <div class="navbar col-lg-2 col-12">
             <AdminNavbar />
           </div>
 
-          <div class="editproduct col-md-8 col-11 bg-light p-1">
-            <div class="productmodel_editproduct col-12 py-3">
+          <div class="editproduct col-lg-10 col-12 mt-2">
+            <div class="productmodel_editproduct col-12 bg-light">
               <!-- 商品編輯表單 -->
               <form @submit.stop.prevent="handleSubmit">
                 <div class="card">
@@ -45,8 +45,8 @@
                       <p>商品主要圖片</p>
                       <hr />
 
-                      <div class="row">
-                        <div class="col p-5">
+                      <div class="images-box row">
+                        <div class="image-box col">
                           <img
                             class="d-block img-thumbnail mb-3"
                             v-if="product.image"
@@ -63,7 +63,7 @@
                           />
                         </div>
 
-                        <div class="col p-5">
+                        <div class="image-box col">
                           <img
                             class="d-block img-thumbnail mb-3"
                             v-if="product.imageI"
@@ -80,7 +80,7 @@
                           />
                         </div>
 
-                        <div class="col p-5">
+                        <div class="image-box col">
                           <img
                             class="d-block img-thumbnail mb-3"
                             v-if="product.imageII"
@@ -187,7 +187,7 @@
 
                       <button
                         type="submit"
-                        class="btn btn-primary col-12 mt-3 mb-3"
+                        class="btn btn-success col-12 mt-3 mb-3"
                         :disabled="isProcessing"
                       >{{ isProcessing ? "處理中..." : "送出" }}</button>
                     </div>
@@ -315,33 +315,38 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    @content;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
   }
 }
 
-.container-fluid {
-  margin-top: -92px;
-  margin-left: -89px;
-  width: 115%;
-  @include respond-and(768px) {
-    margin-top: 0px;
-    margin-left: -60px;
-    margin-bottom: 150px;
+.editproduct {
+  padding-left: 20px;
+  margin-bottom: 60px;
+  @include respond-and(992px) {
+    padding: 0 15px;
   }
 }
 
-.editproduct {
-  margin-left: 60px;
+.productmodel_editproduct {
+  padding: 35px 15px;
+}
+
+.images-box {
+  display: flex;
   @include respond-and(768px) {
-    margin-left: 0px;
+    flex-direction: column;
+  }
+}
+
+.image-box {
+  padding: 60px 15px;
+}
+
+.nav-link {
+  @include respond-and(576px) {
+    padding: 10px;
   }
 }
 
@@ -354,50 +359,11 @@ a:hover {
   color: #0c99bd;
 }
 
-.btn-primary {
-  background-color: #0085a5;
-  &:hover {
-    background-color: #0c99bd;
-  }
-}
-
-.img-thumbnail {
-  height: 230px;
-  @include respond-between(960px, 1100px) {
-    height: 180px;
-  }
-  @include respond-between(768px, 960px) {
-    height: 130px;
-  }
-  @include respond-and(768px) {
-    height: 130px;
-  }
-}
-
 .card,
 select,
 input,
 textarea,
 .btn {
-  @include respond-between(960px, 1100px) {
-    font-size: 15px;
-  }
-  @include respond-between(768px, 960px) {
-    font-size: 10px;
-  }
-  @include respond-and(768px) {
-    font-size: 10px;
-  }
-}
-
-.card {
-  @include respond-and(768px) {
-  }
-}
-
-.navbar {
-  @include respond-and(768px) {
-    margin-left: 25px;
-  }
+  font-size: 16px;
 }
 </style>
