@@ -5,7 +5,7 @@
         <p class="d-inline" style="color: #0085a5;">付款資料</p>
 
         <div v-if="isEdit" class="status_btn d-flex">
-          <button id="save" type="submit" class="btn btn-sm btn-success">儲存</button>
+          <button id="save" type="submit" class="btn btn-sm btn-info">儲存</button>
         </div>
 
         <div v-else class="status_btn d-flex" @click.stop.prevent="edit">
@@ -14,24 +14,24 @@
       </div>
       <div class="card-body">
         <!-- 付款狀態 -->
-        <div id="paymentDetail" class="payment-status-item my-1">
-          <h6 class="font-weight-bold">付款狀態</h6>
+        <div id="paymentDetail" class="payment-status-item my-3">
+          <p class="font-weight-bold">付款狀態</p>
 
-          <h5 v-if="lastPayments.PaymentStatusId === 1">
+          <h6 v-if="lastPayments.PaymentStatusId === 1">
             <span class="badge badge-secondary">未付款</span>
-          </h5>
+          </h6>
 
-          <h5 v-if="lastPayments.PaymentStatusId === 2">
+          <h6 v-if="lastPayments.PaymentStatusId === 2">
             <span class="badge badge-success">已付款</span>
-          </h5>
+          </h6>
 
-          <h5 v-if="lastPayments.PaymentStatusId === 3">
+          <h6 v-if="lastPayments.PaymentStatusId === 3">
             <span class="badge badge-warning">退款中</span>
-          </h5>
+          </h6>
 
-          <h5 v-if="lastPayments.PaymentStatusId === 4">
+          <h6 v-if="lastPayments.PaymentStatusId === 4">
             <span class="badge badge-secondary">已退款</span>
-          </h5>
+          </h6>
 
           <div v-if="isEdit" class="form-group">
             <select name="PaymentStatusId" class="form-control" v-model="PaymentStatusId">
@@ -45,23 +45,23 @@
         </div>
         <!-- 付款方法 -->
         <div class="payment-status-item my-1">
-          <h6 class="font-weight-bold">付款方法</h6>
+          <p class="font-weight-bold">付款方法</p>
 
-          <h5 v-if="lastPayments.PaymentTypeId === 1">
+          <h6 v-if="lastPayments.PaymentTypeId === 1">
             <span class="badge badge-secondary">信用卡</span>
-          </h5>
+          </h6>
 
-          <h5 v-if="lastPayments.PaymentTypeId === 2">
+          <h6 v-if="lastPayments.PaymentTypeId === 2">
             <span class="badge badge-secondary">貨到付款</span>
-          </h5>
+          </h6>
 
-          <h5 v-if="lastPayments.PaymentTypeId === 3">
+          <h6 v-if="lastPayments.PaymentTypeId === 3">
             <span class="badge badge-secondary">GOOGLEPAY</span>
-          </h5>
+          </h6>
 
-          <h5 v-if="lastPayments.PaymentTypeId === 4">
+          <h6 v-if="lastPayments.PaymentTypeId === 4">
             <span class="badge badge-secondary">匯款</span>
-          </h5>
+          </h6>
 
           <div v-if="isEdit" class="form-group">
             <select name="PaymentTypeId" class="form-control" v-model="PaymentTypeId">
@@ -142,31 +142,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-@mixin respond-and($upper, $font-size) {
-  @media screen and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-h5 {
-  @include respond-between(960px, 1100px, 18px);
-  @include respond-between(768px, 960px, 13px);
-  @include respond-and(768px, 13px);
-}
-
 .card,
 button,
-h6,
-p,
 select {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
+  font-size: 16px;
 }
 </style>

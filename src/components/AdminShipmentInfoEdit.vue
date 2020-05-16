@@ -5,7 +5,7 @@
         <p class="d-inline" style="color: #0085a5;">配送資料</p>
         <div id="shipment" class="status_btn d-flex">
           <div v-if="isEdit" class="status_btn d-flex">
-            <button id="save" type="submit" class="btn btn-sm btn-success">儲存</button>
+            <button id="save" type="submit" class="btn btn-sm btn-info">儲存</button>
           </div>
 
           <div v-else class="status_btn d-flex" @click.stop.prevent="edit">
@@ -15,36 +15,36 @@
       </div>
       <div id="shipmentDetail" class="card-body">
         <!-- 發貨狀態 -->
-        <div class="shipment-status-item my-1">
-          <h6 class="font-weight-bold">發貨狀態</h6>
+        <div class="shipment-status-item my-3">
+          <p class="font-weight-bold">發貨狀態</p>
           <!-- 備貨中 -->
-          <h5 v-if="lastshipments.ShipmentStatusId === 1">
+          <h6 v-if="lastshipments.ShipmentStatusId === 1">
             <span class="badge badge-secondary">備貨中</span>
-          </h5>
+          </h6>
           <!-- 發貨中 -->
-          <h5 v-if="lastshipments.ShipmentStatusId === 2">
+          <h6 v-if="lastshipments.ShipmentStatusId === 2">
             <span class="badge badge-secondary">發貨中</span>
-          </h5>
+          </h6>
           <!-- 已發貨 -->
-          <h5 v-if="lastshipments.ShipmentStatusId === 3">
+          <h6 v-if="lastshipments.ShipmentStatusId === 3">
             <span class="badge badge-primary">已發貨</span>
-          </h5>
+          </h6>
           <!-- 已到達 -->
-          <h5 v-if="lastshipments.ShipmentStatusId === 4">
+          <h6 v-if="lastshipments.ShipmentStatusId === 4">
             <span class="badge badge-success">已到達</span>
-          </h5>
+          </h6>
           <!-- 已取貨 -->
-          <h5 v-if="lastshipments.ShipmentStatusId === 5">
+          <h6 v-if="lastshipments.ShipmentStatusId === 5">
             <span class="badge badge-success">已取貨</span>
-          </h5>
+          </h6>
           <!-- 已退貨 -->
-          <h5 v-if="lastshipments.ShipmentStatusId === 6">
+          <h6 v-if="lastshipments.ShipmentStatusId === 6">
             <span class="badge badge-warning">已退貨</span>
-          </h5>
+          </h6>
           <!-- 退貨中 -->
-          <h5 v-if="lastshipments.ShipmentStatusId === 7">
+          <h6 v-if="lastshipments.ShipmentStatusId === 7">
             <span class="badge badge-warning">退貨中</span>
-          </h5>
+          </h6>
 
           <div v-if="isEdit" class="form-group">
             <select name="ShipmentStatusId" class="form-control" v-model="ShipmentStatusId">
@@ -60,20 +60,20 @@
           </div>
         </div>
         <!-- 送貨方式 -->
-        <div class="shipment-status-item my-1">
-          <h6 class="font-weight-bold">送貨方法</h6>
+        <div class="shipment-status-item my-3">
+          <p class="font-weight-bold">送貨方法</p>
           <!-- 宅配 -->
-          <h5 v-if="lastshipments.ShipmentTypeId === 1">
+          <h6 v-if="lastshipments.ShipmentTypeId === 1">
             <span class="badge badge-secondary">宅配</span>
-          </h5>
+          </h6>
           <!-- 超商取貨 -->
-          <h5 v-if="lastshipments.ShipmentTypeId === 2">
+          <h6 v-if="lastshipments.ShipmentTypeId === 2">
             <span class="badge badge-primary">超商取貨</span>
-          </h5>
+          </h6>
           <!-- 面交 -->
-          <h5 v-if="lastshipments.ShipmentTypeId === 3">
+          <h6 v-if="lastshipments.ShipmentTypeId === 3">
             <span class="badge badge-warning">面交</span>
-          </h5>
+          </h6>
           <div v-if="isEdit" class="form-group">
             <select name="ShipmentTypeId" class="form-control" v-model="ShipmentTypeId">
               <option value selected disabled>--請選擇--</option>
@@ -84,14 +84,14 @@
           </div>
         </div>
         <!-- 收件人 -->
-        <div class="shipment-status-item my-1">
-          <h6 class="font-weight-bold">收件人</h6>
+        <div class="shipment-status-item my-3">
+          <p class="font-weight-bold">收件人</p>
           <input v-if="isEdit" type="text" name="name" class="form-control" v-model="order.name" />
           <input v-else type="text" name="name" class="form-control" v-model="order.name" disabled />
         </div>
         <!-- 收件人電話號碼 -->
-        <div class="shipment-status-item my-1">
-          <h6 class="font-weight-bold">收件人電話號碼</h6>
+        <div class="shipment-status-item my-3">
+          <p class="font-weight-bold">收件人電話號碼</p>
           <input v-if="isEdit" type="text" name="phone" class="form-control" v-model="order.phone" />
           <input
             v-else
@@ -103,13 +103,13 @@
           />
         </div>
         <!-- 送貨費用 -->
-        <div class="shipment-status-item my-1">
-          <h6 class="font-weight-bold">送貨費用</h6>
+        <div class="shipment-status-item my-3">
+          <p class="font-weight-bold">送貨費用</p>
           <p>NT $ {{shippingFee}}</p>
         </div>
         <!-- 送貨地址 -->
-        <div class="shipment-status-item my-1">
-          <h6 class="font-weight-bold">送貨地址</h6>
+        <div class="shipment-status-item my-3">
+          <p class="font-weight-bold">送貨地址</p>
           <input
             v-if="isEdit"
             type="text"
@@ -202,32 +202,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-@mixin respond-and($upper, $font-size) {
-  @media screen and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
-h5 {
-  @include respond-between(960px, 1100px, 18px);
-  @include respond-between(768px, 960px, 13px);
-  @include respond-and(768px, 13px);
-}
-
 .card,
 button,
-h6,
-p,
 select,
 input {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px, 10px);
+  font-size: 16px;
 }
 </style>
