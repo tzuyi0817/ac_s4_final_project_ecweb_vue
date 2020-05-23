@@ -344,7 +344,7 @@ export default {
   padding-left: 20px;
   margin-bottom: 60px;
   @include respond-and(992px) {
-    padding: 0 15px;
+    padding: 0 5px;
   }
 }
 

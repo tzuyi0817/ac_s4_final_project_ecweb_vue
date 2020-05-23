@@ -2,14 +2,14 @@
   <div>
     <Spinner v-if="isLoading" />
     <template v-else>
-      <div class="container-fluid admin_layout">
-        <div class="row">
-          <div class="navbar col-md-2 col-10 d-flex flex-column">
+      <div class="admin_layout">
+        <div class="admin_layout-box row">
+          <div class="navbar col-lg-2 col-12">
             <AdminNavbar />
           </div>
 
-          <div class="col-md-9 col-12 bg-light p-1 mt-4 mb-4">
-            <div class="col-12 productmodel_orders px-5">
+          <div class="deliveryNotice-box col-lg-10 col-12 mt-2 mb-5">
+            <div class="deliveryNotice col-12 bg-light">
               <!-- 貨到通知總覽 -->
               <div class="card my-3">
                 <!-- 產品清單 -->
@@ -40,7 +40,7 @@
                           </th>
 
                           <td>
-                            <p class="mt-2">{{deliveryNotice.email}}</p>
+                            <p class="e-mail mt-2">{{deliveryNotice.email}}</p>
                           </td>
                           <td>
                             <p class="mt-2">{{deliveryNotice.Product.name}}</p>
@@ -152,47 +152,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@mixin respond-between($lower, $upper, $font-size) {
-  @media screen and (min-width: $lower) and (max-width: $upper) {
-    font-size: $font-size;
-  }
-}
-
 @mixin respond-and($upper) {
   @media screen and (max-width: $upper) {
     @content;
   }
 }
 
-.container-fluid {
-  margin-top: -92px;
-  margin-left: -89px;
-  width: 115%;
-  @include respond-and(768px) {
-    margin-top: 0px;
-    margin-left: -60px;
-    margin-bottom: 150px;
+.deliveryNotice-box {
+  @include respond-and(992px) {
+    padding: 0 5px;
   }
+}
+
+.deliveryNotice {
+  padding: 15px;
+  @include respond-and(992px) {
+    padding: 15px;
+  }
+}
+
+.e-mail {
+  word-break: break-all;
 }
 
 .orders_table,
 .btn {
-  @include respond-between(960px, 1100px, 15px);
-  @include respond-between(768px, 960px, 10px);
-  @include respond-and(768px) {
-    font-size: 10px;
-  }
-}
-
-.card {
-  @include respond-and(768px) {
-    margin-left: -50px;
-  }
-}
-
-.navbar {
-  @include respond-and(768px) {
-    margin-left: 25px;
-  }
+  font-size: 16px;
 }
 </style>

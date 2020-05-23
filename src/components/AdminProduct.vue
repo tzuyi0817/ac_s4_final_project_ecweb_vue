@@ -5,7 +5,7 @@
     </td>
     <td class="name">
       <div class="td-box">
-        <p>{{product.name}}</p>
+        <p>{{substring(product.name)}}</p>
       </div>
     </td>
     <td class="price">
@@ -146,6 +146,11 @@ export default {
           title: "商品無法刪除，請稍後再試"
         });
       }
+    },
+    substring(s) {
+      if (s.length > 23) {
+        return s.substring(0, 23) + "...";
+      } else return s;
     }
   }
 };
